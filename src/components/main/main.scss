@@ -1,0 +1,23 @@
+@import '~src/styles/ugarte.scss';
+
+// -----------------------------------------------------------------------------------------------
+// Bootstrap
+// -----------------------------------------------------------------------------------------------
+
+// Reset / Normalize + Reboop
+@import "~bootstrap/scss/normalize";
+@import "~bootstrap/scss/print";
+@import "~bootstrap/scss/reboot";
+
+// Utilities
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/utilities-background";
+@import "~bootstrap/scss/utilities-spacing";
+@import "~bootstrap/scss/utilities-responsive";
+
+// -----------------------------------------------------------------------------------------------
+// Ugarte
+// -----------------------------------------------------------------------------------------------
+
+@import '~src/styles/default.scss';
+@import '~src/styles/main.scss';
