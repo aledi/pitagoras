@@ -1,0 +1,24 @@
+@import '~src/styles/ugarte.scss';
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
+}
+
+::-webkit-input-placeholder, ::-moz-placeholder, :-ms-input-placeholder, input:-moz-placeholder {
+    letter-spacing: 0.5px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+#ugarte-wrapper, #ugarte {
+    height: 100%;
+    overflow: hidden;
+}
