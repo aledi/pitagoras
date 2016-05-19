@@ -8,7 +8,7 @@ var Parse = require('parse');
 var hostConfig = config[window.location.host] || config['*'];
 
 // Initialize Parse
-Parse.initialize(hostConfig.appId || 'ugarteprueba');
+Parse.initialize('ugartePrueba' || hostConfig.appId);
 Parse.serverURL = hostConfig.serverURL;
 
 // Export before settings routes given circular dependencies.
