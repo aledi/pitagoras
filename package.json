@@ -1,8 +1,8 @@
 {
-  "name": "ugarte",
+  "name": "pitagoras",
   "private": true,
   "version": "1.0.0",
-  "description": "Ugarte Web",
+  "description": "Pitagoras",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "webpack-dev-server --progress --colors --host 0.0.0.0 --port 8888 --content-base build/ --history-api-fallback",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexcris/ugarte.git"
+    "url": "git+https://github.com/alexcris/pitagoras.git"
   },
   "author": "Cristerna",
   "license": "Unlicense",
   "bugs": {
-    "url": "https://github.com/alexcris/ugarte/issues"
+    "url": "https://github.com/alexcris/pitagoras/issues"
   },
-  "homepage": "https://github.com/alexcris/ugarte#readme",
+  "homepage": "https://github.com/alexcris/pitagoras#readme",
   "devDependencies": {
     "autoprefixer": "6.3.3",
     "aws-sdk": "2.2.41",

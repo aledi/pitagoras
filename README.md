@@ -1,4 +1,4 @@
-# Ugarte
+# Pitagoras
 
 Recommended packages for Atom:
 - auto-indent (griiin)

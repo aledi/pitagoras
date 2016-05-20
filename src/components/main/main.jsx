@@ -6,7 +6,7 @@ require('./main.scss');
 // Dependencies
 // -----------------------------------------------------------------------------------------------
 
-var Ugarte = require('src/ugarte');
+var Pitagoras = require('src/pitagoras');
 var React = require('react');
 var Parse = require('parse');
 var ReactRouter = require('react-router');
@@ -51,7 +51,7 @@ var Main = React.createClass({
     },
     render: function () {
         return (
-            <div id='ugarte'>
+            <div id='pitagoras'>
                 {this.renderChildren()}
             </div>
         );

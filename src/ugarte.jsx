@@ -8,7 +8,7 @@ var Parse = require('parse');
 var hostConfig = config[window.location.host] || config['*'];
 
 // Initialize Parse
-Parse.initialize('ugartePrueba');
+Parse.initialize('pitagoras');
 Parse.serverURL = hostConfig.serverURL;
 
 // Export before settings routes given circular dependencies.
@@ -27,8 +27,8 @@ var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
 var routes = require('src/routes');
 
-// Render Ugarte
+// Render Pitagoras
 ReactDOM.render(
     <Router history={ReactRouter.browserHistory} routes={routes} />,
-    document.getElementById('ugarte-wrapper')
+    document.getElementById('pitagoras-wrapper')
 );
