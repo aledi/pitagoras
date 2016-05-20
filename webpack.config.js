@@ -25,7 +25,7 @@ if (!debug) {
     defines['process.env'] = {NODE_ENV: JSON.stringify('production')};
 
     plugins.push(
-        new webpack.BannerPlugin('CONFIDENTIAL MATERIAL. DO NOT DISTRIBUTE.\nCopyright (c) ' + (new Date()).getFullYear() + ', Ugarte. All Rights Reserved.'),
+        new webpack.BannerPlugin('CONFIDENTIAL MATERIAL. DO NOT DISTRIBUTE.\nCopyright (c) ' + (new Date()).getFullYear() + ', Pitágoras. All Rights Reserved.'),
         new webpack.optimize.UglifyJsPlugin(),
         new webpack.optimize.OccurenceOrderPlugin()
     );
@@ -37,13 +37,13 @@ module.exports = {
     devtool: 'source-map',
 
     entry: [
-        './src/ugarte.jsx',
+        './src/pitagoras.jsx',
         './src/index.html'
     ],
 
     output: {
         path: path.join(__dirname, 'build'),
-        filename: 'ugarte.js',
+        filename: 'pitagoras.js',
         publicPath: '/'
     },
 

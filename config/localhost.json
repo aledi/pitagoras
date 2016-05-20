@@ -1,5 +1,5 @@
 {
     "*": {
-        "serverURL": "http://localhost:1337/ugarteprueba"
+        "serverURL": "https://pitagoras-server.herokuapp.com/pitagoras"
     }
 }
