@@ -16,11 +16,13 @@ var IndexRoute = ReactRouter.IndexRoute;
 
 var Main = require('src/components/main/main');
 var Index = require('src/components/index/index');
+var Signin = require('src/components/auth/signin');
 var NotFound = require('src/components/not-found/not-found');
 
 var Routes = (
     <Route path='/' component={Main}>
         <IndexRoute onEnter={redirectIndex} />
+        <Route path='signin' component={Signin} />
         <Route path='index' component={Index} />
         <Route path='*' component={NotFound} />
     </Route>

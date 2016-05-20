@@ -4,7 +4,12 @@
 // Setup
 // -----------------------------------------------------------------------------------------------
 
+var Parse = require('parse');
 var hostConfig = config[window.location.host] || config['*'];
+
+// Initialize Parse
+Parse.initialize('ugartePrueba');
+Parse.serverURL = hostConfig.serverURL;
 
 // Export before settings routes given circular dependencies.
 module.exports = {
