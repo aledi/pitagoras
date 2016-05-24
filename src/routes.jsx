@@ -22,8 +22,8 @@ var NotFound = require('src/components/not-found/not-found');
 var Routes = (
     <Route path='/' component={Main}>
         <IndexRoute onEnter={redirectIndex} />
-        <Route path='signin' component={Signin} />
-        <Route path='index' component={Index} />
+        <Route path='signin' component={Signin} onEnter={requireNoAuth}/>
+        <Route path='index' component={Index} onEnter={requireAuth}/>
         <Route path='*' component={NotFound} />
     </Route>
 );
@@ -38,6 +38,37 @@ function redirectIndex (nextState, replace) {
         pathname: '/index',
         query: nextState.location.query,
         state: nextState.location.state
+    });
+}
+
+function requireNoAuth(nextState, replace) {
+    // If user isn't authenticated, show sign in.
+    if (!Parse.User.current()) {
+        return;
+    }
+
+    replace('/index');
+}
+
+function requireAuth(nextState, replace) {
+    // If user is authenticated, check for valid session.
+    if (Parse.User.current()) {
+        Parse.Session.current().catch(function (error) {
+            if (error.code !== Parse.Error.INVALID_SESSION_TOKEN) {
+                return;
+            }
+
+            Parse.User.logOut().then(function () {
+                window.location = '/signin';
+            });
+        });
+
+        return;
+    }
+
+    replace({
+        pathname: '/signin',
+        state: {nextPathname: nextState.location.pathname}
     });
 }
 
