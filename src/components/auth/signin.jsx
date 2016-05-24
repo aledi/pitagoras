@@ -6,6 +6,7 @@ var React = require('react');
 var Parse = require('parse');
 
 var Signin = React.createClass({
+    contextTypes: {router: React.PropTypes.object.isRequired},
     getInitialState: function () {
         return {
             email: null,
@@ -40,6 +41,13 @@ var Signin = React.createClass({
         ).then(this.handleAuthSuccess).catch(this.handleAuthError);
     },
     handleAuthSuccess: function (authData) {
+        var location = this.props.location;
+
+        if (location.state && location.state.nextPathname) {
+            this.context.router.replace(location.state.nextPathname);
+        } else {
+            this.context.router.replace('/');
+        }
     },
     handleAuthError: function (error) {
     }
