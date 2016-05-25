@@ -1,25 +1,26 @@
 'use strict';
 
-require('./not-found.scss');
+require('./reportes.scss');
 
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
+var Parse = require('parse');
 
 // -----------------------------------------------------------------------------------------------
-// NotFound
+// Reportes
 // -----------------------------------------------------------------------------------------------
 
-var NotFound = React.createClass({
+var Reportes = React.createClass({
     render: function () {
         return (
-            <main className='not-found'>
-                <h1>404 - Not Found</h1>
+            <main className='reportes'>
+                <h2>Reportes</h2>
             </main>
         );
     }
 });
 
-module.exports = NotFound;
+module.exports = Reportes;
