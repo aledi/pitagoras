@@ -296,7 +296,6 @@
         "react/jsx-sort-props": "off",
         "react/jsx-space-before-closing": "error",
         "react/jsx-uses-react": "error",
-        "react/jsx-uses-vars": "error",
-
+        "react/jsx-uses-vars": "error"
     }
 }
