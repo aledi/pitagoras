@@ -6,6 +6,7 @@ var React = require('react');
 var Parse = require('parse');
 
 var Signin = React.createClass({
+    statics: {hideMenu: true},
     contextTypes: {router: React.PropTypes.object.isRequired},
     getInitialState: function () {
         return {

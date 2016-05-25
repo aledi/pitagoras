@@ -1,25 +1,26 @@
 'use strict';
 
-require('./not-found.scss');
+require('./agregar-contrato.scss');
 
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
+var Parse = require('parse');
 
 // -----------------------------------------------------------------------------------------------
-// NotFound
+// Agregar Contrato
 // -----------------------------------------------------------------------------------------------
 
-var NotFound = React.createClass({
+var AgregarContrato = React.createClass({
     render: function () {
         return (
-            <main className='not-found'>
-                <h1>404 - Not Found</h1>
+            <main className='agregar-contrato'>
+                <h2>Agregar Contrato</h2>
             </main>
         );
     }
 });
 
-module.exports = NotFound;
+module.exports = AgregarContrato;

@@ -4,10 +4,63 @@
 // Common
 // -----------------------------------------------------------------------------------------------
 
-#pitagoras > main {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background-color: white;
-    overflow: hidden;
+#pitagoras {
+    header {
+        height: 80px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        border-bottom: 1px solid gray;
+
+        div.logo {
+            height: 100%;
+            width: 80px;
+            position: relative;
+            border-right: 1px solid gray;
+        }
+
+        div.links-wrapper {
+            height: 100%;
+            position: absolute;
+            left: 80px;
+            top: 0;
+            right: 80px;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+
+            a {
+                width: 33.3%;
+                display: inline-block;
+                line-height: 70px;
+                cursor: pointer;
+                color: black;
+                text-decoration: none;
+
+                &.active {
+                    color: blue;
+                }
+            }
+        }
+
+        div.signout {
+            height: 100%;
+            width: 80px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-left: 1px solid gray;
+        }
+    }
+
+    main {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: white;
+        overflow: hidden;
+    }
 }

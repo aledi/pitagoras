@@ -28,6 +28,7 @@ var Main = React.createClass({
         var route = (Array.isArray(props.routes) ? props.routes[props.routes.length - 1] : props.routes);
         var component = route.component;
         var state = {
+            hideMenu: !!component.hideMenu,
             children: props.children,
             title: component.title || 'MISSING_TITLE',
 
@@ -52,12 +53,39 @@ var Main = React.createClass({
     render: function () {
         return (
             <div id='pitagoras'>
+                {this.renderHeader()}
                 {this.renderChildren()}
             </div>
         );
     },
+    renderHeader: function () {
+        if (this.state.hideMenu) {
+            return;
+        }
+
+        return (
+            <header>
+                <div className='logo' />
+                <div className='links-wrapper'>
+                    {this.renderAgregarUsuarioItem()}
+                    <Link activeClassName='active' to='/agregar-contrato'>Agregar contrato</Link>
+                    <Link activeClassName='active' to='/contratos'>Ver contratos</Link>
+                    <Link activeClassName='active' to='/reportes'>Reportes</Link>
+                </div>
+                <div className='signout' onClick={this.signOut}/>
+            </header>
+        );
+    },
+    renderAgregarUsuarioItem: function () {
+        // TODO: render opcion if usuario type === 3
+    },
     renderChildren: function () {
         return this.state.children;
+    },
+    signOut: function () {
+        Parse.User.logOut().then(function () {
+            window.location = '/signin';
+        });
     }
 });
 
