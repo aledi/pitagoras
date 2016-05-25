@@ -18,16 +18,8 @@ var Index = React.createClass({
         return (
             <main className='index'>
                 <h2>PITAGORAS</h2>
-                <button type='button' onClick={this.signOut}>Cerrar sesión</button>
             </main>
         );
-    },
-    signOut: function (event) {
-        event.preventDefault();
-
-        Parse.User.logOut().then(function () {
-            window.location = '/signin';
-        });
     }
 });
 

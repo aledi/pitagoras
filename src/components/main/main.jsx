@@ -52,12 +52,30 @@ var Main = React.createClass({
     render: function () {
         return (
             <div id='pitagoras'>
+                <header>
+                    <div className='logo' />
+                    <ul>
+                        {this.renderAgregarUsuarioItem()}
+                        <li>Agregar contrato</li>
+                        <li>Ver contratos</li>
+                        <li>Reporte</li>
+                    </ul>
+                    <div className='signout' onClick={this.signOut}/>
+                </header>
                 {this.renderChildren()}
             </div>
         );
     },
+    renderAgregarUsuarioItem: function () {
+        // TODO: render opcion if usuario type === 3
+    },
     renderChildren: function () {
         return this.state.children;
+    },
+    signOut: function () {
+        Parse.User.logOut().then(function () {
+            window.location = '/signin';
+        });
     }
 });
 
