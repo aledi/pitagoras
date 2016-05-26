@@ -6,7 +6,6 @@ require('./main.scss');
 // Dependencies
 // -----------------------------------------------------------------------------------------------
 
-var Pitagoras = require('src/pitagoras');
 var React = require('react');
 var Parse = require('parse');
 var ReactRouter = require('react-router');
@@ -72,7 +71,7 @@ var Main = React.createClass({
                     <Link activeClassName='active' to='/contratos'>Ver contratos</Link>
                     <Link activeClassName='active' to='/reportes'>Reportes</Link>
                 </div>
-                <div className='signout' onClick={this.signOut}/>
+                <div className='signout' onClick={this.signOut} />
             </header>
         );
     },
