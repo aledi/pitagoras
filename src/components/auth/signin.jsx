@@ -12,7 +12,7 @@ var Signin = React.createClass({
         return {
             email: null,
             password: null
-        }
+        };
     },
     render: function () {
         return (
@@ -51,6 +51,7 @@ var Signin = React.createClass({
         }
     },
     handleAuthError: function (error) {
+        return;
     }
 });
 

@@ -47,7 +47,7 @@ function redirectIndex (nextState, replace) {
     });
 }
 
-function requireNoAuth(nextState, replace) {
+function requireNoAuth (nextState, replace) {
     // If user isn't authenticated, show sign in.
     if (!Parse.User.current()) {
         return;
@@ -56,7 +56,7 @@ function requireNoAuth(nextState, replace) {
     replace('/index');
 }
 
-function requireAuth(nextState, replace) {
+function requireAuth (nextState, replace) {
     // If user is authenticated, check for valid session.
     if (Parse.User.current()) {
         Parse.Session.current().catch(function (error) {

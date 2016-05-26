@@ -2,7 +2,7 @@
   "name": "pitagoras",
   "private": true,
   "version": "1.0.0",
-  "description": "Pitagoras",
+  "description": "Pitágoras",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "webpack-dev-server --progress --colors --host 0.0.0.0 --port 8888 --content-base build/ --history-api-fallback",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexcris/pitagoras.git"
+    "url": "git+https://github.com/ecristerna/pitagoras.git"
   },
-  "author": "Cristerna",
+  "author": "Aledic",
   "license": "Unlicense",
   "bugs": {
-    "url": "https://github.com/alexcris/pitagoras/issues"
+    "url": "https://github.com/ecristerna/pitagoras/issues"
   },
-  "homepage": "https://github.com/alexcris/pitagoras#readme",
+  "homepage": "https://github.com/ecristerna/pitagoras#readme",
   "devDependencies": {
     "autoprefixer": "6.3.3",
     "babel-core": "6.6.5",
@@ -30,8 +30,8 @@
     "classnames": "2.2.3",
     "config": "1.19.0",
     "css-loader": "0.23.1",
-    "eslint": "1.10.3",
-    "eslint-plugin-react": "3.16.1",
+    "eslint": "2.10.2",
+    "eslint-plugin-react": "5.1.1",
     "extract-loader": "0.0.2",
     "extract-text-webpack-plugin": "1.0.1",
     "file-loader": "0.8.5",
