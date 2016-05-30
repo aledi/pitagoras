@@ -1,1 +1,25 @@
 @import '~src/styles/pitagoras.scss';
+
+.addcontract-wrapper {
+    height: 100%;
+    width: 100%;
+    padding-top: 50px;
+
+    form {
+        width: 500px;
+        margin: 0 auto;
+        border: 1px solid black;
+        text-align: center;
+        padding: 40px 100px;
+
+        input {
+            width: 100%;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        button {
+            margin-top: 20px;
+        }
+    }
+}
