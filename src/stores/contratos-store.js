@@ -9,7 +9,7 @@ class ContratosStore extends Flux.MapStore {
         return new Immutable.Map({
             contratos: new Immutable.Map(),
 
-            fetching: true, // Start in fetching state
+            fetching: false,
             fetchError: null
         });
     }

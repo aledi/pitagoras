@@ -3,7 +3,12 @@
 var Immutable = require('immutable');
 
 var ContratoRecord = Immutable.Record({
-    id: null
+    id: null,
+    numeroContrato: '',
+    fechaContrato: null,
+    monto: null,
+    plazo: null,
+    tasa: null
 });
 
 class Contrato extends ContratoRecord {
@@ -17,7 +22,11 @@ class Contrato extends ContratoRecord {
 
     toEditable () {
         return {
-            id: this.id
+            id: this.id,
+            fechaContrato: this.fechaContrato,
+            monto: this.monto,
+            plazo: this.plazo,
+            tasa: this.tasa
         };
     }
 }
