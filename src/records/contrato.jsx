@@ -6,6 +6,9 @@ var Parse = require('parse');
 var VehiculoObject = Parse.Object.extend('Vehiculo');
 var VehiculoRecord = require('./vehiculo');
 
+var ClienteObject = Parse.Object.extend('Cliente');
+var ClienteRecord = require('./cliente');
+
 var ContratoRecord = Immutable.Record({
     id: null,
     cliente: null,
@@ -23,8 +26,10 @@ class Contrato extends ContratoRecord {
         contrato.monto = parseInt(contrato.monto, 10);
         contrato.plazo = parseInt(contrato.plazo, 10);
         contrato.tasa = parseInt(contrato.tasa, 10);
+        contrato.fechaContrato = null;
 
         contrato.vehiculo = new VehiculoObject(VehiculoRecord.prepareForParse(contrato.vehiculo));
+        contrato.cliente = new ClienteObject(ClienteRecord.prepareForParse(contrato.cliente));
 
         return contrato;
     }
@@ -35,6 +40,7 @@ class Contrato extends ContratoRecord {
         definition.id = definition.id || definition.objectId;
 
         definition.vehiculo = new VehiculoRecord(definition.vehiculo);
+        definition.cliente = new ClienteRecord(definition.cliente);
 
         super(definition);
     }
@@ -42,7 +48,7 @@ class Contrato extends ContratoRecord {
     toEditable () {
         return {
             id: this.id,
-            cliente: null,
+            cliente: this.cliente.toEditable(),
             fechaContrato: this.fechaContrato,
             monto: this.monto,
             numeroContrato: this.numeroContrato,

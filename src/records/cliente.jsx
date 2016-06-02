@@ -12,10 +12,29 @@ var ClienteRecord = Immutable.Record({
 });
 
 class Cliente extends ClienteRecord {
+    static prepareForParse (cliente) {
+        cliente.domicilio = {
+            "calle": cliente.domicilio.calle,
+            "interior": parseInt(cliente.domicilio.interior, 10),
+            "exterior": parseInt(cliente.domicilio.exterior, 10),
+            "colonia": cliente.domicilio.colonia,
+            "municipio": cliente.domicilio.municipio,
+            "codigo": parseInt(cliente.domicilio.codigo, 10),
+            "colonia": cliente.domicilio.colonia
+        };
+
+        cliente.telefonos = [parseInt("1", 10), parseInt("2", 10)];
+
+        return cliente;
+    }
+
     constructor (definition) {
         definition = definition || {};
 
         definition.id = definition.id || definition.objectId;
+
+        definition.domicilio = {};
+        definition.telefonos = [];
 
         super(definition);
     }
