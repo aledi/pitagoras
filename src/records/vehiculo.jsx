@@ -13,6 +13,12 @@ var VehiculoRecord = Immutable.Record({
 });
 
 class Vehiculo extends VehiculoRecord {
+    static prepareForParse (vehiculo) {
+        vehiculo.anio = parseInt(vehiculo.anio, 10);
+
+        return vehiculo;
+    }
+
     constructor (definition) {
         definition = definition || {};
 

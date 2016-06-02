@@ -1,6 +1,9 @@
 'use strict';
 
 var Immutable = require('immutable');
+var Parse = require('parse');
+
+var VehiculoObject = Parse.Object.extend('Vehiculo');
 var VehiculoRecord = require('./vehiculo');
 
 var ContratoRecord = Immutable.Record({
@@ -16,6 +19,16 @@ var ContratoRecord = Immutable.Record({
 });
 
 class Contrato extends ContratoRecord {
+    static prepareForParse (contrato) {
+        contrato.monto = parseInt(contrato.monto, 10);
+        contrato.plazo = parseInt(contrato.plazo, 10);
+        contrato.tasa = parseInt(contrato.tasa, 10);
+
+        contrato.vehiculo = new VehiculoObject(VehiculoRecord.prepareForParse(contrato.vehiculo));
+
+        return contrato;
+    }
+
     constructor (definition) {
         definition = definition || {};
 
@@ -36,7 +49,7 @@ class Contrato extends ContratoRecord {
             plazo: this.plazo,
             referencias: this.referencias,
             tasa: this.tasa,
-            vehiculo: this.vehiculo ? this.vehiculo.toEditable() : null
+            vehiculo: this.vehiculo.toEditable()
         };
     }
 }
