@@ -38,7 +38,7 @@ module.exports = {
         Dispatcher.dispatch({
             type: 'CONTRATOS_SAVE'
         });
-        
+
         (new ContratoObject()).save(contrato).then(function (payload) {
             alert("Contrato guardado correctamente.");
             console.log("Contrato guardado correctamente.");
@@ -47,8 +47,8 @@ module.exports = {
                 contrato: createContratoRecord(payload)
             });
         }).catch(function (error) {
-            alert("Error al guardar contraro.");
-            console.log("Error al guardar contraro.");
+            alert("Error al guardar contrato.");
+            console.log("Error al guardar contrato.");
             console.log(error)
             Dispatcher.dispatch({
                 type: 'CONTRATOS_SAVE_ERROR',

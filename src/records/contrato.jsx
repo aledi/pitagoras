@@ -26,7 +26,13 @@ class Contrato extends ContratoRecord {
         contrato.monto = parseInt(contrato.monto, 10);
         contrato.plazo = parseInt(contrato.plazo, 10);
         contrato.tasa = parseInt(contrato.tasa, 10);
-        contrato.fechaContrato = null;
+
+        console.log(contrato.fechaContrato);
+
+        contrato.fechaContrato = new Date(parseInt(contrato.fechaContrato.anio, 10),
+                                        parseInt(contrato.fechaContrato.mes, 10),
+                                        parseInt(contrato.fechaContrato.dia, 10)
+        );
 
         contrato.vehiculo = new VehiculoObject(VehiculoRecord.prepareForParse(contrato.vehiculo));
         contrato.cliente = new ClienteObject(ClienteRecord.prepareForParse(contrato.cliente));
@@ -38,6 +44,8 @@ class Contrato extends ContratoRecord {
         definition = definition || {};
 
         definition.id = definition.id || definition.objectId;
+
+        definition.fechaContrato = {};
 
         definition.vehiculo = new VehiculoRecord(definition.vehiculo);
         definition.cliente = new ClienteRecord(definition.cliente);
