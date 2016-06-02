@@ -20,10 +20,16 @@ var AgregarContrato = React.createClass({
             numeroContrato: null,
             plazo: null,
             monto: null,
-            tasa: null
+            tasa: null,
+            contracts: null
         };
     },
+    componentWillMount: function () {
+        this.loadClients();
+    },
     render: function () {
+
+        console.log(this.state.contracts)
         return (
             <div className='addcontract-wrapper'>
                 <h2>Agregar Contrato</h2>
@@ -36,6 +42,8 @@ var AgregarContrato = React.createClass({
                     <input type='text' value={this.state.monto} onChange={this.handleChange.bind(this, 'monto')} />
                     <label>Tasa</label>
                     <input type='text' value={this.state.tasa} onChange={this.handleChange.bind(this, 'tasa')} />
+                    <label>Cliente</label>
+                    <select>{this.renderClientes()}</select>
                     <button type='submit'>Agregar Contrato</button>
                 </form>
             </div>
@@ -65,6 +73,31 @@ var AgregarContrato = React.createClass({
                 alert('Failed to create new object, with error code: ' + error.message);
             }
         });
+    },
+    loadClients: function () {
+        var query = new Parse.Query(Contrato);
+        var self = this;
+        query.find({
+            success: function(contracts) {
+                // alert(contracts.length);
+
+                self.setState({contracts: contracts});
+            },
+            error: function(object, error) {
+                alert(error);
+            }
+        });
+    },
+    renderClientes: function () {
+        console.log(this.state.contracts)
+        if (!this.state.contracts) {
+            return;
+        }
+
+        return (this.state.contracts.map(function (elemento, index) {
+            console.log(elemento.get('numeroContrato'));
+            return (<option value={elemento.get('numeroContrato')}>{elemento.get('numeroContrato')}</option>);
+        }));
     }
 });
 
