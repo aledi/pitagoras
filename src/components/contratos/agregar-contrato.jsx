@@ -30,8 +30,12 @@ var AgregarContrato = React.createClass({
                         <input type='text' value={this.state.numeroContrato} onChange={this.handleChange.bind(this, 'numeroContrato')} />
                     </div>
                     <div className='input-wrapper'>
-                        <label>Fecha de Contrato</label>
-                        <input type='text' value={this.state.fechaContrato} onChange={this.handleChange.bind(this, 'fechaContrato')} />
+                        <label>Día</label>
+                        <input type='text' value={this.state.fechaContrato.dia} onChange={this.handleFechaChange.bind(this, 'dia')} />
+                        <label>Mes</label>
+                        <input type='text' value={this.state.fechaContrato.mes} onChange={this.handleFechaChange.bind(this, 'mes')} />
+                        <label>Año</label>
+                        <input type='text' value={this.state.fechaContrato.anio} onChange={this.handleFechaChange.bind(this, 'anio')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Plazo</label>
@@ -121,6 +125,12 @@ var AgregarContrato = React.createClass({
     handleChange: function (propertyName, event) {
         var state = {};
         state[propertyName] = event.target.value;
+
+        this.setState(state);
+    },
+    handleFechaChange: function (propertyName, event) {
+        var state = {fechaContrato: this.state.fechaContrato};
+        state.fechaContrato[propertyName] = event.target.value;
 
         this.setState(state);
     },
