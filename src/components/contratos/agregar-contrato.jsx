@@ -32,8 +32,12 @@ var AgregarContrato = React.createClass({
                     <div className='input-wrapper'>
                         <label>Día</label>
                         <input type='text' value={this.state.fechaContrato.dia} onChange={this.handleFechaChange.bind(this, 'dia')} />
+                    </div>
+                    <div className='input-wrapper'>
                         <label>Mes</label>
                         <input type='text' value={this.state.fechaContrato.mes} onChange={this.handleFechaChange.bind(this, 'mes')} />
+                    </div>
+                    <div className='input-wrapper'>
                         <label>Año</label>
                         <input type='text' value={this.state.fechaContrato.anio} onChange={this.handleFechaChange.bind(this, 'anio')} />
                     </div>
