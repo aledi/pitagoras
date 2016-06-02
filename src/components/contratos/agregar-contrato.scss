@@ -1,16 +1,14 @@
 @import '~src/styles/pitagoras.scss';
 
-.addcontract-wrapper {
-    height: 100%;
-    width: 100%;
-    padding-top: 50px;
+.add-contrato {
+    padding: 20px;
+    overflow-y: auto !important;
 
     form {
         width: 500px;
+        padding: 40px 100px;
         margin: 0 auto;
         border: 1px solid black;
-        text-align: center;
-        padding: 40px 100px;
 
         input {
             width: 100%;

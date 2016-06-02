@@ -10,7 +10,9 @@ class ContratosStore extends Flux.MapStore {
             contratos: new Immutable.Map(),
 
             fetching: false,
-            fetchError: null
+            fetchError: null,
+
+            saveError: null
         });
     }
 
@@ -27,6 +29,13 @@ class ContratosStore extends Flux.MapStore {
                 return state.merge({fetching: false, contratos: action.contratos});
             case 'CONTRATOS_FETCH_ERROR':
                 return state.merge({fetching: false, fetchError: action.error});
+
+            case 'CONTRATOS_SAVE':
+                return state.merge({saveError: null});
+            case 'CONTRATOS_SAVE_SUCCESS':
+                return state.merge({contratos: state.get('contratos').set(action.contrato.id, action.contrato)});
+            case 'CONTRATOS_SAVE_ERROR':
+                return state.merge({saveError: action.error});
             default:
                 return state;
         }

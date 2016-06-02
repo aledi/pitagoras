@@ -33,6 +33,24 @@ module.exports = {
                 error: error
             });
         });
+    },
+    saveContrato: function (contrato) {
+        Dispatcher.dispatch({
+            type: 'CONTRATOS_SAVE'
+        });
+
+        (new ContratoObject()).save(contrato).then(function (payload) {
+            Dispatcher.dispatch({
+                type: 'CONTRATOS_SAVE_SUCCESS',
+                contrato: createContratoRecord(payload)
+            });
+        }).catch(function (error) {
+            console.log(error)
+            Dispatcher.dispatch({
+                type: 'CONTRATOS_SAVE_ERROR',
+                error: error
+            });
+        });
     }
 };
 
