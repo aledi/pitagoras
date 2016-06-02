@@ -5,15 +5,31 @@
     overflow-y: auto !important;
 
     form {
-        width: 500px;
-        padding: 40px 100px;
+        width: 600px;
+        padding: 40px 20px;
         margin: 0 auto;
         border: 1px solid black;
 
-        input {
-            width: 100%;
-            display: block;
-            margin-bottom: 20px;
+        .section-title {
+            text-transform: uppercase;
+        }
+
+        .input-wrapper {
+            width: 50%;
+            display: inline-block;
+            padding: 10px;
+            box-sizing: border-box;
+
+            input {
+                width: 100%;
+                display: block;
+                margin-bottom: 20px;
+            }
+        }
+
+        hr {
+            border: none;
+            border-bottom: 1px solid black;
         }
 
         button {
