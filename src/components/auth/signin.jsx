@@ -24,10 +24,10 @@ var Signin = React.createClass({
             <div className='signin-wrapper'>
                 <form onSubmit={this.handleSignIn}>
                     <label>Usuario</label>
-                    <input type='text' value={this.state.email} disabled={this.state.submitting} className={classNames({required: this.state.emailRequired})} onChange={this.handleChange.bind(this, 'email', 'emailRequired')} />
+                    <input type='text' className={classNames({required: this.state.emailRequired})} value={this.state.email} disabled={this.state.submitting} onChange={this.handleChange.bind(this, 'email', 'emailRequired')} />
                     <label>Contraseña</label>
-                    <input type='password' value={this.state.password} disabled={this.state.submitting} className={classNames({required: this.state.passwordRequired})} onChange={this.handleChange.bind(this, 'password', 'passwordRequired')} />
-                    <button disabled={this.state.submitting} type='submit'>Iniciar Sesión</button>
+                    <input type='password' className={classNames({required: this.state.passwordRequired})} value={this.state.password} disabled={this.state.submitting} onChange={this.handleChange.bind(this, 'password', 'passwordRequired')} />
+                    <button type='submit' disabled={this.state.submitting}>Iniciar Sesión</button>
                     <label className={classNames('error', {hidden: !this.state.error})}>La combinación usuario/contraseña es incorrecta.</label>
                 </form>
             </div>
@@ -83,9 +83,7 @@ var Signin = React.createClass({
         }
     },
     handleAuthError: function (error) {
-        this.setState({error: error.message});
-
-        this.setState({submitting: false});
+        this.setState({error: error.message, submitting: false});
 
         return;
     }
