@@ -16,6 +16,8 @@ module.exports = {
         });
 
         var query = new Parse.Query(ContratoObject);
+        query.include('cliente');
+        query.include('vehiculo');
         query.limit(1000);
         query.find().then(function (contratos) {
             var contratosByKey = {};
@@ -40,16 +42,17 @@ module.exports = {
         });
 
         (new ContratoObject()).save(contrato).then(function (payload) {
-            alert("Contrato guardado correctamente.");
-            console.log("Contrato guardado correctamente.");
+            alert('Contrato guardado correctamente.');
+
             Dispatcher.dispatch({
                 type: 'CONTRATOS_SAVE_SUCCESS',
                 contrato: createContratoRecord(payload)
             });
         }).catch(function (error) {
-            alert("Error al guardar contrato.");
-            console.log("Error al guardar contrato.");
-            console.log(error)
+            alert('Error al guardar contrato.');
+
+            console.log(error);
+
             Dispatcher.dispatch({
                 type: 'CONTRATOS_SAVE_ERROR',
                 error: error
