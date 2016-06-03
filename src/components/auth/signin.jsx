@@ -13,9 +13,9 @@ var Signin = React.createClass({
         return {
             email: null,
             password: null,
-            submitting: false,
             emailRequired: false,
             passwordRequired: false,
+            submitting: false,
             error: null
         };
     },
@@ -24,11 +24,21 @@ var Signin = React.createClass({
             <div className='signin-wrapper'>
                 <form onSubmit={this.handleSignIn}>
                     <label>Usuario</label>
-                    <input type='text' className={classNames({required: this.state.emailRequired})} value={this.state.email} disabled={this.state.submitting} onChange={this.handleChange.bind(this, 'email', 'emailRequired')} />
+                    <input
+                        type='text'
+                        className={classNames({required: this.state.emailRequired})}
+                        value={this.state.email}
+                        disabled={this.state.submitting}
+                        onChange={this.handleChange.bind(this, 'email', 'emailRequired')} />
                     <label>Contraseña</label>
-                    <input type='password' className={classNames({required: this.state.passwordRequired})} value={this.state.password} disabled={this.state.submitting} onChange={this.handleChange.bind(this, 'password', 'passwordRequired')} />
+                    <input
+                        type='password'
+                        className={classNames({required: this.state.passwordRequired})}
+                        value={this.state.password}
+                        disabled={this.state.submitting}
+                        onChange={this.handleChange.bind(this, 'password', 'passwordRequired')} />
                     <button type='submit' disabled={this.state.submitting}>Iniciar Sesión</button>
-                    <label className={classNames('error', {hidden: !this.state.error})}>La combinación usuario/contraseña es incorrecta.</label>
+                    <p className={classNames('error', {hidden: !this.state.error})}>La combinación usuario/contraseña es incorrecta.</p>
                 </form>
             </div>
         );
@@ -46,35 +56,21 @@ var Signin = React.createClass({
     handleSignIn: function (event) {
         event.preventDefault();
 
-        var invalidFields = false;
-        var email = this.state.email;
-        var password = this.state.password;
-
-        if (!email) {
-            this.setState({emailRequired: true});
-            invalidFields = true;
-        }
-
-        if (!password) {
-            this.setState({passwordRequired: true});
-            invalidFields = true;
-        }
-
-        if (invalidFields) {
+        if (this.hasInvalidFields()) {
             return;
         }
 
         this.setState({submitting: true});
 
         Parse.User.logIn(
-            email,
-            password
+            this.state.email,
+            this.state.password
         ).then(this.handleAuthSuccess).catch(this.handleAuthError);
     },
     handleAuthSuccess: function (authData) {
-        var location = this.props.location;
-
         this.setState({submitting: false});
+
+        var location = this.props.location;
 
         if (location.state && location.state.nextPathname) {
             this.context.router.replace(location.state.nextPathname);
@@ -83,9 +79,27 @@ var Signin = React.createClass({
         }
     },
     handleAuthError: function (error) {
-        this.setState({error: error.message, submitting: false});
+        this.setState({
+            error: error.message,
+            submitting: false
+        });
 
         return;
+    },
+    hasInvalidFields: function () {
+        var invalidFields = false;
+
+        if (!this.state.email) {
+            this.setState({emailRequired: true});
+            invalidFields = true;
+        }
+
+        if (!this.state.password) {
+            this.setState({passwordRequired: true});
+            invalidFields = true;
+        }
+
+        return invalidFields;
     }
 });
 
