@@ -328,8 +328,9 @@ var AgregarContrato = React.createClass({
     },
     renderAnios: function (event) {
         var anios = [];
+        var actual = new Date().getFullYear();
 
-        for (var index = 2016; index >= 1990; index--) {
+        for (var index = actual; index >= 1990; index--) {
             anios.push(
                 <option key={index}>{index}</option>
             );

@@ -56,7 +56,7 @@ class Contrato extends ContratoRecord {
             fechaContrato: this.fechaContrato || {
                 mes: 1,
                 dia: 1,
-                anio: 2016
+                anio: new Date().getFullYear()
             },
             monto: this.monto,
             numeroContrato: this.numeroContrato,
