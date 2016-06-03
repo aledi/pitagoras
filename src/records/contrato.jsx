@@ -27,8 +27,6 @@ class Contrato extends ContratoRecord {
         contrato.plazo = parseFloat(contrato.plazo);
         contrato.tasa = parseFloat(contrato.tasa);
 
-        console.log(contrato.fechaContrato);
-
         contrato.fechaContrato = new Date(parseInt(contrato.fechaContrato.anio, 10),
                                         parseInt(contrato.fechaContrato.mes, 10),
                                         parseInt(contrato.fechaContrato.dia, 10)
@@ -61,7 +59,7 @@ class Contrato extends ContratoRecord {
             monto: this.monto,
             numeroContrato: this.numeroContrato,
             plazo: this.plazo,
-            referencias: this.referencias,
+            referencias: this.referencias || [],
             tasa: this.tasa,
             vehiculo: this.vehiculo.toEditable()
         };
