@@ -31,14 +31,23 @@ var AgregarContrato = React.createClass({
                     <div className='input-wrapper'>
                         <label>Día</label>
                         <input type='text' value={this.state.fechaContrato.dia} onChange={this.handleFechaChange.bind(this, 'dia')} />
+                        <select value={this.state.fechaContrato.dia} onChange={this.handleFechaChange.bind(this, 'dia')}>
+                            {this.renderDias()}
+                        </select>
                     </div>
                     <div className='input-wrapper'>
                         <label>Mes</label>
                         <input type='text' value={this.state.fechaContrato.mes} onChange={this.handleFechaChange.bind(this, 'mes')} />
+                        <select value={this.state.fechaContrato.dia} onChange={this.handleFechaChange.bind(this, 'dia')}>
+                            {this.renderMeses()}
+                        </select>
                     </div>
                     <div className='input-wrapper'>
                         <label>Año</label>
                         <input type='text' value={this.state.fechaContrato.anio} onChange={this.handleFechaChange.bind(this, 'anio')} />
+                        <select value={this.state.fechaContrato.dia} onChange={this.handleFechaChange.bind(this, 'dia')}>
+                            {this.renderAnios()}
+                        </select>
                     </div>
                     <div className='input-wrapper'>
                         <label>Plazo</label>
@@ -296,6 +305,67 @@ var AgregarContrato = React.createClass({
         event.preventDefault();
 
         ContratosActions.saveContrato(ContratoRecord.prepareForParse(this.state));
+    },
+    renderDias: function (event) {
+        var dias = [];
+
+        for (var index = 1; index <= 31; index++) {
+            dias.push(
+                <option key={index}>{index}</option>
+            );
+        }
+
+        return dias;
+    },
+    renderMeses: function (event) {
+        var meses = [];
+
+        for (var index = 1; index <= 12; index++) {
+            meses.push(
+                <option key={index}>{this.getMonthByNumber(index)}</option>
+            );
+        }
+
+        return meses;
+    },
+    renderAnios: function (event) {
+        var anios = [];
+
+        for (var index = 2016; index >= 1990; index--) {
+            anios.push(
+                <option key={index}>{index}</option>
+            );
+        }
+
+        return anios;
+    },
+    getMonthByNumber: function (mes) {
+        switch (mes) {
+            case 1:
+                return 'Enero';
+            case 2:
+                return 'Febrero';
+            case 3:
+                return 'Marzo';
+            case 4:
+                return 'Abril';
+            case 5:
+                return 'Mayo';
+            case 6:
+                return 'Junio';
+            case 7:
+                return 'Julio';
+            case 8:
+                return 'Agosto';
+            case 9:
+                return 'Septiembre';
+            case 10:
+                return 'Octubre';
+            case 11:
+                return 'Noviembre';
+            case 12:
+                return 'Diciembre';
+        }
     }
 });
 
