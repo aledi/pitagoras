@@ -33,9 +33,7 @@ class Cliente extends ClienteRecord {
 
         definition.domicilio = {};
         definition.telefonos = [];
-
-        definition.nombre = definition.nombre;
-
+        
         super(definition);
     }
 

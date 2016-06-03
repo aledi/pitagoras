@@ -49,7 +49,7 @@ var ContratosLista = React.createClass({
                     <td className='table-column'>{contrato.vehiculo.marca}</td>
                     <td className='table-column'>{contrato.vehiculo.anio}</td>
                     <td className='table-column'>{contrato.vehiculo.distribuidor}</td>
-                    <td className='table-column'>{contrato.monto}</td>
+                    <td className='table-column'>{'$' + contrato.monto}</td>
                     <td className='table-column'>{contrato.plazo}</td>
                     <td className='table-column'>{contrato.tasa + '%'}</td>
                 </tr>
