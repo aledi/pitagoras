@@ -43,7 +43,11 @@ class Contrato extends ContratoRecord {
 
         definition.id = definition.id || definition.objectId;
 
-        definition.fechaContrato = {};
+        definition.fechaContrato = {
+            mes: 1,
+            dia: 1,
+            anio: 2016
+        };
 
         definition.vehiculo = new VehiculoRecord(definition.vehiculo);
         definition.cliente = new ClienteRecord(definition.cliente);

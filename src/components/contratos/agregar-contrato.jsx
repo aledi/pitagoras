@@ -36,13 +36,13 @@ var AgregarContrato = React.createClass({
                     </div>
                     <div className='input-wrapper'>
                         <label>Mes</label>
-                        <select value={this.state.fechaContrato.dia} onChange={this.handleFechaChange.bind(this, 'mes')}>
+                        <select value={this.state.fechaContrato.mes} onChange={this.handleFechaChange.bind(this, 'mes')}>
                             {this.renderMeses()}
                         </select>
                     </div>
                     <div className='input-wrapper'>
                         <label>Año</label>
-                        <select value={this.state.fechaContrato.dia} onChange={this.handleFechaChange.bind(this, 'anio')}>
+                        <select value={this.state.fechaContrato.anio} onChange={this.handleFechaChange.bind(this, 'anio')}>
                             {this.renderAnios()}
                         </select>
                     </div>
@@ -305,8 +305,9 @@ var AgregarContrato = React.createClass({
     },
     renderDias: function (event) {
         var dias = [];
+        var limite = this.getDaysForMonth(this.state.fechaContrato['mes'], this.state.fechaContrato['anio']);
 
-        for (var index = 1; index <= 31; index++) {
+        for (var index = 1; index <= limite; index++) {
             dias.push(
                 <option key={index}>{index}</option>
             );
@@ -363,6 +364,15 @@ var AgregarContrato = React.createClass({
             case 12:
                 return 'Diciembre';
         }
+    },
+    getDaysForMonth: function (mes, anio) {
+        if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
+            return 31;
+        } else if (mes == 2) {
+            return (((anio % 4 == 0) && (anio % 100 != 0)) || (anio % 400 == 0)) ? 29 : 28;
+        }
+
+        return 30;
     }
 });
 
