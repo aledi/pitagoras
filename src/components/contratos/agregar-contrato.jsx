@@ -30,22 +30,19 @@ var AgregarContrato = React.createClass({
                     </div>
                     <div className='input-wrapper'>
                         <label>Día</label>
-                        <input type='text' value={this.state.fechaContrato.dia} onChange={this.handleFechaChange.bind(this, 'dia')} />
                         <select value={this.state.fechaContrato.dia} onChange={this.handleFechaChange.bind(this, 'dia')}>
                             {this.renderDias()}
                         </select>
                     </div>
                     <div className='input-wrapper'>
                         <label>Mes</label>
-                        <input type='text' value={this.state.fechaContrato.mes} onChange={this.handleFechaChange.bind(this, 'mes')} />
-                        <select value={this.state.fechaContrato.dia} onChange={this.handleFechaChange.bind(this, 'dia')}>
+                        <select value={this.state.fechaContrato.dia} onChange={this.handleFechaChange.bind(this, 'mes')}>
                             {this.renderMeses()}
                         </select>
                     </div>
                     <div className='input-wrapper'>
                         <label>Año</label>
-                        <input type='text' value={this.state.fechaContrato.anio} onChange={this.handleFechaChange.bind(this, 'anio')} />
-                        <select value={this.state.fechaContrato.dia} onChange={this.handleFechaChange.bind(this, 'dia')}>
+                        <select value={this.state.fechaContrato.dia} onChange={this.handleFechaChange.bind(this, 'anio')}>
                             {this.renderAnios()}
                         </select>
                     </div>
@@ -322,7 +319,7 @@ var AgregarContrato = React.createClass({
 
         for (var index = 1; index <= 12; index++) {
             meses.push(
-                <option key={index}>{this.getMonthByNumber(index)}</option>
+                <option key={index} value={index}>{this.getMonthByNumber(index)}</option>
             );
         }
 
