@@ -4,6 +4,7 @@ require('./signin.scss');
 
 var React = require('react');
 var Parse = require('parse');
+var classNames = require('classnames');
 
 var Signin = React.createClass({
     statics: {hideMenu: true},
@@ -11,7 +12,11 @@ var Signin = React.createClass({
     getInitialState: function () {
         return {
             email: null,
-            password: null
+            password: null,
+            submitting: false,
+            emailRequired: false,
+            passwordRequired: false,
+            error: null
         };
     },
     render: function () {
@@ -19,30 +24,57 @@ var Signin = React.createClass({
             <div className='signin-wrapper'>
                 <form onSubmit={this.handleSignIn}>
                     <label>Usuario</label>
-                    <input type='text' value={this.state.email} onChange={this.handleChange.bind(this, 'email')} />
+                    <input type='text' value={this.state.email} disabled={this.state.submitting} className={classNames({required: this.state.emailRequired})} onChange={this.handleChange.bind(this, 'email', 'emailRequired')} />
                     <label>Contraseña</label>
-                    <input type='password' value={this.state.password} onChange={this.handleChange.bind(this, 'password')} />
-                    <button type='submit'>Iniciar Sesión</button>
+                    <input type='password' value={this.state.password} disabled={this.state.submitting} className={classNames({required: this.state.passwordRequired})} onChange={this.handleChange.bind(this, 'password', 'passwordRequired')} />
+                    <button disabled={this.state.submitting} type='submit'>Iniciar Sesión</button>
+                    <label className={classNames('error', {hidden: !this.state.error})}>La combinación usuario/contraseña es incorrecta.</label>
                 </form>
             </div>
         );
     },
-    handleChange: function (propertyName, event) {
+    handleChange: function (propertyName, requiredClass, event) {
         var state = {};
         state[propertyName] = event.target.value;
+
+        if (this.state[requiredClass]) {
+            state[requiredClass] = false;
+        }
 
         this.setState(state);
     },
     handleSignIn: function (event) {
         event.preventDefault();
 
+        var invalidFields = false;
+        var email = this.state.email;
+        var password = this.state.password;
+
+        if (!email) {
+            this.setState({emailRequired: true});
+            invalidFields = true;
+        }
+
+        if (!password) {
+            this.setState({passwordRequired: true});
+            invalidFields = true;
+        }
+
+        if (invalidFields) {
+            return;
+        }
+
+        this.setState({submitting: true});
+
         Parse.User.logIn(
-            this.state.email,
-            this.state.password
+            email,
+            password
         ).then(this.handleAuthSuccess).catch(this.handleAuthError);
     },
     handleAuthSuccess: function (authData) {
         var location = this.props.location;
+
+        this.setState({submitting: false});
 
         if (location.state && location.state.nextPathname) {
             this.context.router.replace(location.state.nextPathname);
@@ -51,6 +83,10 @@ var Signin = React.createClass({
         }
     },
     handleAuthError: function (error) {
+        this.setState({error: error.message});
+
+        this.setState({submitting: false});
+
         return;
     }
 });
