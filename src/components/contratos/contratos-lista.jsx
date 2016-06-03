@@ -18,6 +18,11 @@ var ContratosLista = React.createClass({
                     <tbody>
                         <tr>
                             <th>Número de Contrato</th>
+                            <th>Nombre de Cliente</th>
+                            <th>Modelo Vehículo</th>
+                            <th>Marca</th>
+                            <th>Año</th>
+                            <th>Distribuidor</th>
                             <th>Monto</th>
                             <th>Plazo</th>
                             <th>Tasa</th>
@@ -39,9 +44,14 @@ var ContratosLista = React.createClass({
             contratos.push(
                 <tr key={contrato.id}>
                     <td>{contrato.numeroContrato}</td>
+                    <td>{contrato.cliente.nombre + ' ' + contrato.cliente.apellidoPaterno + ' ' + contrato.cliente.apellidoMaterno}</td>
+                    <td>{contrato.vehiculo.modelo}</td>
+                    <td>{contrato.vehiculo.anio}</td>
+                    <td>{contrato.vehiculo.marca}</td>
+                    <td>{contrato.vehiculo.distribuidor}</td>
                     <td>{contrato.monto}</td>
                     <td>{contrato.plazo}</td>
-                    <td>{contrato.tasa}</td>
+                    <td>{contrato.tasa + '%'}</td>
                 </tr>
             );
         });
