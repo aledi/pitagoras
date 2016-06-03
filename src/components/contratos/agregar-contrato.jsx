@@ -110,7 +110,7 @@ var AgregarContrato = React.createClass({
                     </div>
                     <div className='input-wrapper'>
                         <label>Código Postal</label>
-                        <input type='text' value={this.state.cliente.domicilio.codigo} onChange={this.handleDomicilioChange.bind(this, 'codigo')} />
+                        <input type='text' value={this.state.cliente.domicilio.codigoPostal} onChange={this.handleDomicilioChange.bind(this, 'codigoPostal')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Municipio / Delegación</label>
@@ -132,13 +132,13 @@ var AgregarContrato = React.createClass({
         );
     },
     renderTelefonos: function () {
-        var telefonos = this.state.telefonos;
+        var telefonos = this.state.cliente.telefonos;
 
         if (telefonos.length === 1) {
             return (
                 <div className='input-wrapper'>
                     <label>Teléfono 1</label>
-                    <input type='text' value={this.state.telefonos[0]} onChange={this.handleTelefonosChange.bind(this, 'telefonos', 0)} />
+                    <input type='text' value={this.state.cliente.telefonos[0]} onChange={this.handleTelefonosChange.bind(this, 'telefonos', 0)} />
                 </div>
             );
         }
@@ -148,7 +148,7 @@ var AgregarContrato = React.createClass({
             return (
                 <div key={'telefono-' + index} className='input-wrapper'>
                     <label>{'Teléfono ' + (index + 1)}</label>
-                    <input type='text' value={self.state.telefonos[index]} onChange={self.handleTelefonosChange.bind(self, 'telefonos', index)} />
+                    <input type='text' value={self.state.cliente.telefonos[index]} onChange={self.handleTelefonosChange.bind(self, 'telefonos', index)} />
                 </div>
             );
         });
@@ -194,7 +194,7 @@ var AgregarContrato = React.createClass({
                     </div>
                     <div className='input-wrapper'>
                         <label>Código Postal</label>
-                        <input type='text' value={referencia.domicilio.codigo} onChange={self.handleReferenciaDomicilioChange.bind(self, 'codigo', index)} />
+                        <input type='text' value={referencia.domicilio.codigoPostal} onChange={self.handleReferenciaDomicilioChange.bind(self, 'codigoPostal', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Municipio / Delegación</label>
@@ -216,10 +216,10 @@ var AgregarContrato = React.createClass({
     addTelefono: function (event) {
         event.preventDefault();
 
-        var telefonos = this.state.telefonos;
+        var cliente = this.state.cliente;
+        cliente.telefonos.push('');
 
-        telefonos.push('');
-        this.setState({telefonos: telefonos});
+        this.setState({cliente: cliente});
     },
     addReferencia: function (event) {
         event.preventDefault();
@@ -236,7 +236,7 @@ var AgregarContrato = React.createClass({
                 exterior: '',
                 colonia: '',
                 municipio: '',
-                codigo: '',
+                codigoPostal: '',
                 estado: ''
             },
             telefono: ''
@@ -275,8 +275,8 @@ var AgregarContrato = React.createClass({
         this.setState(state);
     },
     handleTelefonosChange: function (propertyName, index, event) {
-        var state = {telefonos: this.state.telefonos};
-        state.telefonos[index] = event.target.value;
+        var state = {cliente: this.state.cliente};
+        state.cliente.telefonos[index] = event.target.value;
 
         this.setState(state);
     },

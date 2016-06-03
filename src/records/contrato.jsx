@@ -18,8 +18,7 @@ var ContratoRecord = Immutable.Record({
     plazo: null,
     referencias: null,
     tasa: null,
-    vehiculo: null,
-    telefonos: null
+    vehiculo: null
 });
 
 class Contrato extends ContratoRecord {
@@ -62,8 +61,7 @@ class Contrato extends ContratoRecord {
             plazo: this.plazo,
             referencias: this.referencias || [],
             tasa: this.tasa,
-            vehiculo: this.vehiculo.toEditable(),
-            telefonos: this.telefonos || ['']
+            vehiculo: this.vehiculo.toEditable()
         };
     }
 }
