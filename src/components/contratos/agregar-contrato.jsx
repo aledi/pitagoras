@@ -309,7 +309,7 @@ var AgregarContrato = React.createClass({
 
         for (var index = 1; index <= limite; index++) {
             dias.push(
-                <option key={index}>{index}</option>
+                <option key={index} value={index}>{index}</option>
             );
         }
 
@@ -332,7 +332,7 @@ var AgregarContrato = React.createClass({
 
         for (var index = actual; index >= 1990; index--) {
             anios.push(
-                <option key={index}>{index}</option>
+                <option key={index} value={index}>{index}</option>
             );
         }
 
@@ -367,10 +367,10 @@ var AgregarContrato = React.createClass({
         }
     },
     getDaysForMonth: function (mes, anio) {
-        if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
+        if (mes === 1 || mes === 3 || mes === 5 || mes === 7 || mes === 8 || mes === 10 || mes === 12) {
             return 31;
         } else if (mes == 2) {
-            return (((anio % 4 == 0) && (anio % 100 != 0)) || (anio % 400 == 0)) ? 29 : 28;
+            return (((anio % 4 === 0) && (anio % 100 !== 0)) || (anio % 400 === 0)) ? 29 : 28;
         }
 
         return 30;
