@@ -18,7 +18,8 @@ var ContratoRecord = Immutable.Record({
     plazo: null,
     referencias: null,
     tasa: null,
-    vehiculo: null
+    vehiculo: null,
+    telefonos: null
 });
 
 class Contrato extends ContratoRecord {
@@ -26,8 +27,6 @@ class Contrato extends ContratoRecord {
         contrato.monto = parseInt(contrato.monto, 10);
         contrato.plazo = parseInt(contrato.plazo, 10);
         contrato.tasa = parseInt(contrato.tasa, 10);
-
-        console.log(contrato.fechaContrato);
 
         contrato.fechaContrato = new Date(parseInt(contrato.fechaContrato.anio, 10),
                                         parseInt(contrato.fechaContrato.mes, 10),
@@ -61,9 +60,10 @@ class Contrato extends ContratoRecord {
             monto: this.monto,
             numeroContrato: this.numeroContrato,
             plazo: this.plazo,
-            referencias: this.referencias,
+            referencias: this.referencias || [],
             tasa: this.tasa,
-            vehiculo: this.vehiculo.toEditable()
+            vehiculo: this.vehiculo.toEditable(),
+            telefonos: this.telefonos || ['']
         };
     }
 }

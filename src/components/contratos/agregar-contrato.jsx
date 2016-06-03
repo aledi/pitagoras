@@ -22,7 +22,6 @@ var AgregarContrato = React.createClass({
     render: function () {
         return (
             <main className='add-contrato'>
-                <h2>Agregar Contrato</h2>
                 <form onSubmit={this.handleAddContract}>
                     <p className='section-title'>Contrato</p>
                     <div className='input-wrapper'>
@@ -98,12 +97,12 @@ var AgregarContrato = React.createClass({
                         <input type='text' value={this.state.cliente.domicilio.calle} onChange={this.handleDomicilioChange.bind(this, 'calle')} />
                     </div>
                     <div className='input-wrapper'>
-                        <label>Número Interior</label>
-                        <input type='text' value={this.state.cliente.domicilio.interior} onChange={this.handleDomicilioChange.bind(this, 'interior')} />
-                    </div>
-                    <div className='input-wrapper'>
                         <label>Número Exterior</label>
                         <input type='text' value={this.state.cliente.domicilio.exterior} onChange={this.handleDomicilioChange.bind(this, 'exterior')} />
+                    </div>
+                    <div className='input-wrapper'>
+                        <label>Número Interior</label>
+                        <input type='text' value={this.state.cliente.domicilio.interior} onChange={this.handleDomicilioChange.bind(this, 'interior')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Colonia</label>
@@ -114,17 +113,136 @@ var AgregarContrato = React.createClass({
                         <input type='text' value={this.state.cliente.domicilio.codigo} onChange={this.handleDomicilioChange.bind(this, 'codigo')} />
                     </div>
                     <div className='input-wrapper'>
-                        <label>Municipio</label>
+                        <label>Municipio / Delegación</label>
                         <input type='text' value={this.state.cliente.domicilio.municipio} onChange={this.handleDomicilioChange.bind(this, 'municipio')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Estado</label>
                         <input type='text' value={this.state.cliente.domicilio.estado} onChange={this.handleDomicilioChange.bind(this, 'estado')} />
                     </div>
+                    {this.renderTelefonos()}
+                    <button type='button' className='add' onClick={this.addTelefono}>Agregar nuevo teléfono</button>
+                    <hr />
+                    <p className='section-title'>Referencias</p>
+                    {this.renderReferencias()}
+                    <button type='button' className='add' onClick={this.addReferencia}>Agregar nueva referencia</button>
                     <button type='submit'>Agregar Contrato</button>
                 </form>
             </main>
         );
+    },
+    renderTelefonos: function () {
+        var telefonos = this.state.telefonos;
+
+        if (telefonos.length === 1) {
+            return (
+                <div className='input-wrapper'>
+                    <label>Teléfono 1</label>
+                    <input type='text' value={this.state.telefonos[0]} onChange={this.handleTelefonosChange.bind(this, 'telefonos', 0)} />
+                </div>
+            );
+        }
+
+        var self = this;
+        return telefonos.map(function (telefono, index) {
+            return (
+                <div key={'telefono-' + index} className='input-wrapper'>
+                    <label>{'Teléfono ' + (index + 1)}</label>
+                    <input type='text' value={self.state.telefonos[index]} onChange={self.handleTelefonosChange.bind(self, 'telefonos', index)} />
+                </div>
+            );
+        });
+    },
+    renderReferencias: function () {
+        var referencias = this.state.referencias;
+
+        if (!referencias.length) {
+            return;
+        }
+
+        var self = this;
+        return referencias.map(function (referencia, index) {
+            return (
+                <div key={'referencia-' + index} className='referencia-wrapper'>
+                    <div className='input-wrapper'>
+                        <label>Nombre</label>
+                        <input type='text' value={referencia.nombre} onChange={self.handleReferenciaChange.bind(self, 'nombre', index)} />
+                    </div>
+                    <div className='input-wrapper'>
+                        <label>Apellido Paterno</label>
+                        <input type='text' value={referencia.apellidoPaterno} onChange={self.handleReferenciaChange.bind(self, 'apellidoPaterno', index)} />
+                    </div>
+                    <div className='input-wrapper'>
+                        <label>Apellido Materno</label>
+                        <input type='text' value={referencia.apellidoMaterno} onChange={self.handleReferenciaChange.bind(self, 'apellidoMaterno', index)} />
+                    </div>
+                    <div className='input-wrapper'>
+                        <label>Calle</label>
+                        <input type='text' value={referencia.domicilio.calle} onChange={self.handleReferenciaDomicilioChange.bind(self, 'calle', index)} />
+                    </div>
+                    <div className='input-wrapper'>
+                        <label>Número Exterior</label>
+                        <input type='text' value={referencia.domicilio.exterior} onChange={self.handleReferenciaDomicilioChange.bind(self, 'exterior', index)} />
+                    </div>
+                    <div className='input-wrapper'>
+                        <label>Número Interior</label>
+                        <input type='text' value={referencia.domicilio.interior} onChange={self.handleReferenciaDomicilioChange.bind(self, 'interior', index)} />
+                    </div>
+                    <div className='input-wrapper'>
+                        <label>Colonia</label>
+                        <input type='text' value={referencia.domicilio.colonia} onChange={self.handleReferenciaDomicilioChange.bind(self, 'colonia', index)} />
+                    </div>
+                    <div className='input-wrapper'>
+                        <label>Código Postal</label>
+                        <input type='text' value={referencia.domicilio.codigo} onChange={self.handleReferenciaDomicilioChange.bind(self, 'codigo', index)} />
+                    </div>
+                    <div className='input-wrapper'>
+                        <label>Municipio / Delegación</label>
+                        <input type='text' value={referencia.domicilio.municipio} onChange={self.handleReferenciaDomicilioChange.bind(self, 'municipio', index)} />
+                    </div>
+                    <div className='input-wrapper'>
+                        <label>Estado</label>
+                        <input type='text' value={referencia.domicilio.estado} onChange={self.handleReferenciaDomicilioChange.bind(self, 'estado', index)} />
+                    </div>
+                    <div className='input-wrapper'>
+                        <label>Teléfono</label>
+                        <input type='text' value={referencia.telefono} onChange={self.handleReferenciaChange.bind(self, 'telefono', index)} />
+                    </div>
+                    <hr />
+                </div>
+            );
+        });
+    },
+    addTelefono: function (event) {
+        event.preventDefault();
+
+        var telefonos = this.state.telefonos;
+
+        telefonos.push('');
+        this.setState({telefonos: telefonos});
+    },
+    addReferencia: function (event) {
+        event.preventDefault();
+
+        var referencias = this.state.referencias;
+
+        referencias.push({
+            nombre: '',
+            apellidoPaterno: '',
+            apellidoMaterno: '',
+            domicilio: {
+                calle: '',
+                interior: '',
+                exterior: '',
+                colonia: '',
+                municipio: '',
+                codigo: '',
+                estado: ''
+            },
+            telefono: ''
+        });
+
+        this.setState({referencias: referencias});
     },
     handleChange: function (propertyName, event) {
         var state = {};
@@ -150,9 +268,27 @@ var AgregarContrato = React.createClass({
 
         this.setState(state);
     },
+    handleReferenciaChange: function (propertyName, index, event) {
+        var state = {referencias: this.state.referencias};
+        state.referencias[index][propertyName] = event.target.value;
+
+        this.setState(state);
+    },
+    handleTelefonosChange: function (propertyName, index, event) {
+        var state = {telefonos: this.state.telefonos};
+        state.telefonos[index] = event.target.value;
+
+        this.setState(state);
+    },
     handleDomicilioChange: function (propertyName, event) {
         var state = {cliente: this.state.cliente};
         state.cliente.domicilio[propertyName] = event.target.value;
+
+        this.setState(state);
+    },
+    handleReferenciaDomicilioChange: function (propertyName, index, event) {
+        var state = {referencias: this.state.referencias};
+        state.referencias[index].domicilio[propertyName] = event.target.value;
 
         this.setState(state);
     },
