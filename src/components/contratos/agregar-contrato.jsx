@@ -145,7 +145,6 @@ var AgregarContrato = React.createClass({
                 <div className='input-wrapper'>
                     <label>Teléfono 1</label>
                     <input type='text' value={this.state.cliente.telefonos[0]} onChange={this.handleTelefonosChange.bind(this, 'telefonos', 0)} />
-                    <button type='button' className='remove' onClick={this.removeTelefono.bind(this, 0)}>Borrar teléfono</button>
                 </div>
             );
         }
@@ -156,10 +155,19 @@ var AgregarContrato = React.createClass({
                 <div key={'telefono-' + index} className='input-wrapper'>
                     <label>{'Teléfono ' + (index + 1)}</label>
                     <input type='text' value={self.state.cliente.telefonos[index]} onChange={self.handleTelefonosChange.bind(self, 'telefonos', index)} />
-                    <button type='button' className='remove' onClick={self.removeTelefono.bind(self, index)}>Borrar teléfono</button>
+                    {self.renderRemoveButton(index)}
                 </div>
             );
         });
+    },
+    renderRemoveButton: function (index) {
+        if (index === 0) {
+            return;
+        }
+
+        return (
+            <button type='button' className='remove' onClick={this.removeTelefono.bind(this, index)}>Borrar teléfono</button>
+        );
     },
     renderReferencias: function () {
         var referencias = this.state.referencias;
