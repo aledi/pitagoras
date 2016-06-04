@@ -139,6 +139,7 @@ var AgregarContrato = React.createClass({
                 <div className='input-wrapper'>
                     <label>Teléfono 1</label>
                     <input type='text' value={this.state.cliente.telefonos[0]} onChange={this.handleTelefonosChange.bind(this, 'telefonos', 0)} />
+                    <button type='button' className='remove' onClick={this.removeTelefono.bind(this, 0)}>Borrar teléfono</button>
                 </div>
             );
         }
@@ -149,6 +150,7 @@ var AgregarContrato = React.createClass({
                 <div key={'telefono-' + index} className='input-wrapper'>
                     <label>{'Teléfono ' + (index + 1)}</label>
                     <input type='text' value={self.state.cliente.telefonos[index]} onChange={self.handleTelefonosChange.bind(self, 'telefonos', index)} />
+                    <button type='button' className='remove' onClick={self.removeTelefono.bind(self, index)}>Borrar teléfono</button>
                 </div>
             );
         });
@@ -218,6 +220,14 @@ var AgregarContrato = React.createClass({
 
         var cliente = this.state.cliente;
         cliente.telefonos.push('');
+
+        this.setState({cliente: cliente});
+    },
+    removeTelefono: function (index, event) {
+        event.preventDefault();
+
+        var cliente = this.state.cliente;
+        cliente.telefonos.splice(index, 1);
 
         this.setState({cliente: cliente});
     },
