@@ -30,6 +30,7 @@ class Cliente extends ClienteRecord {
         definition = definition || {};
 
         definition.id = definition.id || definition.objectId;
+        definition.domicilio = definition.domicilio || {};
 
         super(definition);
     }
