@@ -10,6 +10,7 @@ var React = require('react');
 
 var ContratosActions = require('src/actions/contratos-actions');
 var ContratoRecord = require('src/records/contrato');
+var ContratosStore = require('src/stores/contratos-store.js');
 
 // -----------------------------------------------------------------------------------------------
 // Agregar Contrato
@@ -19,7 +20,26 @@ var AgregarContrato = React.createClass({
     getInitialState: function () {
         return new ContratoRecord().toEditable();
     },
+    componentDidMount: function () {
+        this.storeListener = ContratosStore.addListener(this.onChange);
+    },
+    componentWillUnmount: function () {
+        this.storeListener.remove();
+    },
+    onChange: function () {
+        var error = ContratosStore.get('saveError');
+        var feedbackText = '';
+
+        if (error) {
+            feedbackText = 'Error al guardar el contrato.';
+        } else {
+            feedbackText = 'El contrato se ha guardado.';
+        }
+
+        this.setState({feedbackText: feedbackText});
+    },
     render: function () {
+        console.log(this.state)
         return (
             <main className='add-contrato'>
                 <form onSubmit={this.handleAddContract}>
@@ -133,9 +153,17 @@ var AgregarContrato = React.createClass({
                     {this.renderReferencias()}
                     <button type='button' className='add' onClick={this.addReferencia}>Agregar nueva referencia</button>
                     <button type='submit'>Agregar Contrato</button>
+                    {this.renderFeedbackText()}
                 </form>
             </main>
         );
+    },
+    renderFeedbackText: function () {
+        if (!this.state.feedbackText) {
+            return;
+        }
+
+        return (<p>{this.state.feedbackText}</p>);
     },
     renderTelefonos: function () {
         var telefonos = this.state.cliente.telefonos;
@@ -330,7 +358,7 @@ var AgregarContrato = React.createClass({
         var anios = [];
         var actual = new Date().getFullYear();
 
-        for (var index = actual; index >= 1990; index--) {
+        for (var index = actual; index >= actual - 25; index--) {
             anios.push(
                 <option key={index} value={index}>{index}</option>
             );
