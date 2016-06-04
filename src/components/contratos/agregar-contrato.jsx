@@ -224,6 +224,7 @@ var AgregarContrato = React.createClass({
                         <label>Teléfono</label>
                         <input type='text' value={referencia.telefono} onChange={self.handleReferenciaChange.bind(self, 'telefono', index)} />
                     </div>
+                    <button type='button' className='remove' onClick={self.removeReferencia.bind(self, index)}>Quitar referencia</button>
                     <hr />
                 </div>
             );
@@ -265,6 +266,14 @@ var AgregarContrato = React.createClass({
             },
             telefono: ''
         });
+
+        this.setState({referencias: referencias});
+    },
+    removeReferencia: function (index, event) {
+        event.preventDefault();
+
+        var referencias = this.state.referencias;
+        referencias.splice(index, 1);
 
         this.setState({referencias: referencias});
     },
