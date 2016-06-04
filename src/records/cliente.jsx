@@ -15,15 +15,13 @@ class Cliente extends ClienteRecord {
     static prepareForParse (cliente) {
         cliente.domicilio = {
             calle: cliente.domicilio.calle,
-            interior: parseInt(cliente.domicilio.interior, 10),
-            exterior: parseInt(cliente.domicilio.exterior, 10),
+            interior: cliente.domicilio.interior,
+            exterior: cliente.domicilio.exterior,
             colonia: cliente.domicilio.colonia,
             municipio: cliente.domicilio.municipio,
-            codigo: parseInt(cliente.domicilio.codigo, 10),
+            codigoPostal: parseInt(cliente.domicilio.codigoPostal, 10),
             estado: cliente.domicilio.estado
         };
-
-        cliente.telefonos = [parseInt('1', 10), parseInt('2', 10)];
 
         return cliente;
     }
@@ -35,7 +33,7 @@ class Cliente extends ClienteRecord {
 
         definition.domicilio = {};
         definition.telefonos = [];
-
+        
         super(definition);
     }
 
@@ -44,9 +42,9 @@ class Cliente extends ClienteRecord {
             id: this.id,
             apellidoMaterno: this.apellidoMaterno,
             apellidoPaterno: this.apellidoPaterno,
-            domicilio: this.domicilio,
+            domicilio: this.domicilio || {},
             nombre: this.nombre,
-            telefonos: this.telefonos
+            telefonos: this.telefonos || ['']
         };
     }
 }

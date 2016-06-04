@@ -5,7 +5,7 @@
     overflow-y: auto !important;
 
     form {
-        width: 600px;
+        width: 800px;
         padding: 40px 20px;
         margin: 0 auto;
         border: 1px solid black;
@@ -14,16 +14,21 @@
             text-transform: uppercase;
         }
 
+        .referencia-wrapper {
+            hr {
+                border-color: gray;
+            }
+        }
+
         .input-wrapper {
-            width: 50%;
+            width: 33.3%;
             display: inline-block;
             padding: 10px;
             box-sizing: border-box;
 
             input {
+                height: 30px;
                 width: 100%;
-                display: block;
-                margin-bottom: 20px;
             }
         }
 
@@ -35,7 +40,15 @@
         }
 
         button {
+            height: 50px;
+            width: 100%;
             margin-top: 20px;
+
+            &.add {
+                width: auto;
+                background-color: transparent;
+                border: 1px solid red;
+            }
         }
     }
 }

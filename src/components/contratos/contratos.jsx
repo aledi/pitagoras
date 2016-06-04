@@ -44,7 +44,6 @@ class Contratos extends React.Component {
             </main>
         );
     }
-
 }
 
 module.exports = Flux.Container.create(Contratos, {withProps: true});
