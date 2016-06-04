@@ -5,19 +5,42 @@
 
     form {
         width: 500px;
+        padding: 40px 100px;
         margin: 0 auto;
         border: 1px solid black;
         text-align: center;
-        padding: 40px 100px;
 
         input {
             width: 100%;
             display: block;
             margin-bottom: 20px;
+            border: 1px solid black;
+
+            &:disabled {
+                background-color: gray; // TODO: lighter gray
+            }
+
+            &.required {
+                border-color: red;
+            }
         }
 
         button {
-            margin-top: 20px;
+            margin: 20px 0;
+
+            &:disabled {
+                background-color: blue; // TODO: define color
+                color: white;
+            }
+        }
+
+        p.error {
+            margin: 0;
+            color: red;
+
+            &.hidden {
+                display: none;
+            }
         }
     }
 }
