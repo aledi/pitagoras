@@ -88,14 +88,16 @@ var Signin = React.createClass({
     },
     hasInvalidFields: function () {
         var invalidFields = false;
+        var email = this.state.email ? this.state.email.trim() : null;
+        var password = this.state.password ? this.state.password.trim() : null;
 
-        if (!this.state.email) {
-            this.setState({emailRequired: true});
+        if (!email) {
+            this.setState({emailRequired: true, email: ''});
             invalidFields = true;
         }
 
-        if (!this.state.password) {
-            this.setState({passwordRequired: true});
+        if (!password) {
+            this.setState({passwordRequired: true, password: ''});
             invalidFields = true;
         }
 
