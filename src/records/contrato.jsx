@@ -43,8 +43,6 @@ class Contrato extends ContratoRecord {
 
         definition.id = definition.id || definition.objectId;
 
-        definition.fechaContrato = {};
-
         definition.vehiculo = new VehiculoRecord(definition.vehiculo);
         definition.cliente = new ClienteRecord(definition.cliente);
 
@@ -55,7 +53,11 @@ class Contrato extends ContratoRecord {
         return {
             id: this.id,
             cliente: this.cliente.toEditable(),
-            fechaContrato: this.fechaContrato,
+            fechaContrato: this.fechaContrato || {
+                mes: 1,
+                dia: 1,
+                anio: new Date().getFullYear()
+            },
             monto: this.monto,
             numeroContrato: this.numeroContrato,
             plazo: this.plazo,
