@@ -28,7 +28,9 @@ var Routes = (
         <Route path='signin' component={Signin} onEnter={requireNoAuth} />
         <Route path='index' component={Index} onEnter={requireAuth} />
         <Route path='agregar-contrato' component={AgregarContrato} onEnter={requireAuth} />
-        <Route path='contratos' component={Contratos} onEnter={requireAuth} />
+        <Route path='contratos' component={Contratos} onEnter={requireAuth}>
+            <Route path=':id' component={Contratos} onEnter={requireAuth} />
+        </Route>
         <Route path='reportes' component={Reportes} onEnter={requireAuth} />
         <Route path='*' component={NotFound} />
     </Route>

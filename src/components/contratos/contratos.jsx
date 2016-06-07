@@ -13,6 +13,7 @@ var ContratosActions = require('src/actions/contratos-actions');
 var ContratosStore = require('src/stores/contratos-store');
 
 var ContratosLista = require('./contratos-lista');
+var Contrato = require('./contrato');
 
 // -----------------------------------------------------------------------------------------------
 // Contratos
@@ -29,7 +30,8 @@ class Contratos extends React.Component {
         return {
             loading: contratos.size === 0 && ContratosStore.get('fetching'),
             error: contratos.size === 0 ? ContratosStore.get('fetchError') : null,
-            contratos: contratos
+            contratos: contratos,
+            contrato: contratos.get(props.params.id)
         };
     }
 
@@ -38,6 +40,13 @@ class Contratos extends React.Component {
     }
 
     render () {
+        if (this.props.params.id) {
+            return (
+                <main className='contratos'>
+                    <Contrato contrato={this.state.contrato} />
+                </main>
+            );
+        }
         return (
             <main className='contratos'>
                 <ContratosLista contratos={this.state.contratos} />
