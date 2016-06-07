@@ -11,6 +11,7 @@ var React = require('react');
 // -----------------------------------------------------------------------------------------------
 
 var ContratosLista = React.createClass({
+    contextTypes: {router: React.PropTypes.object.isRequired},
     render: function () {
         return (
             <div className='list-contratos'>
@@ -38,11 +39,12 @@ var ContratosLista = React.createClass({
             return;
         }
 
+        var self = this;
         var contratos = [];
 
         this.props.contratos.forEach(function (contrato) {
             contratos.push(
-                <tr className='table-row' key={contrato.id}>
+                <tr className='table-row' onClick={self.handleContratoClick.bind(self, contrato.id)} key={contrato.id}>
                     <td className='table-column'>{contrato.numeroContrato}</td>
                     <td className='table-column'>{contrato.cliente.nombre + ' ' + contrato.cliente.apellidoPaterno + ' ' + contrato.cliente.apellidoMaterno}</td>
                     <td className='table-column'>{contrato.vehiculo.modelo}</td>
@@ -57,6 +59,9 @@ var ContratosLista = React.createClass({
         });
 
         return contratos;
+    },
+    handleContratoClick: function (id) {
+        this.context.router.push('/contratos/' + id);
     }
 });
 
