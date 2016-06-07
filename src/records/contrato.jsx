@@ -18,7 +18,9 @@ var ContratoRecord = Immutable.Record({
     plazo: null,
     referencias: null,
     tasa: null,
-    vehiculo: null
+    vehiculo: null,
+
+    formattedValues: {}
 });
 
 class Contrato extends ContratoRecord {
@@ -41,10 +43,26 @@ class Contrato extends ContratoRecord {
     constructor (definition) {
         definition = definition || {};
 
+        var formattedValues = {};
+
         definition.id = definition.id || definition.objectId;
 
+        // Vehiculo
         definition.vehiculo = new VehiculoRecord(definition.vehiculo);
+
+        // Cliente
         definition.cliente = new ClienteRecord(definition.cliente);
+        formattedValues.cliente = definition.cliente.nombre + ' ' + definition.cliente.apellidoPaterno + ' ' + definition.cliente.apellidoMaterno;
+
+        // Monto
+        definition.monto = definition.monto;
+        formattedValues.monto = '$' + definition.monto;
+
+        // Tasa
+        definition.tasa = definition.tasa;
+        formattedValues.tasa = definition.tasa + '%';
+
+        definition.formattedValues = formattedValues;
 
         super(definition);
     }

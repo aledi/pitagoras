@@ -46,14 +46,14 @@ var ContratosLista = React.createClass({
             contratos.push(
                 <tr className='table-row' onClick={self.handleContratoClick.bind(self, contrato.id)} key={contrato.id}>
                     <td className='table-column'>{contrato.numeroContrato}</td>
-                    <td className='table-column'>{contrato.cliente.nombre + ' ' + contrato.cliente.apellidoPaterno + ' ' + contrato.cliente.apellidoMaterno}</td>
+                    <td className='table-column'>{contrato.formattedValues.cliente}</td>
                     <td className='table-column'>{contrato.vehiculo.modelo}</td>
                     <td className='table-column'>{contrato.vehiculo.marca}</td>
                     <td className='table-column'>{contrato.vehiculo.anio}</td>
                     <td className='table-column'>{contrato.vehiculo.distribuidor}</td>
-                    <td className='table-column'>{'$' + contrato.monto}</td>
+                    <td className='table-column'>{contrato.formattedValues.monto}</td>
                     <td className='table-column'>{contrato.plazo}</td>
-                    <td className='table-column'>{contrato.tasa + '%'}</td>
+                    <td className='table-column'>{contrato.formattedValues.tasa}</td>
                 </tr>
             );
         });
