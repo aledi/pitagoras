@@ -33,7 +33,10 @@ var Main = React.createClass({
 
             // Preserve previous links to keep last child route (e.g. /desarrollos/serena)
             links: this.state ? this.state.links : {
-                index: '/index'
+                index: '/index',
+                agregarContrato: '/agregar-contrato',
+                contratos: '/contratos',
+                reportes: '/reportes'
             }
         };
 
@@ -67,9 +70,9 @@ var Main = React.createClass({
                 <div className='logo' />
                 <div className='links-wrapper'>
                     {this.renderAgregarUsuarioItem()}
-                    <Link activeClassName='active' to='/agregar-contrato'>Agregar contrato</Link>
-                    <Link activeClassName='active' to='/contratos'>Ver contratos</Link>
-                    <Link activeClassName='active' to='/reportes'>Reportes</Link>
+                    <Link activeClassName='active' to={this.state.links.agregarContrato}>Agregar contrato</Link>
+                    <Link activeClassName='active' to={this.state.links.contratos}>Ver contratos</Link>
+                    <Link activeClassName='active' to={this.state.links.reportes}>Reportes</Link>
                 </div>
                 <div className='signout' onClick={this.signOut} />
             </header>
