@@ -1,5 +1,7 @@
 'use strict';
 
+require('./contratos-lista.scss');
+
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
 // -----------------------------------------------------------------------------------------------
@@ -14,19 +16,19 @@ var ContratosLista = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
     render: function () {
         return (
-            <div className='list-contratos'>
-                <table className='table-contratos'>
+            <div className='contratos-table-wrapper'>
+                <table>
                     <tbody>
                         <tr>
-                            <th className='table-header'>Número de Contrato</th>
-                            <th className='table-header'>Nombre de Cliente</th>
-                            <th className='table-header'>Modelo Vehículo</th>
-                            <th className='table-header'>Marca</th>
-                            <th className='table-header'>Año</th>
-                            <th className='table-header'>Distribuidor</th>
-                            <th className='table-header'>Monto</th>
-                            <th className='table-header'>Plazo</th>
-                            <th className='table-header'>Tasa</th>
+                            <th>Número de Contrato</th>
+                            <th>Nombre de Cliente</th>
+                            <th>Modelo Vehículo</th>
+                            <th>Marca</th>
+                            <th>Año</th>
+                            <th>Distribuidor</th>
+                            <th>Monto</th>
+                            <th>Plazo</th>
+                            <th>Tasa</th>
                         </tr>
                         {this.renderContratos()}
                     </tbody>
@@ -44,16 +46,16 @@ var ContratosLista = React.createClass({
 
         this.props.contratos.forEach(function (contrato) {
             contratos.push(
-                <tr className='table-row' onClick={self.handleContratoClick.bind(self, contrato.id)} key={contrato.id}>
-                    <td className='table-column'>{contrato.numeroContrato}</td>
-                    <td className='table-column'>{contrato.formattedValues.cliente}</td>
-                    <td className='table-column'>{contrato.vehiculo.modelo}</td>
-                    <td className='table-column'>{contrato.vehiculo.marca}</td>
-                    <td className='table-column'>{contrato.vehiculo.anio}</td>
-                    <td className='table-column'>{contrato.vehiculo.distribuidor}</td>
-                    <td className='table-column'>{contrato.formattedValues.monto}</td>
-                    <td className='table-column'>{contrato.plazo}</td>
-                    <td className='table-column'>{contrato.formattedValues.tasa}</td>
+                <tr className='content-row' onClick={self.handleContratoClick.bind(self, contrato.id)} key={contrato.id}>
+                    <td>{contrato.numeroContrato}</td>
+                    <td>{contrato.formattedValues.cliente}</td>
+                    <td>{contrato.vehiculo.modelo}</td>
+                    <td>{contrato.vehiculo.marca}</td>
+                    <td>{contrato.vehiculo.anio}</td>
+                    <td>{contrato.vehiculo.distribuidor}</td>
+                    <td>{contrato.formattedValues.monto}</td>
+                    <td>{contrato.plazo}</td>
+                    <td>{contrato.formattedValues.tasa}</td>
                 </tr>
             );
         });

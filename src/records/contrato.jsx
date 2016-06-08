@@ -1,13 +1,21 @@
 'use strict';
 
+// -----------------------------------------------------------------------------------------------
+// Immutable + Other Modules
+// -----------------------------------------------------------------------------------------------
+
 var Immutable = require('immutable');
 var Parse = require('parse');
-
-var VehiculoObject = Parse.Object.extend('Vehiculo');
-var VehiculoRecord = require('./vehiculo');
+var formatNumber = require('format-number');
 
 var ClienteObject = Parse.Object.extend('Cliente');
 var ClienteRecord = require('./cliente');
+var VehiculoObject = Parse.Object.extend('Vehiculo');
+var VehiculoRecord = require('./vehiculo');
+
+// -----------------------------------------------------------------------------------------------
+// ContratoRecord
+// -----------------------------------------------------------------------------------------------
 
 var ContratoRecord = Immutable.Record({
     id: null,
@@ -56,11 +64,11 @@ class Contrato extends ContratoRecord {
 
         // Monto
         definition.monto = definition.monto;
-        formattedValues.monto = '$' + definition.monto;
+        formattedValues.monto = formatNumber({prefix: '$', padRight: 2})(definition.monto);
 
         // Tasa
         definition.tasa = definition.tasa;
-        formattedValues.tasa = definition.tasa + '%';
+        formattedValues.tasa = formatNumber({suffix: '%'})(definition.tasa);
 
         definition.formattedValues = formattedValues;
 

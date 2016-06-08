@@ -36,6 +36,7 @@
     "extract-text-webpack-plugin": "1.0.1",
     "file-loader": "0.8.5",
     "flux": "2.1.1",
+    "format-number": "^2.0.1",
     "html-loader": "0.4.3",
     "immutable": "3.8.1",
     "json-loader": "0.5.4",

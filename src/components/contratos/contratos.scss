@@ -2,26 +2,4 @@
 
 .contratos {
     padding: 20px;
-
-    .table-contratos {
-        width: 100%;
-
-        .table-header {
-            background-color: rgba(#106EB9, 0.4);
-            border: 1px solid black;
-            text-align: center;
-            padding: 10px 0;
-        }
-
-        .table-row {
-            &:nth-child(even) {
-                background-color: #F3F3F3;
-            }
-
-            .table-column {
-                border: 1px solid black;
-                padding: 10px 5px;
-            }
-        }
-    }
 }
