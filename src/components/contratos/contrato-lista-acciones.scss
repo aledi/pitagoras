@@ -4,6 +4,10 @@
     p {
         text-transform: uppercase;
         color: blue;
+
+        &.go-back {
+            cursor: pointer;
+        }
     }
 
     .contrato-detalles {
