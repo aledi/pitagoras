@@ -10,6 +10,7 @@ var React = require('react');
 var Parse = require('parse');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
+var classNames = require('classnames');
 
 // -----------------------------------------------------------------------------------------------
 // Main
@@ -69,21 +70,27 @@ var Main = React.createClass({
             return;
         }
 
+        var isAdmin = this.getCurrentUser().get('tipo') === 3;
+
         return (
             <header>
                 <div className='logo' />
                 <div className='links-wrapper'>
-                    {this.renderAgregarUsuarioItem()}
-                    <Link activeClassName='active' to={this.state.links.agregarContrato}>Agregar contrato</Link>
-                    <Link activeClassName='active' to={this.state.links.contratos}>Ver contratos</Link>
-                    <Link activeClassName='active' to={this.state.links.reportes}>Reportes</Link>
+                    {this.renderAgregarUsuarioItem(isAdmin)}
+                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={this.state.links.agregarContrato}>Agregar contrato</Link>
+                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={this.state.links.contratos}>Ver contratos</Link>
+                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={this.state.links.reportes}>Reportes</Link>
                 </div>
                 <div className='signout' onClick={this.signOut} />
             </header>
         );
     },
-    renderAgregarUsuarioItem: function () {
-        // TODO: render opcion if usuario type === 3
+    renderAgregarUsuarioItem: function (isAdmin) {
+        if (!isAdmin) {
+            return;
+        }
+
+        return (<Link activeClassName='active' className='admin' to={this.state.links.agregarContrato}>Agregar usuario</Link>);
     },
     renderChildren: function () {
         return this.state.children;
