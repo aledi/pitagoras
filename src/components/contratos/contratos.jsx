@@ -12,8 +12,8 @@ var Flux = require('flux/utils');
 var ContratosActions = require('src/actions/contratos-actions');
 var ContratosStore = require('src/stores/contratos-store');
 
-var ContratosLista = require('./contratos-lista');
-var Contrato = require('./contrato');
+var ContratosTabla = require('./contratos-tabla');
+var ContratoListaAcciones = require('./contrato-lista-acciones');
 
 // -----------------------------------------------------------------------------------------------
 // Contratos
@@ -43,13 +43,13 @@ class Contratos extends React.Component {
         if (this.props.params.id) {
             return (
                 <main className='contratos'>
-                    <Contrato contrato={this.state.contrato} />
+                    <ContratoListaAcciones contrato={this.state.contrato} />
                 </main>
             );
         }
         return (
             <main className='contratos'>
-                <ContratosLista contratos={this.state.contratos} />
+                <ContratosTabla contratos={this.state.contratos} />
             </main>
         );
     }

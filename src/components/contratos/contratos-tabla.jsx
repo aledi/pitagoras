@@ -1,6 +1,6 @@
 'use strict';
 
-require('./contratos-lista.scss');
+require('./contratos-tabla.scss');
 
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
@@ -9,10 +9,10 @@ require('./contratos-lista.scss');
 var React = require('react');
 
 // -----------------------------------------------------------------------------------------------
-// ContratosLista
+// ContratosTabla
 // -----------------------------------------------------------------------------------------------
 
-var ContratosLista = React.createClass({
+var ContratosTabla = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
     render: function () {
         return (
@@ -67,4 +67,4 @@ var ContratosLista = React.createClass({
     }
 });
 
-module.exports = ContratosLista;
+module.exports = ContratosTabla;
