@@ -13,11 +13,13 @@ var React = require('react');
 // -----------------------------------------------------------------------------------------------
 
 var ContratoListaAcciones = React.createClass({
+    contextTypes: {router: React.PropTypes.object.isRequired},
     render: function () {
         var contrato = this.props.contrato;
 
         return (
             <div className='contrato-lista-acciones'>
+                <p className='go-back' onClick={this.goBack}>Volver a Contratos</p>
                 <div className='contrato-detalles'>
                     <p>Detalles del Contrato</p>
                     <div>
@@ -75,6 +77,9 @@ var ContratoListaAcciones = React.createClass({
                 </ul>
             </div>
         );
+    },
+    goBack: function () {
+        this.context.router.replace('/contratos');
     }
 });
 
