@@ -17,6 +17,10 @@ var Link = ReactRouter.Link;
 
 var Main = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
+    childContextTypes: {user: React.PropTypes.func},
+    getChildContext: function () {
+        return {user: this.getCurrentUser};
+    },
     getInitialState: function () {
         return this.getState(this.props);
     },
@@ -88,6 +92,9 @@ var Main = React.createClass({
         Parse.User.logOut().then(function () {
             window.location = '/signin';
         });
+    },
+    getCurrentUser: function () {
+        return Parse.User.current();
     }
 });
 
