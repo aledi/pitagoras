@@ -7,6 +7,7 @@
 var Immutable = require('immutable');
 var Parse = require('parse');
 var formatNumber = require('format-number');
+var moment = require('moment');
 
 var ClienteObject = Parse.Object.extend('Cliente');
 var ClienteRecord = require('./cliente');
@@ -55,12 +56,15 @@ class Contrato extends ContratoRecord {
 
         definition.id = definition.id || definition.objectId;
 
+        // Fecha
+        definition.fechaContrato = definition.fechaContrato ? moment(definition.fechaContrato.iso) : moment();
+        formattedValues.fechaContrato = definition.fechaContrato.format('D/MMM/YYYY');
+
         // Vehiculo
         definition.vehiculo = new VehiculoRecord(definition.vehiculo);
 
         // Cliente
         definition.cliente = new ClienteRecord(definition.cliente);
-        formattedValues.cliente = definition.cliente.nombre + ' ' + definition.cliente.apellidoPaterno + ' ' + definition.cliente.apellidoMaterno;
 
         // Monto
         definition.monto = definition.monto;

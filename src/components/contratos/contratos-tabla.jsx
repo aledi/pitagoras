@@ -48,7 +48,7 @@ var ContratosTabla = React.createClass({
             contratos.push(
                 <tr className='content-row' onClick={self.handleContratoClick.bind(self, contrato.id)} key={contrato.id}>
                     <td>{contrato.numeroContrato}</td>
-                    <td>{contrato.formattedValues.cliente}</td>
+                    <td>{contrato.cliente.formattedValues.nombre}</td>
                     <td>{contrato.vehiculo.modelo}</td>
                     <td>{contrato.vehiculo.marca}</td>
                     <td>{contrato.vehiculo.anio}</td>

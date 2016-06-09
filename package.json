@@ -40,6 +40,7 @@
     "html-loader": "0.4.3",
     "immutable": "3.8.1",
     "json-loader": "0.5.4",
+    "moment": "^2.13.0",
     "node-sass": "3.4.2",
     "parse": "1.8.1",
     "postcss-loader": "0.8.1",

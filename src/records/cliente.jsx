@@ -8,7 +8,9 @@ var ClienteRecord = Immutable.Record({
     apellidoPaterno: '',
     domicilio: null,
     nombre: '',
-    telefonos: null
+    telefonos: null,
+
+    formattedValues: {}
 });
 
 class Cliente extends ClienteRecord {
@@ -19,8 +21,8 @@ class Cliente extends ClienteRecord {
             exterior: cliente.domicilio.exterior,
             colonia: cliente.domicilio.colonia,
             municipio: cliente.domicilio.municipio,
-            codigoPostal: parseInt(cliente.domicilio.codigoPostal, 10),
-            estado: cliente.domicilio.estado
+            estado: cliente.domicilio.estado,
+            codigoPostal: parseInt(cliente.domicilio.codigoPostal, 10)
         };
 
         return cliente;
@@ -28,8 +30,19 @@ class Cliente extends ClienteRecord {
 
     constructor (definition) {
         definition = definition || {};
+        var formattedValues = {};
 
         definition.id = definition.id || definition.objectId;
+
+        definition.nombre = definition.nombre;
+        definition.apellidoPaterno = definition.apellidoPaterno;
+        definition.apellidoMaterno = definition.apellidoMaterno;
+        formattedValues.nombre = definition.nombre + ' ' + definition.apellidoPaterno + ' ' + definition.apellidoMaterno;
+
+        definition.domicilio = definition.domicilio;
+        formattedValues.domicilio = definition.domicilio.calle + ' ' + definition.domicilio.interior + ' ' + definition.domicilio.exterior + ' ' + definition.domicilio.colonia + ' ' + definition.domicilio.municipio + ' ' + definition.domicilio.estado + ' ' + definition.domicilio.codigoPostal;
+
+        definition.formattedValues = formattedValues;
 
         super(definition);
     }
