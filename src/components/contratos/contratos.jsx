@@ -13,7 +13,7 @@ var ContratosActions = require('src/actions/contratos-actions');
 var ContratosStore = require('src/stores/contratos-store');
 
 var ContratosTabla = require('./contratos-tabla');
-var ContratoListaAcciones = require('./contrato-lista-acciones');
+var Contrato = require('./contrato');
 
 // -----------------------------------------------------------------------------------------------
 // Contratos
@@ -43,7 +43,7 @@ class Contratos extends React.Component {
         if (this.props.params.id) {
             return (
                 <main className='contratos'>
-                    <ContratoListaAcciones contrato={this.state.contrato} />
+                    <Contrato contrato={this.state.contrato} />
                 </main>
             );
         }

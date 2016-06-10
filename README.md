@@ -7,7 +7,7 @@
 1. Clone `pitagoras` from github repository.
 2. Open a terminal window on project folder.
 3. Run `npm run serve` command.
-4. Open a web browser window in `localhost:8888`
+4. Open a web browser window in `localhost:8081`
 
 Recommended packages for Atom:
 - auto-indent (griiin)

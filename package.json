@@ -5,7 +5,7 @@
   "description": "Pitágoras",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "webpack-dev-server --progress --colors --host 0.0.0.0 --port 8888 --content-base build/ --history-api-fallback",
+    "serve": "webpack-dev-server --progress --colors --host 0.0.0.0 --port 8081 --content-base build/ --history-api-fallback",
     "build": "./scripts/build.js",
     "deploy": "./scripts/deploy.js",
     "lint": "eslint --ext .jsx --ext .js ."
@@ -40,6 +40,7 @@
     "html-loader": "0.4.3",
     "immutable": "3.8.1",
     "json-loader": "0.5.4",
+    "moment": "^2.13.0",
     "node-sass": "3.4.2",
     "parse": "1.8.1",
     "postcss-loader": "0.8.1",
