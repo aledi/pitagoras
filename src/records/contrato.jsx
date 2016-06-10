@@ -74,6 +74,21 @@ class Contrato extends ContratoRecord {
         definition.tasa = definition.tasa;
         formattedValues.tasa = formatNumber({suffix: '%'})(definition.tasa);
 
+        // Referencias
+        if (definition.referencias && definition.referencias.length) {
+            formattedValues.referencias = [];
+
+            // TODO: determine if this is efficient enough
+            for (var i = 0; i < definition.referencias.length; i++) {
+                var referencia = definition.referencias[i];
+                formattedValues.referencias.push({
+                    nombre: referencia.nombre + ' ' + referencia.apellidoPaterno + ' ' + referencia.apellidoMaterno,
+                    domicilio: referencia.domicilio.calle + ' ' + referencia.domicilio.interior + ' ' + referencia.domicilio.exterior + ' ' + referencia.domicilio.colonia + ' ' + referencia.domicilio.municipio + ' ' + referencia.domicilio.estado + ' ' + referencia.domicilio.codigoPostal,
+                    telefono: referencia.telefono
+                });
+            }
+        }
+
         definition.formattedValues = formattedValues;
 
         super(definition);

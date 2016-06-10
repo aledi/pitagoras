@@ -34,13 +34,17 @@ class Cliente extends ClienteRecord {
 
         definition.id = definition.id || definition.objectId;
 
+        // Nombre
         definition.nombre = definition.nombre;
         definition.apellidoPaterno = definition.apellidoPaterno;
         definition.apellidoMaterno = definition.apellidoMaterno;
         formattedValues.nombre = definition.nombre + ' ' + definition.apellidoPaterno + ' ' + definition.apellidoMaterno;
 
-        definition.domicilio = definition.domicilio;
-        formattedValues.domicilio = definition.domicilio.calle + ' ' + definition.domicilio.interior + ' ' + definition.domicilio.exterior + ' ' + definition.domicilio.colonia + ' ' + definition.domicilio.municipio + ' ' + definition.domicilio.estado + ' ' + definition.domicilio.codigoPostal;
+        // Domicilio
+        if (definition.domicilio) {
+            definition.domicilio = definition.domicilio;
+            formattedValues.domicilio = definition.domicilio.calle + ' ' + definition.domicilio.interior + ' ' + definition.domicilio.exterior + ' ' + definition.domicilio.colonia + ' ' + definition.domicilio.municipio + ' ' + definition.domicilio.estado + ' ' + definition.domicilio.codigoPostal;
+        }
 
         definition.formattedValues = formattedValues;
 

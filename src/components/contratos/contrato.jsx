@@ -18,6 +18,10 @@ var Contrato = React.createClass({
         return {showFullDetails: false};
     },
     render: function () {
+        if (!this.props.contrato) {
+            return (<div></div>);
+        }
+
         return (
             <div className='contrato'>
                 <p className='go-back' onClick={this.goBack}>Volver a Contratos</p>
@@ -168,8 +172,42 @@ var Contrato = React.createClass({
             );
         }));
     },
+    renderReferenciasTitle: function () {
+        var referencias = this.props.contrato.formattedValues.referencias;
+
+        if (!referencias || !referencias.length) {
+            return;
+        }
+
+        return (<p>Referencias</p>);
+    },
     renderReferencias: function () {
-        return;
+        var referencias = this.props.contrato.formattedValues.referencias;
+
+        if (!referencias || !referencias.length) {
+            return;
+        }
+
+        var referenciasArray = [<p key='referencias-title'>Referencias</p>];
+
+        referencias.forEach(function (referencia, index) {
+            referenciasArray.push(
+                <div key={'referencia-nombre-' + index}>
+                    <span className='title'>Nombre</span>
+                    <span className='value'>{referencia.nombre}</span>
+                </div>,
+                <div key={'referencia-domicilio-' + index}>
+                    <span className='title'>Domicilio</span>
+                    <span className='value'>{referencia.domicilio}</span>
+                </div>,
+                <div key={'referencia-telefono-' + index}>
+                    <span className='title'>Teléfono</span>
+                    <span className='value'>{referencia.telefono}</span>
+                </div>
+            );
+        });
+
+        return referenciasArray;
     },
     showFullDetails: function () {
         this.setState({showFullDetails: !this.state.showFullDetails});
