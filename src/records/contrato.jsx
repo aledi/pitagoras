@@ -34,9 +34,9 @@ var ContratoRecord = Immutable.Record({
 
 class Contrato extends ContratoRecord {
     static prepareForParse (contrato) {
-        contrato.monto = parseFloat(contrato.monto);
+        contrato.monto = parseFloat(contrato.monto.replace(/,/g, ''));
         contrato.plazo = parseFloat(contrato.plazo);
-        contrato.tasa = parseFloat(contrato.tasa);
+        contrato.tasa = parseFloat(contrato.tasa.replace(/,/g, ''));
 
         contrato.fechaContrato = new Date(parseInt(contrato.fechaContrato.anio, 10),
                                         parseInt(contrato.fechaContrato.mes, 10),
