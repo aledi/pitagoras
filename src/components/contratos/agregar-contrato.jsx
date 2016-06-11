@@ -48,15 +48,15 @@ var AgregarContrato = React.createClass({
                     </div>
                     <div className='input-wrapper'>
                         <label>Plazo</label>
-                        <input type='text' value={this.state.plazo} onChange={this.handleChange.bind(this, 'plazo')} />
+                        <input type='text' value={this.state.plazo} onChange={this.handleChange.bind(this, 'plazo')} onKeyPress={this.restrictNumericInput.bind(this, false)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Monto</label>
-                        <input type='text' value={this.state.monto} onChange={this.handleChange.bind(this, 'monto')} />
+                        <input type='text' value={this.state.monto} onChange={this.handleChange.bind(this, 'monto')} onKeyPress={this.restrictNumericInput.bind(this, true)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Tasa</label>
-                        <input type='text' value={this.state.tasa} onChange={this.handleChange.bind(this, 'tasa')} />
+                        <input type='text' value={this.state.tasa} onChange={this.handleChange.bind(this, 'tasa')} onKeyPress={this.restrictNumericInput.bind(this, true)} />
                     </div>
                     <hr />
                     <p className='section-title'>Vehículo</p>
@@ -332,7 +332,7 @@ var AgregarContrato = React.createClass({
     },
     renderDias: function (event) {
         var dias = [];
-        var limite = this.getDaysForMonth(this.state.fechaContrato['mes'], this.state.fechaContrato['anio']);
+        var limite = this.getDaysForMonth(this.state.fechaContrato.mes, this.state.fechaContrato.anio);
 
         for (var index = 1; index <= limite; index++) {
             dias.push(
@@ -396,11 +396,25 @@ var AgregarContrato = React.createClass({
     getDaysForMonth: function (mes, anio) {
         if (mes === 1 || mes === 3 || mes === 5 || mes === 7 || mes === 8 || mes === 10 || mes === 12) {
             return 31;
-        } else if (mes == 2) {
+        } else if (mes === 2) {
             return (((anio % 4 === 0) && (anio % 100 !== 0)) || (anio % 400 === 0)) ? 29 : 28;
         }
 
         return 30;
+    },
+    restrictNumericInput: function (isFloat, event) {
+        if (!event.metaKey && event.charCode !== 13 && (event.charCode < 48 || event.charCode > 57)) {
+
+            // Allow commans and periods if applicable.
+            if (!isFloat) {
+                event.preventDefault();
+                return;
+            }
+
+            if (event.charCode !== 44 && event.charCode !== 46) {
+                event.preventDefault();
+            }
+        }
     }
 });
 
