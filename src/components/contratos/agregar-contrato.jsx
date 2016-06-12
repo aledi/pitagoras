@@ -391,6 +391,8 @@ var AgregarContrato = React.createClass({
                 return 'Noviembre';
             case 12:
                 return 'Diciembre';
+            default:
+                break;
         }
     },
     getDaysForMonth: function (mes, anio) {
