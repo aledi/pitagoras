@@ -37,8 +37,8 @@ var Signin = React.createClass({
                         value={this.state.password}
                         disabled={this.state.submitting}
                         onChange={this.handleChange.bind(this, 'password', 'passwordRequired')} />
+                    <p className={classNames('error-text', {hidden: !this.state.error})}>La combinación usuario/contraseña es incorrecta.</p>
                     <button type='submit' disabled={this.state.submitting}>Iniciar Sesión</button>
-                    <p className={classNames('error', {hidden: !this.state.error})}>La combinación usuario/contraseña es incorrecta.</p>
                 </form>
             </div>
         );
