@@ -6,24 +6,25 @@
 
         tr {
             th {
-                background-color: rgba(#106EB9, 0.4);
-                border: 1px solid black;
+                background-color: $taupe;
+                border: 1px solid $creosote;
                 text-align: center;
                 padding: 10px 0;
+                color: white;
             }
 
             td {
-                border: 1px solid black;
                 padding: 10px 5px;
+                border: 1px solid $creosote;
             }
 
-            &:nth-child(even) {
-                background-color: #F3F3F3;
+            &:nth-child(odd) {
+                background-color: rgba($oat, 0.3);
             }
 
             &.content-row {
                 &:hover {
-                    background-color: yellow;
+                    background-color: rgba($oat, 1);;
                     cursor: pointer;
                 }
             }

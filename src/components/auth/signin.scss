@@ -29,6 +29,7 @@
             outline: none;
 
             &:disabled {
+                color: $disabled-text-color;
                 background-color: $disabled-input-background;
                 border: 1px solid $disabled-input-border;
             }
@@ -56,7 +57,7 @@
 
             &:disabled {
                 background-color: $disabled-button-background;
-                color: $disabled-button-color;
+                color: $disabled-text-color;
             }
         }
 
