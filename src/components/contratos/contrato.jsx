@@ -147,7 +147,7 @@ var Contrato = React.createClass({
                 </div>
                 <div>
                     <span className='title'>Cliente:</span>
-                    <span className='value'>{contrato.formattedValues.cliente}</span>
+                    <span className='value'>{contrato.cliente.formattedValues.nombre}</span>
                 </div>
                 <div>
                     <span className='title'>Monto:</span>
