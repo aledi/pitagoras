@@ -21,25 +21,33 @@ var Visita = React.createClass({
     render: function () {
         return (
             <div className='visita'>
+                <div>
+                    <p>¿Encontró el domicilio?</p>
                     <div>
-                        <p>¿Encontró el domicilio?</p>
                         <input type='radio' id='domicilioUbicado' />
                         <label htmlFor='domicilioUbicado'>Sí</label>
+                    </div>
+                    <div>
                         <input type='radio' id='domicilioNoUbicado' />
                         <label htmlFor='domicilioNoUbicado'>No</label>
                     </div>
+                </div>
+                <div>
+                    <p>¿Ubicó al cliente?</p>
                     <div>
-                        <p>¿Ubicó al cliente?</p>
                         <input type='radio' id='clienteUbicado' />
                         <label htmlFor='clienteUbicado'>Sí</label>
+                    </div>
+                    <div>
                         <input type='radio' id='clienteNoUbicado' />
                         <label htmlFor='clienteNoUbicado'>No</label>
                     </div>
-                    <div>
-                        <p>Datos del Contacto</p>
-                        <label>¿Con quién dejó el comunicado?</label>
-                        <input type='text' />
-                    </div>
+                </div>
+                <div>
+                    <p>Datos del Contacto</p>
+                    <label>¿Con quién dejó el comunicado?</label>
+                    <input type='text' />
+                </div>
             </div>
         );
     }
