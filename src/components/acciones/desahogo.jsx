@@ -13,7 +13,9 @@ var React = require('react');
 var Desahogo = React.createClass({
     render: function () {
         return (
-            <div>Desahogo</div>
+            <div className='desahogo'>
+                <button type='button'>Desahogar</button>
+            </div>
         );
     }
 });
