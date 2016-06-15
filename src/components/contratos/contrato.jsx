@@ -8,6 +8,19 @@ require('./contrato.scss');
 
 var React = require('react');
 
+var Visita = require('src/components/acciones/visita');
+var AltaDocumentos = require('src/components/acciones/alta-documentos');
+var AperturaJuicio = require('src/components/acciones/apertura-juicio');
+var PresentacionDemanda = require('src/components/acciones/presentacion-demanda');
+var AcuerdoDemanda = require('src/components/acciones/acuerdo-demanda');
+var DemandaDesechada = require('src/components/acciones/demanda-desechada');
+var RecoleccionDocumentos = require('src/components/acciones/recoleccion-documentos');
+var DemandaPrevenida = require('src/components/acciones/demanda-prevenida');
+var DemandaAdmitida = require('src/components/acciones/demanda-admitida');
+var DiligenciaEmbargo = require('src/components/acciones/diligencia-embargo');
+var Emplazamiento = require('src/components/acciones/emplazamiento');
+var Desahogo = require('src/components/acciones/desahogo');
+
 // -----------------------------------------------------------------------------------------------
 // Contrato
 // -----------------------------------------------------------------------------------------------
@@ -30,21 +43,33 @@ var Contrato = React.createClass({
 
                 <p>Acciones Disponibles</p>
                 <ul>
-                    <li>Visita</li>
-                    <li>Alta de documentos</li>
-                    <li>Apertura de juicio</li>
-                    <li>Presentación de demanda</li>
-                    <li>Acuerdo de demanda</li>
-                    <li>Demanda desechada</li>
-                    <li>Recolección de documentos</li>
-                    <li>Demanda prevenida</li>
-                    <li>Demanda admitida</li>
-                    <li>Diligencia de embargo</li>
-                    <li>Emplazamiento</li>
-                    <li>Desahogo / Cierre</li>
+                    <li onClick={this.showAccion.bind(this, <Visita />)}>Visita</li>
+                    <li onClick={this.showAccion.bind(this, <AltaDocumentos />)}>Alta de documentos</li>
+                    <li onClick={this.showAccion.bind(this, <AperturaJuicio />)}>Apertura de juicio</li>
+                    <li onClick={this.showAccion.bind(this, <PresentacionDemanda />)}>Presentación de demanda</li>
+                    <li onClick={this.showAccion.bind(this, <AcuerdoDemanda />)}>Acuerdo de demanda</li>
+                    <li onClick={this.showAccion.bind(this, <DemandaDesechada />)}>Demanda desechada</li>
+                    <li onClick={this.showAccion.bind(this, <RecoleccionDocumentos />)}>Recolección de documentos</li>
+                    <li onClick={this.showAccion.bind(this, <DemandaPrevenida />)}>Demanda prevenida</li>
+                    <li onClick={this.showAccion.bind(this, <DemandaAdmitida />)}>Demanda admitida</li>
+                    <li onClick={this.showAccion.bind(this, <DiligenciaEmbargo />)}>Diligencia de embargo</li>
+                    <li onClick={this.showAccion.bind(this, <Emplazamiento />)}>Emplazamiento</li>
+                    <li onClick={this.showAccion.bind(this, <Desahogo />)}>Desahogo / Cierre</li>
                 </ul>
+
+                {this.renderAccion()}
             </div>
         );
+    },
+    renderAccion: function () {
+        if (!this.state.selectedAccion) {
+            return;
+        }
+
+        return (this.state.selectedAccion);
+    },
+    showAccion: function (accion) {
+        this.setState({selectedAccion: accion});
     },
     renderContrato: function () {
         var contrato = this.props.contrato;
@@ -122,7 +147,7 @@ var Contrato = React.createClass({
                 </div>
                 <div>
                     <span className='title'>Cliente:</span>
-                    <span className='value'>{contrato.formattedValues.cliente}</span>
+                    <span className='value'>{contrato.cliente.formattedValues.nombre}</span>
                 </div>
                 <div>
                     <span className='title'>Monto:</span>
