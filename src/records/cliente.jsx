@@ -33,6 +33,7 @@ class Cliente extends ClienteRecord {
         var formattedValues = {};
 
         definition.id = definition.id || definition.objectId;
+        definition.domicilio = definition.domicilio || {};
 
         // Nombre
         definition.nombre = definition.nombre;
