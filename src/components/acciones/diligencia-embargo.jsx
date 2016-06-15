@@ -13,7 +13,16 @@ var React = require('react');
 var DiligenciaEmbargo = React.createClass({
     render: function () {
         return (
-            <div>DiligenciaEmbargo</div>
+            <div className='diligencia-embargo'>
+                <select>
+                    <option>No encontró el domicilio</option>
+                    <option>El domicilio es incorrecto</option>
+                    <option>La persona no vive ahí</option>
+                    <option>No abre nadie en el domicilio</option>
+                    <option>Fallecimiento</option>
+                    <option>Se realizó exitosamente</option>
+                </select>
+            </div>
         );
     }
 });

@@ -13,7 +13,13 @@ var React = require('react');
 var Emplazamiento = React.createClass({
     render: function () {
         return (
-            <div>Emplazamiento</div>
+            <div className='emplazamiento'>
+                <select>
+                    <option>No vive en el domicilio</option>
+                    <option>Se niega a recibir demanda</option>
+                    <option>Se realizó exitosamente</option>
+                </select>
+            </div>
         );
     }
 });

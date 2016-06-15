@@ -14,7 +14,7 @@ var AperturaJuicio = React.createClass({
     render: function () {
         return (
             <div className='apertura-juicio'>
-                <p>¿Encontró el domicilio?</p>
+                <p>Tipo de Juicio</p>
                 <div>
                     <input type='radio' id='oral' />
                     <label htmlFor='oral'>Oral Mercantil</label>
