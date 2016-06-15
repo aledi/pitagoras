@@ -1,0 +1,33 @@
+@import '~src/styles/pitagoras.scss';
+
+.contratos-table-wrapper {
+    table {
+        width: 100%;
+
+        tr {
+            th {
+                background-color: $taupe;
+                border: 1px solid $creosote;
+                text-align: center;
+                padding: 10px 0;
+                color: white;
+            }
+
+            td {
+                padding: 10px 5px;
+                border: 1px solid $creosote;
+            }
+
+            &:nth-child(odd) {
+                background-color: rgba($oat, 0.3);
+            }
+
+            &.content-row {
+                &:hover {
+                    background-color: rgba($oat, 1);;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

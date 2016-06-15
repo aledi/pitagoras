@@ -10,6 +10,7 @@ var React = require('react');
 var Parse = require('parse');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
+var classNames = require('classnames');
 
 // -----------------------------------------------------------------------------------------------
 // Main
@@ -17,6 +18,10 @@ var Link = ReactRouter.Link;
 
 var Main = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
+    childContextTypes: {user: React.PropTypes.func},
+    getChildContext: function () {
+        return {user: this.getCurrentUser};
+    },
     getInitialState: function () {
         return this.getState(this.props);
     },
@@ -33,7 +38,10 @@ var Main = React.createClass({
 
             // Preserve previous links to keep last child route (e.g. /desarrollos/serena)
             links: this.state ? this.state.links : {
-                index: '/index'
+                index: '/index',
+                agregarContrato: '/agregar-contrato',
+                contratos: '/contratos',
+                reportes: '/reportes'
             }
         };
 
@@ -62,21 +70,27 @@ var Main = React.createClass({
             return;
         }
 
+        var isAdmin = this.getCurrentUser().get('tipo') === 3;
+
         return (
             <header>
                 <div className='logo' />
                 <div className='links-wrapper'>
-                    {this.renderAgregarUsuarioItem()}
-                    <Link activeClassName='active' to='/agregar-contrato'>Agregar contrato</Link>
-                    <Link activeClassName='active' to='/contratos'>Ver contratos</Link>
-                    <Link activeClassName='active' to='/reportes'>Reportes</Link>
+                    {this.renderAgregarUsuarioItem(isAdmin)}
+                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={this.state.links.agregarContrato}>Agregar contrato</Link>
+                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={this.state.links.contratos}>Ver contratos</Link>
+                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={this.state.links.reportes}>Reportes</Link>
                 </div>
                 <div className='signout' onClick={this.signOut} />
             </header>
         );
     },
-    renderAgregarUsuarioItem: function () {
-        // TODO: render opcion if usuario type === 3
+    renderAgregarUsuarioItem: function (isAdmin) {
+        if (!isAdmin) {
+            return;
+        }
+
+        return (<Link activeClassName='active' className='admin' to={this.state.links.agregarContrato}>Agregar usuario</Link>);
     },
     renderChildren: function () {
         return this.state.children;
@@ -85,6 +99,9 @@ var Main = React.createClass({
         Parse.User.logOut().then(function () {
             window.location = '/signin';
         });
+    },
+    getCurrentUser: function () {
+        return Parse.User.current();
     }
 });
 

@@ -8,6 +8,9 @@ body {
     height: 100%;
     -webkit-overflow-scrolling: touch;
     overflow: hidden;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    color: $gun-metal;
 }
 
 ::-webkit-input-placeholder, ::-moz-placeholder, :-ms-input-placeholder, input:-moz-placeholder {

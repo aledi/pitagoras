@@ -76,15 +76,15 @@ var AgregarContrato = React.createClass({
                     </div>
                     <div className='input-wrapper'>
                         <label>Plazo</label>
-                        <input type='text' value={contrato.plazo} onChange={this.handleChange.bind(this, 'plazo')} />
+                        <input type='text' value={this.state.plazo} onChange={this.handleChange.bind(this, 'plazo')} onKeyPress={this.restrictNumericInput.bind(this, false)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Monto</label>
-                        <input type='text' value={contrato.monto} onChange={this.handleChange.bind(this, 'monto')} />
+                        <input type='text' value={this.state.monto} onChange={this.handleChange.bind(this, 'monto')} onKeyPress={this.restrictNumericInput.bind(this, true)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Tasa</label>
-                        <input type='text' value={contrato.tasa} onChange={this.handleChange.bind(this, 'tasa')} />
+                        <input type='text' value={this.state.tasa} onChange={this.handleChange.bind(this, 'tasa')} onKeyPress={this.restrictNumericInput.bind(this, true)} />
                     </div>
                     <hr />
                     <p className='section-title'>Vehículo</p>
@@ -422,7 +422,7 @@ var AgregarContrato = React.createClass({
             case 12:
                 return 'Diciembre';
             default:
-                return;
+                break;
         }
     },
     getDaysForMonth: function (mes, anio) {
@@ -433,6 +433,20 @@ var AgregarContrato = React.createClass({
         }
 
         return 30;
+    },
+    restrictNumericInput: function (isFloat, event) {
+        if (!event.metaKey && event.charCode !== 13 && (event.charCode < 48 || event.charCode > 57)) {
+
+            // Allow commans and periods if applicable.
+            if (!isFloat) {
+                event.preventDefault();
+                return;
+            }
+
+            if (event.charCode !== 44 && event.charCode !== 46) {
+                event.preventDefault();
+            }
+        }
     }
 });
 

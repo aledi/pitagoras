@@ -1,13 +1,22 @@
 'use strict';
 
+// -----------------------------------------------------------------------------------------------
+// Immutable + Other Modules
+// -----------------------------------------------------------------------------------------------
+
 var Immutable = require('immutable');
 var Parse = require('parse');
-
-var VehiculoObject = Parse.Object.extend('Vehiculo');
-var VehiculoRecord = require('./vehiculo');
+var formatNumber = require('format-number');
+var moment = require('moment');
 
 var ClienteObject = Parse.Object.extend('Cliente');
 var ClienteRecord = require('./cliente');
+var VehiculoObject = Parse.Object.extend('Vehiculo');
+var VehiculoRecord = require('./vehiculo');
+
+// -----------------------------------------------------------------------------------------------
+// ContratoRecord
+// -----------------------------------------------------------------------------------------------
 
 var ContratoRecord = Immutable.Record({
     id: null,
@@ -18,14 +27,16 @@ var ContratoRecord = Immutable.Record({
     plazo: null,
     referencias: null,
     tasa: null,
-    vehiculo: null
+    vehiculo: null,
+
+    formattedValues: {}
 });
 
 class Contrato extends ContratoRecord {
     static prepareForParse (contrato) {
-        contrato.monto = parseFloat(contrato.monto);
+        contrato.monto = parseFloat(contrato.monto.replace(/,/g, ''));
         contrato.plazo = parseFloat(contrato.plazo);
-        contrato.tasa = parseFloat(contrato.tasa);
+        contrato.tasa = parseFloat(contrato.tasa.replace(/,/g, ''));
 
         contrato.fechaContrato = new Date(parseInt(contrato.fechaContrato.anio, 10),
                                         parseInt(contrato.fechaContrato.mes, 10),
@@ -41,10 +52,44 @@ class Contrato extends ContratoRecord {
     constructor (definition) {
         definition = definition || {};
 
+        var formattedValues = {};
+
         definition.id = definition.id || definition.objectId;
 
+        // Fecha
+        definition.fechaContrato = definition.fechaContrato ? moment(definition.fechaContrato.iso) : moment();
+        formattedValues.fechaContrato = definition.fechaContrato.format('D/MMM/YYYY');
+
+        // Vehiculo
         definition.vehiculo = new VehiculoRecord(definition.vehiculo);
+
+        // Cliente
         definition.cliente = new ClienteRecord(definition.cliente);
+
+        // Monto
+        definition.monto = definition.monto;
+        formattedValues.monto = formatNumber({prefix: '$', padRight: 2})(definition.monto);
+
+        // Tasa
+        definition.tasa = definition.tasa;
+        formattedValues.tasa = formatNumber({suffix: '%'})(definition.tasa);
+
+        // Referencias
+        if (definition.referencias && definition.referencias.length) {
+            formattedValues.referencias = [];
+
+            // TODO: determine if this is efficient enough
+            for (var i = 0; i < definition.referencias.length; i++) {
+                var referencia = definition.referencias[i];
+                formattedValues.referencias.push({
+                    nombre: referencia.nombre + ' ' + referencia.apellidoPaterno + ' ' + referencia.apellidoMaterno,
+                    domicilio: referencia.domicilio.calle + ' ' + referencia.domicilio.interior + ' ' + referencia.domicilio.exterior + ' ' + referencia.domicilio.colonia + ' ' + referencia.domicilio.municipio + ' ' + referencia.domicilio.estado + ' ' + referencia.domicilio.codigoPostal,
+                    telefono: referencia.telefono
+                });
+            }
+        }
+
+        definition.formattedValues = formattedValues;
 
         super(definition);
     }

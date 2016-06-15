@@ -1,8 +1,7 @@
 @import '~src/styles/pitagoras.scss';
 
 .add-contrato {
-    padding: 20px;
-    overflow-y: auto !important;
+    padding: 30px;
 
     form {
         width: 800px;
@@ -38,18 +37,32 @@
         }
 
         hr {
+            margin: 0 -20px;
             border: none;
             border-bottom: 1px solid black;
-            margin-left: -20px;
-            margin-right: -20px;
         }
 
         button {
             height: 50px;
             width: 100%;
             margin-top: 20px;
+            background-color: $denim;
+            border: none;
+            border-radius: 3px;
+            letter-spacing: 1px;
+            color: white;
+
+            &:hover {
+                background-color: $nightfall;
+            }
+
+            &:disabled {
+                background-color: $disabled-button-background;
+                color: $disabled-text-color;
+            }
 
             &.add {
+                color: black;
                 width: auto;
                 background-color: transparent;
                 border: 1px solid red;

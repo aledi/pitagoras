@@ -1,45 +1,72 @@
+@import '~src/styles/pitagoras.scss';
+
 .signin-wrapper {
     height: 100%;
     width: 100%;
-    padding-top: 50px;
 
     form {
-        width: 500px;
-        padding: 40px 100px;
+        width: 400px;
+        padding: 40px;
         margin: 0 auto;
-        border: 1px solid black;
+        margin-top: 80px;
+        background-color: $frost;
+        border: 1px solid $creosote;
+        border-radius: 3px;
         text-align: center;
 
+        label {
+            margin-bottom: 5px;
+        }
+
         input {
+            height: 35px;
             width: 100%;
             display: block;
-            margin-bottom: 20px;
-            border: 1px solid black;
+            padding: 0 10px;
+            margin-bottom: 30px;
+            border: 1px solid $creosote;
+            border-radius: 3px;
+            outline: none;
 
             &:disabled {
-                background-color: gray; // TODO: lighter gray
+                color: $disabled-text-color;
+                background-color: $disabled-input-background;
+                border: 1px solid $disabled-input-border;
             }
 
             &.required {
-                border-color: red;
+                border-width: 2px;
+                border-color: $invalid;
             }
         }
 
         button {
-            margin: 20px 0;
+            padding: 10px 40px;
+            margin: 0;
+            margin-top: 20px;
+            background-color: $denim;
+            border: none;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: white;
+
+            &:hover {
+                background-color: $nightfall;
+            }
 
             &:disabled {
-                background-color: blue; // TODO: define color
-                color: white;
+                background-color: $disabled-button-background;
+                color: $disabled-text-color;
             }
         }
 
-        p.error {
+        p.error-text {
             margin: 0;
-            color: red;
+            color: $invalid;
 
             &.hidden {
-                display: none;
+                visibility: hidden;
             }
         }
     }
