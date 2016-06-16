@@ -27,20 +27,40 @@ var AcuerdoDemanda = React.createClass({
             <div className='acuerdo-demanda'>
                 <p>Resultado del acuerdo</p>
                 <div>
-                    <input type='radio' id='desecha' />
+                    <input
+                        type='radio'
+                        id='desecha'
+                        value='desecha'
+                        checked={this.state.respuestas.resultadoAcuerdo === 'desecha'}
+                        onChange={this.handleChange} />
                     <label htmlFor='desecha'>Desecha</label>
                 </div>
                 <div>
-                    <input type='radio' id='previene' />
+                    <input
+                        type='radio'
+                        id='previene'
+                        value='previene'
+                        checked={this.state.respuestas.resultadoAcuerdo === 'previene'}
+                        onChange={this.handleChange} />
                     <label htmlFor='previene'>Previene</label>
                 </div>
                 <div>
-                    <input type='radio' id='admite' />
+                    <input
+                        type='radio'
+                        id='admite'
+                        value='admite'
+                        checked={this.state.respuestas.resultadoAcuerdo === 'admite'}
+                        onChange={this.handleChange} />
                     <label htmlFor='admite'>Admite</label>
                 </div>
                 {this.renderButton()}
             </div>
         );
+    },
+    handleChange: function (event) {
+        var respuestas = this.state.respuestas;
+        respuestas.resultadoAcuerdo = event.target.value;
+        this.setState({respuestas: respuestas});
     }
 });
 

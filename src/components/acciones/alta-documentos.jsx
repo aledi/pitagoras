@@ -28,12 +28,23 @@ var AltaDocumentos = React.createClass({
         return (
             <div className='alta-documentos'>
                 <label>Número Interno</label>
-                <input type='text' />
+                <input
+                    type='text'
+                    value={this.state.respuestas.numeroInterno}
+                    onChange={this.handleChange.bind(this, 'numeroInterno')} />
                 <label>Fecha de Recepción</label>
-                <input type='text' />
+                <input
+                    type='text'
+                    value={this.state.respuestas.fechaRecepcion}
+                    onChange={this.handleChange.bind(this, 'fechaRecepcion')} />
                 {this.renderButton()}
             </div>
         );
+    },
+    handleChange: function (propertyName, event) {
+        var respuestas = this.state.respuestas;
+        respuestas[propertyName] = event.target.value;
+        this.setState({respuestas: respuestas});
     }
 });
 
