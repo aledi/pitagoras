@@ -11,6 +11,12 @@ var React = require('react');
 // -----------------------------------------------------------------------------------------------
 
 var DemandaDesechada = React.createClass({
+    getInitialState: function () {
+        return {
+            regresaDocumentos: false,
+            horario: null
+        };
+    },
     render: function () {
         return (
             <div className='demanda-desechada'>
@@ -25,19 +31,34 @@ var DemandaDesechada = React.createClass({
                 </select>
                 <p>¿Regresan documentos?</p>
                 <div>
-                    <input type='radio' id='si' />
+                    <input type='radio' id='si' checked={this.state.regresaDocumentos} onChange={this.handleRegresaDocumentosChange} value={1} />
                     <label htmlFor='si'>Sí</label>
                 </div>
                 <div>
-                    <input type='radio' id='no' />
+                    <input type='radio' id='no' checked={!this.state.regresaDocumentos} onChange={this.handleRegresaDocumentosChange} value={0} />
                     <label htmlFor='no'>No</label>
                 </div>
-                <div>
-                    <label>Horario</label>
-                    <input type='text' />
-                </div>
+                {this.renderHorario()}
             </div>
         );
+    },
+    renderHorario: function () {
+        if (!this.state.regresaDocumentos) {
+            return;
+        }
+
+        return (
+            <div>
+                <label>Horario</label>
+                <input type='text' value={this.state.horario} onChange={this.handleHorarioChange} />
+            </div>
+        );
+    },
+    handleRegresaDocumentosChange: function (event) {
+        this.setState({regresaDocumentos: parseInt(event.target.value, 10) === 1});
+    },
+    handleHorarioChange: function (event) {
+        this.setState({horario: event.target.value});
     }
 });
 
