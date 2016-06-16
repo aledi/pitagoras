@@ -8,11 +8,22 @@ require('./alta-documentos.scss');
 
 var React = require('react');
 
+var AccionesMixin = require('./acciones-mixin');
+
 // -----------------------------------------------------------------------------------------------
 // AltaDocumentos
 // -----------------------------------------------------------------------------------------------
 
 var AltaDocumentos = React.createClass({
+    mixins: [AccionesMixin],
+    getInitialState: function () {
+        return {
+            tipo: 2,
+            comentarios: '',
+            contrato: this.props.contrato,
+            respuestas: {}
+        };
+    },
     render: function () {
         return (
             <div className='alta-documentos'>
@@ -20,6 +31,7 @@ var AltaDocumentos = React.createClass({
                 <input type='text' />
                 <label>Fecha de Recepción</label>
                 <input type='text' />
+                {this.renderButton()}
             </div>
         );
     }

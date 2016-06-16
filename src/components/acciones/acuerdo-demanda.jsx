@@ -6,11 +6,22 @@
 
 var React = require('react');
 
+var AccionesMixin = require('./acciones-mixin');
+
 // -----------------------------------------------------------------------------------------------
 // AcuerdoDemanda
 // -----------------------------------------------------------------------------------------------
 
 var AcuerdoDemanda = React.createClass({
+    mixins: [AccionesMixin],
+    getInitialState: function () {
+        return {
+            tipo: 5,
+            comentarios: '',
+            contrato: this.props.contrato,
+            respuestas: {}
+        };
+    },
     render: function () {
         return (
             <div className='acuerdo-demanda'>
@@ -27,6 +38,7 @@ var AcuerdoDemanda = React.createClass({
                     <input type='radio' id='admite' />
                     <label htmlFor='admite'>Admite</label>
                 </div>
+                {this.renderButton()}
             </div>
         );
     }

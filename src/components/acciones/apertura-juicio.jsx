@@ -6,11 +6,22 @@
 
 var React = require('react');
 
+var AccionesMixin = require('./acciones-mixin');
+
 // -----------------------------------------------------------------------------------------------
 // AperturaJuicio
 // -----------------------------------------------------------------------------------------------
 
 var AperturaJuicio = React.createClass({
+    mixins: [AccionesMixin],
+    getInitialState: function () {
+        return {
+            tipo: 3,
+            comentarios: '',
+            contrato: this.props.contrato,
+            respuestas: {}
+        };
+    },
     render: function () {
         return (
             <div className='apertura-juicio'>
@@ -23,6 +34,7 @@ var AperturaJuicio = React.createClass({
                     <input type='radio' id='ejecutiva' />
                     <label htmlFor='ejecutiva'>Ejecutiva Mercantil</label>
                 </div>
+                {this.renderButton()}
             </div>
         );
     }
