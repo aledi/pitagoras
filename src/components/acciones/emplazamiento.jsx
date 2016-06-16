@@ -6,21 +6,47 @@
 
 var React = require('react');
 
+var AccionesMixin = require('./acciones-mixin');
+
 // -----------------------------------------------------------------------------------------------
 // Emplazamiento
 // -----------------------------------------------------------------------------------------------
 
+var options = [
+    'No vive en el domicilio',
+    'Se niega a recibir demanda',
+    'Se realizó exitosamente'
+];
+
 var Emplazamiento = React.createClass({
+    mixins: [AccionesMixin],
+    getInitialState: function () {
+        return {
+            tipo: 11,
+            comentarios: '',
+            contrato: this.props.contrato,
+            respuestas: {}
+        };
+    },
     render: function () {
         return (
             <div className='emplazamiento'>
-                <select>
-                    <option>No vive en el domicilio</option>
-                    <option>Se niega a recibir demanda</option>
-                    <option>Se realizó exitosamente</option>
+                <select value={options[this.state.respuestas.respuesta]} onChange={this.handleChange}>
+                    {this.renderOptions()}
                 </select>
+                {this.renderButton()}
             </div>
         );
+    },
+    renderOptions: function () {
+        return (options.map(function (option, index) {
+            return (<option key={index} value={index}>{option}</option>);
+        }));
+    },
+    handleChange: function (event) {
+        var respuestas = this.state.respuestas;
+        respuestas.respuesta = options[event.target.value];
+        this.setState({respuestas: respuestas});
     }
 });
 

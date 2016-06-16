@@ -6,16 +6,24 @@
 
 var React = require('react');
 
+var AccionesMixin = require('./acciones-mixin');
+
 // -----------------------------------------------------------------------------------------------
 // Visita
 // -----------------------------------------------------------------------------------------------
 
 var Visita = React.createClass({
+    mixins: [AccionesMixin],
     getInitialState: function () {
         return {
-            domicilioUbicado: false,
-            clienteUbicado: true,
-            datosDeContacto: null
+            tipo: 1,
+            comentarios: '',
+            contrato: this.props.contrato,
+            respuestas: {
+                domicilioUbicado: false,
+                clienteUbicado: false,
+                datosDeContacto: null
+            }
         };
     },
     render: function () {
@@ -24,20 +32,21 @@ var Visita = React.createClass({
                 <div>
                     <p>¿Encontró el domicilio?</p>
                     <div>
-                        <input type='radio' id='domicilioUbicado' checked={this.state.domicilioUbicado} onChange={this.handleDomicilioUbicadoChange} value={1} />
+                        <input type='radio' id='domicilioUbicado' checked={this.state.respuestas.domicilioUbicado} onChange={this.handleRadioChange.bind(this, 'domicilioUbicado')} value={1} />
                         <label htmlFor='domicilioUbicado'>Sí</label>
                     </div>
                     <div>
-                        <input type='radio' id='domicilioNoUbicado' checked={!this.state.domicilioUbicado} onChange={this.handleDomicilioUbicadoChange} value={0} />
+                        <input type='radio' id='domicilioNoUbicado' checked={!this.state.respuestas.domicilioUbicado} onChange={this.handleRadioChange.bind(this, 'domicilioUbicado')} value={0} />
                         <label htmlFor='domicilioNoUbicado'>No</label>
                     </div>
                 </div>
                 {this.renderCliente()}
+                {this.renderButton()}
             </div>
         );
     },
     renderCliente: function () {
-        if (!this.state.domicilioUbicado) {
+        if (!this.state.respuestas.domicilioUbicado) {
             return;
         }
 
@@ -46,30 +55,31 @@ var Visita = React.createClass({
                 <div>
                     <p>¿Ubicó al cliente?</p>
                     <div>
-                        <input type='radio' id='clienteUbicado' checked={this.state.clienteUbicado} onChange={this.handleClienteUbicadoChange} value={1} />
+                        <input type='radio' id='clienteUbicado' checked={this.state.respuestas.clienteUbicado} onChange={this.handleRadioChange.bind(this, 'clienteUbicado')} value={1} />
                         <label htmlFor='clienteUbicado'>Sí</label>
                     </div>
                     <div>
-                        <input type='radio' id='clienteNoUbicado' checked={!this.state.clienteUbicado} onChange={this.handleClienteUbicadoChange} value={0} />
+                        <input type='radio' id='clienteNoUbicado' checked={!this.state.respuestas.clienteUbicado} onChange={this.handleRadioChange.bind(this, 'clienteUbicado')} value={0} />
                         <label htmlFor='clienteNoUbicado'>No</label>
                     </div>
                 </div>
                 <div>
                     <p>Datos del Contacto</p>
                     <label>¿Con quién dejó el comunicado?</label>
-                    <input type='text' value={this.state.datosDeContacto} onChange={this.handleHorarioChange} />
+                    <input type='text' value={this.state.respuestas.datosDeContacto} onChange={this.handleChange} />
                 </div>
             </div>
         );
     },
-    handleDomicilioUbicadoChange: function (event) {
-        this.setState({domicilioUbicado: parseInt(event.target.value, 10) === 1});
+    handleRadioChange: function (propertyName, event) {
+        var respuestas = this.state.respuestas;
+        respuestas[propertyName] = parseInt(event.target.value, 10) === 1;
+        this.setState({respuestas: respuestas});
     },
-    handleClienteUbicadoChange: function (event) {
-        this.setState({clienteUbicado: parseInt(event.target.value, 10) === 1});
-    },
-    handleDatosDeContactoChange: function (event) {
-        this.setState({datosDeContacto: event.target.value});
+    handleChange: function (event) {
+        var respuestas = this.state.respuestas;
+        respuestas.datosDeContacto = event.target.value;
+        this.setState({respuestas: respuestas});
     }
 });
 
