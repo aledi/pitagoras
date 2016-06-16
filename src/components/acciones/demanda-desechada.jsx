@@ -39,11 +39,21 @@ var DemandaDesechada = React.createClass({
                 </select>
                 <p>¿Regresan documentos?</p>
                 <div>
-                    <input type='radio' id='si' checked={this.state.respuestas.regresaDocumentos} onChange={this.handleRegresaDocumentosChange} value={1} />
+                    <input
+                        type='radio'
+                        id='si'
+                        checked={this.state.respuestas.regresaDocumentos}
+                        value={1}
+                        onChange={this.handleRegresaDocumentosChange} />
                     <label htmlFor='si'>Sí</label>
                 </div>
                 <div>
-                    <input type='radio' id='no' checked={!this.state.respuestas.regresaDocumentos} onChange={this.handleRegresaDocumentosChange} value={0} />
+                    <input
+                        type='radio'
+                        id='no'
+                        checked={!this.state.respuestas.regresaDocumentos}
+                        value={0}
+                        onChange={this.handleRegresaDocumentosChange} />
                     <label htmlFor='no'>No</label>
                 </div>
                 {this.renderHorario()}
