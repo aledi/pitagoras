@@ -6,14 +6,14 @@
 
 var React = require('react');
 
-var AccionesActions = require('src/actions/acciones-actions');
-var AccionRecord = require('src/records/accion');
+var AccionesMixin = require('./acciones-mixin');
 
 // -----------------------------------------------------------------------------------------------
 // DemandaDesechada
 // -----------------------------------------------------------------------------------------------
 
 var DemandaDesechada = React.createClass({
+    mixins: [AccionesMixin],
     getInitialState: function () {
         return {
             tipo: 6,
@@ -47,7 +47,7 @@ var DemandaDesechada = React.createClass({
                     <label htmlFor='no'>No</label>
                 </div>
                 {this.renderHorario()}
-                <button type='button' onClick={this.saveAccion}>Guardar</button>
+                {this.renderButton()}
             </div>
         );
     },
@@ -72,9 +72,6 @@ var DemandaDesechada = React.createClass({
         var respuestas = this.state.respuestas;
         respuestas.horario = event.target.value;
         this.setState({respuestas: respuestas});
-    },
-    saveAccion: function () {
-        AccionesActions.saveAccion(AccionRecord.prepareForParse(this.state));
     }
 });
 
