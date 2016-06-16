@@ -43,18 +43,18 @@ var Contrato = React.createClass({
 
                 <p>Acciones Disponibles</p>
                 <ul>
-                    <li onClick={this.showAccion.bind(this, <Visita />)}>Visita</li>
-                    <li onClick={this.showAccion.bind(this, <AltaDocumentos />)}>Alta de documentos</li>
-                    <li onClick={this.showAccion.bind(this, <AperturaJuicio />)}>Apertura de juicio</li>
-                    <li onClick={this.showAccion.bind(this, <PresentacionDemanda />)}>Presentación de demanda</li>
-                    <li onClick={this.showAccion.bind(this, <AcuerdoDemanda />)}>Acuerdo de demanda</li>
-                    <li onClick={this.showAccion.bind(this, <DemandaDesechada />)}>Demanda desechada</li>
-                    <li onClick={this.showAccion.bind(this, <RecoleccionDocumentos />)}>Recolección de documentos</li>
-                    <li onClick={this.showAccion.bind(this, <DemandaPrevenida />)}>Demanda prevenida</li>
-                    <li onClick={this.showAccion.bind(this, <DemandaAdmitida />)}>Demanda admitida</li>
-                    <li onClick={this.showAccion.bind(this, <DiligenciaEmbargo />)}>Diligencia de embargo</li>
-                    <li onClick={this.showAccion.bind(this, <Emplazamiento />)}>Emplazamiento</li>
-                    <li onClick={this.showAccion.bind(this, <Desahogo />)}>Desahogo / Cierre</li>
+                    <li onClick={this.showAccion.bind(this, <Visita contrato={this.props.contrato} />)}>Visita</li>
+                    <li onClick={this.showAccion.bind(this, <AltaDocumentos contrato={this.props.contrato} />)}>Alta de documentos</li>
+                    <li onClick={this.showAccion.bind(this, <AperturaJuicio contrato={this.props.contrato} />)}>Apertura de juicio</li>
+                    <li onClick={this.showAccion.bind(this, <PresentacionDemanda contrato={this.props.contrato} />)}>Presentación de demanda</li>
+                    <li onClick={this.showAccion.bind(this, <AcuerdoDemanda contrato={this.props.contrato} />)}>Acuerdo de demanda</li>
+                    <li onClick={this.showAccion.bind(this, <DemandaDesechada contrato={this.props.contrato} />)}>Demanda desechada</li>
+                    <li onClick={this.showAccion.bind(this, <RecoleccionDocumentos contrato={this.props.contrato} />)}>Recolección de documentos</li>
+                    <li onClick={this.showAccion.bind(this, <DemandaPrevenida contrato={this.props.contrato} />)}>Demanda prevenida</li>
+                    <li onClick={this.showAccion.bind(this, <DemandaAdmitida contrato={this.props.contrato} />)}>Demanda admitida</li>
+                    <li onClick={this.showAccion.bind(this, <DiligenciaEmbargo contrato={this.props.contrato} />)}>Diligencia de embargo</li>
+                    <li onClick={this.showAccion.bind(this, <Emplazamiento contrato={this.props.contrato} />)}>Emplazamiento</li>
+                    <li onClick={this.showAccion.bind(this, <Desahogo contrato={this.props.contrato} />)}>Desahogo / Cierre</li>
                 </ul>
 
                 {this.renderAccion()}

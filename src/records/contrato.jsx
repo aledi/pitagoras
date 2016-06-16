@@ -34,9 +34,9 @@ var ContratoRecord = Immutable.Record({
 
 class Contrato extends ContratoRecord {
     static prepareForParse (contrato) {
-        contrato.monto = parseFloat(contrato.monto.replace(/,/g, ''));
-        contrato.plazo = parseFloat(contrato.plazo);
-        contrato.tasa = parseFloat(contrato.tasa.replace(/,/g, ''));
+        contrato.monto = (typeof contrato.monto === 'string') ? parseFloat(contrato.monto.replace(/,/g, '')) : contrato.monto;
+        contrato.plazo = (typeof contrato.monto === 'string') ? parseFloat(contrato.plazo) : contrato.plazo;
+        contrato.tasa = (typeof contrato.monto === 'string') ? parseFloat(contrato.tasa.replace(/,/g, '')) : contrato.tasa;
 
         contrato.fechaContrato = new Date(parseInt(contrato.fechaContrato.anio, 10),
                                         parseInt(contrato.fechaContrato.mes, 10),
@@ -98,11 +98,7 @@ class Contrato extends ContratoRecord {
         return {
             id: this.id,
             cliente: this.cliente.toEditable(),
-            fechaContrato: this.fechaContrato || {
-                mes: 1,
-                dia: 1,
-                anio: new Date().getFullYear()
-            },
+            fechaContrato: this.fechaContrato ? {dia: this.fechaContrato.get('date'), mes: this.fechaContrato.get('month') + 1, anio: this.fechaContrato.get('year')} : {dia: 1, mes: 1, anio: new Date().getFullYear()},
             monto: this.monto,
             numeroContrato: this.numeroContrato,
             plazo: this.plazo,

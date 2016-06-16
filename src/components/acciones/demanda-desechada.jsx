@@ -6,6 +6,9 @@
 
 var React = require('react');
 
+var AccionesActions = require('src/actions/acciones-actions');
+var AccionRecord = require('src/records/accion');
+
 // -----------------------------------------------------------------------------------------------
 // DemandaDesechada
 // -----------------------------------------------------------------------------------------------
@@ -13,8 +16,13 @@ var React = require('react');
 var DemandaDesechada = React.createClass({
     getInitialState: function () {
         return {
-            regresaDocumentos: false,
-            horario: null
+            tipo: 6,
+            comentarios: '',
+            contrato: this.props.contrato,
+            respuestas: {
+                regresaDocumentos: false,
+                horario: null
+            }
         };
     },
     render: function () {
@@ -31,19 +39,20 @@ var DemandaDesechada = React.createClass({
                 </select>
                 <p>¿Regresan documentos?</p>
                 <div>
-                    <input type='radio' id='si' checked={this.state.regresaDocumentos} onChange={this.handleRegresaDocumentosChange} value={1} />
+                    <input type='radio' id='si' checked={this.state.respuestas.regresaDocumentos} onChange={this.handleRegresaDocumentosChange} value={1} />
                     <label htmlFor='si'>Sí</label>
                 </div>
                 <div>
-                    <input type='radio' id='no' checked={!this.state.regresaDocumentos} onChange={this.handleRegresaDocumentosChange} value={0} />
+                    <input type='radio' id='no' checked={!this.state.respuestas.regresaDocumentos} onChange={this.handleRegresaDocumentosChange} value={0} />
                     <label htmlFor='no'>No</label>
                 </div>
                 {this.renderHorario()}
+                <button type='button' onClick={this.saveAccion}>Guardar</button>
             </div>
         );
     },
     renderHorario: function () {
-        if (!this.state.regresaDocumentos) {
+        if (!this.state.respuestas.regresaDocumentos) {
             return;
         }
 
@@ -55,10 +64,17 @@ var DemandaDesechada = React.createClass({
         );
     },
     handleRegresaDocumentosChange: function (event) {
-        this.setState({regresaDocumentos: parseInt(event.target.value, 10) === 1});
+        var respuestas = this.state.respuestas;
+        respuestas.regresaDocumentos = parseInt(event.target.value, 10) === 1;
+        this.setState({respuestas: respuestas});
     },
     handleHorarioChange: function (event) {
-        this.setState({horario: event.target.value});
+        var respuestas = this.state.respuestas;
+        respuestas.horario = event.target.value;
+        this.setState({respuestas: respuestas});
+    },
+    saveAccion: function () {
+        AccionesActions.saveAccion(AccionRecord.prepareForParse(this.state));
     }
 });
 
