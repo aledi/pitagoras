@@ -10,6 +10,7 @@ var React = require('react');
 
 var ContratosActions = require('src/actions/contratos-actions');
 var ContratoRecord = require('src/records/contrato');
+var ContratosStore = require('src/stores/contratos-store.js');
 
 // -----------------------------------------------------------------------------------------------
 // Agregar Contrato
@@ -17,32 +18,59 @@ var ContratoRecord = require('src/records/contrato');
 
 var AgregarContrato = React.createClass({
     getInitialState: function () {
-        return new ContratoRecord().toEditable();
+        return {contrato: new ContratoRecord().toEditable()};
+    },
+    componentDidMount: function () {
+        this.storeListener = ContratosStore.addListener(this.onChange);
+    },
+    componentWillUnmount: function () {
+        this.storeListener.remove();
+    },
+    onChange: function () {
+        var saving = ContratosStore.get('saving');
+        var saveError = ContratosStore.get('saveError');
+        var feedbackText = '';
+
+        if (this.state.saving && !saving && !saveError) {
+            feedbackText = 'El contrato se ha guardado.';
+            this.setState({feedbackText: feedbackText});
+            return;
+        }
+
+        if (this.state.saving && !saving && saveError) {
+            feedbackText = 'Error al guardar el contrato.';
+            this.setState({feedbackText: feedbackText});
+            return;
+        }
+
+        this.setState({saving: saving});
     },
     render: function () {
+        var contrato = this.state.contrato;
+
         return (
             <main className='add-contrato'>
                 <form onSubmit={this.handleAddContract}>
                     <p className='section-title'>Contrato</p>
                     <div className='input-wrapper'>
                         <label>Número de Contrato</label>
-                        <input type='text' value={this.state.numeroContrato} onChange={this.handleChange.bind(this, 'numeroContrato')} />
+                        <input type='text' value={contrato.numeroContrato} onChange={this.handleChange.bind(this, 'numeroContrato')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Día</label>
-                        <select value={this.state.fechaContrato.dia} onChange={this.handleFechaChange.bind(this, 'dia')}>
+                        <select value={contrato.fechaContrato.dia} onChange={this.handleFechaChange.bind(this, 'dia')}>
                             {this.renderDias()}
                         </select>
                     </div>
                     <div className='input-wrapper'>
                         <label>Mes</label>
-                        <select value={this.state.fechaContrato.mes} onChange={this.handleFechaChange.bind(this, 'mes')}>
+                        <select value={contrato.fechaContrato.mes} onChange={this.handleFechaChange.bind(this, 'mes')}>
                             {this.renderMeses()}
                         </select>
                     </div>
                     <div className='input-wrapper'>
                         <label>Año</label>
-                        <select value={this.state.fechaContrato.anio} onChange={this.handleFechaChange.bind(this, 'anio')}>
+                        <select value={contrato.fechaContrato.anio} onChange={this.handleFechaChange.bind(this, 'anio')}>
                             {this.renderAnios()}
                         </select>
                     </div>
@@ -62,69 +90,69 @@ var AgregarContrato = React.createClass({
                     <p className='section-title'>Vehículo</p>
                     <div className='input-wrapper'>
                         <label>Modelo</label>
-                        <input type='text' value={this.state.vehiculo.modelo} onChange={this.handleVehiculoChange.bind(this, 'modelo')} />
+                        <input type='text' value={contrato.vehiculo.modelo} onChange={this.handleVehiculoChange.bind(this, 'modelo')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Marca</label>
-                        <input type='text' value={this.state.vehiculo.marca} onChange={this.handleVehiculoChange.bind(this, 'marca')} />
+                        <input type='text' value={contrato.vehiculo.marca} onChange={this.handleVehiculoChange.bind(this, 'marca')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Clase</label>
-                        <input type='text' value={this.state.vehiculo.clase} onChange={this.handleVehiculoChange.bind(this, 'clase')} />
+                        <input type='text' value={contrato.vehiculo.clase} onChange={this.handleVehiculoChange.bind(this, 'clase')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Distribuidor</label>
-                        <input type='text' value={this.state.vehiculo.distribuidor} onChange={this.handleVehiculoChange.bind(this, 'distribuidor')} />
+                        <input type='text' value={contrato.vehiculo.distribuidor} onChange={this.handleVehiculoChange.bind(this, 'distribuidor')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Año</label>
-                        <input type='text' value={this.state.vehiculo.anio} onChange={this.handleVehiculoChange.bind(this, 'anio')} />
+                        <input type='text' value={contrato.vehiculo.anio} onChange={this.handleVehiculoChange.bind(this, 'anio')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Serie</label>
-                        <input type='text' value={this.state.vehiculo.serie} onChange={this.handleVehiculoChange.bind(this, 'serie')} />
+                        <input type='text' value={contrato.vehiculo.serie} onChange={this.handleVehiculoChange.bind(this, 'serie')} />
                     </div>
                     <hr />
                     <p className='section-title'>Cliente</p>
                     <div className='input-wrapper'>
                         <label>Nombre</label>
-                        <input type='text' value={this.state.cliente.nombre} onChange={this.handleClienteChange.bind(this, 'nombre')} />
+                        <input type='text' value={contrato.cliente.nombre} onChange={this.handleClienteChange.bind(this, 'nombre')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Apellido Paterno</label>
-                        <input type='text' value={this.state.cliente.apellidoPaterno} onChange={this.handleClienteChange.bind(this, 'apellidoPaterno')} />
+                        <input type='text' value={this.state.contrato.cliente.apellidoPaterno} onChange={this.handleClienteChange.bind(this, 'apellidoPaterno')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Apellido Materno</label>
-                        <input type='text' value={this.state.cliente.apellidoMaterno} onChange={this.handleClienteChange.bind(this, 'apellidoMaterno')} />
+                        <input type='text' value={contrato.cliente.apellidoMaterno} onChange={this.handleClienteChange.bind(this, 'apellidoMaterno')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Calle</label>
-                        <input type='text' value={this.state.cliente.domicilio.calle} onChange={this.handleDomicilioChange.bind(this, 'calle')} />
+                        <input type='text' value={contrato.cliente.domicilio.calle} onChange={this.handleDomicilioChange.bind(this, 'calle')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Número Exterior</label>
-                        <input type='text' value={this.state.cliente.domicilio.exterior} onChange={this.handleDomicilioChange.bind(this, 'exterior')} />
+                        <input type='text' value={contrato.cliente.domicilio.exterior} onChange={this.handleDomicilioChange.bind(this, 'exterior')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Número Interior</label>
-                        <input type='text' value={this.state.cliente.domicilio.interior} onChange={this.handleDomicilioChange.bind(this, 'interior')} />
+                        <input type='text' value={contrato.cliente.domicilio.interior} onChange={this.handleDomicilioChange.bind(this, 'interior')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Colonia</label>
-                        <input type='text' value={this.state.cliente.domicilio.colonia} onChange={this.handleDomicilioChange.bind(this, 'colonia')} />
+                        <input type='text' value={contrato.cliente.domicilio.colonia} onChange={this.handleDomicilioChange.bind(this, 'colonia')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Código Postal</label>
-                        <input type='text' value={this.state.cliente.domicilio.codigoPostal} onChange={this.handleDomicilioChange.bind(this, 'codigoPostal')} />
+                        <input type='text' value={contrato.cliente.domicilio.codigoPostal} onChange={this.handleDomicilioChange.bind(this, 'codigoPostal')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Municipio / Delegación</label>
-                        <input type='text' value={this.state.cliente.domicilio.municipio} onChange={this.handleDomicilioChange.bind(this, 'municipio')} />
+                        <input type='text' value={contrato.cliente.domicilio.municipio} onChange={this.handleDomicilioChange.bind(this, 'municipio')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Estado</label>
-                        <input type='text' value={this.state.cliente.domicilio.estado} onChange={this.handleDomicilioChange.bind(this, 'estado')} />
+                        <input type='text' value={contrato.cliente.domicilio.estado} onChange={this.handleDomicilioChange.bind(this, 'estado')} />
                     </div>
                     {this.renderTelefonos()}
                     <button type='button' className='add' onClick={this.addTelefono}>Agregar nuevo teléfono</button>
@@ -133,18 +161,26 @@ var AgregarContrato = React.createClass({
                     {this.renderReferencias()}
                     <button type='button' className='add' onClick={this.addReferencia}>Agregar nueva referencia</button>
                     <button type='submit'>Agregar Contrato</button>
+                    {this.renderFeedbackText()}
                 </form>
             </main>
         );
     },
+    renderFeedbackText: function () {
+        if (!this.state.feedbackText) {
+            return;
+        }
+
+        return (<p>{this.state.feedbackText}</p>);
+    },
     renderTelefonos: function () {
-        var telefonos = this.state.cliente.telefonos;
+        var telefonos = this.state.contrato.cliente.telefonos;
 
         if (telefonos.length === 1) {
             return (
                 <div className='input-wrapper'>
                     <label>Teléfono 1</label>
-                    <input type='text' value={this.state.cliente.telefonos[0]} onChange={this.handleTelefonosChange.bind(this, 'telefonos', 0)} />
+                    <input type='text' value={this.state.contrato.cliente.telefonos[0]} onChange={this.handleTelefonosChange.bind(this, 'telefonos', 0)} />
                 </div>
             );
         }
@@ -154,7 +190,7 @@ var AgregarContrato = React.createClass({
             return (
                 <div key={'telefono-' + index} className='input-wrapper'>
                     <label>{'Teléfono ' + (index + 1)}</label>
-                    <input type='text' value={self.state.cliente.telefonos[index]} onChange={self.handleTelefonosChange.bind(self, 'telefonos', index)} />
+                    <input type='text' value={self.state.contrato.cliente.telefonos[index]} onChange={self.handleTelefonosChange.bind(self, 'telefonos', index)} />
                     {self.renderRemoveButton(index)}
                 </div>
             );
@@ -170,7 +206,7 @@ var AgregarContrato = React.createClass({
         );
     },
     renderReferencias: function () {
-        var referencias = this.state.referencias;
+        var referencias = this.state.contrato.referencias;
 
         if (!referencias.length) {
             return;
@@ -233,25 +269,25 @@ var AgregarContrato = React.createClass({
     addTelefono: function (event) {
         event.preventDefault();
 
-        var cliente = this.state.cliente;
-        cliente.telefonos.push('');
+        var contrato = this.state.contrato;
+        contrato.cliente.telefonos.push('');
 
-        this.setState({cliente: cliente});
+        this.setState({contrato: contrato});
     },
     removeTelefono: function (index, event) {
         event.preventDefault();
 
-        var cliente = this.state.cliente;
-        cliente.telefonos.splice(index, 1);
+        var contrato = this.state.contrato;
+        contrato.cliente.telefonos.splice(index, 1);
 
-        this.setState({cliente: cliente});
+        this.setState({contrato: contrato});
     },
     addReferencia: function (event) {
         event.preventDefault();
 
-        var referencias = this.state.referencias;
+        var contrato = this.state.contrato;
 
-        referencias.push({
+        contrato.referencias.push({
             nombre: '',
             apellidoPaterno: '',
             apellidoMaterno: '',
@@ -267,77 +303,75 @@ var AgregarContrato = React.createClass({
             telefono: ''
         });
 
-        this.setState({referencias: referencias});
+        this.setState({contrato: contrato});
     },
     removeReferencia: function (index, event) {
         event.preventDefault();
 
-        var referencias = this.state.referencias;
-        referencias.splice(index, 1);
+        var contrato = this.state.contrato;
+        contrato.referencias.splice(index, 1);
 
-        this.setState({referencias: referencias});
+        this.setState({contrato: contrato});
     },
     handleChange: function (propertyName, event) {
-        var state = {};
-        state[propertyName] = event.target.value;
+        var contrato = this.state.contrato;
+        contrato[propertyName] = event.target.value;
 
-        this.setState(state);
+        this.setState({contrato: contrato});
     },
     handleFechaChange: function (propertyName, event) {
-        var state = {fechaContrato: this.state.fechaContrato};
-        state.fechaContrato[propertyName] = event.target.value;
+        var state = {contrato: this.state.contrato};
+        state.contrato.fechaContrato[propertyName] = event.target.value;
 
         this.setState(state);
     },
     handleVehiculoChange: function (propertyName, event) {
-        var state = {vehiculo: this.state.vehiculo};
-        state.vehiculo[propertyName] = event.target.value;
+        var state = {contrato: this.state.contrato};
+        state.contrato.vehiculo[propertyName] = event.target.value;
 
         this.setState(state);
     },
     handleClienteChange: function (propertyName, event) {
-        var state = {cliente: this.state.cliente};
-        state.cliente[propertyName] = event.target.value;
+        var state = {contrato: this.state.contrato};
+        state.contrato.cliente[propertyName] = event.target.value;
 
         this.setState(state);
     },
     handleReferenciaChange: function (propertyName, index, event) {
-        var state = {referencias: this.state.referencias};
-        state.referencias[index][propertyName] = event.target.value;
+        var state = {contrato: this.state.contrato};
+        state.contrato.referencias[index][propertyName] = event.target.value;
 
         this.setState(state);
     },
     handleTelefonosChange: function (propertyName, index, event) {
-        var state = {cliente: this.state.cliente};
-        state.cliente.telefonos[index] = event.target.value;
+        var state = {contrato: this.state.contrato};
+        state.contrato.cliente.telefonos[index] = event.target.value;
 
         this.setState(state);
     },
     handleDomicilioChange: function (propertyName, event) {
-        var state = {cliente: this.state.cliente};
-        state.cliente.domicilio[propertyName] = event.target.value;
+        var state = {contrato: this.state.contrato};
+        state.contrato.cliente.domicilio[propertyName] = event.target.value;
 
         this.setState(state);
     },
     handleReferenciaDomicilioChange: function (propertyName, index, event) {
-        var state = {referencias: this.state.referencias};
-        state.referencias[index].domicilio[propertyName] = event.target.value;
+        var state = {contrato: this.state.contrato};
+        state.contrato.referencias[index].domicilio[propertyName] = event.target.value;
 
         this.setState(state);
     },
     handleAddContract: function (event) {
         event.preventDefault();
 
-        ContratosActions.saveContrato(ContratoRecord.prepareForParse(this.state));
+        ContratosActions.saveContrato(this.state.contrato);
     },
     renderDias: function (event) {
         var dias = [];
-        var limite = this.getDaysForMonth(this.state.fechaContrato.mes, this.state.fechaContrato.anio);
+        var limite = this.getDaysForMonth(this.state.contrato.fechaContrato.mes, this.state.contrato.fechaContrato.anio);
 
         for (var index = 1; index <= limite; index++) {
-            dias.push(
-                <option key={index} value={index}>{index}</option>
-            );
+            dias.push(<option key={index} value={index}>{index}</option>);
         }
 
         return dias;
@@ -346,9 +380,7 @@ var AgregarContrato = React.createClass({
         var meses = [];
 
         for (var index = 1; index <= 12; index++) {
-            meses.push(
-                <option key={index} value={index}>{this.getMonthByNumber(index)}</option>
-            );
+            meses.push(<option key={index} value={index}>{this.getMonthByNumber(index)}</option>);
         }
 
         return meses;
@@ -357,10 +389,8 @@ var AgregarContrato = React.createClass({
         var anios = [];
         var actual = new Date().getFullYear();
 
-        for (var index = actual; index >= 1990; index--) {
-            anios.push(
-                <option key={index} value={index}>{index}</option>
-            );
+        for (var index = actual; index >= actual - 25; index--) {
+            anios.push(<option key={index} value={index}>{index}</option>);
         }
 
         return anios;

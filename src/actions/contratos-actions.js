@@ -42,7 +42,10 @@ module.exports = {
             type: 'CONTRATOS_SAVE'
         });
 
-        (new ContratoObject()).save(contrato).then(function (payload) {
+        var contratoForParse = Object.assign({}, contrato);
+        contratoForParse = ContratoRecord.prepareForParse(contratoForParse);
+
+        (new ContratoObject()).save(contratoForParse).then(function (payload) {
             Dispatcher.dispatch({
                 type: 'CONTRATOS_SAVE_SUCCESS',
                 contrato: createContratoRecord(payload)
