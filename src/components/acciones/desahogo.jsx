@@ -5,6 +5,7 @@
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
+var Parse = require('parse');
 
 var AccionesActions = require('src/actions/acciones-actions');
 var AccionRecord = require('src/records/accion');
@@ -18,6 +19,7 @@ var Desahogo = React.createClass({
         return {
             tipo: 12,
             comentarios: '',
+            creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {desahogar: true}
         };

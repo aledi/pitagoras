@@ -7,6 +7,7 @@ require('./presentacion-demanda.scss');
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
+var Parse = require('parse');
 
 var AccionesMixin = require('./acciones-mixin');
 
@@ -20,6 +21,7 @@ var PresentacionDemanda = React.createClass({
         return {
             tipo: 4,
             comentarios: '',
+            creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {}
         };
