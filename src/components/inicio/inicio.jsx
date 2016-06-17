@@ -1,6 +1,6 @@
 'use strict';
 
-require('./index.scss');
+require('./inicio.scss');
 
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
@@ -9,17 +9,17 @@ require('./index.scss');
 var React = require('react');
 
 // -----------------------------------------------------------------------------------------------
-// Index
+// Inicio
 // -----------------------------------------------------------------------------------------------
 
-var Index = React.createClass({
+var Inicio = React.createClass({
     render: function () {
         return (
-            <main className='index'>
-                <h2>Index</h2>
+            <main className='inicio'>
+                <h2>Inicio</h2>
             </main>
         );
     }
 });
 
-module.exports = Index;
+module.exports = Inicio;
