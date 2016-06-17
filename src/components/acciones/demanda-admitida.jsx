@@ -5,6 +5,7 @@
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
+var Parse = require('parse');
 
 var AccionesMixin = require('./acciones-mixin');
 
@@ -18,6 +19,7 @@ var DemandaAdmitida = React.createClass({
         return {
             tipo: 9,
             comentarios: '',
+            creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {}
         };

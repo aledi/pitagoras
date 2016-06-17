@@ -5,6 +5,7 @@
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
+var Parse = require('parse');
 
 var AccionesMixin = require('./acciones-mixin');
 
@@ -27,6 +28,7 @@ var DiligenciaEmbargo = React.createClass({
         return {
             tipo: 10,
             comentarios: '',
+            creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {respuesta: null}
         };
