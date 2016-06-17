@@ -51,6 +51,7 @@ var Visita = React.createClass({
                     </div>
                 </div>
                 {this.renderCliente()}
+                {this.renderComentarios()}
                 {this.renderButton()}
             </div>
         );

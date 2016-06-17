@@ -37,6 +37,7 @@ var AltaDocumentos = React.createClass({
                     type='text'
                     value={this.state.respuestas.fechaRecepcion}
                     onChange={this.handleChange.bind(this, 'fechaRecepcion')} />
+                {this.renderComentarios()}
                 {this.renderButton()}
             </div>
         );

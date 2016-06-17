@@ -53,6 +53,7 @@ var AcuerdoDemanda = React.createClass({
                         onChange={this.handleChange} />
                     <label htmlFor='admite'>Admite</label>
                 </div>
+                {this.renderComentarios()}
                 {this.renderButton()}
             </div>
         );

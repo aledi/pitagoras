@@ -46,6 +46,7 @@ var RecoleccionDocumentos = React.createClass({
                         <label htmlFor='no'>No</label>
                     </div>
                 </div>
+                {this.renderComentarios()}
                 {this.renderButton()}
             </div>
         );

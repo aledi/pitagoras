@@ -61,6 +61,7 @@ var DemandaDesechada = React.createClass({
                     <label htmlFor='no'>No</label>
                 </div>
                 {this.renderHorario()}
+                {this.renderComentarios()}
                 {this.renderButton()}
             </div>
         );

@@ -44,6 +44,7 @@ var DemandaPrevenida = React.createClass({
                         onChange={this.handleChange} />
                     <label htmlFor='no'>No</label>
                 </div>
+                {this.renderComentarios()}
                 {this.renderButton()}
             </div>
         );

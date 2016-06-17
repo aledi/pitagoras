@@ -44,6 +44,7 @@ var AperturaJuicio = React.createClass({
                         onChange={this.handleChange} />
                     <label htmlFor='ejecutiva'>Ejecutiva Mercantil</label>
                 </div>
+                {this.renderComentarios()}
                 {this.renderButton()}
             </div>
         );

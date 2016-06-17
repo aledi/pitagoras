@@ -44,6 +44,7 @@ var PresentacionDemanda = React.createClass({
                     type='text'
                     value={respuestas.fechaPresentacion}
                     onChange={this.handleChange.bind(this, 'fechaPresentacion')} />
+                {this.renderComentarios()}
                 {this.renderButton()}
             </div>
         );

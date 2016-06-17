@@ -34,6 +34,7 @@ var Emplazamiento = React.createClass({
                 <select value={options[this.state.respuestas.respuesta]} onChange={this.handleChange}>
                     {this.renderOptions()}
                 </select>
+                {this.renderComentarios()}
                 {this.renderButton()}
             </div>
         );

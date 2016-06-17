@@ -61,6 +61,7 @@ var DemandaAdmitida = React.createClass({
                     type='text'
                     value={respuestas.fechaPresentacion}
                     onChange={this.handleInputChange.bind(this, 'fechaPresentacion')} />
+                {this.renderComentarios()}
                 {this.renderButton()}
             </div>
         );
