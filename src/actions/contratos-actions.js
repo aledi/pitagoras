@@ -8,6 +8,7 @@ var Dispatcher = require('src/dispatcher');
 
 var ContratoRecord = require('src/records/contrato');
 var ContratoObject = Parse.Object.extend('Contrato');
+var AccionObject = Parse.Object.extend('Accion');
 
 module.exports = {
     fetchContratos: function () {
@@ -53,6 +54,18 @@ module.exports = {
             Dispatcher.dispatch({
                 type: 'CONTRATOS_SAVE_ERROR',
                 error: error
+            });
+        });
+    },
+    saveAccion: function (accion) {
+        Dispatcher.dispatch({
+            type: 'CONTRATOS_SAVE_ACCION'
+        });
+
+        (new AccionObject()).save(accion).then(function (payload) {
+            Dispatcher.dispatch({
+                type: 'CONTRATOS_SAVE_ACCION_SUCCESS',
+                contrato: createContratoRecord(payload)
             });
         });
     }

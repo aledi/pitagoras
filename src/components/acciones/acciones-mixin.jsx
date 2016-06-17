@@ -10,29 +10,24 @@ var AccionesActions = require('src/actions/acciones-actions');
 var AccionRecord = require('src/records/accion');
 
 // -----------------------------------------------------------------------------------------------
-// Desahogo
+// AccionesMixin
 // -----------------------------------------------------------------------------------------------
 
-var Desahogo = React.createClass({
-    getInitialState: function () {
-        return {
-            tipo: 12,
-            comentarios: '',
-            contrato: this.props.contrato,
-            respuestas: {desahogar: true}
-        };
+var AccionesMixin = {
+    renderComentarios: function () {
+        return (<textarea value={this.state.comentarios} onChange={this.handleComentariosChange} />);
     },
-    render: function () {
-        return (
-            <div className='desahogo'>
-                <button type='button' onClick={this.handleDesahogo}>Desahogar</button>
-                {this.renderComentarios()}
-            </div>
-        );
+    renderButton: function () {
+        return (<button type='button' onClick={this.saveAccion}>Guardar</button>);
     },
-    handleDesahogo: function () {
+    handleComentariosChange: function (event) {
+        var state = {};
+        state.comentarios = event.target.value;
+        this.setState(state);
+    },
+    saveAccion: function () {
         AccionesActions.saveAccion(AccionRecord.prepareForParse(this.state));
     }
-});
+};
 
-module.exports = Desahogo;
+module.exports = AccionesMixin;
