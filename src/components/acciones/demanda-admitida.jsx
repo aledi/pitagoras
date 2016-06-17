@@ -41,8 +41,8 @@ var DemandaAdmitida = React.createClass({
                     <input
                         type='radio'
                         id='ejecutiva'
-                        value='ejectivaMercantil'
-                        checked={respuestas.tipoJuicio === 'ejectivaMercantil'}
+                        value='ejecutivaMercantil'
+                        checked={respuestas.tipoJuicio === 'ejecutivaMercantil'}
                         onChange={this.handleRadioChange} />
                     <label htmlFor='ejecutiva'>Ejecutiva Mercantil</label>
                 </div>
@@ -50,17 +50,17 @@ var DemandaAdmitida = React.createClass({
                 <input
                     type='text'
                     value={respuestas.numeroRegistro}
-                    onChange={this.handleInputChange.bind(this, 'numeroRegistro')} />
+                    onChange={this.handleChange.bind(this, 'numeroRegistro')} />
                 <label>Juzgado</label>
                 <input
                     type='text'
                     value={respuestas.juzgado}
-                    onChange={this.handleInputChange.bind(this, 'juzgado')} />
+                    onChange={this.handleChange.bind(this, 'juzgado')} />
                 <label>Fecha de Presentación</label>
                 <input
                     type='text'
                     value={respuestas.fechaPresentacion}
-                    onChange={this.handleInputChange.bind(this, 'fechaPresentacion')} />
+                    onChange={this.handleChange.bind(this, 'fechaPresentacion')} />
                 {this.renderComentarios()}
                 {this.renderButton()}
             </div>
@@ -71,7 +71,7 @@ var DemandaAdmitida = React.createClass({
         respuestas.tipoJuicio = event.target.value;
         this.setState({respuestas: respuestas});
     },
-    handleInputChange: function (propertyName, event) {
+    handleChange: function (propertyName, event) {
         var respuestas = this.state.respuestas;
         respuestas[propertyName] = event.target.value;
         this.setState({respuestas: respuestas});

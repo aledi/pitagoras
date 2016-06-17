@@ -35,18 +35,18 @@ var Visita = React.createClass({
                         <input
                             type='radio'
                             id='domicilioUbicado'
+                            value={1}
                             checked={this.state.respuestas.domicilioUbicado}
-                            onChange={this.handleRadioChange.bind(this, 'domicilioUbicado')}
-                            value={1} />
+                            onChange={this.handleRadioChange.bind(this, 'domicilioUbicado')} />
                         <label htmlFor='domicilioUbicado'>Sí</label>
                     </div>
                     <div>
                         <input
                             type='radio'
                             id='domicilioNoUbicado'
+                            value={0}
                             checked={!this.state.respuestas.domicilioUbicado}
-                            onChange={this.handleRadioChange.bind(this, 'domicilioUbicado')}
-                            value={0} />
+                            onChange={this.handleRadioChange.bind(this, 'domicilioUbicado')} />
                         <label htmlFor='domicilioNoUbicado'>No</label>
                     </div>
                 </div>
@@ -66,11 +66,21 @@ var Visita = React.createClass({
                 <div>
                     <p>¿Ubicó al cliente?</p>
                     <div>
-                        <input type='radio' id='clienteUbicado' checked={this.state.respuestas.clienteUbicado} onChange={this.handleRadioChange.bind(this, 'clienteUbicado')} value={1} />
+                        <input
+                            type='radio'
+                            id='clienteUbicado'
+                            value={1}
+                            checked={this.state.respuestas.clienteUbicado}
+                            onChange={this.handleRadioChange.bind(this, 'clienteUbicado')} />
                         <label htmlFor='clienteUbicado'>Sí</label>
                     </div>
                     <div>
-                        <input type='radio' id='clienteNoUbicado' checked={!this.state.respuestas.clienteUbicado} onChange={this.handleRadioChange.bind(this, 'clienteUbicado')} value={0} />
+                        <input
+                            type='radio'
+                            id='clienteNoUbicado'
+                            value={0}
+                            checked={!this.state.respuestas.clienteUbicado}
+                            onChange={this.handleRadioChange.bind(this, 'clienteUbicado')} />
                         <label htmlFor='clienteNoUbicado'>No</label>
                     </div>
                 </div>

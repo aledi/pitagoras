@@ -29,6 +29,7 @@ var DemandaDesechada = React.createClass({
             comentarios: '',
             contrato: this.props.contrato,
             respuestas: {
+                respuesta: null,
                 regresaDocumentos: false,
                 horario: null
             }
@@ -38,7 +39,7 @@ var DemandaDesechada = React.createClass({
         return (
             <div className='demanda-desechada'>
                 <p>Motivo</p>
-                <select>
+                <select value={options[this.state.respuestas.respuesta]} onChange={this.handleChange}>
                     {this.renderOptions()}
                 </select>
                 <p>¿Regresan documentos?</p>
@@ -82,6 +83,11 @@ var DemandaDesechada = React.createClass({
                 <input type='text' value={this.state.horario} onChange={this.handleHorarioChange} />
             </div>
         );
+    },
+    handleSelectChange: function () {
+        var respuestas = this.state.respuestas;
+        respuestas.respuesta = options[event.target.value];
+        this.setState({respuestas: respuestas});
     },
     handleRegresaDocumentosChange: function (event) {
         var respuestas = this.state.respuestas;
