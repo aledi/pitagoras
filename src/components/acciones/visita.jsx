@@ -32,11 +32,21 @@ var Visita = React.createClass({
                 <div>
                     <p>¿Encontró el domicilio?</p>
                     <div>
-                        <input type='radio' id='domicilioUbicado' checked={this.state.respuestas.domicilioUbicado} onChange={this.handleRadioChange.bind(this, 'domicilioUbicado')} value={1} />
+                        <input
+                            type='radio'
+                            id='domicilioUbicado'
+                            checked={this.state.respuestas.domicilioUbicado}
+                            onChange={this.handleRadioChange.bind(this, 'domicilioUbicado')}
+                            value={1} />
                         <label htmlFor='domicilioUbicado'>Sí</label>
                     </div>
                     <div>
-                        <input type='radio' id='domicilioNoUbicado' checked={!this.state.respuestas.domicilioUbicado} onChange={this.handleRadioChange.bind(this, 'domicilioUbicado')} value={0} />
+                        <input
+                            type='radio'
+                            id='domicilioNoUbicado'
+                            checked={!this.state.respuestas.domicilioUbicado}
+                            onChange={this.handleRadioChange.bind(this, 'domicilioUbicado')}
+                            value={0} />
                         <label htmlFor='domicilioNoUbicado'>No</label>
                     </div>
                 </div>

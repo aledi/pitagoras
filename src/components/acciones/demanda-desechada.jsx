@@ -12,6 +12,15 @@ var AccionesMixin = require('./acciones-mixin');
 // DemandaDesechada
 // -----------------------------------------------------------------------------------------------
 
+var options = [
+    'No coinciden los montos',
+    'No es la vía elegida (oral, ordinaria, ejecutiva, etc.)',
+    'Se declara incompetente de conocer el caso',
+    'Varios conceptos en un solo hecho',
+    'Se está cobrando doble interés',
+    'La demanda no es legible'
+];
+
 var DemandaDesechada = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
@@ -30,12 +39,7 @@ var DemandaDesechada = React.createClass({
             <div className='demanda-desechada'>
                 <p>Motivo</p>
                 <select>
-                    <option>No coinciden los montos</option>
-                    <option>No es la vía elegida (oral, ordinaria, ejecutiva, etc.)</option>
-                    <option>Se declara incompetente de conocer el caso</option>
-                    <option>Varios conceptos en un solo hecho</option>
-                    <option>Se está cobrando doble interés</option>
-                    <option>La demanda no es legible</option>
+                    {this.renderOptions()}
                 </select>
                 <p>¿Regresan documentos?</p>
                 <div>
@@ -60,6 +64,11 @@ var DemandaDesechada = React.createClass({
                 {this.renderButton()}
             </div>
         );
+    },
+    renderOptions: function () {
+        return (options.map(function (option, index) {
+            return (<option key={index} value={index}>{option}</option>);
+        }));
     },
     renderHorario: function () {
         if (!this.state.respuestas.regresaDocumentos) {
