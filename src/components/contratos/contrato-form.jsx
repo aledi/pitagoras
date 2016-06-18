@@ -1,6 +1,6 @@
 'use strict';
 
-require('./agregar-contrato.scss');
+require('./contrato-form.scss');
 
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
@@ -13,12 +13,12 @@ var ContratoRecord = require('src/records/contrato');
 var ContratosStore = require('src/stores/contratos-store.js');
 
 // -----------------------------------------------------------------------------------------------
-// Agregar Contrato
+// Contrato Form
 // -----------------------------------------------------------------------------------------------
 
-var AgregarContrato = React.createClass({
+var ContratoForm = React.createClass({
     getInitialState: function () {
-        return {contrato: new ContratoRecord().toEditable()};
+        return {contrato: this.props.contrato ? this.props.contrato.toEditable() : new ContratoRecord().toEditable()};
     },
     componentDidMount: function () {
         this.storeListener = ContratosStore.addListener(this.onChange);
@@ -76,15 +76,15 @@ var AgregarContrato = React.createClass({
                     </div>
                     <div className='input-wrapper'>
                         <label>Plazo</label>
-                        <input type='text' value={this.state.plazo} onChange={this.handleChange.bind(this, 'plazo')} onKeyPress={this.restrictNumericInput.bind(this, false)} />
+                        <input type='text' value={contrato.plazo} onChange={this.handleChange.bind(this, 'plazo')} onKeyPress={this.restrictNumericInput.bind(this, false)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Monto</label>
-                        <input type='text' value={this.state.monto} onChange={this.handleChange.bind(this, 'monto')} onKeyPress={this.restrictNumericInput.bind(this, true)} />
+                        <input type='text' value={contrato.monto} onChange={this.handleChange.bind(this, 'monto')} onKeyPress={this.restrictNumericInput.bind(this, true)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Tasa</label>
-                        <input type='text' value={this.state.tasa} onChange={this.handleChange.bind(this, 'tasa')} onKeyPress={this.restrictNumericInput.bind(this, true)} />
+                        <input type='text' value={contrato.tasa} onChange={this.handleChange.bind(this, 'tasa')} onKeyPress={this.restrictNumericInput.bind(this, true)} />
                     </div>
                     <hr />
                     <p className='section-title'>Vehículo</p>
@@ -160,7 +160,7 @@ var AgregarContrato = React.createClass({
                     <p className='section-title'>Referencias</p>
                     {this.renderReferencias()}
                     <button type='button' className='add' onClick={this.addReferencia}>Agregar nueva referencia</button>
-                    <button type='submit'>Agregar Contrato</button>
+                    <button type='submit'>Guardar Contrato</button>
                     {this.renderFeedbackText()}
                 </form>
             </main>
@@ -450,4 +450,4 @@ var AgregarContrato = React.createClass({
     }
 });
 
-module.exports = AgregarContrato;
+module.exports = ContratoForm;

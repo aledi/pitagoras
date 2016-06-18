@@ -8,6 +8,8 @@ require('./contrato.scss');
 
 var React = require('react');
 
+var ContratoForm = require('src/components/contratos/contrato-form');
+
 var Visita = require('src/components/acciones/visita');
 var AltaDocumentos = require('src/components/acciones/alta-documentos');
 var AperturaJuicio = require('src/components/acciones/apertura-juicio');
@@ -28,17 +30,30 @@ var Desahogo = require('src/components/acciones/desahogo');
 var Contrato = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
     getInitialState: function () {
-        return {showFullDetails: false};
+        return {
+            editingContrato: false,
+            showFullDetails: false
+        };
     },
     render: function () {
         if (!this.props.contrato) {
             return (<div></div>);
         }
 
+        if (this.state.editingContrato) {
+            return (
+                <div className='contrato'>
+                    <p onClick={this.handleContratoEdit}>Regresar a detalles</p>
+                    <ContratoForm contrato={this.props.contrato} />
+                </div>
+            );
+        }
+
         return (
             <div className='contrato'>
                 <p className='go-back' onClick={this.goBack}>Volver a Contratos</p>
                 <p className='go-back' onClick={this.showFullDetails}>{'Mostrar' + (this.state.showFullDetails ? ' resumen' : ' todos los detalles')}</p>
+                <p className='go-back' onClick={this.handleContratoEdit}>Editar Contrato</p>
                 {this.renderContrato()}
 
                 <p>Acciones Disponibles</p>
@@ -60,6 +75,9 @@ var Contrato = React.createClass({
                 {this.renderAccion()}
             </div>
         );
+    },
+    handleContratoEdit: function () {
+        this.setState({editingContrato: !this.state.editingContrato});
     },
     renderAccion: function () {
         if (!this.state.selectedAccion) {
