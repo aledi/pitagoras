@@ -11,6 +11,7 @@
     }
 
     .contrato-detalles {
+        position: relative;
         width: 100%;
         display: block;
         padding: 20px;
@@ -22,30 +23,49 @@
             width: 50%;
             display: inline-block;
             vertical-align: top;
+            margin: 0;
         }
 
-        div {
+        .detalle-wrapper {
             margin-bottom: 5px;
             line-height: normal;
+
+            &:last-child {
+                margin: 0;
+            }
 
             .value {
                 margin-left: 10px;
                 color: gray;
             }
         }
+
+        button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
     }
 
-    ul {
-        display: inline-block;
-        padding: 0;
-        margin: 0;
-        list-style: none;
+    .acciones-wrapper {
+        position: relative;
+        width: 100%;
 
-        li {
-            cursor: pointer;
+        ul {
+            width: 220px;
+            position: absolute;
+            top: 0; left: 0;
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+            list-style: none;
 
-            &:hover {
-                color: blue;
+            li {
+                cursor: pointer;
+
+                &:hover {
+                    color: blue;
+                }
             }
         }
     }

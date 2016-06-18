@@ -22,7 +22,7 @@ class Cliente extends ClienteRecord {
             colonia: cliente.domicilio.colonia,
             municipio: cliente.domicilio.municipio,
             estado: cliente.domicilio.estado,
-            codigoPostal: parseInt(cliente.domicilio.codigoPostal, 10)
+            codigoPostal: cliente.domicilio.codigoPostal ? parseInt(cliente.domicilio.codigoPostal, 10) : null
         };
 
         return cliente;
