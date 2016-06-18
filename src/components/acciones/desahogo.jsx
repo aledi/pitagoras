@@ -9,12 +9,14 @@ var Parse = require('parse');
 
 var AccionesActions = require('src/actions/acciones-actions');
 var AccionRecord = require('src/records/accion');
+var AccionesMixin = require('./acciones-mixin');
 
 // -----------------------------------------------------------------------------------------------
 // Desahogo
 // -----------------------------------------------------------------------------------------------
 
 var Desahogo = React.createClass({
+    mixins: [AccionesMixin],
     getInitialState: function () {
         return {
             tipo: 12,
