@@ -15,7 +15,7 @@ var IndexRoute = ReactRouter.IndexRoute;
 // -----------------------------------------------------------------------------------------------
 
 var Main = require('src/components/main/main');
-var Index = require('src/components/index/index');
+var Inicio = require('src/components/inicio/inicio');
 var Signin = require('src/components/auth/signin');
 var ContratoForm = require('src/components/contratos/contrato-form');
 var Contratos = require('src/components/contratos/contratos');
@@ -24,9 +24,9 @@ var NotFound = require('src/components/not-found/not-found');
 
 var Routes = (
     <Route path='/' component={Main}>
-        <IndexRoute onEnter={redirectIndex} />
+        <IndexRoute onEnter={redirectToInicio} />
         <Route path='signin' component={Signin} onEnter={requireNoAuth} />
-        <Route path='index' component={Index} onEnter={requireAuth} />
+        <Route path='inicio' component={Inicio} onEnter={requireAuth} />
         <Route path='agregar-contrato' component={ContratoForm} onEnter={requireAuth} />
         <Route path='contratos' component={Contratos} onEnter={requireAuth}>
             <Route path=':id' component={Contratos} onEnter={requireAuth} />
@@ -40,10 +40,10 @@ var Routes = (
 // Utils
 // -----------------------------------------------------------------------------------------------
 
-function redirectIndex (nextState, replace) {
-    // Redirect to either /dashboard or /signin
+function redirectToInicio (nextState, replace) {
+    // Redirect to either /inicio or /signin
     replace({
-        pathname: '/index',
+        pathname: '/inicio',
         query: nextState.location.query,
         state: nextState.location.state
     });
@@ -55,7 +55,7 @@ function requireNoAuth (nextState, replace) {
         return;
     }
 
-    replace('/index');
+    replace('/inicio');
 }
 
 function requireAuth (nextState, replace) {
