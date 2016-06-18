@@ -43,7 +43,7 @@ var Contrato = React.createClass({
         if (this.state.editingContrato) {
             return (
                 <div className='contrato'>
-                    <p onClick={this.handleContratoEdit}>Regresar a detalles</p>
+                    <p className='go-back' onClick={this.handleContratoEdit}>Regresar a detalles</p>
                     <ContratoForm contrato={this.props.contrato} />
                 </div>
             );
