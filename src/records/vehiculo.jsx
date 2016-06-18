@@ -14,7 +14,7 @@ var VehiculoRecord = Immutable.Record({
 
 class Vehiculo extends VehiculoRecord {
     static prepareForParse (vehiculo) {
-        vehiculo.anio = parseInt(vehiculo.anio, 10);
+        vehiculo.anio = vehiculo.anio ? parseInt(vehiculo.anio, 10) : null;
 
         return vehiculo;
     }
