@@ -31,7 +31,7 @@ var DemandaDesechada = React.createClass({
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                respuesta: null,
+                respuesta: 'No coinciden los montos',
                 regresaDocumentos: false,
                 horario: null
             }

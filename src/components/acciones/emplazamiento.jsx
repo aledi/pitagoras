@@ -27,7 +27,7 @@ var Emplazamiento = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {}
+            respuestas: {respuesta: 'No vive en el domicilio'}
         };
     },
     render: function () {
