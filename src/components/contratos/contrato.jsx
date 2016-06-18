@@ -28,18 +28,39 @@ var Desahogo = require('src/components/acciones/desahogo');
 var Contrato = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
     getInitialState: function () {
-        return {showFullDetails: false};
+        return {showingFullDetails: false};
     },
     render: function () {
         if (!this.props.contrato) {
             return (<div></div>);
         }
 
+        var contrato = this.props.contrato;
+
         return (
             <div className='contrato'>
                 <p className='go-back' onClick={this.goBack}>Volver a Contratos</p>
-                <p className='go-back' onClick={this.showFullDetails}>{'Mostrar' + (this.state.showFullDetails ? ' resumen' : ' todos los detalles')}</p>
-                {this.renderContrato()}
+                <p className='go-back' onClick={this.showFullDetails}>{'Mostrar' + (this.state.showingFullDetails ? ' resumen' : ' todos los detalles')}</p>
+
+                    <div className='contrato-detalles'>
+                        <button type='button' onClick={this.handle}>Editar Contrato</button>
+                        <div className='contrato-detalles-column'>
+                            <p>Detalles del Contrato</p>
+                            <div>
+                                <span className='title'>Número de Contrato:</span>
+                                <span className='value'>{contrato.numeroContrato}</span>
+                            </div>
+                            {this.renderFullContratoDetails()}
+                        </div>
+                        <div className='contrato-detalles-column'>
+                            <p>Cliente</p>
+                            <div>
+                                <span className='title'>Nombre:</span>
+                                <span className='value'>{contrato.cliente.formattedValues.nombre}</span>
+                            </div>
+                            {this.renderFullClienteDetails()}
+                        </div>
+                    </div>
 
                 <p>Acciones Disponibles</p>
                 <ul>
@@ -71,91 +92,26 @@ var Contrato = React.createClass({
     showAccion: function (accion) {
         this.setState({selectedAccion: accion});
     },
-    renderContrato: function () {
-        var contrato = this.props.contrato;
-
-        if (this.state.showFullDetails) {
-            return (
-                <div className='contrato-detalles'>
-                    <p>Detalles del Contrato</p>
-                    <div>
-                        <span className='title'>Número de Contrato:</span>
-                        <span className='value'>{contrato.numeroContrato}</span>
-                    </div>
-                    <div>
-                        <span className='title'>Fecha:</span>
-                        <span className='value'>{contrato.formattedValues.fechaContrato}</span>
-                    </div>
-                    <div>
-                        <span className='title'>Plazo:</span>
-                        <span className='value'>{contrato.plazo}</span>
-                    </div>
-                    <div>
-                        <span className='title'>Monto:</span>
-                        <span className='value'>{contrato.monto}</span>
-                    </div>
-                    <div>
-                        <span className='title'>Tasa:</span>
-                        <span className='value'>{contrato.tasa}</span>
-                    </div>
-                    <p>Vehículo</p>
-                    <div>
-                        <span className='title'>Modelo:</span>
-                        <span className='value'>{contrato.vehiculo.modelo}</span>
-                    </div>
-                    <div>
-                        <span className='title'>Marca:</span>
-                        <span className='value'>{contrato.vehiculo.marca}</span>
-                    </div>
-                    <div>
-                        <span className='title'>Clase:</span>
-                        <span className='value'>{contrato.vehiculo.clase}</span>
-                    </div>
-                    <div>
-                        <span className='title'>Distribuidor:</span>
-                        <span className='value'>{contrato.vehiculo.distribuidor}</span>
-                    </div>
-                    <div>
-                        <span className='title'>Año:</span>
-                        <span className='value'>{contrato.vehiculo.anio}</span>
-                    </div>
-                    <div>
-                        <span className='title'>Serie:</span>
-                        <span className='value'>{contrato.vehiculo.serie}</span>
-                    </div>
-                    <p>Cliente</p>
-                    <div>
-                        <span className='title'>Nombre:</span>
-                        <span className='value'>{contrato.cliente.formattedValues.nombre}</span>
-                    </div>
-                    <div>
-                        <span className='title'>Domicilio:</span>
-                        <span className='value'>{contrato.cliente.formattedValues.domicilio}</span>
-                    </div>
-                    {this.renderTelefonos()}
-                    {this.renderReferencias()}
-                </div>
-            );
+    renderFullContratoDetails: function () {
+        if (!this.state.showingFullDetails) {
+            return;
         }
 
+        var contrato = this.props.contrato;
+
         return (
-            <div className='contrato-detalles'>
-                <p>Detalles del Contrato</p>
+            <div>
                 <div>
-                    <span className='title'>Número de Contrato:</span>
-                    <span className='value'>{contrato.numeroContrato}</span>
-                </div>
-                <div>
-                    <span className='title'>Cliente:</span>
-                    <span className='value'>{contrato.cliente.formattedValues.nombre}</span>
-                </div>
-                <div>
-                    <span className='title'>Monto:</span>
-                    <span className='value'>{contrato.monto}</span>
+                    <span className='title'>Fecha:</span>
+                    <span className='value'>{contrato.formattedValues.fechaContrato}</span>
                 </div>
                 <div>
                     <span className='title'>Plazo:</span>
                     <span className='value'>{contrato.plazo}</span>
+                </div>
+                <div>
+                    <span className='title'>Monto:</span>
+                    <span className='value'>{contrato.monto}</span>
                 </div>
                 <div>
                     <span className='title'>Tasa:</span>
@@ -171,13 +127,38 @@ var Contrato = React.createClass({
                     <span className='value'>{contrato.vehiculo.marca}</span>
                 </div>
                 <div>
-                    <span className='title'>Año:</span>
-                    <span className='value'>{contrato.vehiculo.anio}</span>
+                    <span className='title'>Clase:</span>
+                    <span className='value'>{contrato.vehiculo.clase}</span>
                 </div>
                 <div>
                     <span className='title'>Distribuidor:</span>
                     <span className='value'>{contrato.vehiculo.distribuidor}</span>
                 </div>
+                <div>
+                    <span className='title'>Año:</span>
+                    <span className='value'>{contrato.vehiculo.anio}</span>
+                </div>
+                <div>
+                    <span className='title'>Serie:</span>
+                    <span className='value'>{contrato.vehiculo.serie}</span>
+                </div>
+            </div>
+        );
+    },
+    renderFullClienteDetails: function () {
+        if (!this.state.showingFullDetails) {
+            return;
+        }
+
+        var contrato = this.props.contrato;
+        return (
+            <div>
+                <div>
+                    <span className='title'>Domicilio:</span>
+                    <span className='value'>{contrato.cliente.formattedValues.domicilio}</span>
+                </div>
+                {this.renderTelefonos()}
+                {this.renderReferencias()}
             </div>
         );
     },
@@ -235,7 +216,7 @@ var Contrato = React.createClass({
         return referenciasArray;
     },
     showFullDetails: function () {
-        this.setState({showFullDetails: !this.state.showFullDetails});
+        this.setState({showingFullDetails: !this.state.showingFullDetails});
     },
     goBack: function () {
         this.context.router.replace('/contratos');
