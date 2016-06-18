@@ -17,7 +17,7 @@ var IndexRoute = ReactRouter.IndexRoute;
 var Main = require('src/components/main/main');
 var Inicio = require('src/components/inicio/inicio');
 var Signin = require('src/components/auth/signin');
-var AgregarContrato = require('src/components/contratos/agregar-contrato');
+var ContratoForm = require('src/components/contratos/contrato-form');
 var Contratos = require('src/components/contratos/contratos');
 var Reportes = require('src/components/reportes/reportes');
 var NotFound = require('src/components/not-found/not-found');
@@ -27,7 +27,7 @@ var Routes = (
         <IndexRoute onEnter={redirectToInicio} />
         <Route path='signin' component={Signin} onEnter={requireNoAuth} />
         <Route path='inicio' component={Inicio} onEnter={requireAuth} />
-        <Route path='agregar-contrato' component={AgregarContrato} onEnter={requireAuth} />
+        <Route path='agregar-contrato' component={ContratoForm} onEnter={requireAuth} />
         <Route path='contratos' component={Contratos} onEnter={requireAuth}>
             <Route path=':id' component={Contratos} onEnter={requireAuth} />
         </Route>
