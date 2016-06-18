@@ -43,7 +43,7 @@ class Contratos extends React.Component {
         if (this.props.params.id) {
             return (
                 <main className='contratos'>
-                    <Contrato contrato={this.state.contrato} />
+                    <Contrato contrato={this.state.contrato} id={this.props.params.id} />
                 </main>
             );
         }

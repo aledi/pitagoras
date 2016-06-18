@@ -20,13 +20,30 @@ var AccionRecord = Immutable.Record({
     comentarios: '',
     creador: null,
     contrato: null,
-    respuestas: null
+    respuestas: null,
+
+    formattedValues: {}
 });
 
 class Accion extends AccionRecord {
     static prepareForParse (accion) {
         accion.contrato = new ContratoObject(ContratoRecord.prepareForParse(accion.contrato.toEditable()));
         return accion;
+    }
+
+    constructor (definition) {
+        definition = definition || {};
+        var formattedValues = {};
+
+        definition.id = definition.id || definition.objectId;
+
+        // Creador
+        definition.creador = definition.creador;
+        formattedValues.creador = definition.creador.nombre + ' ' + definition.creador.apellido;
+
+        definition.formattedValues = formattedValues;
+
+        super(definition);
     }
 }
 
