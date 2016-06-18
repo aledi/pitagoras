@@ -30,7 +30,7 @@ var DiligenciaEmbargo = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {respuesta: null}
+            respuestas: {respuesta: 'No encontró el domicilio'}
         };
     },
     render: function () {

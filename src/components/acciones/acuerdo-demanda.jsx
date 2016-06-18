@@ -21,7 +21,7 @@ var AcuerdoDemanda = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {}
+            respuestas: {resultadoAcuerdo: 'desecha'}
         };
     },
     render: function () {
