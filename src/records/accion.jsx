@@ -6,6 +6,7 @@
 
 var Immutable = require('immutable');
 var Parse = require('parse');
+var moment = require('moment');
 
 var ContratoObject = Parse.Object.extend('Contrato');
 var ContratoRecord = require('./contrato');
@@ -36,6 +37,7 @@ var AccionRecord = Immutable.Record({
     creador: null,
     contrato: null,
     respuestas: null,
+    fecha: null,
 
     formattedValues: {}
 });
@@ -59,6 +61,10 @@ class Accion extends AccionRecord {
         // Creador
         definition.creador = definition.creador;
         formattedValues.creador = definition.creador.nombre + ' ' + definition.creador.apellido;
+
+        // Fecha
+        var createdAt = moment(definition.createdAt ? new Date(definition.createdAt) : new Date());
+        definition.fecha = createdAt.format('D MMMM, YYYY');
 
         definition.formattedValues = formattedValues;
 
