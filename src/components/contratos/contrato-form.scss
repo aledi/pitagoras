@@ -5,23 +5,23 @@
 
     form {
         width: 800px;
-        padding: 40px 20px;
+        padding: 20px 10px;
         margin: 0 auto;
-        border: 1px solid black;
+        border: 1px solid $frost;
 
         .section-title {
+            padding: 0 10px;
             text-transform: uppercase;
-        }
-
-        .referencia-wrapper {
-            hr {
-                border-color: gray;
-            }
+            letter-spacing: 1px;
+            font-weight: bold;
+            font-size: 18px;
+            color: $denim;
         }
 
         .input-wrapper {
             width: 33.3%;
             display: inline-block;
+            vertical-align: top;
             padding: 10px;
             box-sizing: border-box;
 
@@ -37,35 +37,59 @@
         }
 
         hr {
-            margin: 0 -20px;
+            margin: 10px -10px;
+            margin-bottom: 20px;
             border: none;
-            border-bottom: 1px solid black;
+            border-bottom: 1px solid $frost;
         }
 
         button {
             height: 50px;
-            width: 100%;
-            margin-top: 20px;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 0;
             background-color: $denim;
             border: none;
             border-radius: 3px;
             letter-spacing: 1px;
             color: white;
 
-            &:hover {
-                background-color: $nightfall;
-            }
+            &.add, &.remove {
+                width: auto;
+                background-color: transparent;
+                text-transform: uppercase;
+                color: $blue-gray;
 
-            &:disabled {
-                background-color: $disabled-button-background;
-                color: $disabled-text-color;
+                &:hover {
+                    color: $denim;
+                }
             }
 
             &.add {
-                color: black;
-                width: auto;
-                background-color: transparent;
-                border: 1px solid red;
+                height: auto;
+                padding: 0;
+                margin: 20px 10px;
+                font-size: 13px;
+            }
+
+            &.remove {
+                text-transform: uppercase;
+                font-size: 11px;
+                color: $blue-gray;
+            }
+
+            &.remove-input {
+                height: auto;
+                padding-bottom: 0;
+            }
+
+            &.submit {
+                padding: 0 20px;
+                margin-top: 50px;
+
+                &:hover {
+                    background-color: $nightfall;
+                }
             }
         }
     }

@@ -51,7 +51,7 @@ var ContratoForm = React.createClass({
         return (
             <main className='add-contrato'>
                 <form onSubmit={this.handleAddContract}>
-                    <p className='section-title'>Contrato</p>
+                    <h3 className='section-title'>Contrato</h3>
                     <div className='input-wrapper'>
                         <label>Número de Contrato</label>
                         <input type='text' value={contrato.numeroContrato} onChange={this.handleChange.bind(this, 'numeroContrato')} />
@@ -87,7 +87,7 @@ var ContratoForm = React.createClass({
                         <input type='text' value={contrato.tasa} onChange={this.handleChange.bind(this, 'tasa')} onKeyPress={this.restrictNumericInput.bind(this, true)} />
                     </div>
                     <hr />
-                    <p className='section-title'>Vehículo</p>
+                    <h3 className='section-title'>Vehículo</h3>
                     <div className='input-wrapper'>
                         <label>Modelo</label>
                         <input type='text' value={contrato.vehiculo.modelo} onChange={this.handleVehiculoChange.bind(this, 'modelo')} />
@@ -113,7 +113,7 @@ var ContratoForm = React.createClass({
                         <input type='text' value={contrato.vehiculo.serie} onChange={this.handleVehiculoChange.bind(this, 'serie')} />
                     </div>
                     <hr />
-                    <p className='section-title'>Cliente</p>
+                    <h3 className='section-title'>Cliente</h3>
                     <div className='input-wrapper'>
                         <label>Nombre</label>
                         <input type='text' value={contrato.cliente.nombre} onChange={this.handleClienteChange.bind(this, 'nombre')} />
@@ -157,10 +157,10 @@ var ContratoForm = React.createClass({
                     {this.renderTelefonos()}
                     <button type='button' className='add' onClick={this.addTelefono}>Agregar nuevo teléfono</button>
                     <hr />
-                    <p className='section-title'>Referencias</p>
+                    <h3 className='section-title'>Referencias</h3>
                     {this.renderReferencias()}
                     <button type='button' className='add' onClick={this.addReferencia}>Agregar nueva referencia</button>
-                    <button type='submit'>Guardar Contrato</button>
+                    <button type='submit' className='submit'>Guardar Contrato</button>
                     {this.renderFeedbackText()}
                 </form>
             </main>
@@ -202,7 +202,7 @@ var ContratoForm = React.createClass({
         }
 
         return (
-            <button type='button' className='remove' onClick={this.removeTelefono.bind(this, index)}>Borrar teléfono</button>
+            <button type='button' className='remove remove-input' onClick={this.removeTelefono.bind(this, index)}>Borrar teléfono</button>
         );
     },
     renderReferencias: function () {
@@ -260,8 +260,7 @@ var ContratoForm = React.createClass({
                         <label>Teléfono</label>
                         <input type='text' value={referencia.telefono} onChange={self.handleReferenciaChange.bind(self, 'telefono', index)} />
                     </div>
-                    <button type='button' className='remove' onClick={self.removeReferencia.bind(self, index)}>Quitar referencia</button>
-                    <hr />
+                    <button type='button' className='remove' onClick={self.removeReferencia.bind(self, index)}>Eliminar referencia</button>
                 </div>
             );
         });
