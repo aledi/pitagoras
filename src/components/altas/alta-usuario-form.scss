@@ -1,0 +1,66 @@
+@import '~src/styles/pitagoras.scss';
+
+.alta-usuario {
+    padding: 30px;
+
+    form {
+        width: 800px;
+        padding: 40px 20px;
+        margin: 0 auto;
+        border: 1px solid black;
+
+        .section-title {
+            text-transform: uppercase;
+        }
+
+        .input-wrapper {
+            width: 33.3%;
+            display: inline-block;
+            padding: 10px;
+            box-sizing: border-box;
+
+            input {
+                height: 30px;
+                width: 100%;
+            }
+
+            select {
+                height: 30px;
+                width: 100%;
+            }
+        }
+
+        hr {
+            margin: 0 -20px;
+            border: none;
+            border-bottom: 1px solid black;
+        }
+
+        button {
+            height: 50px;
+            width: 100%;
+            margin-top: 20px;
+            background-color: $denim;
+            border: none;
+            border-radius: 3px;
+            letter-spacing: 1px;
+            color: white;
+
+            &:hover {
+                background-color: $nightfall;
+            }
+
+            &:disabled {
+                background-color: $disabled-button-background;
+                color: $disabled-text-color;
+            }
+
+            &.add {
+                color: black;
+                width: auto;
+                background-color: transparent;
+                border: 1px solid red;
+            }
+        }
+    }
+}

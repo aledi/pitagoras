@@ -41,7 +41,8 @@ var Main = React.createClass({
                 inicio: '/inicio',
                 agregarContrato: '/agregar-contrato',
                 contratos: '/contratos',
-                reportes: '/reportes'
+                reportes: '/reportes',
+                altaUsuario: '/alta-usuario'
             }
         };
 
@@ -91,7 +92,7 @@ var Main = React.createClass({
             return;
         }
 
-        return (<Link activeClassName='active' className='admin' to={this.state.links.agregarContrato}>Agregar usuario</Link>);
+        return (<Link activeClassName='active' className='admin' to={this.state.links.altaUsuario}>Agregar usuario</Link>);
     },
     renderChildren: function () {
         return this.state.children;
