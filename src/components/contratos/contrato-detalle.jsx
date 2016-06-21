@@ -85,25 +85,25 @@ var ContratoDetalle = React.createClass({
                 <p className='go-back' onClick={this.goBack}>Volver a Contratos</p>
                 <p className='go-back' onClick={this.showFullDetails}>{'Mostrar' + (this.state.showingFullDetails ? ' resumen' : ' todos los detalles')}</p>
 
-                    <div className='contrato-detalles'>
-                        <button type='button' onClick={this.handleContratoEdit}>Editar Contrato</button>
-                        <div className='contrato-detalles-column'>
-                            <p>Detalles del Contrato</p>
-                            <div className='detalle-wrapper'>
-                                <span className='title'>Número de Contrato:</span>
-                                <span className='value'>{contrato.numeroContrato}</span>
-                            </div>
-                            {this.renderFullContratoDetails()}
+                <div className='contrato-detalles'>
+                    <button type='button' onClick={this.handleContratoEdit}>Editar Contrato</button>
+                    <div className='contrato-detalles-column'>
+                        <p>Detalles del Contrato</p>
+                        <div className='detalle-wrapper'>
+                            <span className='title'>Número de Contrato:</span>
+                            <span className='value'>{contrato.numeroContrato}</span>
                         </div>
-                        <div className='contrato-detalles-column'>
-                            <p>Cliente</p>
-                            <div className='detalle-wrapper'>
-                                <span className='title'>Nombre:</span>
-                                <span className='value'>{contrato.cliente.formattedValues.nombre}</span>
-                            </div>
-                            {this.renderFullClienteDetails()}
-                        </div>
+                        {this.renderFullContratoDetails()}
                     </div>
+                    <div className='contrato-detalles-column'>
+                        <p>Cliente</p>
+                        <div className='detalle-wrapper'>
+                            <span className='title'>Nombre:</span>
+                            <span className='value'>{contrato.cliente.formattedValues.nombre}</span>
+                        </div>
+                        {this.renderFullClienteDetails()}
+                    </div>
+                </div>
 
                 <p>Acciones Disponibles</p>
                 <div className='acciones-wrapper'>
@@ -125,7 +125,7 @@ var ContratoDetalle = React.createClass({
 
         var self = this;
         return (this.state.accionesComponents.map(function (accionComponent, index) {
-            return (<li key={index + 1} className={classNames({selected: self.state.selectedAccionIndex === index})} onClick={self.showAccion.bind(self, index)}>{AccionRecord.ACCIONES_TYPES[index + 1]}</li>);
+            return (<li key={index} className={classNames({selected: self.state.selectedAccionIndex === index})} onClick={self.showAccion.bind(self, index)}>{AccionRecord.ACCIONES_TYPES[index + 1]}</li>);
         }));
     },
     handleContratoEdit: function () {

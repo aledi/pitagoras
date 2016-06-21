@@ -26,7 +26,7 @@ var AccionesMixin = {
         this.setState(state);
     },
     saveAccion: function () {
-        AccionesActions.saveAccion(AccionRecord.prepareForParse(this.state));
+        AccionesActions.saveAccion(AccionRecord.prepareForParse(this.state), this.state.contrato.id);
     }
 };
 
