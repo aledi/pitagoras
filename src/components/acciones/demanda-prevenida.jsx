@@ -26,7 +26,7 @@ var DemandaPrevenida = React.createClass({
     },
     render: function () {
         return (
-            <div className='demanda-prevenida'>
+            <div className='demanda-prevenida accion-form'>
                 <p>¿Desahogar?</p>
                 <div>
                     <input

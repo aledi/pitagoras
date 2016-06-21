@@ -15,10 +15,10 @@ var AccionRecord = require('src/records/accion');
 
 var AccionesMixin = {
     renderComentarios: function () {
-        return (<textarea value={this.state.comentarios} onChange={this.handleComentariosChange} />);
+        return (<textarea placeholder='Comentarios' value={this.state.comentarios} onChange={this.handleComentariosChange} />);
     },
     renderButton: function () {
-        return (<button type='button' onClick={this.saveAccion}>Guardar</button>);
+        return (<button type='button' onClick={this.saveAccion}>Guardar Acción</button>);
     },
     handleComentariosChange: function (event) {
         var state = {};

@@ -21,21 +21,21 @@ var DemandaAdmitida = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {tipoJuicio: 'oralMercantil'}
+            respuestas: {tipoDemanda: 'oralMercantil'}
         };
     },
     render: function () {
         var respuestas = this.state.respuestas;
 
         return (
-            <div className='demanda-admitida'>
+            <div className='demanda-admitida accion-form'>
                 <p>Tipo de Juicio</p>
                 <div>
                     <input
                         type='radio'
                         id='oral'
                         value='oralMercantil'
-                        checked={respuestas.tipoJuicio === 'oralMercantil'}
+                        checked={respuestas.tipoDemanda === 'oralMercantil'}
                         onChange={this.handleRadioChange} />
                     <label htmlFor='oral'>Oral Mercantil</label>
                 </div>
@@ -44,25 +44,25 @@ var DemandaAdmitida = React.createClass({
                         type='radio'
                         id='ejecutiva'
                         value='ejecutivaMercantil'
-                        checked={respuestas.tipoJuicio === 'ejecutivaMercantil'}
+                        checked={respuestas.tipoDemanda === 'ejecutivaMercantil'}
                         onChange={this.handleRadioChange} />
                     <label htmlFor='ejecutiva'>Ejecutiva Mercantil</label>
                 </div>
-                <label>Número de Registro</label>
+                <label>Fecha</label>
                 <input
                     type='text'
-                    value={respuestas.numeroRegistro}
-                    onChange={this.handleChange.bind(this, 'numeroRegistro')} />
-                <label>Juzgado</label>
+                    value={respuestas.fecha}
+                    onChange={this.handleChange.bind(this, 'fecha')} />
+                <label>Hora</label>
                 <input
                     type='text'
-                    value={respuestas.juzgado}
-                    onChange={this.handleChange.bind(this, 'juzgado')} />
-                <label>Fecha de Presentación</label>
+                    value={respuestas.hora}
+                    onChange={this.handleChange.bind(this, 'hora')} />
+                <label>Lugar</label>
                 <input
                     type='text'
-                    value={respuestas.fechaPresentacion}
-                    onChange={this.handleChange.bind(this, 'fechaPresentacion')} />
+                    value={respuestas.lugar}
+                    onChange={this.handleChange.bind(this, 'lugar')} />
                 {this.renderComentarios()}
                 {this.renderButton()}
             </div>
@@ -70,7 +70,7 @@ var DemandaAdmitida = React.createClass({
     },
     handleRadioChange: function (event) {
         var respuestas = this.state.respuestas;
-        respuestas.tipoJuicio = event.target.value;
+        respuestas.tipoDemanda = event.target.value;
         this.setState({respuestas: respuestas});
     },
     handleChange: function (propertyName, event) {

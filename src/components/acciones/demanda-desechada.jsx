@@ -31,7 +31,7 @@ var DemandaDesechada = React.createClass({
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                respuesta: 'No coinciden los montos',
+                motivo: 'No coinciden los montos',
                 regresaDocumentos: false,
                 horario: null
             }
@@ -39,9 +39,9 @@ var DemandaDesechada = React.createClass({
     },
     render: function () {
         return (
-            <div className='demanda-desechada'>
+            <div className='demanda-desechada accion-form'>
                 <p>Motivo</p>
-                <select value={options[this.state.respuestas.respuesta]} onChange={this.handleChange}>
+                <select value={options[this.state.respuestas.motivo]} onChange={this.handleChange}>
                     {this.renderOptions()}
                 </select>
                 <p>¿Regresan documentos?</p>
@@ -88,7 +88,7 @@ var DemandaDesechada = React.createClass({
     },
     handleSelectChange: function () {
         var respuestas = this.state.respuestas;
-        respuestas.respuesta = options[event.target.value];
+        respuestas.motivo = options[event.target.value];
         this.setState({respuestas: respuestas});
     },
     handleRegresaDocumentosChange: function (event) {

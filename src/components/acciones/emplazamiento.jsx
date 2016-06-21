@@ -27,13 +27,13 @@ var Emplazamiento = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {respuesta: 'No vive en el domicilio'}
+            respuestas: {resultado: 'No vive en el domicilio'}
         };
     },
     render: function () {
         return (
-            <div className='emplazamiento'>
-                <select value={options[this.state.respuestas.respuesta]} onChange={this.handleChange}>
+            <div className='emplazamiento accion-form'>
+                <select value={options[this.state.respuestas.resultado]} onChange={this.handleChange}>
                     {this.renderOptions()}
                 </select>
                 {this.renderComentarios()}
@@ -48,7 +48,7 @@ var Emplazamiento = React.createClass({
     },
     handleChange: function (event) {
         var respuestas = this.state.respuestas;
-        respuestas.respuesta = options[event.target.value];
+        respuestas.resultado = options[event.target.value];
         this.setState({respuestas: respuestas});
     }
 });

@@ -30,13 +30,13 @@ var DiligenciaEmbargo = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {respuesta: 'No encontró el domicilio'}
+            respuestas: {resultado: 'No encontró el domicilio'}
         };
     },
     render: function () {
         return (
-            <div className='diligencia-embargo'>
-                <select value={options[this.state.respuestas.respuesta]} onChange={this.handleChange}>
+            <div className='diligencia-embargo accion-form'>
+                <select value={options[this.state.respuestas.resultado]} onChange={this.handleChange}>
                     {this.renderOptions()}
                 </select>
                 {this.renderComentarios()}
@@ -51,7 +51,7 @@ var DiligenciaEmbargo = React.createClass({
     },
     handleChange: function (event) {
         var respuestas = this.state.respuestas;
-        respuestas.respuesta = options[event.target.value];
+        respuestas.resultado = options[event.target.value];
         this.setState({respuestas: respuestas});
     }
 });

@@ -28,7 +28,7 @@ var AltaDocumentos = React.createClass({
     },
     render: function () {
         return (
-            <div className='alta-documentos'>
+            <div className='alta-documentos accion-form'>
                 <label>Número Interno</label>
                 <input
                     type='text'

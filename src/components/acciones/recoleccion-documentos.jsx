@@ -26,7 +26,7 @@ var RecoleccionDocumentos = React.createClass({
     },
     render: function () {
         return (
-            <div className='recoleccion-documentos'>
+            <div className='recoleccion-documentos accion-form'>
                 <div>
                     <p>¿Documentos recogidos?</p>
                     <div>

@@ -28,9 +28,9 @@ var Desahogo = React.createClass({
     },
     render: function () {
         return (
-            <div className='desahogo'>
-                <button type='button' onClick={this.handleDesahogo}>Desahogar</button>
+            <div className='desahogo accion-form'>
                 {this.renderComentarios()}
+                <button type='button' onClick={this.handleDesahogo}>Desahogar</button>
             </div>
         );
     },
