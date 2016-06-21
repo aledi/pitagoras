@@ -69,7 +69,6 @@ var AltaUsuarioForm = React.createClass({
         state[propertyName] = event.target.value;
 
         this.setState(state);
-        console.log(this.state);
     },
     handleAltaUsuario: function (event) {
         event.preventDefault();
