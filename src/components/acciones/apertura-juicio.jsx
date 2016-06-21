@@ -26,7 +26,7 @@ var AperturaJuicio = React.createClass({
     },
     render: function () {
         return (
-            <div className='apertura-juicio'>
+            <div className='apertura-juicio accion-form'>
                 <p>Tipo de Juicio</p>
                 <div>
                     <input

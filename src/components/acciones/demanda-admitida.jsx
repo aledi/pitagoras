@@ -28,7 +28,7 @@ var DemandaAdmitida = React.createClass({
         var respuestas = this.state.respuestas;
 
         return (
-            <div className='demanda-admitida'>
+            <div className='demanda-admitida accion-form'>
                 <p>Tipo de Juicio</p>
                 <div>
                     <input

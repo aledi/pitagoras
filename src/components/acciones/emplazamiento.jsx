@@ -32,7 +32,7 @@ var Emplazamiento = React.createClass({
     },
     render: function () {
         return (
-            <div className='emplazamiento'>
+            <div className='emplazamiento accion-form'>
                 <select value={options[this.state.respuestas.resultado]} onChange={this.handleChange}>
                     {this.renderOptions()}
                 </select>

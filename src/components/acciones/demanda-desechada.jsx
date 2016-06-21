@@ -39,7 +39,7 @@ var DemandaDesechada = React.createClass({
     },
     render: function () {
         return (
-            <div className='demanda-desechada'>
+            <div className='demanda-desechada accion-form'>
                 <p>Motivo</p>
                 <select value={options[this.state.respuestas.motivo]} onChange={this.handleChange}>
                     {this.renderOptions()}

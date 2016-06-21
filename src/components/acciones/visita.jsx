@@ -30,7 +30,7 @@ var Visita = React.createClass({
     },
     render: function () {
         return (
-            <div className='visita'>
+            <div className='visita accion-form'>
                 <div>
                     <p>¿Encontró el domicilio?</p>
                     <div>

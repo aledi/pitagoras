@@ -35,7 +35,7 @@ var DiligenciaEmbargo = React.createClass({
     },
     render: function () {
         return (
-            <div className='diligencia-embargo'>
+            <div className='diligencia-embargo accion-form'>
                 <select value={options[this.state.respuestas.resultado]} onChange={this.handleChange}>
                     {this.renderOptions()}
                 </select>

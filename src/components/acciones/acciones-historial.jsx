@@ -1,5 +1,7 @@
 'use strict';
 
+require('./acciones-historial.scss');
+
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
 // -----------------------------------------------------------------------------------------------
@@ -30,8 +32,8 @@ var AccionesHistorial = React.createClass({
         }
 
         return (
-            <div className='acciones-historial-wrapper'>
-                <ul>
+            <div className='acciones-historial'>
+                <ul className='acciones-historial-list'>
                     {this.renderAcciones()}
                 </ul>
             </div>
@@ -43,15 +45,15 @@ var AccionesHistorial = React.createClass({
         var self = this;
         this.props.acciones.forEach(function (accion, index) {
             acciones.push(
-                <li key={accion.id}>
-                    {self.getAccionForType(accion)}
+                <li key={accion.id} className='acciones-list-item'>
+                    {self.getRespuestasForAccion(accion)}
                 </li>
             );
         });
 
         return acciones;
     },
-    getAccionForType: function (accion) {
+    getRespuestasForAccion: function (accion) {
         switch (accion.tipo) {
             case 1:
                 return (<VisitaRespuestas accion={accion} />);

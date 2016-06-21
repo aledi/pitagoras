@@ -30,7 +30,7 @@ var PresentacionDemanda = React.createClass({
         var respuestas = this.state.respuestas;
 
         return (
-            <div className='presentacion-demanda'>
+            <div className='presentacion-demanda accion-form'>
                 <label>Número de Registro</label>
                 <input
                     type='text'

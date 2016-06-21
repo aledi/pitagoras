@@ -1,0 +1,27 @@
+@import '~src/styles/pitagoras.scss';
+
+.acciones-historial {
+    width: 100%;
+    position: absolute;
+    left: 300px;
+
+    .acciones-historial-list {
+        list-style: none;
+
+        .acciones-list-item {
+            padding: 20px 0;
+            border-bottom: 1px solid black;
+
+            .respuestas-wrapper {
+                p {
+                    color: $creosote;
+                    text-transform: none;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+}

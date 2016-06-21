@@ -78,7 +78,7 @@ var ContratoDetalle = React.createClass({
 
                 <p>Acciones Disponibles</p>
                 <div className='acciones-wrapper'>
-                    <ul>
+                    <ul className='acciones-list'>
                         <li onClick={this.showAccion.bind(this, <Visita contrato={this.props.contrato} />)}>Visita</li>
                         <li onClick={this.showAccion.bind(this, <AltaDocumentos contrato={this.props.contrato} />)}>Alta de documentos</li>
                         <li onClick={this.showAccion.bind(this, <AperturaJuicio contrato={this.props.contrato} />)}>Apertura de juicio</li>

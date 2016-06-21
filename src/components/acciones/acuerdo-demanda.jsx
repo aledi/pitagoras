@@ -26,7 +26,7 @@ var AcuerdoDemanda = React.createClass({
     },
     render: function () {
         return (
-            <div className='acuerdo-demanda'>
+            <div className='acuerdo-demanda accion-form'>
                 <p>Resultado del acuerdo</p>
                 <div>
                     <input
