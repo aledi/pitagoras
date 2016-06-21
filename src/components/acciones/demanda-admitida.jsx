@@ -21,7 +21,7 @@ var DemandaAdmitida = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {tipoDemanda: 'oralMercantil'}
+            respuestas: {tipoDemanda: 'Oral Mercantil'}
         };
     },
     render: function () {
@@ -34,8 +34,8 @@ var DemandaAdmitida = React.createClass({
                     <input
                         type='radio'
                         id='oral'
-                        value='oralMercantil'
-                        checked={respuestas.tipoDemanda === 'oralMercantil'}
+                        value='Oral Mercantil'
+                        checked={respuestas.tipoDemanda === 'Oral Mercantil'}
                         onChange={this.handleRadioChange} />
                     <label htmlFor='oral'>Oral Mercantil</label>
                 </div>
@@ -43,8 +43,8 @@ var DemandaAdmitida = React.createClass({
                     <input
                         type='radio'
                         id='ejecutiva'
-                        value='ejecutivaMercantil'
-                        checked={respuestas.tipoDemanda === 'ejecutivaMercantil'}
+                        value='Ejecutiva Mercantil'
+                        checked={respuestas.tipoDemanda === 'Ejecutiva Mercantil'}
                         onChange={this.handleRadioChange} />
                     <label htmlFor='ejecutiva'>Ejecutiva Mercantil</label>
                 </div>

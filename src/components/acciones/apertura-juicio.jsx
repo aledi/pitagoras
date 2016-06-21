@@ -21,7 +21,7 @@ var AperturaJuicio = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {tipoJuicio: 'oralMercantil'}
+            respuestas: {tipoJuicio: 'Oral Mercantil'}
         };
     },
     render: function () {
@@ -32,8 +32,8 @@ var AperturaJuicio = React.createClass({
                     <input
                         type='radio'
                         id='oral'
-                        value='oralMercantil'
-                        checked={this.state.respuestas.tipoJuicio === 'oralMercantil'}
+                        value='Oral Mercantil'
+                        checked={this.state.respuestas.tipoJuicio === 'Oral Mercantil'}
                         onChange={this.handleChange} />
                     <label htmlFor='oral'>Oral Mercantil</label>
                 </div>
@@ -41,8 +41,8 @@ var AperturaJuicio = React.createClass({
                     <input
                         type='radio'
                         id='ejecutiva'
-                        value='ejecutivaMercantil'
-                        checked={this.state.respuestas.tipoJuicio === 'ejecutivaMercantil'}
+                        value='Ejecutiva Mercantil'
+                        checked={this.state.respuestas.tipoJuicio === 'Ejecutiva Mercantil'}
                         onChange={this.handleChange} />
                     <label htmlFor='ejecutiva'>Ejecutiva Mercantil</label>
                 </div>

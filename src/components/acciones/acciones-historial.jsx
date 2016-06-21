@@ -47,7 +47,7 @@ var AccionesHistorial = React.createClass({
             acciones.push(
                 <li key={accion.id} className='acciones-list-item'>
                     <div>
-                        <span className='bold'>{AccionRecord.ACCIONES_TYPES[accion.tipo]}</span>
+                        <h5>{AccionRecord.ACCIONES_TYPES[accion.tipo]}</h5>
                     </div>
                     {self.getRespuestasForAccion(accion)}
                     <div>
