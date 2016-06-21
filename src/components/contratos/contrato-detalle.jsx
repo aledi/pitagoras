@@ -125,14 +125,14 @@ var ContratoDetalle = React.createClass({
 
         var self = this;
         return (this.state.accionesComponents.map(function (accionComponent, index) {
-            return (<li key={index + 1} className={classNames({selected: self.state.selectedAccionIndex === index + 1})} onClick={self.showAccion.bind(self, index + 1)}>{AccionRecord.ACCIONES_TYPES[index + 1]}</li>);
+            return (<li key={index + 1} className={classNames({selected: self.state.selectedAccionIndex === index})} onClick={self.showAccion.bind(self, index)}>{AccionRecord.ACCIONES_TYPES[index + 1]}</li>);
         }));
     },
     handleContratoEdit: function () {
         this.setState({editingContrato: !this.state.editingContrato});
     },
     renderAccion: function () {
-        if (!this.state.selectedAccionIndex) {
+        if (this.state.selectedAccionIndex == null) {
             return;
         }
 
