@@ -15,6 +15,7 @@ module.exports = {
 
         var query = new Parse.Query(AccionObject);
         query.include('creador');
+        query.descending('createdAt');
         query.limit(5000);
         query.equalTo('contrato', new (Parse.Object.extend('Contrato'))({id: contratoId}));
 
