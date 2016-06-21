@@ -18,7 +18,7 @@ var AccionesMixin = {
         return (<textarea value={this.state.comentarios} onChange={this.handleComentariosChange} />);
     },
     renderButton: function () {
-        return (<button type='button' onClick={this.saveAccion}>Guardar</button>);
+        return (<button type='button' onClick={this.saveAccion}>Guardar Acción</button>);
     },
     handleComentariosChange: function (event) {
         var state = {};

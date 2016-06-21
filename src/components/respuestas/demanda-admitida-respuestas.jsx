@@ -14,10 +14,22 @@ var DemandaAdmitidaRespuestas = React.createClass({
     render: function () {
         return (
             <div className='respuestas-wrapper'>
-                <p>{'Tipo de demanda: ' + this.props.accion.respuestas.tipoDemanda}</p>
-                <p>{'Fecha: ' + this.props.accion.respuestas.fecha}</p>
-                <p>{'Hora: ' + this.props.accion.respuestas.hora}</p>
-                <p>{'Lugar: ' + this.props.accion.respuestas.lugar}</p>
+                <div>
+                    <span className='bold'>Tipo de demanda: </span>
+                    <span>{this.props.accion.respuestas.tipoDemanda}</span>
+                </div>
+                <div>
+                    <span className='bold'>Fecha: </span>
+                    <span>{this.props.accion.respuestas.fecha}</span>
+                </div>
+                <div>
+                    <span className='bold'>Hora: </span>
+                    <span>{this.props.accion.respuestas.hora}</span>
+                </div>
+                <div>
+                    <span className='bold'>Lugar: </span>
+                    <span>{this.props.accion.respuestas.lugar}</span>
+                </div>
             </div>
         );
     }

@@ -32,11 +32,9 @@ var AccionesHistorial = React.createClass({
         }
 
         return (
-            <div className='acciones-historial'>
-                <ul className='acciones-historial-list'>
-                    {this.renderAcciones()}
-                </ul>
-            </div>
+            <ul className='acciones-historial-list'>
+                {this.renderAcciones()}
+            </ul>
         );
     },
     renderAcciones: function () {
@@ -47,6 +45,15 @@ var AccionesHistorial = React.createClass({
             acciones.push(
                 <li key={accion.id} className='acciones-list-item'>
                     {self.getRespuestasForAccion(accion)}
+                    <div>
+                        <span className='bold'>Creada por: </span><span>{accion.creador.nombre + ' ' + accion.creador.apellido}</span>
+                    </div>
+                    <div>
+                        <span className='bold'>Fecha: </span><span></span>
+                    </div>
+                    <div>
+                        <span className='bold'>Comentarios: </span><span>{accion.comentarios}</span>
+                    </div>
                 </li>
             );
         });

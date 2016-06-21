@@ -16,9 +16,18 @@ var DemandaDesechadaRespuestas = React.createClass({
     render: function () {
         return (
             <div className='respuestas-wrapper'>
-                <p>{'Motivo: ' + this.props.accion.respuestas.tipoJuicio}</p>
-                <p>{'¿Regresan documentos?: ' + RespuestasUtils.formatBooleanRespuesta(this.props.accion.respuestas.regresaDocumentos)}</p>
-                <p>{'Horario: ' + this.props.accion.respuestas.horario}</p>
+                <div>
+                    <span className='bold'>Motivo: </span>
+                    <span>{this.props.accion.respuestas.motivo}</span>
+                </div>
+                <div>
+                    <span className='bold'>¿Regresan documentos?: </span>
+                    <span>{RespuestasUtils.formatBooleanRespuesta(this.props.accion.respuestas.regresaDocumentos)}</span>
+                </div>
+                <div>
+                    <span className='bold'>Horario: </span>
+                    <span>{this.props.accion.respuestas.horario}</span>
+                </div>
             </div>
         );
     }

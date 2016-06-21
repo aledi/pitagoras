@@ -92,8 +92,10 @@ var ContratoDetalle = React.createClass({
                         <li onClick={this.showAccion.bind(this, <Emplazamiento contrato={this.props.contrato} />)}>Emplazamiento</li>
                         <li onClick={this.showAccion.bind(this, <Desahogo contrato={this.props.contrato} />)}>Desahogo / Cierre</li>
                     </ul>
-                    {this.renderAccion()}
-                    <AccionesHistorial acciones={this.props.acciones} />
+                    <div className='accion-forma-historial'>
+                        {this.renderAccion()}
+                        <AccionesHistorial acciones={this.props.acciones} />
+                    </div>
                 </div>
             </div>
         );

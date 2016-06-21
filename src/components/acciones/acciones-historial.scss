@@ -1,25 +1,31 @@
 @import '~src/styles/pitagoras.scss';
 
-.acciones-historial {
+.acciones-historial-list {
+    position: relative;
     width: 100%;
-    position: absolute;
-    left: 300px;
+    padding: 0;
+    list-style: none;
+    border: 1px solid $frost;
 
-    .acciones-historial-list {
-        list-style: none;
+    .acciones-list-item {
+        padding: 20px;
+        border-bottom: 1px solid $frost;
 
-        .acciones-list-item {
-            padding: 20px 0;
-            border-bottom: 1px solid black;
+        &:last-child {
+            border-bottom: none;
+        }
 
-            .respuestas-wrapper {
-                p {
-                    color: $creosote;
-                    text-transform: none;
+        .bold {
+            font-weight: bold;
+        }
 
-                    &:last-child {
-                        margin-bottom: 0;
-                    }
+        .respuestas-wrapper {
+            p {
+                color: $creosote;
+                text-transform: none;
+
+                &:last-child {
+                    margin-bottom: 0;
                 }
             }
         }

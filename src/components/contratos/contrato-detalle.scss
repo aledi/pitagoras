@@ -11,8 +11,8 @@
     }
 
     .contrato-detalles {
-        position: relative;
         width: 100%;
+        position: relative;
         display: block;
         padding: 20px;
         margin-bottom: 40px;
@@ -42,14 +42,13 @@
 
         button {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 20px; right: 20px;
         }
     }
 
     .acciones-wrapper {
-        position: relative;
         width: 100%;
+        position: relative;
 
         .acciones-list {
             width: 220px;
@@ -69,11 +68,31 @@
             }
         }
 
-        .accion-form {
-            width: 100%;
+        .accion-forma-historial {
             position: absolute;
-            top: 0;
-            left: 300px;
+            right: 0; left: 300px;
+
+            .accion-form {
+                width: 100%;
+                position: relative;
+
+                textarea {
+                    width: 100%;
+                    display: block;
+                    margin-top: 20px;
+                }
+
+                button {
+                    height: 50px;
+                    display: block;
+                    margin: 20px 0;
+                    background-color: $denim;
+                    border: none;
+                    border-radius: 3px;
+                    letter-spacing: 1px;
+                    color: white;
+                }
+            }
         }
     }
 }

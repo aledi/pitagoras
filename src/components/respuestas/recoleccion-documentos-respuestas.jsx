@@ -16,7 +16,8 @@ var RecoleccionDocumentosRespuestas = React.createClass({
     render: function () {
         return (
             <div className='respuestas-wrapper'>
-                <p>{'¿Documentos recogidos?: ' + RespuestasUtils.formatBooleanRespuesta(this.props.accion.respuestas.recogeDocumentos)}</p>
+                <span className='bold'>¿Documentos recogidos?: </span>
+                <span>{RespuestasUtils.formatBooleanRespuesta(this.props.accion.respuestas.recogeDocumentos)}</span>
             </div>
         );
     }

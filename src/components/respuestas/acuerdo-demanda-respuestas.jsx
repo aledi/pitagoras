@@ -14,7 +14,8 @@ var AcuerdoDemandaRespuestas = React.createClass({
     render: function () {
         return (
             <div className='respuestas-wrapper'>
-                <p>{'Resultado del acuerdo: ' + this.props.accion.respuestas.resultadoAcuerdo}</p>
+                <span className='bold'>Resultado del acuerdo: </span>
+                <span>{this.props.accion.respuestas.resultadoAcuerdo}</span>
             </div>
         );
     }

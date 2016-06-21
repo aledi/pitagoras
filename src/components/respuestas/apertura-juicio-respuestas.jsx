@@ -14,7 +14,8 @@ var AperturaJuicioRespuestas = React.createClass({
     render: function () {
         return (
             <div className='respuestas-wrapper'>
-                <p>{'Tipo de Juicio: ' + this.props.accion.respuestas.tipoJuicio}</p>
+                <span className='bold'>Tipo de Juicio: </span>
+                <span>{this.props.accion.respuestas.tipoJuicio}</span>
             </div>
         );
     }

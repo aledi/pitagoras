@@ -16,9 +16,18 @@ var VisitaRespuestas = React.createClass({
     render: function () {
         return (
             <div className='respuestas-wrapper'>
-                <p>{'¿Encontró el domicilio?: ' + RespuestasUtils.formatBooleanRespuesta(this.props.accion.respuestas.domicilioUbicado)}</p>
-                <p>{'¿Ubicó al cliente?: ' + RespuestasUtils.formatBooleanRespuesta(this.props.accion.respuestas.clienteUbicado)}</p>
-                <p>{'Datos de contacto: ' + this.props.accion.respuestas.datosDeContacto}</p>
+                <div>
+                    <span className='bold'>¿Encontró el domicilio?: </span>
+                    <span>{RespuestasUtils.formatBooleanRespuesta(this.props.accion.respuestas.domicilioUbicado)}</span>
+                </div>
+                <div>
+                    <span className='bold'>¿Ubicó al cliente?: </span>
+                    <span>{RespuestasUtils.formatBooleanRespuesta(this.props.accion.respuestas.clienteUbicado)}</span>
+                </div>
+                <div>
+                    <span className='bold'>Datos de contacto: </span>
+                    <span>{this.props.accion.respuestas.datosDeContacto}</span>
+                </div>
             </div>
         );
     }

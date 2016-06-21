@@ -14,7 +14,8 @@ var DiligenciaEmbargoRespuestas = React.createClass({
     render: function () {
         return (
             <div className='respuestas-wrapper'>
-                <p>{'Resultado: ' + this.props.accion.respuestas.resultado}</p>
+                <span className='bold'>Resultado: </span>
+                <span>{this.props.accion.respuestas.resultado}</span>
             </div>
         );
     }

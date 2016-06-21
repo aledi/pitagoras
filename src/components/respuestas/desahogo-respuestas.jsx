@@ -16,7 +16,8 @@ var DesahogoRespuestas = React.createClass({
     render: function () {
         return (
             <div className='respuestas-wrapper'>
-                <p>{'¿Desahogar?: ' + RespuestasUtils.formatBooleanRespuesta(this.props.accion.respuestas.desahogar)}</p>
+                <span className='bold'>¿Desahogar?: </span>
+                <span>{RespuestasUtils.formatBooleanRespuesta(this.props.accion.respuestas.desahogar)}</span>
             </div>
         );
     }
