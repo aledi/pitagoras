@@ -65,6 +65,11 @@
                 &:hover {
                     color: blue;
                 }
+
+                &.selected {
+                    font-weight: bold;
+                    color: blue;
+                }
             }
         }
 

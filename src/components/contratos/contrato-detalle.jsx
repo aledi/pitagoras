@@ -7,9 +7,11 @@ require('./contrato-detalle.scss');
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
+var classNames = require('classnames');
 
 var ContratoForm = require('src/components/contratos/contrato-form');
 var AccionesHistorial = require('src/components/acciones/acciones-historial');
+var AccionRecord = require('src/records/accion');
 
 var Visita = require('src/components/acciones/visita');
 var AltaDocumentos = require('src/components/acciones/alta-documentos');
@@ -31,10 +33,36 @@ var Desahogo = require('src/components/acciones/desahogo');
 var ContratoDetalle = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
     getInitialState: function () {
+        return this.getState(this.props);
+    },
+    componentWillReceiveProps: function (nextProps) {
+        this.setState(this.getState(nextProps));
+    },
+    getState: function (props) {
+        var accionesComponents;
+
+        if (props.contrato) {
+            accionesComponents = [
+                <Visita key='visita' contrato={props.contrato} />,
+                <AltaDocumentos key='altaDocumentos' contrato={props.contrato} />,
+                <AperturaJuicio key='aperturaJuicio' contrato={props.contrato} />,
+                <PresentacionDemanda key='presentacionDemanda' contrato={props.contrato} />,
+                <AcuerdoDemanda key='acuerdoDemanda' contrato={props.contrato} />,
+                <DemandaDesechada key='demandaDesechada' contrato={props.contrato} />,
+                <RecoleccionDocumentos key='recoleccionDocumentos' contrato={props.contrato} />,
+                <DemandaPrevenida key='demandaPrevenida' contrato={props.contrato} />,
+                <DemandaAdmitida key='demandaAdmitida' contrato={props.contrato} />,
+                <DiligenciaEmbargo key='diligenciaEmbargo' contrato={props.contrato} />,
+                <Emplazamiento key='emplazamiento' contrato={props.contrato} />,
+                <Desahogo key='desahogo' contrato={props.contrato} />
+            ];
+        }
+
         return {
             editingContrato: false,
             showingFullDetails: false,
-            selectedAccionIndex: 0 
+            selectedAccionIndex: null,
+            accionesComponents: accionesComponents
         };
     },
     render: function () {
@@ -80,18 +108,7 @@ var ContratoDetalle = React.createClass({
                 <p>Acciones Disponibles</p>
                 <div className='acciones-wrapper'>
                     <ul className='acciones-list'>
-                        <li onClick={this.showAccion.bind(this, <Visita contrato={this.props.contrato} />)}>Visita</li>
-                        <li onClick={this.showAccion.bind(this, <AltaDocumentos contrato={this.props.contrato} />)}>Alta de documentos</li>
-                        <li onClick={this.showAccion.bind(this, <AperturaJuicio contrato={this.props.contrato} />)}>Apertura de juicio</li>
-                        <li onClick={this.showAccion.bind(this, <PresentacionDemanda contrato={this.props.contrato} />)}>Presentación de demanda</li>
-                        <li onClick={this.showAccion.bind(this, <AcuerdoDemanda contrato={this.props.contrato} />)}>Acuerdo de demanda</li>
-                        <li onClick={this.showAccion.bind(this, <DemandaDesechada contrato={this.props.contrato} />)}>Demanda desechada</li>
-                        <li onClick={this.showAccion.bind(this, <RecoleccionDocumentos contrato={this.props.contrato} />)}>Recolección de documentos</li>
-                        <li onClick={this.showAccion.bind(this, <DemandaPrevenida contrato={this.props.contrato} />)}>Demanda prevenida</li>
-                        <li onClick={this.showAccion.bind(this, <DemandaAdmitida contrato={this.props.contrato} />)}>Demanda admitida</li>
-                        <li onClick={this.showAccion.bind(this, <DiligenciaEmbargo contrato={this.props.contrato} />)}>Diligencia de embargo</li>
-                        <li onClick={this.showAccion.bind(this, <Emplazamiento contrato={this.props.contrato} />)}>Emplazamiento</li>
-                        <li onClick={this.showAccion.bind(this, <Desahogo contrato={this.props.contrato} />)}>Desahogo / Cierre</li>
+                        {this.getAccionesListItems()}
                     </ul>
                     <div className='accion-forma-historial'>
                         {this.renderAccion()}
@@ -101,18 +118,28 @@ var ContratoDetalle = React.createClass({
             </div>
         );
     },
+    getAccionesListItems: function () {
+        if (!this.state.accionesComponents) {
+            return;
+        }
+
+        var self = this;
+        return (this.state.accionesComponents.map(function (accionComponent, index) {
+            return (<li key={index + 1} className={classNames({selected: self.state.selectedAccionIndex === index + 1})} onClick={self.showAccion.bind(self, index + 1)}>{AccionRecord.ACCIONES_TYPES[index + 1]}</li>);
+        }));
+    },
     handleContratoEdit: function () {
         this.setState({editingContrato: !this.state.editingContrato});
     },
     renderAccion: function () {
-        if (!this.state.selectedAccion) {
+        if (!this.state.selectedAccionIndex) {
             return;
         }
 
-        return (this.state.selectedAccion);
+        return (this.state.accionesComponents[this.state.selectedAccionIndex]);
     },
-    showAccion: function (accion) {
-        this.setState({selectedAccion: accion});
+    showAccion: function (accionIndex) {
+        this.setState({selectedAccionIndex: accionIndex});
     },
     renderFullContratoDetails: function () {
         if (!this.state.showingFullDetails) {
