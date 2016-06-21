@@ -8,18 +8,20 @@ require('./acciones-historial.scss');
 
 var React = require('react');
 
-var VisitaRespuestas = require('src/components/respuestas/visita-respuestas'); // 1
-var AltaDocumentosRespuestas = require('src/components/respuestas/alta-documentos-respuestas'); // 2
-var AperturaJuicioRespuestas = require('src/components/respuestas/apertura-juicio-respuestas'); // 3
-var PresentacionDemandaRespuestas = require('src/components/respuestas/presentacion-demanda-respuestas'); // 4
-var AcuerdoDemandaRespuestas = require('src/components/respuestas/acuerdo-demanda-respuestas'); // 5
-var DemandaDesechadaRespuestas = require('src/components/respuestas/demanda-desechada-respuestas'); // 6
-var RecoleccionDocumentosRespuestas = require('src/components/respuestas/recoleccion-documentos-respuestas'); // 7
-var DemandaPrevenidaRespuestas = require('src/components/respuestas/demanda-prevenida-respuestas'); // 8
-var DemandaAdmitidaRespuestas = require('src/components/respuestas/demanda-admitida-respuestas'); // 9
-var DiligenciaEmbargoRespuestas = require('src/components/respuestas/diligencia-embargo-respuestas'); // 10
-var EmplazamientoRespuestas = require('src/components/respuestas/emplazamiento-respuestas'); // 11
-var DesahogoRespuestas = require('src/components/respuestas/desahogo-respuestas'); // 12
+var AccionRecord = require('src/records/accion');
+
+var VisitaRsp = require('src/components/respuestas/visita-rsp'); // 1
+var AltaDocumentosRsp = require('src/components/respuestas/alta-documentos-rsp'); // 2
+var AperturaJuicioRsp = require('src/components/respuestas/apertura-juicio-rsp'); // 3
+var PresentacionDemandaRsp = require('src/components/respuestas/presentacion-demanda-rsp'); // 4
+var AcuerdoDemandaRsp = require('src/components/respuestas/acuerdo-demanda-rsp'); // 5
+var DemandaDesechadaRsp = require('src/components/respuestas/demanda-desechada-rsp'); // 6
+var RecoleccionDocumentosRsp = require('src/components/respuestas/recoleccion-documentos-rsp'); // 7
+var DemandaPrevenidaRsp = require('src/components/respuestas/demanda-prevenida-rsp'); // 8
+var DemandaAdmitidaRsp = require('src/components/respuestas/demanda-admitida-rsp'); // 9
+var DiligenciaEmbargoRsp = require('src/components/respuestas/diligencia-embargo-rsp'); // 10
+var EmplazamientoRsp = require('src/components/respuestas/emplazamiento-rsp'); // 11
+var DesahogoRsp = require('src/components/respuestas/desahogo-rsp'); // 12
 
 // -----------------------------------------------------------------------------------------------
 // AccionesHistorial
@@ -44,6 +46,9 @@ var AccionesHistorial = React.createClass({
         this.props.acciones.forEach(function (accion, index) {
             acciones.push(
                 <li key={accion.id} className='acciones-list-item'>
+                    <div>
+                        <span className='bold'>{AccionRecord.ACCIONES_TYPES[accion.tipo]}</span>
+                    </div>
                     {self.getRespuestasForAccion(accion)}
                     <div>
                         <span className='bold'>Creada por: </span><span>{accion.creador.nombre + ' ' + accion.creador.apellido}</span>
@@ -63,29 +68,29 @@ var AccionesHistorial = React.createClass({
     getRespuestasForAccion: function (accion) {
         switch (accion.tipo) {
             case 1:
-                return (<VisitaRespuestas accion={accion} />);
+                return (<VisitaRsp accion={accion} />);
             case 2:
-                return (<AltaDocumentosRespuestas accion={accion} />);
+                return (<AltaDocumentosRsp accion={accion} />);
             case 3:
-                return (<AperturaJuicioRespuestas accion={accion} />);
+                return (<AperturaJuicioRsp accion={accion} />);
             case 4:
-                return (<PresentacionDemandaRespuestas accion={accion} />);
+                return (<PresentacionDemandaRsp accion={accion} />);
             case 5:
-                return (<AcuerdoDemandaRespuestas accion={accion} />);
+                return (<AcuerdoDemandaRsp accion={accion} />);
             case 6:
-                return (<DemandaDesechadaRespuestas accion={accion} />);
+                return (<DemandaDesechadaRsp accion={accion} />);
             case 7:
-                return (<RecoleccionDocumentosRespuestas accion={accion} />);
+                return (<RecoleccionDocumentosRsp accion={accion} />);
             case 8:
-                return (<DemandaPrevenidaRespuestas accion={accion} />);
+                return (<DemandaPrevenidaRsp accion={accion} />);
             case 9:
-                return (<DemandaAdmitidaRespuestas accion={accion} />);
+                return (<DemandaAdmitidaRsp accion={accion} />);
             case 10:
-                return (<DiligenciaEmbargoRespuestas accion={accion} />);
+                return (<DiligenciaEmbargoRsp accion={accion} />);
             case 11:
-                return (<EmplazamientoRespuestas accion={accion} />);
+                return (<EmplazamientoRsp accion={accion} />);
             case 12:
-                return (<DesahogoRespuestas accion={accion} />);
+                return (<DesahogoRsp accion={accion} />);
             default:
                 break;
         }

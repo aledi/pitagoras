@@ -33,7 +33,8 @@ var ContratoDetalle = React.createClass({
     getInitialState: function () {
         return {
             editingContrato: false,
-            showingFullDetails: false
+            showingFullDetails: false,
+            selectedAccionIndex: 0 
         };
     },
     render: function () {
