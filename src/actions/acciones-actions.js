@@ -8,9 +8,9 @@ var AccionRecord = require('src/records/accion');
 var AccionObject = Parse.Object.extend('Accion');
 
 module.exports = {
-    fetchAccionesForContrato: function (contratoId) {
+    fetchAcciones: function (contratoId) {
         Dispatcher.dispatch({
-            type: 'ACCION_FETCH_FOR_CONTRATO'
+            type: 'ACCIONES_FETCH'
         });
 
         var query = new Parse.Query(AccionObject);
@@ -25,29 +25,32 @@ module.exports = {
             });
 
             Dispatcher.dispatch({
-                type: 'ACCION_FETCH_FOR_CONTRATO_SUCCESS',
+                type: 'ACCIONES_FETCH_SUCCESS',
                 contratoId: contratoId,
                 acciones: new Immutable.List(acciones)
             });
         }).catch(function (error) {
             Dispatcher.dispatch({
-                type: 'NOTAS_FETCH_ERROR',
+                type: 'ACCIONES_FETCH_ERROR',
                 error: error
             });
         });
     },
-    saveAccion: function (accion) {
+    saveAccion: function (accion, contratoId) {
         Dispatcher.dispatch({
-            type: 'ACCION_SAVE'
+            type: 'ACCIONES_SAVE'
         });
 
         (new AccionObject()).save(accion).then(function (payload) {
             Dispatcher.dispatch({
-                type: 'ACCION_SAVE_SUCCESS'
+                type: 'ACCIONES_SAVE_SUCCESS',
+                accion: createAccionRecord(payload),
+                contratoId: contratoId
+
             });
         }).catch(function (error) {
             Dispatcher.dispatch({
-                type: 'ACCION_SAVE_ERROR',
+                type: 'ACCIONES_SAVE_ERROR',
                 error: error
             });
         });

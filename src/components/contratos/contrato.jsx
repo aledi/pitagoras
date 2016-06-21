@@ -31,7 +31,7 @@ class Contrato extends React.Component {
     }
 
     componentWillMount () {
-        AccionesActions.fetchAccionesForContrato(this.props.id);
+        AccionesActions.fetchAcciones(this.props.id);
     }
 
     render () {

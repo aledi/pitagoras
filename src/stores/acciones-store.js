@@ -25,15 +25,26 @@ class AccionesStore extends Flux.MapStore {
             // Fetch
             // -----------------------------------------------------------------------------------------------
 
-            case 'ACCION_FETCH_FOR_CONTRATO':
+            case 'ACCIONES_FETCH':
                 return state.merge({fetching: true, fetchError: null});
-            case 'ACCION_FETCH_FOR_CONTRATO_SUCCESS':
+            case 'ACCIONES_FETCH_SUCCESS':
                 var newState = {fetching: false};
                 newState[action.contratoId] = action.acciones;
 
                 return state.merge(newState);
-            case 'ACCION_FETCH_FOR_CONTRATO_ERROR':
+            case 'ACCIONES_FETCH_ERROR':
                 return state.merge({fetching: false, fetchError: action.error});
+
+            // -----------------------------------------------------------------------------------------------
+            // Save
+            // -----------------------------------------------------------------------------------------------
+
+            case 'ACCIONES_SAVE':
+                return state.merge({saving: true, saveError: null});
+            case 'ACCIONES_SAVE_SUCCESS':
+                return createSuccess(state, action);
+            case 'ACCIONES_SAVE_ERROR':
+                return state.merge({saving: false, saveError: action.error});
             default:
                 return state;
         }
@@ -42,8 +53,8 @@ class AccionesStore extends Flux.MapStore {
 
 function createSuccess (state, action) {
     var newState = {saving: false};
-    var notas = state.get(action.nota.ownerId);
-    newState[action.nota.ownerId] = notas.unshift(action.nota);
+    var acciones = state.get(action.contratoId);
+    newState[action.contratoId] = acciones.unshift(action.accion);
 
     return state.merge(newState);
 }
