@@ -23,14 +23,6 @@ $disabled-input-background: #F2F2F2;
 $disabled-input-border: #B9BBBB;
 $disabled-button-background: #999999;
 
-input[type='text'], textarea {
-    border: 1px solid $frost;
-}
-
-input[type='radio'] + label {
-    margin-left: 5px;
-}
-
 // -----------------------------------------------------------------------------------------------
 // Bootstrap Variables and Mixins
 // -----------------------------------------------------------------------------------------------

@@ -44,52 +44,23 @@
         }
 
         button {
-            height: 50px;
-            display: block;
-            margin: 0 auto;
-            margin-bottom: 0;
-            background-color: $denim;
-            border: none;
-            border-radius: 3px;
-            letter-spacing: 1px;
-            color: white;
-
-            &.add, &.remove {
-                width: auto;
-                background-color: transparent;
-                text-transform: uppercase;
-                color: $blue-gray;
-
-                &:hover {
-                    color: $denim;
-                }
-            }
-
             &.add {
-                height: auto;
                 padding: 0;
                 margin: 20px 10px;
-                font-size: 13px;
             }
 
             &.remove {
-                text-transform: uppercase;
-                font-size: 11px;
-                color: $blue-gray;
+                line-height: 50px;
             }
 
             &.remove-input {
-                height: auto;
+                line-height: normal;
                 padding-bottom: 0;
             }
 
             &.submit {
                 padding: 0 80px;
                 margin-top: 50px;
-
-                &:hover {
-                    background-color: $nightfall;
-                }
             }
         }
     }

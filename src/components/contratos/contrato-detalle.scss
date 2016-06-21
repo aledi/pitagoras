@@ -16,7 +16,7 @@
         display: block;
         padding: 20px;
         margin-bottom: 40px;
-        border: 1px solid black;
+        border: 1px solid $frost;
         font-size: 15px;
 
         .contrato-detalles-column {
@@ -41,8 +41,11 @@
         }
 
         button {
+            height: auto;
+            padding: 5px 15px;
             position: absolute;
             top: 20px; right: 20px;
+            font-size: 13px;
         }
     }
 
