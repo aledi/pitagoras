@@ -34,14 +34,21 @@ var DemandaDesechada = React.createClass({
                 motivo: 'No coinciden los montos',
                 regresaDocumentos: false,
                 horario: null
-            }
+            },
+            disabled: false
         };
+    },
+    componentWillReceiveProps: function (nextProps) {
+        this.getState(nextProps);
+    },
+    getState: function (props) {
+        this.setState({disabled: props.disabled});
     },
     render: function () {
         return (
             <div className='demanda-desechada accion-form'>
                 <p>Motivo</p>
-                <select value={options[this.state.respuestas.motivo]} onChange={this.handleChange}>
+                <select value={options[this.state.respuestas.motivo]} onChange={this.handleChange} disabled={this.state.disabled}>
                     {this.renderOptions()}
                 </select>
                 <p>¿Regresan documentos?</p>
@@ -51,8 +58,9 @@ var DemandaDesechada = React.createClass({
                         id='si'
                         checked={this.state.respuestas.regresaDocumentos}
                         value={1}
-                        onChange={this.handleRegresaDocumentosChange} />
-                    <label htmlFor='si'>Sí</label>
+                        onChange={this.handleRegresaDocumentosChange}
+                        disabled={this.state.disabled} />
+                    <label htmlFor='si' disabled={this.state.disabled}>Sí</label>
                 </div>
                 <div>
                     <input
@@ -60,8 +68,9 @@ var DemandaDesechada = React.createClass({
                         id='no'
                         checked={!this.state.respuestas.regresaDocumentos}
                         value={0}
-                        onChange={this.handleRegresaDocumentosChange} />
-                    <label htmlFor='no'>No</label>
+                        onChange={this.handleRegresaDocumentosChange}
+                        disabled={this.state.disabled} />
+                    <label htmlFor='no' disabled={this.state.disabled}>No</label>
                 </div>
                 {this.renderHorario()}
                 {this.renderComentarios()}
@@ -82,7 +91,11 @@ var DemandaDesechada = React.createClass({
         return (
             <div>
                 <label>Horario</label>
-                <input type='text' value={this.state.horario} onChange={this.handleHorarioChange} />
+                <input
+                    type='text'
+                    value={this.state.horario}
+                    onChange={this.handleHorarioChange}
+                    disabled={this.state.disabled} />
             </div>
         );
     },

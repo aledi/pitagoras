@@ -21,8 +21,15 @@ var AcuerdoDemanda = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {resultadoAcuerdo: 'Desecha'}
+            respuestas: {resultadoAcuerdo: 'Desecha'},
+            disabled: false
         };
+    },
+    componentWillReceiveProps: function (nextProps) {
+        this.getState(nextProps);
+    },
+    getState: function (props) {
+        this.setState({disabled: props.disabled});
     },
     render: function () {
         return (
@@ -34,7 +41,8 @@ var AcuerdoDemanda = React.createClass({
                         id='desecha'
                         value='Desecha'
                         checked={this.state.respuestas.resultadoAcuerdo === 'Desecha'}
-                        onChange={this.handleChange} />
+                        onChange={this.handleChange}
+                        disabled={this.state.disabled} />
                     <label htmlFor='desecha'>Desecha</label>
                 </div>
                 <div>
@@ -44,7 +52,7 @@ var AcuerdoDemanda = React.createClass({
                         value='Previene'
                         checked={this.state.respuestas.resultadoAcuerdo === 'Previene'}
                         onChange={this.handleChange} />
-                    <label htmlFor='previene'>Previene</label>
+                    <label htmlFor='previene' disabled={this.state.disabled}>Previene</label>
                 </div>
                 <div>
                     <input
@@ -52,8 +60,9 @@ var AcuerdoDemanda = React.createClass({
                         id='admite'
                         value='Admite'
                         checked={this.state.respuestas.resultadoAcuerdo === 'Admite'}
-                        onChange={this.handleChange} />
-                    <label htmlFor='admite'>Admite</label>
+                        onChange={this.handleChange}
+                        disabled={this.state.disabled} />
+                    <label htmlFor='admite' disabled={this.state.disabled}>Admite</label>
                 </div>
                 {this.renderComentarios()}
                 {this.renderButton()}

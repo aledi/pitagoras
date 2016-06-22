@@ -21,8 +21,15 @@ var DemandaAdmitida = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {tipoDemanda: 'Oral Mercantil'}
+            respuestas: {tipoDemanda: 'Oral Mercantil'},
+            disabled: false
         };
+    },
+    componentWillReceiveProps: function (nextProps) {
+        this.getState(nextProps);
+    },
+    getState: function (props) {
+        this.setState({disabled: props.disabled});
     },
     render: function () {
         var respuestas = this.state.respuestas;
@@ -36,8 +43,9 @@ var DemandaAdmitida = React.createClass({
                         id='oral'
                         value='Oral Mercantil'
                         checked={respuestas.tipoDemanda === 'Oral Mercantil'}
-                        onChange={this.handleRadioChange} />
-                    <label htmlFor='oral'>Oral Mercantil</label>
+                        onChange={this.handleRadioChange}
+                        disabled={this.state.disabled} />
+                    <label htmlFor='oral' disabled={this.state.disabled}>Oral Mercantil</label>
                 </div>
                 <div>
                     <input
@@ -45,24 +53,28 @@ var DemandaAdmitida = React.createClass({
                         id='ejecutiva'
                         value='Ejecutiva Mercantil'
                         checked={respuestas.tipoDemanda === 'Ejecutiva Mercantil'}
-                        onChange={this.handleRadioChange} />
-                    <label htmlFor='ejecutiva'>Ejecutiva Mercantil</label>
+                        onChange={this.handleRadioChange}
+                        disabled={this.state.disabled} />
+                    <label htmlFor='ejecutiva' disabled={this.state.disabled}>Ejecutiva Mercantil</label>
                 </div>
                 <label>Fecha</label>
                 <input
                     type='text'
                     value={respuestas.fecha}
-                    onChange={this.handleChange.bind(this, 'fecha')} />
+                    onChange={this.handleChange.bind(this, 'fecha')}
+                    disabled={this.state.disabled} />
                 <label>Hora</label>
                 <input
                     type='text'
                     value={respuestas.hora}
-                    onChange={this.handleChange.bind(this, 'hora')} />
+                    onChange={this.handleChange.bind(this, 'hora')}
+                    disabled={this.state.disabled} />
                 <label>Lugar</label>
                 <input
                     type='text'
                     value={respuestas.lugar}
-                    onChange={this.handleChange.bind(this, 'lugar')} />
+                    onChange={this.handleChange.bind(this, 'lugar')}
+                    disabled={this.state.disabled} />
                 {this.renderComentarios()}
                 {this.renderButton()}
             </div>

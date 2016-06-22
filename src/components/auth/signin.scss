@@ -28,12 +28,6 @@
             border-radius: 3px;
             outline: none;
 
-            &:disabled {
-                color: $disabled-text-color;
-                background-color: $disabled-input-background;
-                border: 1px solid $disabled-input-border;
-            }
-
             &.required {
                 border-width: 2px;
                 border-color: $invalid;

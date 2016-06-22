@@ -23,8 +23,15 @@ var PresentacionDemanda = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {}
+            respuestas: {},
+            disabled: false
         };
+    },
+    componentWillReceiveProps: function (nextProps) {
+        this.getState(nextProps);
+    },
+    getState: function (props) {
+        this.setState({disabled: props.disabled});
     },
     render: function () {
         var respuestas = this.state.respuestas;
@@ -35,17 +42,20 @@ var PresentacionDemanda = React.createClass({
                 <input
                     type='text'
                     value={respuestas.numeroRegistro}
-                    onChange={this.handleChange.bind(this, 'numeroRegistro')} />
+                    onChange={this.handleChange.bind(this, 'numeroRegistro')}
+                    disabled={this.state.disabled} />
                 <label>Juzgado</label>
                 <input
                     type='text'
                     value={respuestas.juzgado}
-                    onChange={this.handleChange.bind(this, 'juzgado')} />
+                    onChange={this.handleChange.bind(this, 'juzgado')}
+                    disabled={this.state.disabled} />
                 <label>Fecha de Presentación</label>
                 <input
                     type='text'
                     value={respuestas.fechaPresentacion}
-                    onChange={this.handleChange.bind(this, 'fechaPresentacion')} />
+                    onChange={this.handleChange.bind(this, 'fechaPresentacion')}
+                    disabled={this.state.disabled} />
                 {this.renderComentarios()}
                 {this.renderButton()}
             </div>

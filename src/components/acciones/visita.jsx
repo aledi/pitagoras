@@ -25,8 +25,15 @@ var Visita = React.createClass({
                 domicilioUbicado: false,
                 clienteUbicado: false,
                 datosDeContacto: null
-            }
+            },
+            disabled: false
         };
+    },
+    componentWillReceiveProps: function (nextProps) {
+        this.getState(nextProps);
+    },
+    getState: function (props) {
+        this.setState({disabled: props.disabled});
     },
     render: function () {
         return (
@@ -39,8 +46,9 @@ var Visita = React.createClass({
                             id='domicilioUbicado'
                             value={1}
                             checked={this.state.respuestas.domicilioUbicado}
-                            onChange={this.handleRadioChange.bind(this, 'domicilioUbicado')} />
-                        <label htmlFor='domicilioUbicado'>Sí</label>
+                            onChange={this.handleRadioChange.bind(this, 'domicilioUbicado')}
+                            disabled={this.state.disabled} />
+                        <label htmlFor='domicilioUbicado' disabled={this.state.disabled}>Sí</label>
                     </div>
                     <div>
                         <input
@@ -48,8 +56,9 @@ var Visita = React.createClass({
                             id='domicilioNoUbicado'
                             value={0}
                             checked={!this.state.respuestas.domicilioUbicado}
-                            onChange={this.handleRadioChange.bind(this, 'domicilioUbicado')} />
-                        <label htmlFor='domicilioNoUbicado'>No</label>
+                            onChange={this.handleRadioChange.bind(this, 'domicilioUbicado')}
+                            disabled={this.state.disabled} />
+                        <label htmlFor='domicilioNoUbicado' disabled={this.state.disabled}>No</label>
                     </div>
                 </div>
                 {this.renderCliente()}
@@ -73,8 +82,9 @@ var Visita = React.createClass({
                             id='clienteUbicado'
                             value={1}
                             checked={this.state.respuestas.clienteUbicado}
-                            onChange={this.handleRadioChange.bind(this, 'clienteUbicado')} />
-                        <label htmlFor='clienteUbicado'>Sí</label>
+                            onChange={this.handleRadioChange.bind(this, 'clienteUbicado')}
+                            disabled={this.state.disabled} />
+                        <label htmlFor='clienteUbicado' disabled={this.state.disabled}>Sí</label>
                     </div>
                     <div>
                         <input
@@ -82,14 +92,19 @@ var Visita = React.createClass({
                             id='clienteNoUbicado'
                             value={0}
                             checked={!this.state.respuestas.clienteUbicado}
-                            onChange={this.handleRadioChange.bind(this, 'clienteUbicado')} />
-                        <label htmlFor='clienteNoUbicado'>No</label>
+                            onChange={this.handleRadioChange.bind(this, 'clienteUbicado')}
+                            disabled={this.state.disabled} />
+                        <label htmlFor='clienteNoUbicado' disabled={this.state.disabled}>No</label>
                     </div>
                 </div>
                 <div>
                     <p>Datos del Contacto</p>
                     <label>¿Con quién dejó el comunicado?</label>
-                    <input type='text' value={this.state.respuestas.datosDeContacto} onChange={this.handleChange} />
+                    <input
+                        type='text'
+                        value={this.state.respuestas.datosDeContacto}
+                        onChange={this.handleChange}
+                        disabled={this.state.disabled} />
                 </div>
             </div>
         );
