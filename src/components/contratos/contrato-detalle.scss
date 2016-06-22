@@ -91,14 +91,12 @@
                 }
 
                 button {
-                    height: 50px;
-                    display: block;
                     margin: 20px 0;
-                    background-color: $denim;
-                    border: none;
-                    border-radius: 3px;
-                    letter-spacing: 1px;
-                    color: white;
+
+                    &:disabled {
+                        background-color: $disabled-button-background;
+                        color: $disabled-text-color;
+                    }
                 }
             }
         }
