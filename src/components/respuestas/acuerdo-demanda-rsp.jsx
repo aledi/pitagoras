@@ -23,7 +23,7 @@ var AcuerdoDemandaRespuestas = React.createClass({
                     <span>{this.props.accion.respuestas.fechaAcuerdo}</span>
                 </div>
                 <div>
-                    <span className='bold'>Fecha de publicación:</span>
+                    <span className='bold'>Fecha de publicación: </span>
                     <span>{this.props.accion.respuestas.fechaPublicacion}</span>
                 </div>
             </div>
