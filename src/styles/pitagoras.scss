@@ -1,0 +1,31 @@
+// -----------------------------------------------------------------------------------------------
+// Colors
+// -----------------------------------------------------------------------------------------------
+
+$gun-metal: #3E3E3B;
+$creosote: #2E323C;
+$nightfall: #3C455C;
+$denim: #4C586F;
+$blue-gray: #8593ae;
+$french-blue: #A2AAB0;
+$lead: #9AACB8;
+$frost: #DDE2E3;
+$white-wash: #EBECED;
+
+$taupe: #73605B;
+$oat: #D6C6B9;
+$cashmere: #CBC5C1;
+
+$invalid: #E05858;
+
+$disabled-text-color: #CCCCCC;
+$disabled-input-background: #F2F2F2;
+$disabled-input-border: #B9BBBB;
+$disabled-button-background: #999999;
+
+// -----------------------------------------------------------------------------------------------
+// Bootstrap Variables and Mixins
+// -----------------------------------------------------------------------------------------------
+
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";

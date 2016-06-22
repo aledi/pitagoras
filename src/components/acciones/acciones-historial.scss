@@ -1,0 +1,41 @@
+@import '~src/styles/pitagoras.scss';
+
+.acciones-historial-list {
+    position: relative;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    border: 1px solid $frost;
+
+    .acciones-list-item {
+        padding: 20px;
+        border-bottom: 1px solid $frost;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        h5 {
+            text-transform: uppercase;
+            font-weight: bold;
+            color: $denim;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .respuestas-wrapper {
+            p {
+                color: $creosote;
+                text-transform: none;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}

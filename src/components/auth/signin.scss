@@ -1,0 +1,72 @@
+@import '~src/styles/pitagoras.scss';
+
+.signin-wrapper {
+    height: 100%;
+    width: 100%;
+
+    form {
+        width: 400px;
+        padding: 40px;
+        margin: 0 auto;
+        margin-top: 80px;
+        background-color: $frost;
+        border: 1px solid $creosote;
+        border-radius: 3px;
+        text-align: center;
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input {
+            height: 35px;
+            width: 100%;
+            display: block;
+            padding: 0 10px;
+            margin-bottom: 30px;
+            border: 1px solid $creosote;
+            border-radius: 3px;
+            outline: none;
+
+            &:disabled {
+                color: $disabled-text-color;
+                background-color: $disabled-input-background;
+                border: 1px solid $disabled-input-border;
+            }
+
+            &.required {
+                border-width: 2px;
+                border-color: $invalid;
+            }
+        }
+
+        button {
+            padding: 10px 40px;
+            margin-top: 20px;
+            background-color: $denim;
+            border: none;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: white;
+
+            &:hover {
+                background-color: $nightfall;
+            }
+
+            &:disabled {
+                background-color: $disabled-button-background;
+                color: $disabled-text-color;
+            }
+        }
+
+        p.error-text {
+            margin: 0;
+            color: $invalid;
+
+            &.hidden {
+                visibility: hidden;
+            }
+        }
+    }
+}

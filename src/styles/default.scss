@@ -1,0 +1,71 @@
+@import '~src/styles/pitagoras.scss';
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    color: $gun-metal;
+}
+
+::-webkit-input-placeholder, ::-moz-placeholder, :-ms-input-placeholder, input:-moz-placeholder {
+    letter-spacing: 0.5px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+#pitagoras-wrapper, #pitagoras {
+    height: 100%;
+    overflow: hidden;
+}
+
+input[type='text'], textarea {
+    border: 1px solid $frost;
+}
+
+input[type='radio'] + label {
+    margin-left: 5px;
+}
+
+button {
+    height: 50px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 0;
+    background-color: $denim;
+    border: none;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    color: white;
+
+    &:hover {
+        background-color: $nightfall;
+    }
+
+    &.add, &.remove {
+        height: auto;
+        width: auto;
+        background-color: transparent;
+        text-transform: uppercase;
+        color: $blue-gray;
+
+        &:hover {
+            color: $denim;
+        }
+    }
+
+    &.add {
+        font-size: 13px;
+    }
+
+    &.remove {
+        font-size: 11px;
+    }
+}

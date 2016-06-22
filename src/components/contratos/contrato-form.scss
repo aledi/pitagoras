@@ -1,0 +1,67 @@
+@import '~src/styles/pitagoras.scss';
+
+.add-contrato {
+    padding: 30px;
+
+    form {
+        width: 800px;
+        padding: 20px 10px;
+        margin: 0 auto;
+        border: 1px solid $frost;
+
+        .section-title {
+            padding: 0 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            font-size: 18px;
+            color: $denim;
+        }
+
+        .input-wrapper {
+            width: 33.3%;
+            display: inline-block;
+            vertical-align: top;
+            padding: 10px;
+            box-sizing: border-box;
+
+            input {
+                height: 30px;
+                width: 100%;
+            }
+
+            select {
+                height: 30px;
+                width: 100%;
+            }
+        }
+
+        hr {
+            margin: 10px -10px;
+            margin-bottom: 20px;
+            border: none;
+            border-bottom: 1px solid $frost;
+        }
+
+        button {
+            &.add {
+                padding: 0;
+                margin: 20px 10px;
+            }
+
+            &.remove {
+                line-height: 50px;
+            }
+
+            &.remove-input {
+                line-height: normal;
+                padding-bottom: 0;
+            }
+
+            &.submit {
+                padding: 0 80px;
+                margin-top: 50px;
+            }
+        }
+    }
+}

@@ -1,0 +1,76 @@
+@import '~src/styles/pitagoras.scss';
+
+// -----------------------------------------------------------------------------------------------
+// Common
+// -----------------------------------------------------------------------------------------------
+
+#pitagoras {
+    header {
+        height: 80px;
+        position: absolute;
+        top: 0; right: 0; left: 0;
+        background-color: $denim;
+
+        div.logo {
+            height: 100%;
+            width: 80px;
+            position: relative;
+            border-right: 1px solid $blue-gray;
+            cursor: pointer;
+        }
+
+        div.links-wrapper {
+            height: 100%;
+            position: absolute;
+            top: 0; right: 80px; left: 80px;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+
+            a {
+                width: 25%;
+                display: inline-block;
+                line-height: 80px;
+                text-decoration: none;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                font-size: 13px;
+                color: white;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: rgba($nightfall, 0.5);
+                }
+
+                &.active {
+                    background-color: $nightfall;
+                    font-weight: bold;
+                }
+
+                &.admin {
+                    width: 20%;
+                }
+            }
+        }
+
+        div.signout {
+            height: 100%;
+            width: 80px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-left: 1px solid $blue-gray;
+        }
+    }
+
+    main {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+        overflow-y: auto;
+        background-color: white;
+    }
+}
