@@ -26,6 +26,10 @@ var PresentacionDemandaRespuestas = React.createClass({
                     <span className='bold'>Fecha de presentación: </span>
                     <span>{this.props.accion.respuestas.fechaPresentacion}</span>
                 </div>
+                <div>
+                    <span className='bold'>Tipo de Juicio: </span>
+                    <span>{this.props.accion.respuestas.tipoJuicio}</span>
+                </div>
             </div>
         );
     }
