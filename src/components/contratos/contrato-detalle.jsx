@@ -33,37 +33,47 @@ var Desahogo = require('src/components/acciones/desahogo');
 var ContratoDetalle = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
     getInitialState: function () {
-        return this.getState(this.props);
+        var state = this.getState(this.props);
+        state.selectedAccionIndex = null;
+
+        return state;
     },
     componentWillReceiveProps: function (nextProps) {
         this.setState(this.getState(nextProps));
     },
     getState: function (props) {
         var accionesComponents;
+        var successfulAccionSave = this.state && this.state.savingAccion && !props.savingAccion && !props.saveError;
 
         if (props.contrato) {
             accionesComponents = [
-                <Visita key='visita' contrato={props.contrato} />,
-                <AltaDocumentos key='altaDocumentos' contrato={props.contrato} />,
-                <AperturaJuicio key='aperturaJuicio' contrato={props.contrato} />,
-                <PresentacionDemanda key='presentacionDemanda' contrato={props.contrato} />,
-                <AcuerdoDemanda key='acuerdoDemanda' contrato={props.contrato} />,
-                <DemandaDesechada key='demandaDesechada' contrato={props.contrato} />,
-                <RecoleccionDocumentos key='recoleccionDocumentos' contrato={props.contrato} />,
-                <DemandaPrevenida key='demandaPrevenida' contrato={props.contrato} />,
-                <DemandaAdmitida key='demandaAdmitida' contrato={props.contrato} />,
-                <DiligenciaEmbargo key='diligenciaEmbargo' contrato={props.contrato} />,
-                <Emplazamiento key='emplazamiento' contrato={props.contrato} />,
-                <Desahogo key='desahogo' contrato={props.contrato} />
+                <Visita key='visita' contrato={props.contrato} disabled={props.savingAccion} />,
+                <AltaDocumentos key='altaDocumentos' contrato={props.contrato} disabled={props.savingAccion} />,
+                <AperturaJuicio key='aperturaJuicio' contrato={props.contrato} disabled={props.savingAccion} />,
+                <PresentacionDemanda key='presentacionDemanda' contrato={props.contrato} disabled={props.savingAccion} />,
+                <AcuerdoDemanda key='acuerdoDemanda' contrato={props.contrato} disabled={props.savingAccion} />,
+                <DemandaDesechada key='demandaDesechada' contrato={props.contrato} disabled={props.savingAccion} />,
+                <RecoleccionDocumentos key='recoleccionDocumentos' contrato={props.contrato} disabled={props.savingAccion} />,
+                <DemandaPrevenida key='demandaPrevenida' contrato={props.contrato} disabled={props.savingAccion} />,
+                <DemandaAdmitida key='demandaAdmitida' contrato={props.contrato} disabled={props.savingAccion} />,
+                <DiligenciaEmbargo key='diligenciaEmbargo' contrato={props.contrato} disabled={props.savingAccion} />,
+                <Emplazamiento key='emplazamiento' contrato={props.contrato} disabled={props.savingAccion} />,
+                <Desahogo key='desahogo' contrato={props.contrato} disabled={props.savingAccion} />
             ];
         }
 
-        return {
+        var state = {
             editingContrato: false,
             showingFullDetails: false,
-            selectedAccionIndex: null,
-            accionesComponents: accionesComponents
+            accionesComponents: accionesComponents,
+            savingAccion: props.savingAccion
         };
+
+        if (successfulAccionSave) {
+            state.selectedAccionIndex = null;
+        }
+
+        return state;
     },
     render: function () {
         if (!this.props.contrato) {
@@ -135,7 +145,7 @@ var ContratoDetalle = React.createClass({
         if (this.state.selectedAccionIndex == null) {
             return;
         }
-
+        
         return (this.state.accionesComponents[this.state.selectedAccionIndex]);
     },
     showAccion: function (accionIndex) {

@@ -21,8 +21,15 @@ var DemandaPrevenida = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {desahogar: false}
+            respuestas: {desahogar: false},
+            disabled: false
         };
+    },
+    componentWillReceiveProps: function (nextProps) {
+        this.getState(nextProps);
+    },
+    getState: function (props) {
+        this.setState({disabled: props.disabled});
     },
     render: function () {
         return (
@@ -34,8 +41,9 @@ var DemandaPrevenida = React.createClass({
                         id='si'
                         value={1}
                         checked={this.state.respuestas.desahogar}
-                        onChange={this.handleChange} />
-                    <label htmlFor='si'>Si</label>
+                        onChange={this.handleChange}
+                        disabled={this.state.disabled} />
+                    <label htmlFor='si' disabled={this.state.disabled}>Si</label>
                 </div>
                 <div>
                     <input
@@ -43,8 +51,9 @@ var DemandaPrevenida = React.createClass({
                         id='no'
                         value={0}
                         checked={!this.state.respuestas.desahogar}
-                        onChange={this.handleChange} />
-                    <label htmlFor='no'>No</label>
+                        onChange={this.handleChange}
+                        disabled={this.state.disabled} />
+                    <label htmlFor='no' disabled={this.state.disabled}>No</label>
                 </div>
                 {this.renderComentarios()}
                 {this.renderButton()}

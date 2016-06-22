@@ -27,13 +27,20 @@ var Emplazamiento = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {resultado: 'No vive en el domicilio'}
+            respuestas: {resultado: 'No vive en el domicilio'},
+            disabled: false
         };
+    },
+    componentWillReceiveProps: function (nextProps) {
+        this.getState(nextProps);
+    },
+    getState: function (props) {
+        this.setState({disabled: props.disabled});
     },
     render: function () {
         return (
             <div className='emplazamiento accion-form'>
-                <select value={options[this.state.respuestas.resultado]} onChange={this.handleChange}>
+                <select value={options[this.state.respuestas.resultado]} onChange={this.handleChange} disabled={this.state.disabled}>
                     {this.renderOptions()}
                 </select>
                 {this.renderComentarios()}

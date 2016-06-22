@@ -21,8 +21,15 @@ var AperturaJuicio = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {tipoJuicio: 'Oral Mercantil'}
+            respuestas: {tipoJuicio: 'Oral Mercantil'},
+            disabled: false
         };
+    },
+    componentWillReceiveProps: function (nextProps) {
+        this.getState(nextProps);
+    },
+    getState: function (props) {
+        this.setState({disabled: props.disabled});
     },
     render: function () {
         return (
@@ -34,8 +41,9 @@ var AperturaJuicio = React.createClass({
                         id='oral'
                         value='Oral Mercantil'
                         checked={this.state.respuestas.tipoJuicio === 'Oral Mercantil'}
-                        onChange={this.handleChange} />
-                    <label htmlFor='oral'>Oral Mercantil</label>
+                        onChange={this.handleChange}
+                        disabled={this.state.disabled} />
+                    <label htmlFor='oral' disabled={this.state.disabled}>Oral Mercantil</label>
                 </div>
                 <div>
                     <input
@@ -43,8 +51,9 @@ var AperturaJuicio = React.createClass({
                         id='ejecutiva'
                         value='Ejecutiva Mercantil'
                         checked={this.state.respuestas.tipoJuicio === 'Ejecutiva Mercantil'}
-                        onChange={this.handleChange} />
-                    <label htmlFor='ejecutiva'>Ejecutiva Mercantil</label>
+                        onChange={this.handleChange}
+                        disabled={this.state.disabled} />
+                    <label htmlFor='ejecutiva' disabled={this.state.disabled}>Ejecutiva Mercantil</label>
                 </div>
                 {this.renderComentarios()}
                 {this.renderButton()}

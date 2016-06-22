@@ -28,12 +28,6 @@
             border-radius: 3px;
             outline: none;
 
-            &:disabled {
-                color: $disabled-text-color;
-                background-color: $disabled-input-background;
-                border: 1px solid $disabled-input-border;
-            }
-
             &.required {
                 border-width: 2px;
                 border-color: $invalid;
@@ -43,16 +37,7 @@
         button {
             padding: 10px 40px;
             margin-top: 20px;
-            background-color: $denim;
-            border: none;
-            border-radius: 3px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: white;
-
-            &:hover {
-                background-color: $nightfall;
-            }
 
             &:disabled {
                 background-color: $disabled-button-background;

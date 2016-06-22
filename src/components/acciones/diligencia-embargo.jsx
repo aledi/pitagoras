@@ -30,13 +30,20 @@ var DiligenciaEmbargo = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {resultado: 'No encontró el domicilio'}
+            respuestas: {resultado: 'No encontró el domicilio'},
+            disabled: false
         };
+    },
+    componentWillReceiveProps: function (nextProps) {
+        this.getState(nextProps);
+    },
+    getState: function (props) {
+        this.setState({disabled: props.disabled});
     },
     render: function () {
         return (
             <div className='diligencia-embargo accion-form'>
-                <select value={options[this.state.respuestas.resultado]} onChange={this.handleChange}>
+                <select value={options[this.state.respuestas.resultado]} onChange={this.handleChange} disabled={this.state.disabled}>
                     {this.renderOptions()}
                 </select>
                 {this.renderComentarios()}
