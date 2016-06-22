@@ -21,7 +21,7 @@ var AcuerdoDemanda = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {resultadoAcuerdo: 'desecha'}
+            respuestas: {resultadoAcuerdo: 'Desecha'}
         };
     },
     render: function () {
@@ -32,8 +32,8 @@ var AcuerdoDemanda = React.createClass({
                     <input
                         type='radio'
                         id='desecha'
-                        value='desecha'
-                        checked={this.state.respuestas.resultadoAcuerdo === 'desecha'}
+                        value='Desecha'
+                        checked={this.state.respuestas.resultadoAcuerdo === 'Desecha'}
                         onChange={this.handleChange} />
                     <label htmlFor='desecha'>Desecha</label>
                 </div>
@@ -41,8 +41,8 @@ var AcuerdoDemanda = React.createClass({
                     <input
                         type='radio'
                         id='previene'
-                        value='previene'
-                        checked={this.state.respuestas.resultadoAcuerdo === 'previene'}
+                        value='Previene'
+                        checked={this.state.respuestas.resultadoAcuerdo === 'Previene'}
                         onChange={this.handleChange} />
                     <label htmlFor='previene'>Previene</label>
                 </div>
@@ -50,8 +50,8 @@ var AcuerdoDemanda = React.createClass({
                     <input
                         type='radio'
                         id='admite'
-                        value='admite'
-                        checked={this.state.respuestas.resultadoAcuerdo === 'admite'}
+                        value='Admite'
+                        checked={this.state.respuestas.resultadoAcuerdo === 'Admite'}
                         onChange={this.handleChange} />
                     <label htmlFor='admite'>Admite</label>
                 </div>

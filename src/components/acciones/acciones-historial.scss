@@ -15,6 +15,14 @@
             border-bottom: none;
         }
 
+        h5 {
+            text-transform: uppercase;
+            font-weight: bold;
+            color: $denim;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
         .bold {
             font-weight: bold;
         }
