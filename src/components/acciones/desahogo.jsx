@@ -23,14 +23,21 @@ var Desahogo = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {desahogar: true}
+            respuestas: {desahogar: true},
+            disabled: false
         };
+    },
+    componentWillReceiveProps: function (nextProps) {
+        this.getState(nextProps);
+    },
+    getState: function (props) {
+        this.setState({disabled: props.disabled});
     },
     render: function () {
         return (
             <div className='desahogo accion-form'>
                 {this.renderComentarios()}
-                <button type='button' onClick={this.handleDesahogo}>Desahogar</button>
+                <button type='button' onClick={this.handleDesahogo} disabled={this.state.disabled}>Desahogar</button>
             </div>
         );
     },

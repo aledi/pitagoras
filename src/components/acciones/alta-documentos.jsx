@@ -23,8 +23,15 @@ var AltaDocumentos = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {}
+            respuestas: {},
+            disabled: false
         };
+    },
+    componentWillReceiveProps: function (nextProps) {
+        this.getState(nextProps);
+    },
+    getState: function (props) {
+        this.setState({disabled: props.disabled});
     },
     render: function () {
         return (
@@ -33,12 +40,14 @@ var AltaDocumentos = React.createClass({
                 <input
                     type='text'
                     value={this.state.respuestas.numeroInterno}
-                    onChange={this.handleChange.bind(this, 'numeroInterno')} />
+                    onChange={this.handleChange.bind(this, 'numeroInterno')}
+                    disabled={this.state.disabled} />
                 <label>Fecha de Recepción</label>
                 <input
                     type='text'
                     value={this.state.respuestas.fechaRecepcion}
-                    onChange={this.handleChange.bind(this, 'fechaRecepcion')} />
+                    onChange={this.handleChange.bind(this, 'fechaRecepcion')}
+                    disabled={this.state.disabled} />
                 {this.renderComentarios()}
                 {this.renderButton()}
             </div>
