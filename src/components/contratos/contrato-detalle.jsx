@@ -15,7 +15,6 @@ var AccionRecord = require('src/records/accion');
 
 var Visita = require('src/components/acciones/visita');
 var AltaDocumentos = require('src/components/acciones/alta-documentos');
-var AperturaJuicio = require('src/components/acciones/apertura-juicio');
 var PresentacionDemanda = require('src/components/acciones/presentacion-demanda');
 var AcuerdoDemanda = require('src/components/acciones/acuerdo-demanda');
 var DemandaDesechada = require('src/components/acciones/demanda-desechada');
@@ -49,7 +48,6 @@ var ContratoDetalle = React.createClass({
             accionesComponents = [
                 <Visita key='visita' contrato={props.contrato} disabled={props.savingAccion} />,
                 <AltaDocumentos key='altaDocumentos' contrato={props.contrato} disabled={props.savingAccion} />,
-                <AperturaJuicio key='aperturaJuicio' contrato={props.contrato} disabled={props.savingAccion} />,
                 <PresentacionDemanda key='presentacionDemanda' contrato={props.contrato} disabled={props.savingAccion} />,
                 <AcuerdoDemanda key='acuerdoDemanda' contrato={props.contrato} disabled={props.savingAccion} />,
                 <DemandaDesechada key='demandaDesechada' contrato={props.contrato} disabled={props.savingAccion} />,
@@ -145,7 +143,7 @@ var ContratoDetalle = React.createClass({
         if (this.state.selectedAccionIndex == null) {
             return;
         }
-        
+
         return (this.state.accionesComponents[this.state.selectedAccionIndex]);
     },
     showAccion: function (accionIndex) {

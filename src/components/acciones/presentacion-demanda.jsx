@@ -38,24 +38,51 @@ var PresentacionDemanda = React.createClass({
 
         return (
             <div className='presentacion-demanda accion-form'>
-                <label>Número de Registro</label>
+                <label className='text-label'>Número de Registro</label>
                 <input
                     type='text'
                     value={respuestas.numeroRegistro}
                     onChange={this.handleChange.bind(this, 'numeroRegistro')}
                     disabled={this.state.disabled} />
-                <label>Juzgado</label>
+                <label className='text-label'>Juzgado</label>
                 <input
                     type='text'
                     value={respuestas.juzgado}
                     onChange={this.handleChange.bind(this, 'juzgado')}
                     disabled={this.state.disabled} />
-                <label>Fecha de Presentación</label>
+                <label className='text-label'>Fecha de Presentación</label>
                 <input
                     type='text'
                     value={respuestas.fechaPresentacion}
                     onChange={this.handleChange.bind(this, 'fechaPresentacion')}
                     disabled={this.state.disabled} />
+                <label className='text-label'>Expediente Judicial</label>
+                <input
+                    type='text'
+                    value={respuestas.expedienteJudicial}
+                    onChange={this.handleChange.bind(this, 'expedienteJudicial')}
+                    disabled={this.state.disabled} />
+                <p>Tipo de Juicio</p>
+                <div>
+                    <input
+                        type='radio'
+                        id='oral'
+                        value='Oral Mercantil'
+                        checked={this.state.respuestas.tipoJuicio === 'Oral Mercantil'}
+                        onChange={this.handleChange.bind(this, 'tipoJuicio')}
+                        disabled={this.state.disabled} />
+                    <label htmlFor='oral' disabled={this.state.disabled}>Oral Mercantil</label>
+                </div>
+                <div>
+                    <input
+                        type='radio'
+                        id='ejecutiva'
+                        value='Ejecutiva Mercantil'
+                        checked={this.state.respuestas.tipoJuicio === 'Ejecutiva Mercantil'}
+                        onChange={this.handleChange.bind(this, 'tipoJuicio')}
+                        disabled={this.state.disabled} />
+                    <label htmlFor='ejecutiva' disabled={this.state.disabled}>Ejecutiva Mercantil</label>
+                </div>
                 {this.renderComentarios()}
                 {this.renderButton()}
             </div>

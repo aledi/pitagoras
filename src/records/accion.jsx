@@ -18,16 +18,15 @@ var ContratoRecord = require('./contrato');
 var ACCIONES_TYPES = {
     1: 'Visita',
     2: 'Alta de documentos',
-    3: 'Apertura de juicio',
-    4: 'Presentación de demanda',
-    5: 'Acuerdo de demanda',
-    6: 'Demanda desechada',
-    7: 'Recolección de documentos',
-    8: 'Demanda prevenida',
-    9: 'Demanda admitida',
-    10: 'Diligencia de embargo',
-    11: 'Emplazamiento',
-    12: 'Desahogo / Cierre'
+    3: 'Presentación de demanda',
+    4: 'Acuerdo de demanda',
+    5: 'Demanda desechada',
+    6: 'Recolección de documentos',
+    7: 'Demanda prevenida',
+    8: 'Demanda admitida',
+    9: 'Diligencia de embargo',
+    10: 'Emplazamiento',
+    11: 'Desahogo / Cierre'
 };
 
 var AccionRecord = Immutable.Record({

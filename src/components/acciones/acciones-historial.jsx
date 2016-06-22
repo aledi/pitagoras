@@ -12,7 +12,6 @@ var AccionRecord = require('src/records/accion');
 
 var VisitaRsp = require('src/components/respuestas/visita-rsp'); // 1
 var AltaDocumentosRsp = require('src/components/respuestas/alta-documentos-rsp'); // 2
-var AperturaJuicioRsp = require('src/components/respuestas/apertura-juicio-rsp'); // 3
 var PresentacionDemandaRsp = require('src/components/respuestas/presentacion-demanda-rsp'); // 4
 var AcuerdoDemandaRsp = require('src/components/respuestas/acuerdo-demanda-rsp'); // 5
 var DemandaDesechadaRsp = require('src/components/respuestas/demanda-desechada-rsp'); // 6
@@ -72,24 +71,22 @@ var AccionesHistorial = React.createClass({
             case 2:
                 return (<AltaDocumentosRsp accion={accion} />);
             case 3:
-                return (<AperturaJuicioRsp accion={accion} />);
-            case 4:
                 return (<PresentacionDemandaRsp accion={accion} />);
-            case 5:
+            case 4:
                 return (<AcuerdoDemandaRsp accion={accion} />);
-            case 6:
+            case 5:
                 return (<DemandaDesechadaRsp accion={accion} />);
-            case 7:
+            case 6:
                 return (<RecoleccionDocumentosRsp accion={accion} />);
-            case 8:
+            case 7:
                 return (<DemandaPrevenidaRsp accion={accion} />);
-            case 9:
+            case 8:
                 return (<DemandaAdmitidaRsp accion={accion} />);
-            case 10:
+            case 9:
                 return (<DiligenciaEmbargoRsp accion={accion} />);
-            case 11:
+            case 10:
                 return (<EmplazamientoRsp accion={accion} />);
-            case 12:
+            case 11:
                 return (<DesahogoRsp accion={accion} />);
             default:
                 break;
