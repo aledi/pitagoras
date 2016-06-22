@@ -36,7 +36,6 @@ var Main = React.createClass({
             children: props.children,
             title: component.title || 'MISSING_TITLE',
 
-            // Preserve previous links to keep last child route (e.g. /desarrollos/serena)
             links: this.state ? this.state.links : {
                 inicio: '/inicio',
                 agregarContrato: '/agregar-contrato',
@@ -52,8 +51,7 @@ var Main = React.createClass({
             state.showMobileHeaderMenu = false;
         }
 
-        // Update link of top level component (e.g. desarrollos = /desarrollos/serena)
-        // NOTE: routes[0] is always main, routes[1] is always top level component (e.g. Desarrollos, Locales, etc)
+        // NOTE: routes[0] is always main, routes[1] is always top level component
         state.links[props.routes[1].path] = props.location.pathname;
 
         return state;
