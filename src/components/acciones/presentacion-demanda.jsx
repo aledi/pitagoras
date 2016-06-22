@@ -1,7 +1,5 @@
 'use strict';
 
-require('./presentacion-demanda.scss');
-
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
 // -----------------------------------------------------------------------------------------------
@@ -38,6 +36,27 @@ var PresentacionDemanda = React.createClass({
 
         return (
             <div className='presentacion-demanda accion-form'>
+                <p>Tipo de Juicio</p>
+                <div>
+                    <input
+                        type='radio'
+                        id='oral'
+                        value='Oral Mercantil'
+                        checked={this.state.respuestas.tipoJuicio === 'Oral Mercantil'}
+                        onChange={this.handleChange.bind(this, 'tipoJuicio')}
+                        disabled={this.state.disabled} />
+                    <label htmlFor='oral' disabled={this.state.disabled}>Oral Mercantil</label>
+                </div>
+                <div>
+                    <input
+                        type='radio'
+                        id='ejecutiva'
+                        value='Ejecutiva Mercantil'
+                        checked={this.state.respuestas.tipoJuicio === 'Ejecutiva Mercantil'}
+                        onChange={this.handleChange.bind(this, 'tipoJuicio')}
+                        disabled={this.state.disabled} />
+                    <label htmlFor='ejecutiva' disabled={this.state.disabled}>Ejecutiva Mercantil</label>
+                </div>
                 <label className='text-label'>Número de Registro</label>
                 <input
                     type='text'
@@ -62,27 +81,6 @@ var PresentacionDemanda = React.createClass({
                     value={respuestas.expedienteJudicial}
                     onChange={this.handleChange.bind(this, 'expedienteJudicial')}
                     disabled={this.state.disabled} />
-                <p>Tipo de Juicio</p>
-                <div>
-                    <input
-                        type='radio'
-                        id='oral'
-                        value='Oral Mercantil'
-                        checked={this.state.respuestas.tipoJuicio === 'Oral Mercantil'}
-                        onChange={this.handleChange.bind(this, 'tipoJuicio')}
-                        disabled={this.state.disabled} />
-                    <label htmlFor='oral' disabled={this.state.disabled}>Oral Mercantil</label>
-                </div>
-                <div>
-                    <input
-                        type='radio'
-                        id='ejecutiva'
-                        value='Ejecutiva Mercantil'
-                        checked={this.state.respuestas.tipoJuicio === 'Ejecutiva Mercantil'}
-                        onChange={this.handleChange.bind(this, 'tipoJuicio')}
-                        disabled={this.state.disabled} />
-                    <label htmlFor='ejecutiva' disabled={this.state.disabled}>Ejecutiva Mercantil</label>
-                </div>
                 {this.renderComentarios()}
                 {this.renderButton()}
             </div>
