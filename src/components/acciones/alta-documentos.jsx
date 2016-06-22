@@ -1,7 +1,5 @@
 'use strict';
 
-require('./alta-documentos.scss');
-
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
 // -----------------------------------------------------------------------------------------------
@@ -36,13 +34,13 @@ var AltaDocumentos = React.createClass({
     render: function () {
         return (
             <div className='alta-documentos accion-form'>
-                <label>Número Interno</label>
+                <label className='text-label'>Número Interno</label>
                 <input
                     type='text'
                     value={this.state.respuestas.numeroInterno}
                     onChange={this.handleChange.bind(this, 'numeroInterno')}
                     disabled={this.state.disabled} />
-                <label>Fecha de Recepción</label>
+                <label className='text-label'>Fecha de Recepción</label>
                 <input
                     type='text'
                     value={this.state.respuestas.fechaRecepcion}

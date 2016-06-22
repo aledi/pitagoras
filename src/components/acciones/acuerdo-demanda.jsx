@@ -51,7 +51,7 @@ var AcuerdoDemanda = React.createClass({
                         id='previene'
                         value='Previene'
                         checked={this.state.respuestas.resultadoAcuerdo === 'Previene'}
-                        onChange={this.handleChange} />
+                        onChange={this.handleChange.bind(this, 'resultadoAcuerdo')} />
                     <label htmlFor='previene' disabled={this.state.disabled}>Previene</label>
                 </div>
                 <div>
@@ -60,18 +60,34 @@ var AcuerdoDemanda = React.createClass({
                         id='admite'
                         value='Admite'
                         checked={this.state.respuestas.resultadoAcuerdo === 'Admite'}
-                        onChange={this.handleChange}
+                        onChange={this.handleChange.bind(this, 'resultadoAcuerdo')}
                         disabled={this.state.disabled} />
                     <label htmlFor='admite' disabled={this.state.disabled}>Admite</label>
+                </div>
+                <div>
+                    <label className='text-label'>Fecha de acuerdo</label>
+                    <input
+                        type='text'
+                        value={this.state.respuestas.fechaAcuerdo}
+                        onChange={this.handleChange.bind(this, 'fechaAcuerdo')}
+                        disabled={this.state.disabled} />
+                </div>
+                <div>
+                    <label className='text-label'>Fecha de publicación</label>
+                    <input
+                        type='text'
+                        value={this.state.respuestas.fechaPublicacion}
+                        onChange={this.handleChange.bind(this, 'fechaPublicacion')}
+                        disabled={this.state.disabled} />
                 </div>
                 {this.renderComentarios()}
                 {this.renderButton()}
             </div>
         );
     },
-    handleChange: function (event) {
+    handleChange: function (propertyName, event) {
         var respuestas = this.state.respuestas;
-        respuestas.resultadoAcuerdo = event.target.value;
+        respuestas[propertyName] = event.target.value;
         this.setState({respuestas: respuestas});
     }
 });

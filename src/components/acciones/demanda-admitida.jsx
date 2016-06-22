@@ -57,19 +57,19 @@ var DemandaAdmitida = React.createClass({
                         disabled={this.state.disabled} />
                     <label htmlFor='ejecutiva' disabled={this.state.disabled}>Ejecutiva Mercantil</label>
                 </div>
-                <label>Fecha</label>
+                <label className='text-label'>Fecha</label>
                 <input
                     type='text'
                     value={respuestas.fecha}
                     onChange={this.handleChange.bind(this, 'fecha')}
                     disabled={this.state.disabled} />
-                <label>Hora</label>
+                <label className='text-label'>Hora</label>
                 <input
                     type='text'
                     value={respuestas.hora}
                     onChange={this.handleChange.bind(this, 'hora')}
                     disabled={this.state.disabled} />
-                <label>Lugar</label>
+                <label className='text-label'>Lugar</label>
                 <input
                     type='text'
                     value={respuestas.lugar}
