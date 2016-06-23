@@ -19,7 +19,7 @@ var Desahogo = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
         return {
-            tipo: 12,
+            tipo: 11,
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,

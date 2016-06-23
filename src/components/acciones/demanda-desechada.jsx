@@ -27,13 +27,14 @@ var DemandaDesechada = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
         return {
-            tipo: 6,
+            tipo: 5,
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
                 motivo: 'No coinciden los montos',
                 regresaDocumentos: false,
+                fechaRegreso: null,
                 horario: null
             },
             disabled: false
@@ -74,6 +75,7 @@ var DemandaDesechada = React.createClass({
                         disabled={this.state.disabled} />
                     <label htmlFor='no' disabled={this.state.disabled}>No</label>
                 </div>
+                {this.renderFecha()}
                 {this.renderHorario()}
                 {this.renderComentarios()}
                 {this.renderButton()}
@@ -91,7 +93,7 @@ var DemandaDesechada = React.createClass({
                 <input
                     type='text'
                     value={this.state.respuestas.otroMotivo}
-                    onChange={this.handleChange}
+                    onChange={this.handleChange.bind(this, 'otroMotivo')}
                     disabled={this.state.disabled} />
             </div>
         );
@@ -100,6 +102,22 @@ var DemandaDesechada = React.createClass({
         return (options.map(function (option, index) {
             return (<option key={index} value={index}>{option}</option>);
         }));
+    },
+    renderFecha: function () {
+        if (!this.state.respuestas.regresaDocumentos) {
+            return;
+        }
+
+        return (
+            <div>
+                <label className='text-label'>Fecha de regreso</label>
+                <input
+                    type='text'
+                    value={this.state.fechaRegreso}
+                    onChange={this.handleChange.bind(this, 'fechaRegreso')}
+                    disabled={this.state.disabled} />
+            </div>
+        );
     },
     renderHorario: function () {
         if (!this.state.respuestas.regresaDocumentos) {
@@ -112,7 +130,7 @@ var DemandaDesechada = React.createClass({
                 <input
                     type='text'
                     value={this.state.horario}
-                    onChange={this.handleHorarioChange}
+                    onChange={this.handleChange.bind(this, 'horario')}
                     disabled={this.state.disabled} />
             </div>
         );
@@ -127,14 +145,9 @@ var DemandaDesechada = React.createClass({
         respuestas.regresaDocumentos = parseInt(event.target.value, 10) === 1;
         this.setState({respuestas: respuestas});
     },
-    handleHorarioChange: function (event) {
+    handleChange: function (propertyName, event) {
         var respuestas = this.state.respuestas;
-        respuestas.horario = event.target.value;
-        this.setState({respuestas: respuestas});
-    },
-    handleChange: function (event) {
-        var respuestas = this.state.respuestas;
-        respuestas.otroMotivo = event.target.value;
+        respuestas[propertyName] = event.target.value;
         this.setState({respuestas: respuestas});
     }
 });
