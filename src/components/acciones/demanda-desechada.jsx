@@ -19,7 +19,8 @@ var options = [
     'Se declara incompetente de conocer el caso',
     'Varios conceptos en un solo hecho',
     'Se está cobrando doble interés',
-    'La demanda no es legible'
+    'La demanda no es legible',
+    'Otro'
 ];
 
 var DemandaDesechada = React.createClass({
@@ -48,7 +49,7 @@ var DemandaDesechada = React.createClass({
         return (
             <div className='demanda-desechada accion-form'>
                 <p>Motivo</p>
-                <select value={options[this.state.respuestas.motivo]} onChange={this.handleChange} disabled={this.state.disabled}>
+                <select value={options[this.state.respuestas.motivo]} onChange={this.handleSelectChange} disabled={this.state.disabled}>
                     {this.renderOptions()}
                 </select>
                 <p>¿Regresan documentos?</p>
@@ -72,9 +73,26 @@ var DemandaDesechada = React.createClass({
                         disabled={this.state.disabled} />
                     <label htmlFor='no' disabled={this.state.disabled}>No</label>
                 </div>
+                {this.renderOtroMotivo()}
                 {this.renderHorario()}
                 {this.renderComentarios()}
                 {this.renderButton()}
+            </div>
+        );
+    },
+    renderOtroMotivo: function () {
+        if (this.state.respuestas.motivo !== options[options.length - 1]) {
+            return;
+        }
+
+        return (
+            <div>
+                <label>Especifique el motivo</label>
+                <input
+                    type='text'
+                    value={this.state.respuestas.otroMotivo}
+                    onChange={this.handleChange}
+                    disabled={this.state.disabled} />
             </div>
         );
     },
@@ -99,7 +117,7 @@ var DemandaDesechada = React.createClass({
             </div>
         );
     },
-    handleSelectChange: function () {
+    handleSelectChange: function (event) {
         var respuestas = this.state.respuestas;
         respuestas.motivo = options[event.target.value];
         this.setState({respuestas: respuestas});
@@ -112,6 +130,11 @@ var DemandaDesechada = React.createClass({
     handleHorarioChange: function (event) {
         var respuestas = this.state.respuestas;
         respuestas.horario = event.target.value;
+        this.setState({respuestas: respuestas});
+    },
+    handleChange: function (event) {
+        var respuestas = this.state.respuestas;
+        respuestas.otroMotivo = event.target.value;
         this.setState({respuestas: respuestas});
     }
 });
