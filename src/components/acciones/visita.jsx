@@ -99,7 +99,7 @@ var Visita = React.createClass({
                 </div>
                 <div>
                     <p>Datos del Contacto</p>
-                    <label>¿Con quién dejó el comunicado?</label>
+                    <label className='text-label'>¿Con quién dejó el comunicado?</label>
                     <input
                         type='text'
                         value={this.state.respuestas.datosDeContacto}

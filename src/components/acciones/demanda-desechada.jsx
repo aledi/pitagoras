@@ -90,7 +90,7 @@ var DemandaDesechada = React.createClass({
 
         return (
             <div>
-                <label>Horario</label>
+                <label className='text-label'>Horario</label>
                 <input
                     type='text'
                     value={this.state.horario}
