@@ -52,6 +52,7 @@ var DemandaDesechada = React.createClass({
                 <select value={options[this.state.respuestas.motivo]} onChange={this.handleSelectChange} disabled={this.state.disabled}>
                     {this.renderOptions()}
                 </select>
+                {this.renderOtroMotivo()}
                 <p>¿Regresan documentos?</p>
                 <div>
                     <input
@@ -73,7 +74,6 @@ var DemandaDesechada = React.createClass({
                         disabled={this.state.disabled} />
                     <label htmlFor='no' disabled={this.state.disabled}>No</label>
                 </div>
-                {this.renderOtroMotivo()}
                 {this.renderHorario()}
                 {this.renderComentarios()}
                 {this.renderButton()}
@@ -87,7 +87,7 @@ var DemandaDesechada = React.createClass({
 
         return (
             <div>
-                <label>Especifique el motivo</label>
+                <label className='text-label'>Especifique el motivo</label>
                 <input
                     type='text'
                     value={this.state.respuestas.otroMotivo}
