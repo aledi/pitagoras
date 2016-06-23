@@ -42,7 +42,7 @@ var RecoleccionDocumentos = React.createClass({
                             id='si'
                             value={1}
                             checked={this.state.respuestas.recogeDocumentos}
-                            onChange={this.handleChange}
+                            onChange={this.handleRadioChange}
                             disabled={this.state.disabled} />
                         <label htmlFor='si' disabled={this.state.disabled}>Si</label>
                     </div>
@@ -52,17 +52,68 @@ var RecoleccionDocumentos = React.createClass({
                             id='no'
                             value={0}
                             checked={!this.state.respuestas.recogeDocumentos}
-                            onChange={this.handleChange}
+                            onChange={this.handleRadioChange}
                             disabled={this.state.disabled} />
                         <label htmlFor='no' disabled={this.state.disabled}>No</label>
                     </div>
+                    {this.renderTextInputs()}
                 </div>
                 {this.renderComentarios()}
                 {this.renderButton()}
             </div>
         );
     },
-    handleChange: function (event) {
+    renderTextInputs: function () {
+        if (this.state.respuestas.recogeDocumentos) {
+            return (
+                <div>
+                    <div>
+                        <label>¿Quién recogió?</label>
+                        <input
+                            type='text'
+                            value={this.state.respuestas.personaRecoge}
+                            onChange={this.handleChange.bind(this, 'personaRecoge')}
+                            disabled={this.state.disabled} />
+                    </div>
+                    <div>
+                        <label>¿Qué recogió?</label>
+                        <input
+                            type='text'
+                            value={this.state.respuestas.documentosRecogidos}
+                            onChange={this.handleChange.bind(this, 'documentosRecogidos')}
+                            disabled={this.state.disabled} />
+                    </div>
+                </div>
+            );
+        }
+
+        return (
+            <div>
+                <div>
+                    <label>Nueva Fecha</label>
+                    <input
+                        type='text'
+                        value={this.state.respuestas.nuevaFecha}
+                        onChange={this.handleChange.bind(this, 'nuevaFecha')}
+                        disabled={this.state.disabled} />
+                </div>
+                <div>
+                    <label>Hora</label>
+                    <input
+                        type='text'
+                        value={this.state.respuestas.hora}
+                        onChange={this.handleChange.bind(this, 'hora')}
+                        disabled={this.state.disabled} />
+                </div>
+            </div>
+        );
+    },
+    handleChange: function (propertyName, event) {
+        var respuestas = this.state.respuestas;
+        respuestas[propertyName] = event.target.value;
+        this.setState({respuestas: respuestas});
+    },
+    handleRadioChange: function (event) {
         var respuestas = this.state.respuestas;
         respuestas.recogeDocumentos = parseInt(event.target.value, 10) === 1;
         this.setState({respuestas: respuestas});
