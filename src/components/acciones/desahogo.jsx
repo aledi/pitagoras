@@ -19,7 +19,7 @@ var Desahogo = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
         return {
-            tipo: 11,
+            tipo: 8,
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
@@ -42,7 +42,7 @@ var Desahogo = React.createClass({
         );
     },
     handleDesahogo: function () {
-        AccionesActions.saveAccion(AccionRecord.prepareForParse(this.state));
+        AccionesActions.saveAccion(AccionRecord.prepareForParse(this.state), this.state.contrato.id);
     }
 });
 

@@ -81,13 +81,13 @@ var AccionesHistorial = React.createClass({
             case 7:
                 return (<DemandaPrevenidaRsp accion={accion} />);
             case 8:
-                return (<DemandaAdmitidaRsp accion={accion} />);
-            case 9:
-                return (<DiligenciaEmbargoRsp accion={accion} />);
-            case 10:
-                return (<EmplazamientoRsp accion={accion} />);
-            case 11:
                 return (<DesahogoRsp accion={accion} />);
+            case 9:
+                return (<DemandaAdmitidaRsp accion={accion} />);
+            case 10:
+                return (<DiligenciaEmbargoRsp accion={accion} />);
+            case 11:
+                return (<EmplazamientoRsp accion={accion} />);
             default:
                 break;
         }
