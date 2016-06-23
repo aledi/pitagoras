@@ -12,15 +12,15 @@ var AccionRecord = require('src/records/accion');
 
 var VisitaRsp = require('src/components/respuestas/visita-rsp'); // 1
 var AltaDocumentosRsp = require('src/components/respuestas/alta-documentos-rsp'); // 2
-var PresentacionDemandaRsp = require('src/components/respuestas/presentacion-demanda-rsp'); // 4
-var AcuerdoDemandaRsp = require('src/components/respuestas/acuerdo-demanda-rsp'); // 5
-var DemandaDesechadaRsp = require('src/components/respuestas/demanda-desechada-rsp'); // 6
-var RecoleccionDocumentosRsp = require('src/components/respuestas/recoleccion-documentos-rsp'); // 7
-var DemandaPrevenidaRsp = require('src/components/respuestas/demanda-prevenida-rsp'); // 8
-var DemandaAdmitidaRsp = require('src/components/respuestas/demanda-admitida-rsp'); // 9
-var DiligenciaEmbargoRsp = require('src/components/respuestas/diligencia-embargo-rsp'); // 10
-var EmplazamientoRsp = require('src/components/respuestas/emplazamiento-rsp'); // 11
-var DesahogoRsp = require('src/components/respuestas/desahogo-rsp'); // 12
+var PresentacionDemandaRsp = require('src/components/respuestas/presentacion-demanda-rsp'); // 3
+var AcuerdoDemandaRsp = require('src/components/respuestas/acuerdo-demanda-rsp'); // 4
+var DemandaDesechadaRsp = require('src/components/respuestas/demanda-desechada-rsp'); // 5
+var RecoleccionDocumentosRsp = require('src/components/respuestas/recoleccion-documentos-rsp'); // 6
+var DemandaPrevenidaRsp = require('src/components/respuestas/demanda-prevenida-rsp'); // 7
+var DemandaAdmitidaRsp = require('src/components/respuestas/demanda-admitida-rsp'); // 8
+var DiligenciaEmbargoRsp = require('src/components/respuestas/diligencia-embargo-rsp'); // 9
+var EmplazamientoRsp = require('src/components/respuestas/emplazamiento-rsp'); // 10
+var DesahogoRsp = require('src/components/respuestas/desahogo-rsp'); // 11
 
 // -----------------------------------------------------------------------------------------------
 // AccionesHistorial

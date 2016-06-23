@@ -17,7 +17,7 @@ var AcuerdoDemanda = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
         return {
-            tipo: 5,
+            tipo: 4,
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,

@@ -25,6 +25,10 @@ var DemandaDesechadaRespuestas = React.createClass({
                     <span>{RespuestasUtils.formatBooleanRespuesta(this.props.accion.respuestas.regresaDocumentos)}</span>
                 </div>
                 <div>
+                    <span className='bold'>Fecha de regreso de documentos: </span>
+                    <span>{this.props.accion.respuestas.fechaRegreso}</span>
+                </div>
+                <div>
                     <span className='bold'>Horario: </span>
                     <span>{this.props.accion.respuestas.horario}</span>
                 </div>

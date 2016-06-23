@@ -17,11 +17,11 @@ var PresentacionDemanda = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
         return {
-            tipo: 4,
+            tipo: 3,
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {},
+            respuestas: {tipoJuicio: 'Oral Mercantil'},
             disabled: false
         };
     },
