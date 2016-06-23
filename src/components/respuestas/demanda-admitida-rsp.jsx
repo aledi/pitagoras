@@ -30,6 +30,38 @@ var DemandaAdmitidaRespuestas = React.createClass({
                     <span className='bold'>Lugar: </span>
                     <span>{this.props.accion.respuestas.lugar}</span>
                 </div>
+                {this.renderMoreRespuestas()}
+            </div>
+        );
+    },
+    renderMoreRespuestas: function () {
+        if (this.props.accion.respuestas.tipoDemanda === 'Oral Mercantil') {
+            return (
+                <div>
+                    <span className='bold'>Resultado: </span>
+                    <span>{this.props.accion.respuestas.resultado}</span>
+                </div>
+            );
+        }
+
+        return (
+            <div>
+                <div>
+                    <span className='bold'>Fecha de cita: </span>
+                    <span>{this.props.accion.respuestas.cita.fecha}</span>
+                </div>
+                <div>
+                    <span className='bold'>Lugar: </span>
+                    <span>{this.props.accion.respuestas.cita.lugar}</span>
+                </div>
+                <div>
+                    <span className='bold'>Nombre del actuario: </span>
+                    <span>{this.props.accion.respuestas.cita.nombreActuario}</span>
+                </div>
+                <div>
+                    <span className='bold'>Teléfono del actuario: </span>
+                    <span>{this.props.accion.respuestas.cita.telefonoActuario}</span>
+                </div>
             </div>
         );
     }
