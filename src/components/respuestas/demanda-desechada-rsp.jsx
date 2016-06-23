@@ -18,7 +18,7 @@ var DemandaDesechadaRespuestas = React.createClass({
             <div className='respuestas-wrapper'>
                 <div>
                     <span className='bold'>Motivo: </span>
-                    <span>{this.props.accion.respuestas.motivo}</span>
+                    <span>{this.props.accion.respuestas.otroMotivo ? this.props.accion.respuestas.otroMotivo : this.props.accion.respuestas.motivo}</span>
                 </div>
                 <div>
                     <span className='bold'>¿Regresan documentos?: </span>
