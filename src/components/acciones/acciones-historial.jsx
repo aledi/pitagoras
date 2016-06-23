@@ -17,10 +17,9 @@ var AcuerdoDemandaRsp = require('src/components/respuestas/acuerdo-demanda-rsp')
 var DemandaDesechadaRsp = require('src/components/respuestas/demanda-desechada-rsp'); // 5
 var RecoleccionDocumentosRsp = require('src/components/respuestas/recoleccion-documentos-rsp'); // 6
 var DemandaPrevenidaRsp = require('src/components/respuestas/demanda-prevenida-rsp'); // 7
-var DemandaAdmitidaRsp = require('src/components/respuestas/demanda-admitida-rsp'); // 8
-var DiligenciaEmbargoRsp = require('src/components/respuestas/diligencia-embargo-rsp'); // 9
-var EmplazamientoRsp = require('src/components/respuestas/emplazamiento-rsp'); // 10
-var DesahogoRsp = require('src/components/respuestas/desahogo-rsp'); // 11
+var DesahogoRsp = require('src/components/respuestas/desahogo-rsp'); // 8
+var DemandaAdmitidaRsp = require('src/components/respuestas/demanda-admitida-rsp'); // 9
+var DiligenciaEmbargoRsp = require('src/components/respuestas/diligencia-embargo-rsp'); // 10
 
 // -----------------------------------------------------------------------------------------------
 // AccionesHistorial
@@ -86,8 +85,6 @@ var AccionesHistorial = React.createClass({
                 return (<DemandaAdmitidaRsp accion={accion} />);
             case 10:
                 return (<DiligenciaEmbargoRsp accion={accion} />);
-            case 11:
-                return (<EmplazamientoRsp accion={accion} />);
             default:
                 break;
         }
