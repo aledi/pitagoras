@@ -17,7 +17,7 @@ var DemandaAdmitida = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
         return {
-            tipo: 8,
+            tipo: 9,
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,

@@ -23,10 +23,10 @@ var ACCIONES_TYPES = {
     5: 'Demanda desechada',
     6: 'Recolección de documentos',
     7: 'Demanda prevenida',
-    8: 'Demanda admitida',
-    9: 'Diligencia de embargo',
-    10: 'Emplazamiento',
-    11: 'Desahogo / Cierre'
+    8: 'Desahogo / Cierre',
+    9: 'Demanda admitida',
+    10: 'Diligencia de embargo',
+    11: 'Emplazamiento'
 };
 
 var AccionRecord = Immutable.Record({

@@ -20,10 +20,10 @@ var AcuerdoDemanda = require('src/components/acciones/acuerdo-demanda');
 var DemandaDesechada = require('src/components/acciones/demanda-desechada');
 var RecoleccionDocumentos = require('src/components/acciones/recoleccion-documentos');
 var DemandaPrevenida = require('src/components/acciones/demanda-prevenida');
+var Desahogo = require('src/components/acciones/desahogo');
 var DemandaAdmitida = require('src/components/acciones/demanda-admitida');
 var DiligenciaEmbargo = require('src/components/acciones/diligencia-embargo');
 var Emplazamiento = require('src/components/acciones/emplazamiento');
-var Desahogo = require('src/components/acciones/desahogo');
 
 // -----------------------------------------------------------------------------------------------
 // Contrato
@@ -53,10 +53,10 @@ var ContratoDetalle = React.createClass({
                 <DemandaDesechada key='demandaDesechada' contrato={props.contrato} disabled={props.savingAccion} />,
                 <RecoleccionDocumentos key='recoleccionDocumentos' contrato={props.contrato} disabled={props.savingAccion} />,
                 <DemandaPrevenida key='demandaPrevenida' contrato={props.contrato} disabled={props.savingAccion} />,
+                <Desahogo key='desahogo' contrato={props.contrato} disabled={props.savingAccion} />,
                 <DemandaAdmitida key='demandaAdmitida' contrato={props.contrato} disabled={props.savingAccion} />,
                 <DiligenciaEmbargo key='diligenciaEmbargo' contrato={props.contrato} disabled={props.savingAccion} />,
-                <Emplazamiento key='emplazamiento' contrato={props.contrato} disabled={props.savingAccion} />,
-                <Desahogo key='desahogo' contrato={props.contrato} disabled={props.savingAccion} />
+                <Emplazamiento key='emplazamiento' contrato={props.contrato} disabled={props.savingAccion} />
             ];
         }
 
