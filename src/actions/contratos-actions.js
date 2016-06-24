@@ -68,6 +68,12 @@ module.exports = {
                 contrato: createContratoRecord(payload)
             });
         });
+    },
+    sortContratos: function (sortColumn) {
+        Dispatcher.dispatch({
+            type: 'CONTRATOS_SORT',
+            sortColumn: sortColumn
+        });
     }
 };
 
