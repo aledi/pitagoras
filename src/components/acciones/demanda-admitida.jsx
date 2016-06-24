@@ -98,9 +98,12 @@ var DemandaAdmitida = React.createClass({
         }
 
         return (
-            <select value={options[this.state.respuestas.resultado]} onChange={this.handleChange} disabled={this.state.disabled}>
-                {this.renderOptions()}
-            </select>
+            <div>
+                <label className='text-label'>Resultado de Emplazamiento</label>
+                <select value={options[this.state.respuestas.resultado]} onChange={this.handleChange} disabled={this.state.disabled}>
+                    {this.renderOptions()}
+                </select>
+            </div>
         );
     },
     renderOptions: function () {
@@ -115,6 +118,7 @@ var DemandaAdmitida = React.createClass({
 
         return (
             <div>
+                <p>Citatorio</p>
                 <div>
                     <label className='text-label'>Fecha de cita</label>
                     <input
