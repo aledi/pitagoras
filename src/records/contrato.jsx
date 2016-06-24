@@ -11,6 +11,7 @@ var moment = require('moment');
 
 var ClienteObject = Parse.Object.extend('Cliente');
 var ClienteRecord = require('./cliente');
+var RespuestasUtils = require('src/components/respuestas/respuestas-utils');
 var VehiculoObject = Parse.Object.extend('Vehiculo');
 var VehiculoRecord = require('./vehiculo');
 
@@ -21,7 +22,9 @@ var VehiculoRecord = require('./vehiculo');
 var ContratoRecord = Immutable.Record({
     id: null,
     cliente: null,
+    especial: null,
     fechaContrato: null,
+    juzgado: null,
     monto: null,
     numeroContrato: '',
     plazo: null,
@@ -73,6 +76,10 @@ class Contrato extends ContratoRecord {
         sortValues.anio = definition.vehiculo.anio;
         sortValues.distribuidor = definition.vehiculo.distribuidor.toLowerCase();
 
+        // Juzgado
+        definition.juzgado = definition.juzgado;
+        sortValues.juzgado = definition.juzgado.toLowerCase();
+
         // Cliente
         definition.cliente = new ClienteRecord(definition.cliente);
         sortValues.cliente = definition.cliente.formattedValues.nombre.toLowerCase();
@@ -90,6 +97,11 @@ class Contrato extends ContratoRecord {
         definition.tasa = definition.tasa;
         formattedValues.tasa = formatNumber({suffix: '%'})(definition.tasa);
         sortValues.tasa = definition.tasa;
+
+        // Cliente
+        definition.especial = definition.especial;
+        formattedValues.especial = RespuestasUtils.formatBooleanRespuesta(definition.especial);
+        sortValues.especial = definition.especial;
 
         // Referencias
         if (definition.referencias && definition.referencias.length) {

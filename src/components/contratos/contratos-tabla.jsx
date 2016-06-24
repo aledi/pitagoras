@@ -23,6 +23,7 @@ var ContratosTabla = React.createClass({
                     <tbody>
                         <tr>
                             <th onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>Número de Contrato</th>
+                            <th onClick={ContratosActions.sortContratos.bind(this, 'juzgado')}>Juzgado</th>
                             <th onClick={ContratosActions.sortContratos.bind(this, 'cliente')}>Nombre de Cliente</th>
                             <th onClick={ContratosActions.sortContratos.bind(this, 'modelo')}>Modelo Vehículo</th>
                             <th onClick={ContratosActions.sortContratos.bind(this, 'marca')}>Marca</th>
@@ -31,6 +32,7 @@ var ContratosTabla = React.createClass({
                             <th onClick={ContratosActions.sortContratos.bind(this, 'monto')}>Monto</th>
                             <th onClick={ContratosActions.sortContratos.bind(this, 'plazo')}>Plazo</th>
                             <th onClick={ContratosActions.sortContratos.bind(this, 'tasa')}>Tasa</th>
+                            <th onClick={ContratosActions.sortContratos.bind(this, 'especial')}>Especial</th>
                         </tr>
                         {this.renderContratos()}
                     </tbody>
@@ -50,6 +52,7 @@ var ContratosTabla = React.createClass({
             contratos.push(
                 <tr className='content-row' onClick={self.handleContratoClick.bind(self, contrato.id)} key={contrato.id}>
                     <td>{contrato.numeroContrato}</td>
+                    <td>{contrato.juzgado}</td>
                     <td>{contrato.cliente.formattedValues.nombre}</td>
                     <td>{contrato.vehiculo.modelo}</td>
                     <td>{contrato.vehiculo.marca}</td>
@@ -58,6 +61,7 @@ var ContratosTabla = React.createClass({
                     <td>{contrato.formattedValues.monto}</td>
                     <td>{contrato.plazo}</td>
                     <td>{contrato.formattedValues.tasa}</td>
+                    <td>{contrato.formattedValues.especial}</td>
                 </tr>
             );
         });
