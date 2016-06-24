@@ -14,6 +14,7 @@ var AccionesMixin = require('./acciones-mixin');
 // -----------------------------------------------------------------------------------------------
 
 var options = [
+    'Se dejó citatorio',
     'No encontró el domicilio',
     'El domicilio es incorrecto',
     'La persona no vive ahí',
@@ -30,7 +31,10 @@ var DiligenciaEmbargo = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {resultado: 'No encontró el domicilio'},
+            respuestas: {
+                resultado: 'Se dejó citatorio',
+                cita: {}
+            },
             disabled: false
         };
     },
@@ -46,8 +50,52 @@ var DiligenciaEmbargo = React.createClass({
                 <select value={options[this.state.respuestas.resultado]} onChange={this.handleChange} disabled={this.state.disabled}>
                     {this.renderOptions()}
                 </select>
+                {this.renderCitatorio()}
                 {this.renderComentarios()}
                 {this.renderButton()}
+            </div>
+        );
+    },
+    renderCitatorio: function () {
+        if (this.state.respuestas.resultado !== 'Se dejó citatorio') {
+            return;
+        }
+
+        return (
+            <div>
+                <p>Citatorio</p>
+                    <div>
+                        <label className='text-label'>Fecha de cita</label>
+                        <input
+                            type='text'
+                            value={this.state.respuestas.cita.fecha}
+                            onChange={this.handleCitaChange.bind(this, 'fecha')}
+                            disabled={this.state.disabled} />
+                    </div>
+                    <div>
+                        <label className='text-label'>Lugar</label>
+                        <input
+                            type='text'
+                            value={this.state.respuestas.cita.lugar}
+                            onChange={this.handleCitaChange.bind(this, 'lugar')}
+                            disabled={this.state.disabled} />
+                    </div>
+                    <div>
+                        <label className='text-label'>Nombre del actuario</label>
+                        <input
+                            type='text'
+                            value={this.state.respuestas.cita.nombreActuario}
+                            onChange={this.handleCitaChange.bind(this, 'nombreActuario')}
+                            disabled={this.state.disabled} />
+                    </div>
+                    <div>
+                        <label className='text-label'>Teléfono del actuario</label>
+                        <input
+                            type='text'
+                            value={this.state.respuestas.cita.telefonoActuario}
+                            onChange={this.handleCitaChange.bind(this, 'telefonoActuario')}
+                            disabled={this.state.disabled} />
+                    </div>
             </div>
         );
     },
@@ -55,6 +103,11 @@ var DiligenciaEmbargo = React.createClass({
         return (options.map(function (option, index) {
             return (<option key={index} value={index}>{option}</option>);
         }));
+    },
+    handleCitaChange: function (propertyName, event) {
+        var respuestas = this.state.respuestas;
+        respuestas.cita[propertyName] = event.target.value;
+        this.setState({respuestas: respuestas});
     },
     handleChange: function (event) {
         var respuestas = this.state.respuestas;
