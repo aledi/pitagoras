@@ -29,7 +29,8 @@ var ContratoRecord = Immutable.Record({
     tasa: null,
     vehiculo: null,
 
-    formattedValues: {}
+    formattedValues: {},
+    sortValues: {}
 });
 
 class Contrato extends ContratoRecord {
@@ -53,8 +54,13 @@ class Contrato extends ContratoRecord {
         definition = definition || {};
 
         var formattedValues = {};
+        var sortValues = {};
 
         definition.id = definition.id || definition.objectId;
+
+        // Número de Contrato
+        definition.numeroContrato = definition.numeroContrato;
+        sortValues.numeroContrato = definition.numeroContrato;
 
         // Fecha
         definition.fechaContrato = definition.fechaContrato ? moment(definition.fechaContrato.iso) : moment();
@@ -62,17 +68,28 @@ class Contrato extends ContratoRecord {
 
         // Vehiculo
         definition.vehiculo = new VehiculoRecord(definition.vehiculo);
+        sortValues.modelo = definition.vehiculo.modelo.toLowerCase();
+        sortValues.marca = definition.vehiculo.marca.toLowerCase();
+        sortValues.anio = definition.vehiculo.anio;
+        sortValues.distribuidor = definition.vehiculo.distribuidor.toLowerCase();
 
         // Cliente
         definition.cliente = new ClienteRecord(definition.cliente);
+        sortValues.cliente = definition.cliente.formattedValues.nombre.toLowerCase();
 
         // Monto
         definition.monto = definition.monto;
         formattedValues.monto = formatNumber({prefix: '$', padRight: 2})(definition.monto);
+        sortValues.monto = definition.monto;
+
+        // Monto
+        definition.plazo = definition.plazo;
+        sortValues.plazo = definition.plazo;
 
         // Tasa
         definition.tasa = definition.tasa;
         formattedValues.tasa = formatNumber({suffix: '%'})(definition.tasa);
+        sortValues.tasa = definition.tasa;
 
         // Referencias
         if (definition.referencias && definition.referencias.length) {
@@ -90,6 +107,7 @@ class Contrato extends ContratoRecord {
         }
 
         definition.formattedValues = formattedValues;
+        definition.sortValues = sortValues;
 
         super(definition);
     }

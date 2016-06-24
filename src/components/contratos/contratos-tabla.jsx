@@ -8,6 +8,8 @@ require('./contratos-tabla.scss');
 
 var React = require('react');
 
+var ContratosActions = require('src/actions/contratos-actions');
+
 // -----------------------------------------------------------------------------------------------
 // ContratosTabla
 // -----------------------------------------------------------------------------------------------
@@ -20,15 +22,15 @@ var ContratosTabla = React.createClass({
                 <table>
                     <tbody>
                         <tr>
-                            <th>Número de Contrato</th>
-                            <th>Nombre de Cliente</th>
-                            <th>Modelo Vehículo</th>
-                            <th>Marca</th>
-                            <th>Año</th>
-                            <th>Distribuidor</th>
-                            <th>Monto</th>
-                            <th>Plazo</th>
-                            <th>Tasa</th>
+                            <th onClick={this.sortByColumn.bind(this, 'numeroContrato')}>Número de Contrato</th>
+                            <th onClick={this.sortByColumn.bind(this, 'cliente')}>Nombre de Cliente</th>
+                            <th onClick={this.sortByColumn.bind(this, 'modelo')}>Modelo Vehículo</th>
+                            <th onClick={this.sortByColumn.bind(this, 'marca')}>Marca</th>
+                            <th onClick={this.sortByColumn.bind(this, 'anio')}>Año</th>
+                            <th onClick={this.sortByColumn.bind(this, 'distribuidor')}>Distribuidor</th>
+                            <th onClick={this.sortByColumn.bind(this, 'monto')}>Monto</th>
+                            <th onClick={this.sortByColumn.bind(this, 'plazo')}>Plazo</th>
+                            <th onClick={this.sortByColumn.bind(this, 'tasa')}>Tasa</th>
                         </tr>
                         {this.renderContratos()}
                     </tbody>
@@ -61,6 +63,9 @@ var ContratosTabla = React.createClass({
         });
 
         return contratos;
+    },
+    sortByColumn: function (column) {
+        ContratosActions.sortContratos(column);
     },
     handleContratoClick: function (id) {
         this.context.router.push('/contratos/' + id);

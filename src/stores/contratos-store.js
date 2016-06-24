@@ -13,7 +13,10 @@ class ContratosStore extends Flux.MapStore {
             fetchError: null,
 
             saving: false,
-            saveError: null
+            saveError: null,
+
+            sortColumn: 'nombreCliente',
+            ascending: false
         });
     }
 
@@ -31,16 +34,62 @@ class ContratosStore extends Flux.MapStore {
             case 'CONTRATOS_FETCH_ERROR':
                 return state.merge({fetching: false, fetchError: action.error});
 
+            // -----------------------------------------------------------------------------------------------
+            // Save
+            // -----------------------------------------------------------------------------------------------
+
             case 'CONTRATOS_SAVE':
                 return state.merge({saving: true, saveError: null});
             case 'CONTRATOS_SAVE_SUCCESS':
                 return state.merge({saving: false, contratos: state.get('contratos').set(action.contrato.id, action.contrato)});
             case 'CONTRATOS_SAVE_ERROR':
                 return state.merge({saving: false, saveError: action.error});
+
+            // -----------------------------------------------------------------------------------------------
+            // Sort
+            // -----------------------------------------------------------------------------------------------
+
+            case 'CONTRATOS_SORT':
+                return changeSortColumn(state, action.sortColumn);
             default:
                 return state;
         }
     }
+}
+
+function changeSortColumn (state, sortColumn) {
+    var ascending = state.get('ascending');
+    var newState = {};
+
+    if (state.get('sortColumn') === sortColumn) {
+        ascending = !ascending;
+        newState.ascending = ascending;
+    } else {
+        newState.sortColumn = sortColumn;
+    }
+
+    newState.contratos = sortElements(state.get('contratos'), sortColumn, ascending);
+
+    return state.merge(newState);
+}
+
+function sortElements (elements, sortColumn, ascending) {
+    if (!sortColumn) {
+        return elements;
+    }
+
+    return elements.sort(function (a, b) {
+        a = a.sortValues[sortColumn];
+        b = b.sortValues[sortColumn];
+
+        if (a === b) {
+            return 0;
+        } else if (a < b) {
+            return ascending ? -1 : 1;
+        } else {
+            return ascending ? 1 : -1;
+        }
+    });
 }
 
 module.exports = new ContratosStore(Dispatcher);
