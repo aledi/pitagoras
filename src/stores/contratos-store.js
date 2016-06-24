@@ -50,14 +50,14 @@ class ContratosStore extends Flux.MapStore {
             // -----------------------------------------------------------------------------------------------
 
             case 'CONTRATOS_SORT':
-                return changeSortColumn(state, action.sortColumn);
+                return sortByColumn(state, action.sortColumn);
             default:
                 return state;
         }
     }
 }
 
-function changeSortColumn (state, sortColumn) {
+function sortByColumn (state, sortColumn) {
     var ascending = state.get('ascending');
     var newState = {};
 
@@ -68,17 +68,17 @@ function changeSortColumn (state, sortColumn) {
         newState.sortColumn = sortColumn;
     }
 
-    newState.contratos = sortElements(state.get('contratos'), sortColumn, ascending);
+    newState.contratos = sortContratos(state.get('contratos'), sortColumn, ascending);
 
     return state.merge(newState);
 }
 
-function sortElements (elements, sortColumn, ascending) {
+function sortContratos (contratos, sortColumn, ascending) {
     if (!sortColumn) {
-        return elements;
+        return contratos;
     }
 
-    return elements.sort(function (a, b) {
+    return contratos.sort(function (a, b) {
         a = a.sortValues[sortColumn];
         b = b.sortValues[sortColumn];
 
