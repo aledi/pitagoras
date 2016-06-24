@@ -50,14 +50,14 @@ class ContratosStore extends Flux.MapStore {
             // -----------------------------------------------------------------------------------------------
 
             case 'CONTRATOS_SORT':
-                return sortByColumn(state, action.sortColumn);
+                return updateSortColumn(state, action.sortColumn);
             default:
                 return state;
         }
     }
 }
 
-function sortByColumn (state, sortColumn) {
+function updateSortColumn (state, sortColumn) {
     var ascending = state.get('ascending');
     var newState = {};
 
