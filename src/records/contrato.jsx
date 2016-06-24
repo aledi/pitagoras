@@ -77,7 +77,7 @@ class Contrato extends ContratoRecord {
         sortValues.distribuidor = definition.vehiculo.distribuidor.toLowerCase();
 
         // Juzgado
-        definition.juzgado = definition.juzgado;
+        definition.juzgado = definition.juzgado || '';
         sortValues.juzgado = definition.juzgado.toLowerCase();
 
         // Cliente
@@ -99,7 +99,7 @@ class Contrato extends ContratoRecord {
         sortValues.tasa = definition.tasa;
 
         // Cliente
-        definition.especial = definition.especial;
+        definition.especial = definition.especial || false;
         formattedValues.especial = RespuestasUtils.formatBooleanRespuesta(definition.especial);
         sortValues.especial = definition.especial;
 
@@ -134,7 +134,9 @@ class Contrato extends ContratoRecord {
             plazo: this.plazo,
             referencias: this.referencias || [],
             tasa: this.tasa,
-            vehiculo: this.vehiculo.toEditable()
+            vehiculo: this.vehiculo.toEditable(),
+            juzgado: this.juzgado,
+            especial: this.especial
         };
     }
 }
