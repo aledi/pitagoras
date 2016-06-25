@@ -47,6 +47,11 @@ class Accion extends AccionRecord {
 
     static prepareForParse (accion) {
         accion.contrato = new ContratoObject(ContratoRecord.prepareForParse(accion.contrato.toEditable()));
+
+        if (accion.respuestas.fecha) {
+            accion.respuestas.fecha = accion.respuestas.fecha.toDate();
+        }
+
         return accion;
     }
 

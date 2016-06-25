@@ -7,6 +7,7 @@ require('./date-select.scss');
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
+var moment = require('moment');
 
 // -----------------------------------------------------------------------------------------------
 // DateSelect
@@ -20,7 +21,7 @@ var DateSelect = React.createClass({
         this.setState(this.getState(nextProps));
     },
     getState: function (props) {
-        return {date: props.date.clone()};
+        return {date: props.date ? moment(props.date).clone() : moment()};
     },
     render: function () {
         return (
