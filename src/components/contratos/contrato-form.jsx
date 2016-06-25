@@ -11,6 +11,7 @@ var React = require('react');
 var ContratosActions = require('src/actions/contratos-actions');
 var ContratoRecord = require('src/records/contrato');
 var ContratosStore = require('src/stores/contratos-store.js');
+var DateSelect = require('src/components/shared/date-select');
 
 // -----------------------------------------------------------------------------------------------
 // Contrato Form
@@ -57,24 +58,6 @@ var ContratoForm = React.createClass({
                         <input type='text' value={contrato.numeroContrato} onChange={this.handleChange.bind(this, 'numeroContrato')} />
                     </div>
                     <div className='input-wrapper'>
-                        <label>Día</label>
-                        <select value={contrato.fechaContrato.dia} onChange={this.handleFechaChange.bind(this, 'dia')}>
-                            {this.renderDias()}
-                        </select>
-                    </div>
-                    <div className='input-wrapper'>
-                        <label>Mes</label>
-                        <select value={contrato.fechaContrato.mes} onChange={this.handleFechaChange.bind(this, 'mes')}>
-                            {this.renderMeses()}
-                        </select>
-                    </div>
-                    <div className='input-wrapper'>
-                        <label>Año</label>
-                        <select value={contrato.fechaContrato.anio} onChange={this.handleFechaChange.bind(this, 'anio')}>
-                            {this.renderAnios()}
-                        </select>
-                    </div>
-                    <div className='input-wrapper'>
                         <label>Plazo</label>
                         <input type='text' value={contrato.plazo} onChange={this.handleChange.bind(this, 'plazo')} onKeyPress={this.restrictNumericInput.bind(this, false)} />
                     </div>
@@ -86,6 +69,7 @@ var ContratoForm = React.createClass({
                         <label>Tasa</label>
                         <input type='text' value={contrato.tasa} onChange={this.handleChange.bind(this, 'tasa')} onKeyPress={this.restrictNumericInput.bind(this, true)} />
                     </div>
+                    <DateSelect date={contrato.fechaContrato} onChange={this.handleFechaChange} />
                     <hr />
                     <h3 className='section-title'>Vehículo</h3>
                     <div className='input-wrapper'>
@@ -318,9 +302,9 @@ var ContratoForm = React.createClass({
 
         this.setState({contrato: contrato});
     },
-    handleFechaChange: function (propertyName, event) {
+    handleFechaChange: function (date) {
         var state = {contrato: this.state.contrato};
-        state.contrato.fechaContrato[propertyName] = event.target.value;
+        state.contrato.fechaContrato = date;
 
         this.setState(state);
     },
@@ -364,74 +348,6 @@ var ContratoForm = React.createClass({
         event.preventDefault();
 
         ContratosActions.saveContrato(this.state.contrato);
-    },
-    renderDias: function (event) {
-        var dias = [];
-        var limite = this.getDaysForMonth(this.state.contrato.fechaContrato.mes, this.state.contrato.fechaContrato.anio);
-
-        for (var index = 1; index <= limite; index++) {
-            dias.push(<option key={index} value={index}>{index}</option>);
-        }
-
-        return dias;
-    },
-    renderMeses: function (event) {
-        var meses = [];
-
-        for (var index = 1; index <= 12; index++) {
-            meses.push(<option key={index} value={index}>{this.getMonthByNumber(index)}</option>);
-        }
-
-        return meses;
-    },
-    renderAnios: function (event) {
-        var anios = [];
-        var actual = new Date().getFullYear();
-
-        for (var index = actual; index >= actual - 25; index--) {
-            anios.push(<option key={index} value={index}>{index}</option>);
-        }
-
-        return anios;
-    },
-    getMonthByNumber: function (mes) {
-        switch (mes) {
-            case 1:
-                return 'Enero';
-            case 2:
-                return 'Febrero';
-            case 3:
-                return 'Marzo';
-            case 4:
-                return 'Abril';
-            case 5:
-                return 'Mayo';
-            case 6:
-                return 'Junio';
-            case 7:
-                return 'Julio';
-            case 8:
-                return 'Agosto';
-            case 9:
-                return 'Septiembre';
-            case 10:
-                return 'Octubre';
-            case 11:
-                return 'Noviembre';
-            case 12:
-                return 'Diciembre';
-            default:
-                break;
-        }
-    },
-    getDaysForMonth: function (mes, anio) {
-        if (mes === 1 || mes === 3 || mes === 5 || mes === 7 || mes === 8 || mes === 10 || mes === 12) {
-            return 31;
-        } else if (mes === 2) {
-            return (((anio % 4 === 0) && (anio % 100 !== 0)) || (anio % 400 === 0)) ? 29 : 28;
-        }
-
-        return 30;
     },
     restrictNumericInput: function (isFloat, event) {
         if (!event.metaKey && event.charCode !== 13 && (event.charCode < 48 || event.charCode > 57)) {
