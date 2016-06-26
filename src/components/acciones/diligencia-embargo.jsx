@@ -8,6 +8,7 @@ var React = require('react');
 var Parse = require('parse');
 
 var AccionesMixin = require('./acciones-mixin');
+var DateSelect = require('src/components/shared/date-select');
 
 // -----------------------------------------------------------------------------------------------
 // DiligenciaEmbargo
@@ -66,11 +67,7 @@ var DiligenciaEmbargo = React.createClass({
                 <p>Citatorio</p>
                     <div>
                         <label className='text-label'>Fecha de cita</label>
-                        <input
-                            type='text'
-                            value={this.state.respuestas.cita.fecha}
-                            onChange={this.handleCitaChange.bind(this, 'fecha')}
-                            disabled={this.state.disabled} />
+                        <DateSelect date={this.state.respuestas.cita.fecha} onChange={this.handleCitaFechaChange} />
                     </div>
                     <div>
                         <label className='text-label'>Lugar</label>
@@ -113,6 +110,12 @@ var DiligenciaEmbargo = React.createClass({
         var respuestas = this.state.respuestas;
         respuestas.resultado = options[event.target.value];
         this.setState({respuestas: respuestas});
+    },
+    handleCitaFechaChange: function (date) {
+        var state = {respuestas: this.state.respuestas};
+        state.respuestas.cita.fecha = date.clone();
+
+        this.setState(state);
     }
 });
 

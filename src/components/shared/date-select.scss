@@ -1,0 +1,16 @@
+@import '~src/styles/pitagoras.scss';
+
+.date-select {
+    .select-wrapper {
+        margin-right: 10px;
+        display: inline-block;
+
+        label {
+            display: block;
+        }
+
+        select {
+            height: 30px;
+        }
+    }
+}

@@ -18,19 +18,21 @@
             color: $denim;
         }
 
-        .input-wrapper {
-            width: 33.3%;
+        .date-select, .input-wrapper {
             display: inline-block;
             vertical-align: top;
             padding: 10px;
             box-sizing: border-box;
+        }
+
+        .date-select {
+            width: 66.6%;
+        }
+
+        .input-wrapper {
+            width: 33.3%;
 
             input {
-                height: 30px;
-                width: 100%;
-            }
-
-            select {
                 height: 30px;
                 width: 100%;
             }

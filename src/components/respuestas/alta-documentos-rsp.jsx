@@ -6,11 +6,13 @@
 
 var React = require('react');
 
+var DateUtils = require('src/utils/date-utils');
+
 // -----------------------------------------------------------------------------------------------
 // Alta Documentos Respuestas
 // -----------------------------------------------------------------------------------------------
 
-var AltaDocumentosRespuestas = React.createClass({
+var AltaDocumentosRsp = React.createClass({
     render: function () {
         return (
             <div className='respuestas-wrapper'>
@@ -20,11 +22,11 @@ var AltaDocumentosRespuestas = React.createClass({
                 </div>
                 <div>
                     <span className='bold'>Fecha de recepción: </span>
-                    <span>{this.props.accion.respuestas.fechaRecepcion}</span>
+                    <span>{DateUtils.formatFechaRespuesta(this.props.accion.respuestas.fecha)}</span>
                 </div>
             </div>
         );
     }
 });
 
-module.exports = AltaDocumentosRespuestas;
+module.exports = AltaDocumentosRsp;

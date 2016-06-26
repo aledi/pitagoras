@@ -42,10 +42,7 @@ class Contrato extends ContratoRecord {
         contrato.plazo = (typeof contrato.plazo === 'string') ? parseFloat(contrato.plazo) : contrato.plazo;
         contrato.tasa = (typeof contrato.tasa === 'string') ? parseFloat(contrato.tasa.replace(/,/g, '')) : contrato.tasa;
 
-        contrato.fechaContrato = new Date(parseInt(contrato.fechaContrato.anio, 10),
-                                        parseInt(contrato.fechaContrato.mes, 10),
-                                        parseInt(contrato.fechaContrato.dia, 10)
-        );
+        contrato.fechaContrato = contrato.fechaContrato.toDate();
 
         contrato.vehiculo = new VehiculoObject(VehiculoRecord.prepareForParse(contrato.vehiculo));
         contrato.cliente = new ClienteObject(ClienteRecord.prepareForParse(contrato.cliente));
@@ -65,7 +62,7 @@ class Contrato extends ContratoRecord {
         definition.numeroContrato = definition.numeroContrato;
         sortValues.numeroContrato = definition.numeroContrato;
 
-        // Fecha
+        // Fecha Contrato
         definition.fechaContrato = definition.fechaContrato ? moment(definition.fechaContrato.iso) : moment();
         formattedValues.fechaContrato = definition.fechaContrato.format('D/MMM/YYYY');
 
@@ -128,7 +125,7 @@ class Contrato extends ContratoRecord {
         return {
             id: this.id,
             cliente: this.cliente.toEditable(),
-            fechaContrato: this.fechaContrato ? {dia: this.fechaContrato.get('date'), mes: this.fechaContrato.get('month') + 1, anio: this.fechaContrato.get('year')} : {dia: 1, mes: 1, anio: new Date().getFullYear()},
+            fechaContrato: this.fechaContrato ? this.fechaContrato : moment(),
             monto: this.monto,
             numeroContrato: this.numeroContrato,
             plazo: this.plazo,

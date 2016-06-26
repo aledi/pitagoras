@@ -8,6 +8,7 @@ var React = require('react');
 var Parse = require('parse');
 
 var AccionesMixin = require('./acciones-mixin');
+var DateSelect = require('src/components/shared/date-select');
 
 // -----------------------------------------------------------------------------------------------
 // AltaDocumentos
@@ -21,7 +22,7 @@ var AltaDocumentos = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {},
+            respuestas: {fecha: null},
             disabled: false
         };
     },
@@ -41,11 +42,7 @@ var AltaDocumentos = React.createClass({
                     onChange={this.handleChange.bind(this, 'numeroInterno')}
                     disabled={this.state.disabled} />
                 <label className='text-label'>Fecha de Recepción</label>
-                <input
-                    type='text'
-                    value={this.state.respuestas.fechaRecepcion}
-                    onChange={this.handleChange.bind(this, 'fechaRecepcion')}
-                    disabled={this.state.disabled} />
+                <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
                 {this.renderComentarios()}
                 {this.renderButton()}
             </div>
@@ -55,6 +52,12 @@ var AltaDocumentos = React.createClass({
         var respuestas = this.state.respuestas;
         respuestas[propertyName] = event.target.value;
         this.setState({respuestas: respuestas});
+    },
+    handleFechaChange: function (date) {
+        var state = {respuestas: this.state.respuestas};
+        state.respuestas.fecha = date.clone();
+
+        this.setState(state);
     }
 });
 

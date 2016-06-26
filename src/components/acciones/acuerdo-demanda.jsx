@@ -8,6 +8,7 @@ var React = require('react');
 var Parse = require('parse');
 
 var AccionesMixin = require('./acciones-mixin');
+var DateSelect = require('src/components/shared/date-select');
 
 // -----------------------------------------------------------------------------------------------
 // AcuerdoDemanda
@@ -21,7 +22,11 @@ var AcuerdoDemanda = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {resultadoAcuerdo: 'Desecha'},
+            respuestas: {
+                resultadoAcuerdo: 'Desecha',
+                fechaAcuerdo: null,
+                fechaPublicacion: null
+            },
             disabled: false
         };
     },
@@ -51,7 +56,7 @@ var AcuerdoDemanda = React.createClass({
                         id='previene'
                         value='Previene'
                         checked={this.state.respuestas.resultadoAcuerdo === 'Previene'}
-                        onChange={this.handleChange.bind(this, 'resultadoAcuerdo')} />
+                        onChange={this.handleChange} />
                     <label htmlFor='previene' disabled={this.state.disabled}>Previene</label>
                 </div>
                 <div>
@@ -60,35 +65,33 @@ var AcuerdoDemanda = React.createClass({
                         id='admite'
                         value='Admite'
                         checked={this.state.respuestas.resultadoAcuerdo === 'Admite'}
-                        onChange={this.handleChange.bind(this, 'resultadoAcuerdo')}
+                        onChange={this.handleChange}
                         disabled={this.state.disabled} />
                     <label htmlFor='admite' disabled={this.state.disabled}>Admite</label>
                 </div>
                 <div>
                     <label className='text-label'>Fecha de acuerdo</label>
-                    <input
-                        type='text'
-                        value={this.state.respuestas.fechaAcuerdo}
-                        onChange={this.handleChange.bind(this, 'fechaAcuerdo')}
-                        disabled={this.state.disabled} />
+                    <DateSelect date={this.state.respuestas.fechaAcuerdo} onChange={this.handleFechaChange.bind(this, 'fechaAcuerdo')} />
                 </div>
                 <div>
                     <label className='text-label'>Fecha de publicación</label>
-                    <input
-                        type='text'
-                        value={this.state.respuestas.fechaPublicacion}
-                        onChange={this.handleChange.bind(this, 'fechaPublicacion')}
-                        disabled={this.state.disabled} />
+                    <DateSelect date={this.state.respuestas.fechaPublicacion} onChange={this.handleFechaChange.bind(this, 'fechaPublicacion')} />
                 </div>
                 {this.renderComentarios()}
                 {this.renderButton()}
             </div>
         );
     },
-    handleChange: function (propertyName, event) {
+    handleChange: function (event) {
         var respuestas = this.state.respuestas;
-        respuestas[propertyName] = event.target.value;
+        respuestas.resultadoAcuerdo = event.target.value;
         this.setState({respuestas: respuestas});
+    },
+    handleFechaChange: function (fecha, date) {
+        var state = {respuestas: this.state.respuestas};
+        state.respuestas[fecha] = date.clone();
+
+        this.setState(state);
     }
 });
 

@@ -6,11 +6,13 @@
 
 var React = require('react');
 
+var DateUtils = require('src/utils/date-utils');
+
 // -----------------------------------------------------------------------------------------------
 // Demanda Admitida Respuestas
 // -----------------------------------------------------------------------------------------------
 
-var DemandaAdmitidaRespuestas = React.createClass({
+var DemandaAdmitidaRsp = React.createClass({
     render: function () {
         return (
             <div className='respuestas-wrapper'>
@@ -20,7 +22,7 @@ var DemandaAdmitidaRespuestas = React.createClass({
                 </div>
                 <div>
                     <span className='bold'>Fecha: </span>
-                    <span>{this.props.accion.respuestas.fecha}</span>
+                    <span>{DateUtils.formatFechaRespuesta(this.props.accion.respuestas.fecha)}</span>
                 </div>
                 <div>
                     <span className='bold'>Hora: </span>
@@ -48,10 +50,10 @@ var DemandaAdmitidaRespuestas = React.createClass({
             <div>
                 <div>
                     <span className='bold'>Fecha de cita: </span>
-                    <span>{this.props.accion.respuestas.cita.fecha}</span>
+                    <span>{DateUtils.formatFechaRespuesta(this.props.accion.respuestas.cita.fecha)}</span>
                 </div>
                 <div>
-                    <span className='bold'>Lugar: </span>
+                    <span className='bold'>Lugar de cita: </span>
                     <span>{this.props.accion.respuestas.cita.lugar}</span>
                 </div>
                 <div>
@@ -67,4 +69,4 @@ var DemandaAdmitidaRespuestas = React.createClass({
     }
 });
 
-module.exports = DemandaAdmitidaRespuestas;
+module.exports = DemandaAdmitidaRsp;

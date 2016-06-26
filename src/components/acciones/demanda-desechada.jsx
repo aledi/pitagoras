@@ -8,6 +8,7 @@ var React = require('react');
 var Parse = require('parse');
 
 var AccionesMixin = require('./acciones-mixin');
+var DateSelect = require('src/components/shared/date-select');
 
 // -----------------------------------------------------------------------------------------------
 // DemandaDesechada
@@ -34,7 +35,7 @@ var DemandaDesechada = React.createClass({
             respuestas: {
                 motivo: 'No coinciden los montos',
                 regresaDocumentos: false,
-                fechaRegreso: null,
+                fecha: null,
                 horario: null
             },
             disabled: false
@@ -111,11 +112,7 @@ var DemandaDesechada = React.createClass({
         return (
             <div>
                 <label className='text-label'>Fecha de regreso</label>
-                <input
-                    type='text'
-                    value={this.state.fechaRegreso}
-                    onChange={this.handleChange.bind(this, 'fechaRegreso')}
-                    disabled={this.state.disabled} />
+                <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
             </div>
         );
     },
@@ -149,6 +146,12 @@ var DemandaDesechada = React.createClass({
         var respuestas = this.state.respuestas;
         respuestas[propertyName] = event.target.value;
         this.setState({respuestas: respuestas});
+    },
+    handleFechaChange: function (date) {
+        var state = {respuestas: this.state.respuestas};
+        state.respuestas.fecha = date.clone();
+
+        this.setState(state);
     }
 });
 
