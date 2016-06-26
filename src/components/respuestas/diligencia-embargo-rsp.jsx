@@ -36,6 +36,10 @@ var DiligenciaEmbargoRsp = React.createClass({
                     <span>{DateUtils.formatFechaRespuesta(this.props.accion.respuestas.cita.fecha)}</span>
                 </div>
                 <div>
+                    <span className='bold'>Hora de cita: </span>
+                    <span>{this.props.accion.respuestas.cita.hora}</span>
+                </div>
+                <div>
                     <span className='bold'>Lugar de cita: </span>
                     <span>{this.props.accion.respuestas.cita.lugar}</span>
                 </div>

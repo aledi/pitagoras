@@ -9,6 +9,7 @@ var Parse = require('parse');
 
 var AccionesMixin = require('./acciones-mixin');
 var DateSelect = require('src/components/shared/date-select');
+var TimeSelect = require('src/components/shared/time-select');
 
 // -----------------------------------------------------------------------------------------------
 // DiligenciaEmbargo
@@ -70,6 +71,10 @@ var DiligenciaEmbargo = React.createClass({
                         <DateSelect date={this.state.respuestas.cita.fecha} onChange={this.handleCitaFechaChange} />
                     </div>
                     <div>
+                        <label className='text-label'>Hora de cita</label>
+                        <TimeSelect time={this.state.respuestas.cita.hora} onChange={this.handleCitaHoraChange} />
+                    </div>
+                    <div>
                         <label className='text-label'>Lugar</label>
                         <input
                             type='text'
@@ -114,6 +119,12 @@ var DiligenciaEmbargo = React.createClass({
     handleCitaFechaChange: function (date) {
         var state = {respuestas: this.state.respuestas};
         state.respuestas.cita.fecha = date.clone();
+
+        this.setState(state);
+    },
+    handleCitaHoraChange: function (time) {
+        var state = {respuestas: this.state.respuestas};
+        state.respuestas.cita.hora = time;
 
         this.setState(state);
     }
