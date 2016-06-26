@@ -31,6 +31,10 @@ var AccionesHistorial = React.createClass({
             return (<div />);
         }
 
+        if (this.props.acciones.size === 0) {
+            return (<h3 className='no-acciones'>Sin acciones realizadas.</h3>);
+        }
+
         return (
             <ul className='acciones-historial-list'>
                 {this.renderAcciones()}
@@ -49,13 +53,13 @@ var AccionesHistorial = React.createClass({
                     </div>
                     {self.getRespuestasForAccion(accion)}
                     <div>
+                        <span className='bold'>Comentarios: </span><span>{accion.comentarios}</span>
+                    </div>
+                    <div>
                         <span className='bold'>Creada por: </span><span>{accion.creador.nombre + ' ' + accion.creador.apellido}</span>
                     </div>
                     <div>
                         <span className='bold'>Realizada el: </span><span>{accion.fecha}</span>
-                    </div>
-                    <div>
-                        <span className='bold'>Comentarios: </span><span>{accion.comentarios}</span>
                     </div>
                 </li>
             );
