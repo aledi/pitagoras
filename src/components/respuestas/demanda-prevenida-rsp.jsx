@@ -7,12 +7,13 @@
 var React = require('react');
 
 var RespuestasUtils = require('src/components/respuestas/respuestas-utils');
+var DateUtils = require('src/utils/date-utils');
 
 // -----------------------------------------------------------------------------------------------
 // Demanda Prevenida Respuestas
 // -----------------------------------------------------------------------------------------------
 
-var DemandaPrevenidaRespuestas = React.createClass({
+var DemandaPrevenidaRsp = React.createClass({
     render: function () {
         return (
             <div className='respuestas-wrapper'>
@@ -32,10 +33,10 @@ var DemandaPrevenidaRespuestas = React.createClass({
         return (
             <div className='respuestas-wrapper'>
                 <span className='bold'>Desahogar el: </span>
-                <span>{this.props.accion.respuestas.fecha}</span>
+                <span>{DateUtils.formatFechaRespuesta(this.props.accion.respuestas.fecha)}</span>
             </div>
         );
     }
 });
 
-module.exports = DemandaPrevenidaRespuestas;
+module.exports = DemandaPrevenidaRsp;

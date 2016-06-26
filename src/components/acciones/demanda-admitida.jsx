@@ -8,6 +8,7 @@ var React = require('react');
 var Parse = require('parse');
 
 var AccionesMixin = require('./acciones-mixin');
+var DateSelect = require('src/components/shared/date-select');
 
 // -----------------------------------------------------------------------------------------------
 // DemandaAdmitida
@@ -68,11 +69,7 @@ var DemandaAdmitida = React.createClass({
                     <label htmlFor='ejecutiva' disabled={this.state.disabled}>Ejecutiva Mercantil</label>
                 </div>
                 <label className='text-label'>Fecha</label>
-                <input
-                    type='text'
-                    value={respuestas.fecha}
-                    onChange={this.handleChange.bind(this, 'fecha')}
-                    disabled={this.state.disabled} />
+                <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
                 <label className='text-label'>Hora</label>
                 <input
                     type='text'
@@ -121,11 +118,7 @@ var DemandaAdmitida = React.createClass({
                 <p>Citatorio</p>
                 <div>
                     <label className='text-label'>Fecha de cita</label>
-                    <input
-                        type='text'
-                        value={this.state.respuestas.cita.fecha}
-                        onChange={this.handleCitaChange.bind(this, 'fecha')}
-                        disabled={this.state.disabled} />
+                    <DateSelect date={this.state.respuestas.cita.fecha} onChange={this.handleCitaFechaChange} />
                 </div>
                 <div>
                     <label className='text-label'>Lugar</label>
@@ -159,11 +152,6 @@ var DemandaAdmitida = React.createClass({
         respuestas.tipoDemanda = event.target.value;
         this.setState({respuestas: respuestas});
     },
-    handleSelectChange: function (event) {
-        var respuestas = this.state.respuestas;
-        respuestas.resultado = options[event.target.value];
-        this.setState({respuestas: respuestas});
-    },
     handleCitaChange: function (propertyName, event) {
         var respuestas = this.state.respuestas;
         respuestas.cita[propertyName] = event.target.value;
@@ -173,6 +161,18 @@ var DemandaAdmitida = React.createClass({
         var respuestas = this.state.respuestas;
         respuestas[propertyName] = event.target.value;
         this.setState({respuestas: respuestas});
+    },
+    handleFechaChange: function (date) {
+        var state = {respuestas: this.state.respuestas};
+        state.respuestas.fecha = date.clone();
+
+        this.setState(state);
+    },
+    handleCitaFechaChange: function (date) {
+        var state = {respuestas: this.state.respuestas};
+        state.respuestas.cita.fecha = date.clone();
+
+        this.setState(state);
     }
 });
 

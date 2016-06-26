@@ -7,12 +7,13 @@
 var React = require('react');
 
 var RespuestasUtils = require('src/components/respuestas/respuestas-utils');
+var DateUtils = require('src/utils/date-utils');
 
 // -----------------------------------------------------------------------------------------------
 // Recoleccion Documentos Respuestas
 // -----------------------------------------------------------------------------------------------
 
-var RecoleccionDocumentosRespuestas = React.createClass({
+var RecoleccionDocumentosRsp = React.createClass({
     render: function () {
         return (
             <div className='respuestas-wrapper'>
@@ -44,7 +45,7 @@ var RecoleccionDocumentosRespuestas = React.createClass({
             <div>
                 <div>
                     <span className='bold'>Nueva fecha: </span>
-                    <span>{this.props.accion.respuestas.nuevaFecha}</span>
+                    <span>{DateUtils.formatFechaRespuesta(this.props.accion.respuestas.fecha)}</span>
                 </div>
                 <div>
                     <span className='bold'>Hora: </span>
@@ -55,4 +56,4 @@ var RecoleccionDocumentosRespuestas = React.createClass({
     }
 });
 
-module.exports = RecoleccionDocumentosRespuestas;
+module.exports = RecoleccionDocumentosRsp;

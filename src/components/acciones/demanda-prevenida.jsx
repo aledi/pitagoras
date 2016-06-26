@@ -8,6 +8,7 @@ var React = require('react');
 var Parse = require('parse');
 
 var AccionesMixin = require('./acciones-mixin');
+var DateSelect = require('src/components/shared/date-select');
 
 // -----------------------------------------------------------------------------------------------
 // DemandaPrevenida
@@ -69,23 +70,20 @@ var DemandaPrevenida = React.createClass({
         return (
             <div>
                 <label className='text-label'>Fecha de desahogo</label>
-                <input
-                    type='text'
-                    value={this.state.respuestas.fecha}
-                    onChange={this.handleChange}
-                    disabled={this.state.disabled} />
+                <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
             </div>
         );
-    },
-    handleChange: function (event) {
-        var respuestas = this.state.respuestas;
-        respuestas.fecha = event.target.value;
-        this.setState({respuestas: respuestas});
     },
     handleRadioChange: function (event) {
         var respuestas = this.state.respuestas;
         respuestas.desahogar = parseInt(event.target.value, 10) === 1;
         this.setState({respuestas: respuestas});
+    },
+    handleFechaChange: function (date) {
+        var state = {respuestas: this.state.respuestas};
+        state.respuestas.fecha = date.clone();
+
+        this.setState(state);
     }
 });
 

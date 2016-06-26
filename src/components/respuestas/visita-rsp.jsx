@@ -12,7 +12,7 @@ var RespuestasUtils = require('src/components/respuestas/respuestas-utils');
 // Visita Respuestas
 // -----------------------------------------------------------------------------------------------
 
-var VisitaRespuestas = React.createClass({
+var VisitaRsp = React.createClass({
     render: function () {
         return (
             <div className='respuestas-wrapper'>
@@ -33,4 +33,4 @@ var VisitaRespuestas = React.createClass({
     }
 });
 
-module.exports = VisitaRespuestas;
+module.exports = VisitaRsp;

@@ -8,6 +8,7 @@ var React = require('react');
 var Parse = require('parse');
 
 var AccionesMixin = require('./acciones-mixin');
+var DateSelect = require('src/components/shared/date-select');
 
 // -----------------------------------------------------------------------------------------------
 // PresentacionDemanda
@@ -21,7 +22,10 @@ var PresentacionDemanda = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {tipoJuicio: 'Oral Mercantil'},
+            respuestas: {
+                tipoJuicio: 'Oral Mercantil',
+                fecha: null
+            },
             disabled: false
         };
     },
@@ -70,11 +74,7 @@ var PresentacionDemanda = React.createClass({
                     onChange={this.handleChange.bind(this, 'juzgado')}
                     disabled={this.state.disabled} />
                 <label className='text-label'>Fecha de Presentación</label>
-                <input
-                    type='text'
-                    value={respuestas.fechaPresentacion}
-                    onChange={this.handleChange.bind(this, 'fechaPresentacion')}
-                    disabled={this.state.disabled} />
+                <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
                 <label className='text-label'>Expediente Judicial</label>
                 <input
                     type='text'
@@ -90,6 +90,12 @@ var PresentacionDemanda = React.createClass({
         var respuestas = this.state.respuestas;
         respuestas[propertyName] = event.target.value;
         this.setState({respuestas: respuestas});
+    },
+    handleFechaChange: function (date) {
+        var state = {respuestas: this.state.respuestas};
+        state.respuestas.fecha = date.clone();
+
+        this.setState(state);
     }
 });
 

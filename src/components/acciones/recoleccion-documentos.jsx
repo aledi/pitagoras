@@ -8,6 +8,7 @@ var React = require('react');
 var Parse = require('parse');
 
 var AccionesMixin = require('./acciones-mixin');
+var DateSelect = require('src/components/shared/date-select');
 
 // -----------------------------------------------------------------------------------------------
 // RecoleccionDocumentos
@@ -21,7 +22,10 @@ var RecoleccionDocumentos = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {recogeDocumentos: false},
+            respuestas: {
+                recogeDocumentos: false
+
+            },
             disabled: false
         };
     },
@@ -91,11 +95,7 @@ var RecoleccionDocumentos = React.createClass({
             <div>
                 <div>
                     <label className='text-label'>Nueva Fecha</label>
-                    <input
-                        type='text'
-                        value={this.state.respuestas.nuevaFecha}
-                        onChange={this.handleChange.bind(this, 'nuevaFecha')}
-                        disabled={this.state.disabled} />
+                    <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
                 </div>
                 <div>
                     <label className='text-label'>Hora</label>
@@ -117,6 +117,12 @@ var RecoleccionDocumentos = React.createClass({
         var respuestas = this.state.respuestas;
         respuestas.recogeDocumentos = parseInt(event.target.value, 10) === 1;
         this.setState({respuestas: respuestas});
+    },
+    handleFechaChange: function (date) {
+        var state = {respuestas: this.state.respuestas};
+        state.respuestas.fecha = date.clone();
+
+        this.setState(state);
     }
 });
 
