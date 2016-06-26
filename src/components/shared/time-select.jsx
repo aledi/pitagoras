@@ -36,10 +36,9 @@ var DateSelect = React.createClass({
                     </select>
                 </div>
                 <div className='select-wrapper'>
-                    <label>Año</label>
                     <select value={this.state.time.amPm} onChange={this.handleChange.bind(this, 'amPm')}>
-                        <option value='am'>AM</option>
-                        <option value='pm'>PM</option>
+                        <option value='am'>am</option>
+                        <option value='pm'>pm</option>
                     </select>
                 </div>
             </div>
