@@ -43,9 +43,9 @@ var Signin = React.createClass({
             </div>
         );
     },
-    handleChange: function (propertyName, requiredClass, event) {
+    handleChange: function (key, requiredClass, event) {
         var state = {};
-        state[propertyName] = event.target.value;
+        state[key] = event.target.value;
 
         if (this.state[requiredClass]) {
             state[requiredClass] = false;

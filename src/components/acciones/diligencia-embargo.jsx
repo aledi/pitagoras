@@ -106,9 +106,9 @@ var DiligenciaEmbargo = React.createClass({
             return (<option key={index} value={index}>{option}</option>);
         }));
     },
-    handleCitaChange: function (propertyName, event) {
+    handleCitaChange: function (key, event) {
         var respuestas = this.state.respuestas;
-        respuestas.cita[propertyName] = event.target.value;
+        respuestas.cita[key] = event.target.value;
         this.setState({respuestas: respuestas});
     },
     handleChange: function (event) {

@@ -150,14 +150,14 @@ var DemandaAdmitida = React.createClass({
         respuestas.tipoDemanda = event.target.value;
         this.setState({respuestas: respuestas});
     },
-    handleCitaChange: function (propertyName, event) {
+    handleCitaChange: function (key, event) {
         var respuestas = this.state.respuestas;
-        respuestas.cita[propertyName] = event.target.value;
+        respuestas.cita[key] = event.target.value;
         this.setState({respuestas: respuestas});
     },
-    handleChange: function (propertyName, event) {
+    handleChange: function (key, event) {
         var respuestas = this.state.respuestas;
-        respuestas[propertyName] = event.target.value;
+        respuestas[key] = event.target.value;
         this.setState({respuestas: respuestas});
     },
     handleFechaChange: function (date) {

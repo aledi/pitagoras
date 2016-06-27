@@ -64,9 +64,9 @@ var AltaUsuarioForm = React.createClass({
             </main>
         );
     },
-    handleChange: function (propertyName, event) {
+    handleChange: function (key, event) {
         var state = {};
-        state[propertyName] = event.target.value;
+        state[key] = event.target.value;
 
         this.setState(state);
     },
