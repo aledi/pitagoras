@@ -14,23 +14,25 @@ var DateUtils = require('src/utils/date-utils');
 
 var PresentacionDemandaRsp = React.createClass({
     render: function () {
+        var respuestas = this.props.accion.respuestas;
+
         return (
             <div className='respuestas-wrapper'>
                 <div>
                     <span className='bold'>Número de registro: </span>
-                    <span>{this.props.accion.respuestas.numeroRegistro}</span>
+                    <span>{respuestas.numeroRegistro}</span>
                 </div>
                 <div>
                     <span className='bold'>Juzgado: </span>
-                    <span>{this.props.accion.respuestas.juzgado}</span>
+                    <span>{respuestas.juzgado}</span>
                 </div>
                 <div>
                     <span className='bold'>Fecha de presentación: </span>
-                    <span>{DateUtils.formatFechaRespuesta(this.props.accion.respuestas.fecha)}</span>
+                    <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
                 </div>
                 <div>
                     <span className='bold'>Tipo de Juicio: </span>
-                    <span>{this.props.accion.respuestas.tipoJuicio}</span>
+                    <span>{respuestas.tipoJuicio}</span>
                 </div>
             </div>
         );

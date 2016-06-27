@@ -25,7 +25,9 @@ var DiligenciaEmbargoRsp = React.createClass({
         );
     },
     renderCitaRespuestas: function () {
-        if (!this.props.accion.respuestas.cita) {
+        var respuestas = this.props.accion.respuestas;
+
+        if (!respuestas.cita) {
             return;
         }
 
@@ -33,23 +35,23 @@ var DiligenciaEmbargoRsp = React.createClass({
             <div>
                 <div>
                     <span className='bold'>Fecha de cita: </span>
-                    <span>{DateUtils.formatFechaRespuesta(this.props.accion.respuestas.cita.fecha)}</span>
+                    <span>{DateUtils.formatFechaRespuesta(respuestas.cita.fecha)}</span>
                 </div>
                 <div>
                     <span className='bold'>Hora de cita: </span>
-                    <span>{this.props.accion.respuestas.cita.hora}</span>
+                    <span>{respuestas.cita.hora}</span>
                 </div>
                 <div>
                     <span className='bold'>Lugar de cita: </span>
-                    <span>{this.props.accion.respuestas.cita.lugar}</span>
+                    <span>{respuestas.cita.lugar}</span>
                 </div>
                 <div>
                     <span className='bold'>Nombre del actuario: </span>
-                    <span>{this.props.accion.respuestas.cita.nombreActuario}</span>
+                    <span>{respuestas.cita.nombreActuario}</span>
                 </div>
                 <div>
                     <span className='bold'>Telefono del actuario: </span>
-                    <span>{this.props.accion.respuestas.cita.telefonoActuario}</span>
+                    <span>{respuestas.cita.telefonoActuario}</span>
                 </div>
             </div>
         );

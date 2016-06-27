@@ -14,15 +14,17 @@ var DateUtils = require('src/utils/date-utils');
 
 var AltaDocumentosRsp = React.createClass({
     render: function () {
+        var respuestas = this.props.accion.respuestas;
+
         return (
             <div className='respuestas-wrapper'>
                 <div>
                     <span className='bold'>Número interno: </span>
-                    <span>{this.props.accion.respuestas.numeroInterno}</span>
+                    <span>{respuestas.numeroInterno}</span>
                 </div>
                 <div>
                     <span className='bold'>Fecha de recepción: </span>
-                    <span>{DateUtils.formatFechaRespuesta(this.props.accion.respuestas.fecha)}</span>
+                    <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
                 </div>
             </div>
         );

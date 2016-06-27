@@ -14,34 +14,38 @@ var DateUtils = require('src/utils/date-utils');
 
 var DemandaAdmitidaRsp = React.createClass({
     render: function () {
+        var respuestas = this.props.accion.respuestas;
+
         return (
             <div className='respuestas-wrapper'>
                 <div>
                     <span className='bold'>Tipo de demanda: </span>
-                    <span>{this.props.accion.respuestas.tipoDemanda}</span>
+                    <span>{respuestas.tipoDemanda}</span>
                 </div>
                 <div>
                     <span className='bold'>Fecha: </span>
-                    <span>{DateUtils.formatFechaRespuesta(this.props.accion.respuestas.fecha)}</span>
+                    <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
                 </div>
                 <div>
                     <span className='bold'>Hora: </span>
-                    <span>{this.props.accion.respuestas.hora}</span>
+                    <span>{respuestas.hora}</span>
                 </div>
                 <div>
                     <span className='bold'>Lugar: </span>
-                    <span>{this.props.accion.respuestas.lugar}</span>
+                    <span>{respuestas.lugar}</span>
                 </div>
                 {this.renderMoreRespuestas()}
             </div>
         );
     },
     renderMoreRespuestas: function () {
-        if (this.props.accion.respuestas.tipoDemanda === 'Oral Mercantil') {
+        var respuestas = this.props.accion.respuestas;
+
+        if (respuestas.tipoDemanda === 'Oral Mercantil') {
             return (
                 <div>
                     <span className='bold'>Resultado: </span>
-                    <span>{this.props.accion.respuestas.resultado}</span>
+                    <span>{respuestas.resultado}</span>
                 </div>
             );
         }
@@ -50,19 +54,19 @@ var DemandaAdmitidaRsp = React.createClass({
             <div>
                 <div>
                     <span className='bold'>Fecha de cita: </span>
-                    <span>{DateUtils.formatFechaRespuesta(this.props.accion.respuestas.cita.fecha)}</span>
+                    <span>{DateUtils.formatFechaRespuesta(respuestas.cita.fecha)}</span>
                 </div>
                 <div>
                     <span className='bold'>Lugar de cita: </span>
-                    <span>{this.props.accion.respuestas.cita.lugar}</span>
+                    <span>{respuestas.cita.lugar}</span>
                 </div>
                 <div>
                     <span className='bold'>Nombre del actuario: </span>
-                    <span>{this.props.accion.respuestas.cita.nombreActuario}</span>
+                    <span>{respuestas.cita.nombreActuario}</span>
                 </div>
                 <div>
                     <span className='bold'>Teléfono del actuario: </span>
-                    <span>{this.props.accion.respuestas.cita.telefonoActuario}</span>
+                    <span>{respuestas.cita.telefonoActuario}</span>
                 </div>
             </div>
         );

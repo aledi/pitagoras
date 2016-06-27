@@ -26,16 +26,18 @@ var RecoleccionDocumentosRsp = React.createClass({
         );
     },
     renderMoreRespuestas: function () {
-        if (this.props.accion.respuestas.recogeDocumentos) {
+        var respuestas = this.props.accion.respuestas;
+
+        if (respuestas.recogeDocumentos) {
             return (
                 <div>
                     <div>
                         <span className='bold'>¿Quién recogió?: </span>
-                        <span>{this.props.accion.respuestas.personaRecoge}</span>
+                        <span>{respuestas.personaRecoge}</span>
                     </div>
                     <div>
                         <span className='bold'>¿Qué recogió?: </span>
-                        <span>{this.props.accion.respuestas.documentosRecogidos}</span>
+                        <span>{respuestas.documentosRecogidos}</span>
                     </div>
                 </div>
             );
@@ -45,11 +47,11 @@ var RecoleccionDocumentosRsp = React.createClass({
             <div>
                 <div>
                     <span className='bold'>Nueva fecha: </span>
-                    <span>{DateUtils.formatFechaRespuesta(this.props.accion.respuestas.fecha)}</span>
+                    <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
                 </div>
                 <div>
                     <span className='bold'>Hora: </span>
-                    <span>{this.props.accion.respuestas.hora}</span>
+                    <span>{respuestas.hora}</span>
                 </div>
             </div>
         );
