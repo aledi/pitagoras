@@ -9,6 +9,7 @@ var Parse = require('parse');
 
 var AccionesMixin = require('./acciones-mixin');
 var DateSelect = require('src/components/shared/date-select');
+var TimeSelect = require('src/components/shared/time-select');
 
 // -----------------------------------------------------------------------------------------------
 // RecoleccionDocumentos
@@ -99,11 +100,7 @@ var RecoleccionDocumentos = React.createClass({
                 </div>
                 <div>
                     <label className='text-label'>Hora</label>
-                    <input
-                        type='text'
-                        value={this.state.respuestas.hora}
-                        onChange={this.handleChange.bind(this, 'hora')}
-                        disabled={this.state.disabled} />
+                    <TimeSelect time={this.state.respuestas.hora} onChange={this.handleHoraChange} />
                 </div>
             </div>
         );
@@ -121,6 +118,12 @@ var RecoleccionDocumentos = React.createClass({
     handleFechaChange: function (date) {
         var state = {respuestas: this.state.respuestas};
         state.respuestas.fecha = date.clone();
+
+        this.setState(state);
+    },
+    handleHoraChange: function (time) {
+        var state = {respuestas: this.state.respuestas};
+        state.respuestas.hora = time;
 
         this.setState(state);
     }

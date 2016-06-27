@@ -1,5 +1,13 @@
 @import '~src/styles/pitagoras.scss';
 
+.no-acciones {
+    padding: 40px 0;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1px;
+    color: $denim;
+}
+
 .acciones-historial-list {
     position: relative;
     width: 100%;
