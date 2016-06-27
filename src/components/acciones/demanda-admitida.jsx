@@ -8,7 +8,9 @@ var React = require('react');
 var Parse = require('parse');
 
 var AccionesMixin = require('./acciones-mixin');
+
 var DateSelect = require('src/components/shared/date-select');
+var TimeSelect = require('src/components/shared/time-select');
 
 // -----------------------------------------------------------------------------------------------
 // DemandaAdmitida
@@ -71,11 +73,7 @@ var DemandaAdmitida = React.createClass({
                 <label className='text-label'>Fecha</label>
                 <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
                 <label className='text-label'>Hora</label>
-                <input
-                    type='text'
-                    value={respuestas.hora}
-                    onChange={this.handleChange.bind(this, 'hora')}
-                    disabled={this.state.disabled} />
+                <TimeSelect time={this.state.respuestas.hora} onChange={this.handleHoraChange} />
                 <label className='text-label'>Lugar</label>
                 <input
                     type='text'
@@ -165,6 +163,12 @@ var DemandaAdmitida = React.createClass({
     handleFechaChange: function (date) {
         var state = {respuestas: this.state.respuestas};
         state.respuestas.fecha = date.clone();
+
+        this.setState(state);
+    },
+    handleHoraChange: function (time) {
+        var state = {respuestas: this.state.respuestas};
+        state.respuestas.hora = time;
 
         this.setState(state);
     },
