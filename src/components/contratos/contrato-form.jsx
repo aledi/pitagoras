@@ -296,9 +296,9 @@ var ContratoForm = React.createClass({
 
         this.setState({contrato: contrato});
     },
-    handleChange: function (propertyName, event) {
+    handleChange: function (key, event) {
         var contrato = this.state.contrato;
-        contrato[propertyName] = event.target.value;
+        contrato[key] = event.target.value;
 
         this.setState({contrato: contrato});
     },
@@ -308,39 +308,39 @@ var ContratoForm = React.createClass({
 
         this.setState(state);
     },
-    handleVehiculoChange: function (propertyName, event) {
+    handleVehiculoChange: function (key, event) {
         var state = {contrato: this.state.contrato};
-        state.contrato.vehiculo[propertyName] = event.target.value;
+        state.contrato.vehiculo[key] = event.target.value;
 
         this.setState(state);
     },
-    handleClienteChange: function (propertyName, event) {
+    handleClienteChange: function (key, event) {
         var state = {contrato: this.state.contrato};
-        state.contrato.cliente[propertyName] = event.target.value;
+        state.contrato.cliente[key] = event.target.value;
 
         this.setState(state);
     },
-    handleReferenciaChange: function (propertyName, index, event) {
+    handleReferenciaChange: function (key, index, event) {
         var state = {contrato: this.state.contrato};
-        state.contrato.referencias[index][propertyName] = event.target.value;
+        state.contrato.referencias[index][key] = event.target.value;
 
         this.setState(state);
     },
-    handleTelefonosChange: function (propertyName, index, event) {
+    handleTelefonosChange: function (key, index, event) {
         var state = {contrato: this.state.contrato};
         state.contrato.cliente.telefonos[index] = event.target.value;
 
         this.setState(state);
     },
-    handleDomicilioChange: function (propertyName, event) {
+    handleDomicilioChange: function (key, event) {
         var state = {contrato: this.state.contrato};
-        state.contrato.cliente.domicilio[propertyName] = event.target.value;
+        state.contrato.cliente.domicilio[key] = event.target.value;
 
         this.setState(state);
     },
-    handleReferenciaDomicilioChange: function (propertyName, index, event) {
+    handleReferenciaDomicilioChange: function (key, index, event) {
         var state = {contrato: this.state.contrato};
-        state.contrato.referencias[index].domicilio[propertyName] = event.target.value;
+        state.contrato.referencias[index].domicilio[key] = event.target.value;
 
         this.setState(state);
     },

@@ -60,9 +60,9 @@ var DateSelect = React.createClass({
             return (<option key={minuto} value={minuto}>{minuto}</option>);
         }));
     },
-    handleChange: function (propertyName, event) {
+    handleChange: function (key, event) {
         var time = this.state.time;
-        time[propertyName] = event.target.value;
+        time[key] = event.target.value;
 
         this.props.onChange(time.hour + ':' + time.minutes + ' ' + time.amPm);
 

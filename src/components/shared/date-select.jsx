@@ -115,10 +115,10 @@ var DateSelect = React.createClass({
 
         return 30;
     },
-    handleChange: function (propertyName, event) {
+    handleChange: function (key, event) {
         var state = {};
         state.date = this.state.date.clone();
-        state.date.set(propertyName, event.target.value);
+        state.date.set(key, event.target.value);
 
         this.props.onChange(state.date);
 

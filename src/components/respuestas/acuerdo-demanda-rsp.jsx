@@ -14,19 +14,21 @@ var DateUtils = require('src/utils/date-utils');
 
 var AcuerdoDemandaRsp = React.createClass({
     render: function () {
+        var respuestas = this.props.accion.respuestas;
+
         return (
             <div className='respuestas-wrapper'>
                 <div>
                     <span className='bold'>Resultado del acuerdo: </span>
-                    <span>{this.props.accion.respuestas.resultadoAcuerdo}</span>
+                    <span>{respuestas.resultadoAcuerdo}</span>
                 </div>
                 <div>
                     <span className='bold'>Fecha de acuerdo: </span>
-                    <span>{DateUtils.formatFechaRespuesta(this.props.accion.respuestas.fechaAcuerdo)}</span>
+                    <span>{DateUtils.formatFechaRespuesta(respuestas.fechaAcuerdo)}</span>
                 </div>
                 <div>
                     <span className='bold'>Fecha de publicación: </span>
-                    <span>{DateUtils.formatFechaRespuesta(this.props.accion.respuestas.fechaPublicacion)}</span>
+                    <span>{DateUtils.formatFechaRespuesta(respuestas.fechaPublicacion)}</span>
                 </div>
             </div>
         );

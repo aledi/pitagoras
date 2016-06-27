@@ -109,9 +109,9 @@ var Visita = React.createClass({
             </div>
         );
     },
-    handleRadioChange: function (propertyName, event) {
+    handleRadioChange: function (key, event) {
         var respuestas = this.state.respuestas;
-        respuestas[propertyName] = parseInt(event.target.value, 10) === 1;
+        respuestas[key] = parseInt(event.target.value, 10) === 1;
         this.setState({respuestas: respuestas});
     },
     handleChange: function (event) {

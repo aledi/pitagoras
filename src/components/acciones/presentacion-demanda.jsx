@@ -86,9 +86,9 @@ var PresentacionDemanda = React.createClass({
             </div>
         );
     },
-    handleChange: function (propertyName, event) {
+    handleChange: function (key, event) {
         var respuestas = this.state.respuestas;
-        respuestas[propertyName] = event.target.value;
+        respuestas[key] = event.target.value;
         this.setState({respuestas: respuestas});
     },
     handleFechaChange: function (date) {

@@ -9,6 +9,7 @@ var Parse = require('parse');
 
 var AccionesMixin = require('./acciones-mixin');
 var DateSelect = require('src/components/shared/date-select');
+var TimeSelect = require('src/components/shared/time-select');
 
 // -----------------------------------------------------------------------------------------------
 // DemandaDesechada
@@ -36,7 +37,10 @@ var DemandaDesechada = React.createClass({
                 motivo: 'No coinciden los montos',
                 regresaDocumentos: false,
                 fecha: null,
-                horario: null
+                horario: {
+                    start: null,
+                    end: null
+                }
             },
             disabled: false
         };
@@ -124,11 +128,8 @@ var DemandaDesechada = React.createClass({
         return (
             <div>
                 <label className='text-label'>Horario</label>
-                <input
-                    type='text'
-                    value={this.state.horario}
-                    onChange={this.handleChange.bind(this, 'horario')}
-                    disabled={this.state.disabled} />
+                <TimeSelect time={this.state.respuestas.horario.start} onChange={this.handleHorarioChange.bind(this, 'start')} />
+                <TimeSelect time={this.state.respuestas.horario.end} onChange={this.handleHorarioChange.bind(this, 'end')} />
             </div>
         );
     },
@@ -142,14 +143,20 @@ var DemandaDesechada = React.createClass({
         respuestas.regresaDocumentos = parseInt(event.target.value, 10) === 1;
         this.setState({respuestas: respuestas});
     },
-    handleChange: function (propertyName, event) {
+    handleChange: function (key, event) {
         var respuestas = this.state.respuestas;
-        respuestas[propertyName] = event.target.value;
+        respuestas[key] = event.target.value;
         this.setState({respuestas: respuestas});
     },
     handleFechaChange: function (date) {
         var state = {respuestas: this.state.respuestas};
         state.respuestas.fecha = date.clone();
+
+        this.setState(state);
+    },
+    handleHorarioChange: function (key, time) {
+        var state = {respuestas: this.state.respuestas};
+        state.respuestas.horario[key] = time;
 
         this.setState(state);
     }
