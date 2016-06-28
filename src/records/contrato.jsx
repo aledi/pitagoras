@@ -31,6 +31,7 @@ var ContratoRecord = Immutable.Record({
     referencias: null,
     tasa: null,
     vehiculo: null,
+    notification: null,
 
     formattedValues: {},
     sortValues: {}
@@ -100,6 +101,9 @@ class Contrato extends ContratoRecord {
         formattedValues.especial = RespuestasUtils.formatBooleanRespuesta(definition.especial);
         sortValues.especial = definition.especial;
 
+        // Notificacion
+        definition.notification = definition.notification;
+
         // Referencias
         if (definition.referencias && definition.referencias.length) {
             formattedValues.referencias = [];
@@ -133,7 +137,8 @@ class Contrato extends ContratoRecord {
             tasa: this.tasa,
             vehiculo: this.vehiculo.toEditable(),
             juzgado: this.juzgado,
-            especial: this.especial
+            especial: this.especial,
+            notification: this.notification
         };
     }
 }

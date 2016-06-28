@@ -31,7 +31,7 @@ var DemandaAdmitida = React.createClass({
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                tipoDemanda: 'Oral Mercantil',
+                tipoJuicio: 'Oral Mercantil',
                 resultado: 'No vive en el domicilio',
                 cita: {}
             },
@@ -56,7 +56,7 @@ var DemandaAdmitida = React.createClass({
                             type='radio'
                             id='oral'
                             value='Oral Mercantil'
-                            checked={respuestas.tipoDemanda === 'Oral Mercantil'}
+                            checked={respuestas.tipoJuicio === 'Oral Mercantil'}
                             onChange={this.handleRadioChange}
                             disabled={this.state.disabled} />
                         <label htmlFor='oral' disabled={this.state.disabled}>Oral Mercantil</label>
@@ -66,7 +66,7 @@ var DemandaAdmitida = React.createClass({
                             type='radio'
                             id='ejecutiva'
                             value='Ejecutiva Mercantil'
-                            checked={respuestas.tipoDemanda === 'Ejecutiva Mercantil'}
+                            checked={respuestas.tipoJuicio === 'Ejecutiva Mercantil'}
                             onChange={this.handleRadioChange}
                             disabled={this.state.disabled} />
                         <label htmlFor='ejecutiva' disabled={this.state.disabled}>Ejecutiva Mercantil</label>
@@ -96,7 +96,7 @@ var DemandaAdmitida = React.createClass({
         );
     },
     renderResultadoSelect: function () {
-        if (this.state.respuestas.tipoDemanda !== 'Oral Mercantil') {
+        if (this.state.respuestas.tipoJuicio !== 'Oral Mercantil') {
             return;
         }
 
@@ -115,7 +115,7 @@ var DemandaAdmitida = React.createClass({
         }));
     },
     renderTextInputs: function () {
-        if (this.state.respuestas.tipoDemanda !== 'Ejecutiva Mercantil') {
+        if (this.state.respuestas.tipoJuicio !== 'Ejecutiva Mercantil') {
             return;
         }
 
@@ -155,7 +155,7 @@ var DemandaAdmitida = React.createClass({
     },
     handleRadioChange: function (event) {
         var respuestas = this.state.respuestas;
-        respuestas.tipoDemanda = event.target.value;
+        respuestas.tipoJuicio = event.target.value;
         this.setState({respuestas: respuestas});
     },
     handleCitaChange: function (key, event) {

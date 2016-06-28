@@ -19,8 +19,8 @@ var DemandaAdmitidaRsp = React.createClass({
         return (
             <div className='respuestas-wrapper'>
                 <div>
-                    <span className='bold'>Tipo de demanda: </span>
-                    <span>{respuestas.tipoDemanda}</span>
+                    <span className='bold'>Tipo de juicio: </span>
+                    <span>{respuestas.tipoJuicio}</span>
                 </div>
                 <div>
                     <span className='bold'>Fecha: </span>
@@ -41,7 +41,7 @@ var DemandaAdmitidaRsp = React.createClass({
     renderMoreRespuestas: function () {
         var respuestas = this.props.accion.respuestas;
 
-        if (respuestas.tipoDemanda === 'Oral Mercantil') {
+        if (respuestas.tipoJuicio === 'Oral Mercantil') {
             return (
                 <div>
                     <span className='bold'>Resultado: </span>

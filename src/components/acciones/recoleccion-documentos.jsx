@@ -25,7 +25,6 @@ var RecoleccionDocumentos = React.createClass({
             contrato: this.props.contrato,
             respuestas: {
                 recogeDocumentos: false
-
             },
             disabled: false
         };
