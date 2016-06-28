@@ -80,7 +80,7 @@ var ContratoDetalle = React.createClass({
         if (this.state.editingContrato) {
             return (
                 <div className='contrato'>
-                    <p className='go-back' onClick={this.handleContratoEdit}>Regresar a detalles</p>
+                    <span className='go-back' onClick={this.handleContratoEdit}>Regresar a Detalles</span>
                     <ContratoForm contrato={contrato} />
                 </div>
             );
@@ -88,13 +88,13 @@ var ContratoDetalle = React.createClass({
 
         return (
             <div className='contrato'>
-                <p className='go-back' onClick={this.goBack}>Volver a Contratos</p>
-                <p className='go-back' onClick={this.showFullDetails}>{'Mostrar' + (this.state.showingFullDetails ? ' resumen' : ' todos los detalles')}</p>
+                <span className='go-back' onClick={this.goBack}>Regresar a Contratos</span>
+                <span className='go-back right' onClick={this.showFullDetails}>{'Mostrar' + (this.state.showingFullDetails ? ' resumen' : ' todos los detalles')}</span>
 
                 <div className='contrato-detalles'>
-                    <button type='button' onClick={this.handleContratoEdit}>Editar Contrato</button>
+                    <button type='button' className='top-right' onClick={this.handleContratoEdit}>Editar Contrato</button>
                     <div className='contrato-detalles-column'>
-                        <p>Detalles del Contrato</p>
+                        <h4>Detalles del Contrato</h4>
                         <div className='detalle-wrapper'>
                             <span className='title'>Número de Contrato:</span>
                             <span className='value'>{contrato.numeroContrato}</span>
@@ -102,27 +102,36 @@ var ContratoDetalle = React.createClass({
                         {this.renderFullContratoDetails()}
                     </div>
                     <div className='contrato-detalles-column'>
-                        <p>Cliente</p>
+                        <h4>Cliente</h4>
                         <div className='detalle-wrapper'>
                             <span className='title'>Nombre:</span>
                             <span className='value'>{contrato.cliente.formattedValues.nombre}</span>
                         </div>
                         {this.renderFullClienteDetails()}
                     </div>
+                    {this.renderVehiculoDetails()}
                 </div>
 
-                <p>Acciones Disponibles</p>
+                <h2>Acciones</h2>
                 <div className='acciones-wrapper'>
                     <ul className='acciones-list'>
                         {this.getAccionesListItems()}
                     </ul>
                     <div className='accion-forma-historial'>
                         {this.renderAccion()}
+                        {this.renderHistorialTitle()}
                         <AccionesHistorial acciones={this.props.acciones} />
                     </div>
                 </div>
             </div>
         );
+    },
+    renderHistorialTitle: function () {
+        if (this.state.selectedAccionIndex == null) {
+            return;
+        }
+
+        return (<h4>Historial de acciones</h4>);
     },
     getAccionesListItems: function () {
         if (!this.state.accionesComponents) {
@@ -142,10 +151,18 @@ var ContratoDetalle = React.createClass({
             return;
         }
 
-        return (this.state.accionesComponents[this.state.selectedAccionIndex]);
+        return (
+            <div>
+                <button type='button' className='top-right' onClick={this.closeAccion}>Cancelar</button>
+                {this.state.accionesComponents[this.state.selectedAccionIndex]}
+            </div>
+        );
     },
     showAccion: function (accionIndex) {
         this.setState({selectedAccionIndex: accionIndex});
+    },
+    closeAccion: function () {
+        this.setState({selectedAccionIndex: null});
     },
     renderFullContratoDetails: function () {
         if (!this.state.showingFullDetails) {
@@ -172,7 +189,35 @@ var ContratoDetalle = React.createClass({
                     <span className='title'>Tasa:</span>
                     <span className='value'>{contrato.tasa}</span>
                 </div>
-                <p>Vehículo</p>
+            </div>
+        );
+    },
+    renderFullClienteDetails: function () {
+        if (!this.state.showingFullDetails) {
+            return;
+        }
+
+        var contrato = this.props.contrato;
+        return (
+            <div>
+                <div className='detalle-wrapper'>
+                    <span className='title'>Domicilio:</span>
+                    <span className='value'>{contrato.cliente.formattedValues.domicilio}</span>
+                </div>
+                {this.renderTelefonos()}
+                {this.renderReferencias()}
+            </div>
+        );
+    },
+    renderVehiculoDetails: function () {
+        if (!this.state.showingFullDetails) {
+            return;
+        }
+
+        var contrato = this.props.contrato;
+        return (
+            <div className='contrato-detalles-column'>
+                <h4>Vehículo</h4>
                 <div className='detalle-wrapper'>
                     <span className='title'>Modelo:</span>
                     <span className='value'>{contrato.vehiculo.modelo}</span>
@@ -197,23 +242,6 @@ var ContratoDetalle = React.createClass({
                     <span className='title'>Serie:</span>
                     <span className='value'>{contrato.vehiculo.serie}</span>
                 </div>
-            </div>
-        );
-    },
-    renderFullClienteDetails: function () {
-        if (!this.state.showingFullDetails) {
-            return;
-        }
-
-        var contrato = this.props.contrato;
-        return (
-            <div>
-                <div className='detalle-wrapper'>
-                    <span className='title'>Domicilio:</span>
-                    <span className='value'>{contrato.cliente.formattedValues.domicilio}</span>
-                </div>
-                {this.renderTelefonos()}
-                {this.renderReferencias()}
             </div>
         );
     },

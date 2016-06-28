@@ -40,7 +40,7 @@ var PresentacionDemanda = React.createClass({
 
         return (
             <div className='presentacion-demanda accion-form'>
-                <p>Tipo de Juicio</p>
+                <h5>Tipo de Juicio</h5>
                 <div>
                     <input
                         type='radio'
@@ -61,21 +61,21 @@ var PresentacionDemanda = React.createClass({
                         disabled={this.state.disabled} />
                     <label htmlFor='ejecutiva' disabled={this.state.disabled}>Ejecutiva Mercantil</label>
                 </div>
-                <label className='text-label'>Número de Registro</label>
+                <h5>Número de Registro</h5>
                 <input
                     type='text'
                     value={respuestas.numeroRegistro}
                     onChange={this.handleChange.bind(this, 'numeroRegistro')}
                     disabled={this.state.disabled} />
-                <label className='text-label'>Juzgado</label>
+                <h5>Juzgado</h5>
                 <input
                     type='text'
                     value={respuestas.juzgado}
                     onChange={this.handleChange.bind(this, 'juzgado')}
                     disabled={this.state.disabled} />
-                <label className='text-label'>Fecha de Presentación</label>
+                <h5>Fecha de Presentación</h5>
                 <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
-                <label className='text-label'>Expediente Judicial</label>
+                <h5>Expediente Judicial</h5>
                 <input
                     type='text'
                     value={respuestas.expedienteJudicial}

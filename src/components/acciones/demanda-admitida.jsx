@@ -49,7 +49,7 @@ var DemandaAdmitida = React.createClass({
 
         return (
             <div className='demanda-admitida accion-form'>
-                <p>Tipo de Juicio</p>
+                <h5>Tipo de Juicio</h5>
                 <div>
                     <input
                         type='radio'
@@ -70,11 +70,11 @@ var DemandaAdmitida = React.createClass({
                         disabled={this.state.disabled} />
                     <label htmlFor='ejecutiva' disabled={this.state.disabled}>Ejecutiva Mercantil</label>
                 </div>
-                <label className='text-label'>Fecha</label>
+                <h5>Fecha</h5>
                 <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
-                <label className='text-label'>Hora</label>
+                <h5>Hora</h5>
                 <TimeSelect time={this.state.respuestas.hora} onChange={this.handleHoraChange} />
-                <label className='text-label'>Lugar</label>
+                <h5>Lugar</h5>
                 <input
                     type='text'
                     value={respuestas.lugar}
@@ -94,7 +94,7 @@ var DemandaAdmitida = React.createClass({
 
         return (
             <div>
-                <label className='text-label'>Resultado de Emplazamiento</label>
+                <h5>Resultado de Emplazamiento</h5>
                 <select value={options[this.state.respuestas.resultado]} onChange={this.handleChange} disabled={this.state.disabled}>
                     {this.renderOptions()}
                 </select>
@@ -113,13 +113,13 @@ var DemandaAdmitida = React.createClass({
 
         return (
             <div>
-                <p>Citatorio</p>
+                <h5>Citatorio</h5>
                 <div>
-                    <label className='text-label'>Fecha de cita</label>
+                    <h5 className='text-label'>Fecha de cita</h5>
                     <DateSelect date={this.state.respuestas.cita.fecha} onChange={this.handleCitaFechaChange} />
                 </div>
                 <div>
-                    <label className='text-label'>Lugar</label>
+                    <h5 className='text-label'>Lugar</h5>
                     <input
                         type='text'
                         value={this.state.respuestas.cita.lugar}
@@ -127,7 +127,7 @@ var DemandaAdmitida = React.createClass({
                         disabled={this.state.disabled} />
                 </div>
                 <div>
-                    <label className='text-label'>Nombre del actuario</label>
+                    <h5 className='text-label'>Nombre del actuario</h5>
                     <input
                         type='text'
                         value={this.state.respuestas.cita.nombreActuario}
@@ -135,7 +135,7 @@ var DemandaAdmitida = React.createClass({
                         disabled={this.state.disabled} />
                 </div>
                 <div>
-                    <label className='text-label'>Teléfono del actuario</label>
+                    <h5 className='text-label'>Teléfono del actuario</h5>
                     <input
                         type='text'
                         value={this.state.respuestas.cita.telefonoActuario}

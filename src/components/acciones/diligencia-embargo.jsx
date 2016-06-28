@@ -65,17 +65,17 @@ var DiligenciaEmbargo = React.createClass({
 
         return (
             <div>
-                <p>Citatorio</p>
+                <h5>Citatorio</h5>
                     <div>
-                        <label className='text-label'>Fecha de cita</label>
+                        <h5 className='text-label'>Fecha de cita</h5>
                         <DateSelect date={this.state.respuestas.cita.fecha} onChange={this.handleCitaFechaChange} />
                     </div>
                     <div>
-                        <label className='text-label'>Hora de cita</label>
+                        <h5 className='text-label'>Hora de cita</h5>
                         <TimeSelect time={this.state.respuestas.cita.hora} onChange={this.handleCitaHoraChange} />
                     </div>
                     <div>
-                        <label className='text-label'>Lugar</label>
+                        <h5 className='text-label'>Lugar</h5>
                         <input
                             type='text'
                             value={this.state.respuestas.cita.lugar}
@@ -83,7 +83,7 @@ var DiligenciaEmbargo = React.createClass({
                             disabled={this.state.disabled} />
                     </div>
                     <div>
-                        <label className='text-label'>Nombre del actuario</label>
+                        <h5 className='text-label'>Nombre del actuario</h5>
                         <input
                             type='text'
                             value={this.state.respuestas.cita.nombreActuario}
@@ -91,7 +91,7 @@ var DiligenciaEmbargo = React.createClass({
                             disabled={this.state.disabled} />
                     </div>
                     <div>
-                        <label className='text-label'>Teléfono del actuario</label>
+                        <h5 className='text-label'>Teléfono del actuario</h5>
                         <input
                             type='text'
                             value={this.state.respuestas.cita.telefonoActuario}

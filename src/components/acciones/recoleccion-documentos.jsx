@@ -40,7 +40,7 @@ var RecoleccionDocumentos = React.createClass({
         return (
             <div className='recoleccion-documentos accion-form'>
                 <div>
-                    <p>¿Documentos recogidos?</p>
+                    <h5>¿Documentos recogidos?</h5>
                     <div>
                         <input
                             type='radio'
@@ -73,7 +73,7 @@ var RecoleccionDocumentos = React.createClass({
             return (
                 <div>
                     <div>
-                        <label className='text-label'>¿Quién recogió?</label>
+                        <h5 className='text-label'>¿Quién recogió?</h5>
                         <input
                             type='text'
                             value={this.state.respuestas.personaRecoge}
@@ -81,7 +81,7 @@ var RecoleccionDocumentos = React.createClass({
                             disabled={this.state.disabled} />
                     </div>
                     <div>
-                        <label className='text-label'>¿Qué recogió?</label>
+                        <h5 className='text-label'>¿Qué recogió?</h5>
                         <input
                             type='text'
                             value={this.state.respuestas.documentosRecogidos}
@@ -95,7 +95,7 @@ var RecoleccionDocumentos = React.createClass({
         return (
             <div>
                 <div>
-                    <label className='text-label'>Nueva Fecha</label>
+                    <h5>Nueva Fecha</h5>
                     <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
                 </div>
                 <div>

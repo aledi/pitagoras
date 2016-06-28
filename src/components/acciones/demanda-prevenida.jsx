@@ -35,7 +35,7 @@ var DemandaPrevenida = React.createClass({
     render: function () {
         return (
             <div className='demanda-prevenida accion-form'>
-                <p>¿Desahogar?</p>
+                <h5>¿Desahogar?</h5>
                 <div>
                     <input
                         type='radio'
@@ -69,7 +69,7 @@ var DemandaPrevenida = React.createClass({
 
         return (
             <div>
-                <label className='text-label'>Fecha de desahogo</label>
+                <h5>Fecha de desahogo</h5>
                 <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
             </div>
         );

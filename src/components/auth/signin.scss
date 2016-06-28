@@ -23,13 +23,12 @@
             width: 100%;
             display: block;
             padding: 0 10px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             border: 1px solid $creosote;
             border-radius: 3px;
             outline: none;
 
             &.required {
-                border-width: 2px;
                 border-color: $invalid;
             }
         }
@@ -46,6 +45,7 @@
         }
 
         p.error-text {
+            font-size: 13px;
             margin: 0;
             color: $invalid;
 

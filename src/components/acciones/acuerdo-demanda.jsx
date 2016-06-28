@@ -39,7 +39,7 @@ var AcuerdoDemanda = React.createClass({
     render: function () {
         return (
             <div className='acuerdo-demanda accion-form'>
-                <p>Resultado del acuerdo</p>
+                <h5>Resultado del acuerdo</h5>
                 <div>
                     <input
                         type='radio'
@@ -70,11 +70,11 @@ var AcuerdoDemanda = React.createClass({
                     <label htmlFor='admite' disabled={this.state.disabled}>Admite</label>
                 </div>
                 <div>
-                    <label className='text-label'>Fecha de acuerdo</label>
+                    <h5>Fecha de acuerdo</h5>
                     <DateSelect date={this.state.respuestas.fechaAcuerdo} onChange={this.handleFechaChange.bind(this, 'fechaAcuerdo')} />
                 </div>
                 <div>
-                    <label className='text-label'>Fecha de publicación</label>
+                    <h5>Fecha de publicación</h5>
                     <DateSelect date={this.state.respuestas.fechaPublicacion} onChange={this.handleFechaChange.bind(this, 'fechaPublicacion')} />
                 </div>
                 {this.renderComentarios()}

@@ -54,12 +54,12 @@ var DemandaDesechada = React.createClass({
     render: function () {
         return (
             <div className='demanda-desechada accion-form'>
-                <p>Motivo</p>
+                <h5>Motivo</h5>
                 <select value={options[this.state.respuestas.motivo]} onChange={this.handleSelectChange} disabled={this.state.disabled}>
                     {this.renderOptions()}
                 </select>
                 {this.renderOtroMotivo()}
-                <p>¿Regresan documentos?</p>
+                <h5>¿Regresan documentos?</h5>
                 <div>
                     <input
                         type='radio'
@@ -94,7 +94,7 @@ var DemandaDesechada = React.createClass({
 
         return (
             <div>
-                <label className='text-label'>Especifique el motivo</label>
+                <h5>Especifique el motivo</h5>
                 <input
                     type='text'
                     value={this.state.respuestas.otroMotivo}
@@ -115,7 +115,7 @@ var DemandaDesechada = React.createClass({
 
         return (
             <div>
-                <label className='text-label'>Fecha de regreso</label>
+                <h5>Fecha de regreso</h5>
                 <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
             </div>
         );
@@ -127,7 +127,7 @@ var DemandaDesechada = React.createClass({
 
         return (
             <div>
-                <label className='text-label'>Horario</label>
+                <h5>Horario</h5>
                 <TimeSelect time={this.state.respuestas.horario.start} onChange={this.handleHorarioChange.bind(this, 'start')} />
                 <TimeSelect time={this.state.respuestas.horario.end} onChange={this.handleHorarioChange.bind(this, 'end')} />
             </div>
