@@ -1,13 +1,44 @@
 @import '~src/styles/pitagoras.scss';
+@import '~src/components/acciones/accion-form.scss';
 
 .contrato {
-    p {
+    h2 {
         text-transform: uppercase;
-        color: blue;
+        letter-spacing: 1px;
+        font-weight: bold;
+        color: $denim;
+        margin-bottom: 40px;
+        text-align: center;
+    }
 
-        &.go-back {
-            cursor: pointer;
+    h4 {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: bold;
+        color: $denim;
+    }
+
+    span.go-back {
+        display: inline-block;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 1px;
+        font-size: 13px;
+        color: $taupe;
+        cursor: pointer;
+
+        &.right {
+            float: right;
         }
+    }
+
+    button.top-right {
+        height: auto;
+        padding: 2px 10px;
+        position: absolute;
+        top: 20px; right: 20px;
+        font-size: 13px;
+        z-index: 10;
     }
 
     .contrato-detalles {
@@ -15,12 +46,13 @@
         position: relative;
         display: block;
         padding: 20px;
+        margin-top: 10px;
         margin-bottom: 40px;
         border: 1px solid $frost;
         font-size: 15px;
 
         .contrato-detalles-column {
-            width: 50%;
+            width: 33%;
             display: inline-block;
             vertical-align: top;
             margin: 0;
@@ -34,18 +66,13 @@
                 margin: 0;
             }
 
-            .value {
-                margin-left: 10px;
-                color: gray;
+            .title {
+                font-weight: bold;
             }
-        }
 
-        button {
-            height: auto;
-            padding: 5px 15px;
-            position: absolute;
-            top: 20px; right: 20px;
-            font-size: 13px;
+            .value {
+                margin-left: 5px;
+            }
         }
     }
 
@@ -63,15 +90,17 @@
             list-style: none;
 
             li {
+                padding: 0px 5px;
                 cursor: pointer;
 
                 &:hover {
-                    color: blue;
+                    background-color: rgba($denim, 0.8);
+                    color: white;
                 }
 
                 &.selected {
-                    font-weight: bold;
-                    color: blue;
+                    background-color: $denim;
+                    color: white;
                 }
             }
         }
@@ -79,30 +108,6 @@
         .accion-forma-historial {
             position: absolute;
             right: 0; left: 300px;
-
-            .accion-form {
-                width: 100%;
-                position: relative;
-
-                .text-label {
-                    display: block;
-                }
-
-                textarea {
-                    width: 100%;
-                    display: block;
-                    margin-top: 20px;
-                }
-
-                button {
-                    margin: 20px 0;
-
-                    &:disabled {
-                        background-color: $disabled-button-background;
-                        color: $disabled-text-color;
-                    }
-                }
-            }
         }
     }
 }

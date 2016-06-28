@@ -35,26 +35,28 @@ var DemandaPrevenida = React.createClass({
     render: function () {
         return (
             <div className='demanda-prevenida accion-form'>
-                <p>¿Desahogar?</p>
-                <div>
-                    <input
-                        type='radio'
-                        id='si'
-                        value={1}
-                        checked={this.state.respuestas.desahogar}
-                        onChange={this.handleRadioChange}
-                        disabled={this.state.disabled} />
-                    <label htmlFor='si' disabled={this.state.disabled}>Si</label>
-                </div>
-                <div>
-                    <input
-                        type='radio'
-                        id='no'
-                        value={0}
-                        checked={!this.state.respuestas.desahogar}
-                        onChange={this.handleRadioChange}
-                        disabled={this.state.disabled} />
-                    <label htmlFor='no' disabled={this.state.disabled}>No</label>
+                <div className='element-wrapper'>
+                    <h5>¿Desahogar?</h5>
+                    <div>
+                        <input
+                            type='radio'
+                            id='si'
+                            value={1}
+                            checked={this.state.respuestas.desahogar}
+                            onChange={this.handleRadioChange}
+                            disabled={this.state.disabled} />
+                        <label htmlFor='si' disabled={this.state.disabled}>Si</label>
+                    </div>
+                    <div>
+                        <input
+                            type='radio'
+                            id='no'
+                            value={0}
+                            checked={!this.state.respuestas.desahogar}
+                            onChange={this.handleRadioChange}
+                            disabled={this.state.disabled} />
+                        <label htmlFor='no' disabled={this.state.disabled}>No</label>
+                    </div>
                 </div>
                 {this.renderFecha()}
                 {this.renderComentarios()}
@@ -68,8 +70,8 @@ var DemandaPrevenida = React.createClass({
         }
 
         return (
-            <div>
-                <label className='text-label'>Fecha de desahogo</label>
+            <div className='element-wrapper'>
+                <h5>Fecha de desahogo</h5>
                 <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
             </div>
         );

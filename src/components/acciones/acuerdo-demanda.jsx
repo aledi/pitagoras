@@ -39,42 +39,44 @@ var AcuerdoDemanda = React.createClass({
     render: function () {
         return (
             <div className='acuerdo-demanda accion-form'>
-                <p>Resultado del acuerdo</p>
-                <div>
-                    <input
-                        type='radio'
-                        id='desecha'
-                        value='Desecha'
-                        checked={this.state.respuestas.resultadoAcuerdo === 'Desecha'}
-                        onChange={this.handleChange}
-                        disabled={this.state.disabled} />
-                    <label htmlFor='desecha'>Desecha</label>
+                <div className='element-wrapper'>
+                    <h5>Resultado del acuerdo</h5>
+                    <div>
+                        <input
+                            type='radio'
+                            id='desecha'
+                            value='Desecha'
+                            checked={this.state.respuestas.resultadoAcuerdo === 'Desecha'}
+                            onChange={this.handleChange}
+                            disabled={this.state.disabled} />
+                        <label htmlFor='desecha'>Desecha</label>
+                    </div>
+                    <div>
+                        <input
+                            type='radio'
+                            id='previene'
+                            value='Previene'
+                            checked={this.state.respuestas.resultadoAcuerdo === 'Previene'}
+                            onChange={this.handleChange} />
+                        <label htmlFor='previene' disabled={this.state.disabled}>Previene</label>
+                    </div>
+                    <div>
+                        <input
+                            type='radio'
+                            id='admite'
+                            value='Admite'
+                            checked={this.state.respuestas.resultadoAcuerdo === 'Admite'}
+                            onChange={this.handleChange}
+                            disabled={this.state.disabled} />
+                        <label htmlFor='admite' disabled={this.state.disabled}>Admite</label>
+                    </div>
                 </div>
-                <div>
-                    <input
-                        type='radio'
-                        id='previene'
-                        value='Previene'
-                        checked={this.state.respuestas.resultadoAcuerdo === 'Previene'}
-                        onChange={this.handleChange} />
-                    <label htmlFor='previene' disabled={this.state.disabled}>Previene</label>
-                </div>
-                <div>
-                    <input
-                        type='radio'
-                        id='admite'
-                        value='Admite'
-                        checked={this.state.respuestas.resultadoAcuerdo === 'Admite'}
-                        onChange={this.handleChange}
-                        disabled={this.state.disabled} />
-                    <label htmlFor='admite' disabled={this.state.disabled}>Admite</label>
-                </div>
-                <div>
-                    <label className='text-label'>Fecha de acuerdo</label>
+                <div className='element-wrapper'>
+                    <h5>Fecha de acuerdo</h5>
                     <DateSelect date={this.state.respuestas.fechaAcuerdo} onChange={this.handleFechaChange.bind(this, 'fechaAcuerdo')} />
                 </div>
-                <div>
-                    <label className='text-label'>Fecha de publicación</label>
+                <div className='element-wrapper'>
+                    <h5>Fecha de publicación</h5>
                     <DateSelect date={this.state.respuestas.fechaPublicacion} onChange={this.handleFechaChange.bind(this, 'fechaPublicacion')} />
                 </div>
                 {this.renderComentarios()}

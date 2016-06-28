@@ -49,9 +49,11 @@ var DiligenciaEmbargo = React.createClass({
     render: function () {
         return (
             <div className='diligencia-embargo accion-form'>
-                <select value={options[this.state.respuestas.resultado]} onChange={this.handleChange} disabled={this.state.disabled}>
-                    {this.renderOptions()}
-                </select>
+                <div className='element-wrapper'>
+                    <select value={options[this.state.respuestas.resultado]} onChange={this.handleChange} disabled={this.state.disabled}>
+                        {this.renderOptions()}
+                    </select>
+                </div>
                 {this.renderCitatorio()}
                 {this.renderComentarios()}
                 {this.renderButton()}
@@ -65,33 +67,33 @@ var DiligenciaEmbargo = React.createClass({
 
         return (
             <div>
-                <p>Citatorio</p>
-                    <div>
-                        <label className='text-label'>Fecha de cita</label>
+                <h5>Citatorio</h5>
+                    <div className='element-wrapper'>
+                        <h5 className='text-label'>Fecha de cita</h5>
                         <DateSelect date={this.state.respuestas.cita.fecha} onChange={this.handleCitaFechaChange} />
                     </div>
-                    <div>
-                        <label className='text-label'>Hora de cita</label>
+                    <div className='element-wrapper'>
+                        <h5 className='text-label'>Hora de cita</h5>
                         <TimeSelect time={this.state.respuestas.cita.hora} onChange={this.handleCitaHoraChange} />
                     </div>
-                    <div>
-                        <label className='text-label'>Lugar</label>
+                    <div className='element-wrapper'>
+                        <h5 className='text-label'>Lugar</h5>
                         <input
                             type='text'
                             value={this.state.respuestas.cita.lugar}
                             onChange={this.handleCitaChange.bind(this, 'lugar')}
                             disabled={this.state.disabled} />
                     </div>
-                    <div>
-                        <label className='text-label'>Nombre del actuario</label>
+                    <div className='element-wrapper'>
+                        <h5 className='text-label'>Nombre del actuario</h5>
                         <input
                             type='text'
                             value={this.state.respuestas.cita.nombreActuario}
                             onChange={this.handleCitaChange.bind(this, 'nombreActuario')}
                             disabled={this.state.disabled} />
                     </div>
-                    <div>
-                        <label className='text-label'>Teléfono del actuario</label>
+                    <div className='element-wrapper'>
+                        <h5 className='text-label'>Teléfono del actuario</h5>
                         <input
                             type='text'
                             value={this.state.respuestas.cita.telefonoActuario}

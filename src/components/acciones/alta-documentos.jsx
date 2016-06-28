@@ -35,14 +35,19 @@ var AltaDocumentos = React.createClass({
     render: function () {
         return (
             <div className='alta-documentos accion-form'>
-                <label className='text-label'>Número Interno</label>
-                <input
-                    type='text'
-                    value={this.state.respuestas.numeroInterno}
-                    onChange={this.handleChange.bind(this, 'numeroInterno')}
-                    disabled={this.state.disabled} />
-                <label className='text-label'>Fecha de Recepción</label>
-                <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
+                <div className='element-wrapper'>
+                    <h5>Número Interno</h5>
+                    <input
+                        type='text'
+                        value={this.state.respuestas.numeroInterno}
+                        onChange={this.handleChange.bind(this, 'numeroInterno')}
+                        disabled={this.state.disabled} />
+                </div>
+                <div className='element-wrapper'>
+                    <h5>Fecha de Recepción</h5>
+                    <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
+                </div>
+
                 {this.renderComentarios()}
                 {this.renderButton()}
             </div>

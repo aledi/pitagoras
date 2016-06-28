@@ -1,0 +1,42 @@
+@import '~src/styles/pitagoras.scss';
+
+.accion-form {
+    width: 100%;
+    position: relative;
+    padding: 20px;
+    padding-top: 30px;
+    margin-bottom: 20px;
+    border: 1px solid $frost;
+
+    .element-wrapper {
+        margin-bottom: 20px;
+    }
+
+    h5 {
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: bold;
+        color: $denim;
+
+        &.text-label {
+            font-weight: normal;
+        }
+    }
+
+    textarea {
+        width: 100%;
+        display: block;
+        margin-top: 20px;
+    }
+
+    button {
+        margin: 20px 0;
+        margin-bottom: 0;
+
+        &:disabled {
+            background-color: $disabled-button-background;
+            color: $disabled-text-color;
+        }
+    }
+}

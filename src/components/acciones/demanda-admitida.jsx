@@ -49,37 +49,45 @@ var DemandaAdmitida = React.createClass({
 
         return (
             <div className='demanda-admitida accion-form'>
-                <p>Tipo de Juicio</p>
-                <div>
-                    <input
-                        type='radio'
-                        id='oral'
-                        value='Oral Mercantil'
-                        checked={respuestas.tipoDemanda === 'Oral Mercantil'}
-                        onChange={this.handleRadioChange}
-                        disabled={this.state.disabled} />
-                    <label htmlFor='oral' disabled={this.state.disabled}>Oral Mercantil</label>
+                <div className='element-wrapper'>
+                    <h5>Tipo de Juicio</h5>
+                    <div>
+                        <input
+                            type='radio'
+                            id='oral'
+                            value='Oral Mercantil'
+                            checked={respuestas.tipoDemanda === 'Oral Mercantil'}
+                            onChange={this.handleRadioChange}
+                            disabled={this.state.disabled} />
+                        <label htmlFor='oral' disabled={this.state.disabled}>Oral Mercantil</label>
+                    </div>
+                    <div>
+                        <input
+                            type='radio'
+                            id='ejecutiva'
+                            value='Ejecutiva Mercantil'
+                            checked={respuestas.tipoDemanda === 'Ejecutiva Mercantil'}
+                            onChange={this.handleRadioChange}
+                            disabled={this.state.disabled} />
+                        <label htmlFor='ejecutiva' disabled={this.state.disabled}>Ejecutiva Mercantil</label>
+                    </div>
                 </div>
-                <div>
-                    <input
-                        type='radio'
-                        id='ejecutiva'
-                        value='Ejecutiva Mercantil'
-                        checked={respuestas.tipoDemanda === 'Ejecutiva Mercantil'}
-                        onChange={this.handleRadioChange}
-                        disabled={this.state.disabled} />
-                    <label htmlFor='ejecutiva' disabled={this.state.disabled}>Ejecutiva Mercantil</label>
+                <div className='element-wrapper'>
+                    <h5>Fecha</h5>
+                    <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
                 </div>
-                <label className='text-label'>Fecha</label>
-                <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
-                <label className='text-label'>Hora</label>
-                <TimeSelect time={this.state.respuestas.hora} onChange={this.handleHoraChange} />
-                <label className='text-label'>Lugar</label>
-                <input
-                    type='text'
-                    value={respuestas.lugar}
-                    onChange={this.handleChange.bind(this, 'lugar')}
-                    disabled={this.state.disabled} />
+                <div className='element-wrapper'>
+                    <h5>Hora</h5>
+                    <TimeSelect time={this.state.respuestas.hora} onChange={this.handleHoraChange} />
+                </div>
+                <div className='element-wrapper'>
+                    <h5>Lugar</h5>
+                    <input
+                        type='text'
+                        value={respuestas.lugar}
+                        onChange={this.handleChange.bind(this, 'lugar')}
+                        disabled={this.state.disabled} />
+                </div>
                 {this.renderResultadoSelect()}
                 {this.renderTextInputs()}
                 {this.renderComentarios()}
@@ -93,8 +101,8 @@ var DemandaAdmitida = React.createClass({
         }
 
         return (
-            <div>
-                <label className='text-label'>Resultado de Emplazamiento</label>
+            <div className='element-wrapper'>
+                <h5>Resultado de Emplazamiento</h5>
                 <select value={options[this.state.respuestas.resultado]} onChange={this.handleChange} disabled={this.state.disabled}>
                     {this.renderOptions()}
                 </select>
@@ -113,29 +121,29 @@ var DemandaAdmitida = React.createClass({
 
         return (
             <div>
-                <p>Citatorio</p>
-                <div>
-                    <label className='text-label'>Fecha de cita</label>
+                <h5>Citatorio</h5>
+                <div className='element-wrapper'>
+                    <h5 className='text-label'>Fecha de cita</h5>
                     <DateSelect date={this.state.respuestas.cita.fecha} onChange={this.handleCitaFechaChange} />
                 </div>
-                <div>
-                    <label className='text-label'>Lugar</label>
+                <div className='element-wrapper'>
+                    <h5 className='text-label'>Lugar</h5>
                     <input
                         type='text'
                         value={this.state.respuestas.cita.lugar}
                         onChange={this.handleCitaChange.bind(this, 'lugar')}
                         disabled={this.state.disabled} />
                 </div>
-                <div>
-                    <label className='text-label'>Nombre del actuario</label>
+                <div className='element-wrapper'>
+                    <h5 className='text-label'>Nombre del actuario</h5>
                     <input
                         type='text'
                         value={this.state.respuestas.cita.nombreActuario}
                         onChange={this.handleCitaChange.bind(this, 'nombreActuario')}
                         disabled={this.state.disabled} />
                 </div>
-                <div>
-                    <label className='text-label'>Teléfono del actuario</label>
+                <div className='element-wrapper'>
+                    <h5 className='text-label'>Teléfono del actuario</h5>
                     <input
                         type='text'
                         value={this.state.respuestas.cita.telefonoActuario}

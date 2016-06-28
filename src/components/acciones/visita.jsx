@@ -38,8 +38,8 @@ var Visita = React.createClass({
     render: function () {
         return (
             <div className='visita accion-form'>
-                <div>
-                    <p>¿Encontró el domicilio?</p>
+                <div className='element-wrapper'>
+                    <h5>¿Encontró el domicilio?</h5>
                     <div>
                         <input
                             type='radio'
@@ -74,8 +74,8 @@ var Visita = React.createClass({
 
         return (
             <div >
-                <div>
-                    <p>¿Ubicó al cliente?</p>
+                <div className='element-wrapper'>
+                    <h5>¿Ubicó al cliente?</h5>
                     <div>
                         <input
                             type='radio'
@@ -97,9 +97,9 @@ var Visita = React.createClass({
                         <label htmlFor='clienteNoUbicado' disabled={this.state.disabled}>No</label>
                     </div>
                 </div>
-                <div>
-                    <p>Datos del Contacto</p>
-                    <label className='text-label'>¿Con quién dejó el comunicado?</label>
+                <div className='element-wrapper'>
+                    <h5>Datos del Contacto</h5>
+                    <h5 className='text-label'>¿Con quién dejó el comunicado?</h5>
                     <input
                         type='text'
                         value={this.state.respuestas.datosDeContacto}

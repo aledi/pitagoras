@@ -54,32 +54,37 @@ var DemandaDesechada = React.createClass({
     render: function () {
         return (
             <div className='demanda-desechada accion-form'>
-                <p>Motivo</p>
-                <select value={options[this.state.respuestas.motivo]} onChange={this.handleSelectChange} disabled={this.state.disabled}>
-                    {this.renderOptions()}
-                </select>
+                <div className='element-wrapper'>
+                    <h5>Motivo</h5>
+                    <select value={options[this.state.respuestas.motivo]} onChange={this.handleSelectChange} disabled={this.state.disabled}>
+                        {this.renderOptions()}
+                    </select>
+                </div>
                 {this.renderOtroMotivo()}
-                <p>¿Regresan documentos?</p>
-                <div>
-                    <input
-                        type='radio'
-                        id='si'
-                        checked={this.state.respuestas.regresaDocumentos}
-                        value={1}
-                        onChange={this.handleRegresaDocumentosChange}
-                        disabled={this.state.disabled} />
-                    <label htmlFor='si' disabled={this.state.disabled}>Sí</label>
+                <div className='element-wrapper'>
+                    <h5>¿Regresan documentos?</h5>
+                    <div>
+                        <input
+                            type='radio'
+                            id='si'
+                            checked={this.state.respuestas.regresaDocumentos}
+                            value={1}
+                            onChange={this.handleRegresaDocumentosChange}
+                            disabled={this.state.disabled} />
+                        <label htmlFor='si' disabled={this.state.disabled}>Sí</label>
+                    </div>
+                    <div>
+                        <input
+                            type='radio'
+                            id='no'
+                            checked={!this.state.respuestas.regresaDocumentos}
+                            value={0}
+                            onChange={this.handleRegresaDocumentosChange}
+                            disabled={this.state.disabled} />
+                        <label htmlFor='no' disabled={this.state.disabled}>No</label>
+                    </div>
                 </div>
-                <div>
-                    <input
-                        type='radio'
-                        id='no'
-                        checked={!this.state.respuestas.regresaDocumentos}
-                        value={0}
-                        onChange={this.handleRegresaDocumentosChange}
-                        disabled={this.state.disabled} />
-                    <label htmlFor='no' disabled={this.state.disabled}>No</label>
-                </div>
+
                 {this.renderFecha()}
                 {this.renderHorario()}
                 {this.renderComentarios()}
@@ -93,8 +98,8 @@ var DemandaDesechada = React.createClass({
         }
 
         return (
-            <div>
-                <label className='text-label'>Especifique el motivo</label>
+            <div className='element-wrapper'>
+                <h5 className='text-label'>Especifique el motivo</h5>
                 <input
                     type='text'
                     value={this.state.respuestas.otroMotivo}
@@ -114,8 +119,8 @@ var DemandaDesechada = React.createClass({
         }
 
         return (
-            <div>
-                <label className='text-label'>Fecha de regreso</label>
+            <div className='element-wrapper'>
+                <h5>Fecha de regreso</h5>
                 <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
             </div>
         );
@@ -126,8 +131,8 @@ var DemandaDesechada = React.createClass({
         }
 
         return (
-            <div>
-                <label className='text-label'>Horario</label>
+            <div className='element-wrapper'>
+                <h5>Horario</h5>
                 <TimeSelect time={this.state.respuestas.horario.start} onChange={this.handleHorarioChange.bind(this, 'start')} />
                 <TimeSelect time={this.state.respuestas.horario.end} onChange={this.handleHorarioChange.bind(this, 'end')} />
             </div>

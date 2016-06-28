@@ -26,7 +26,7 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
 }
 
-input[type='text'], textarea {
+input[type='text'], input[type='password'], textarea {
     border: 1px solid $frost;
 
     &:disabled {
@@ -41,7 +41,7 @@ input[type='radio'] + label {
 }
 
 button {
-    height: 50px;
+    height: 40px;
     display: block;
     margin: 0 auto;
     margin-bottom: 0;

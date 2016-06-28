@@ -40,47 +40,57 @@ var PresentacionDemanda = React.createClass({
 
         return (
             <div className='presentacion-demanda accion-form'>
-                <p>Tipo de Juicio</p>
-                <div>
-                    <input
-                        type='radio'
-                        id='oral'
-                        value='Oral Mercantil'
-                        checked={this.state.respuestas.tipoJuicio === 'Oral Mercantil'}
-                        onChange={this.handleChange.bind(this, 'tipoJuicio')}
-                        disabled={this.state.disabled} />
-                    <label htmlFor='oral' disabled={this.state.disabled}>Oral Mercantil</label>
+                <div className='element-wrapper'>
+                    <h5>Tipo de Juicio</h5>
+                    <div>
+                        <input
+                            type='radio'
+                            id='oral'
+                            value='Oral Mercantil'
+                            checked={this.state.respuestas.tipoJuicio === 'Oral Mercantil'}
+                            onChange={this.handleChange.bind(this, 'tipoJuicio')}
+                            disabled={this.state.disabled} />
+                        <label htmlFor='oral' disabled={this.state.disabled}>Oral Mercantil</label>
+                    </div>
+                    <div>
+                        <input
+                            type='radio'
+                            id='ejecutiva'
+                            value='Ejecutiva Mercantil'
+                            checked={this.state.respuestas.tipoJuicio === 'Ejecutiva Mercantil'}
+                            onChange={this.handleChange.bind(this, 'tipoJuicio')}
+                            disabled={this.state.disabled} />
+                        <label htmlFor='ejecutiva' disabled={this.state.disabled}>Ejecutiva Mercantil</label>
+                    </div>
                 </div>
-                <div>
+                <div className='element-wrapper'>
+                    <h5>Número de Registro</h5>
                     <input
-                        type='radio'
-                        id='ejecutiva'
-                        value='Ejecutiva Mercantil'
-                        checked={this.state.respuestas.tipoJuicio === 'Ejecutiva Mercantil'}
-                        onChange={this.handleChange.bind(this, 'tipoJuicio')}
+                        type='text'
+                        value={respuestas.numeroRegistro}
+                        onChange={this.handleChange.bind(this, 'numeroRegistro')}
                         disabled={this.state.disabled} />
-                    <label htmlFor='ejecutiva' disabled={this.state.disabled}>Ejecutiva Mercantil</label>
                 </div>
-                <label className='text-label'>Número de Registro</label>
-                <input
-                    type='text'
-                    value={respuestas.numeroRegistro}
-                    onChange={this.handleChange.bind(this, 'numeroRegistro')}
-                    disabled={this.state.disabled} />
-                <label className='text-label'>Juzgado</label>
-                <input
-                    type='text'
-                    value={respuestas.juzgado}
-                    onChange={this.handleChange.bind(this, 'juzgado')}
-                    disabled={this.state.disabled} />
-                <label className='text-label'>Fecha de Presentación</label>
-                <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
-                <label className='text-label'>Expediente Judicial</label>
-                <input
-                    type='text'
-                    value={respuestas.expedienteJudicial}
-                    onChange={this.handleChange.bind(this, 'expedienteJudicial')}
-                    disabled={this.state.disabled} />
+                <div className='element-wrapper'>
+                    <h5>Juzgado</h5>
+                    <input
+                        type='text'
+                        value={respuestas.juzgado}
+                        onChange={this.handleChange.bind(this, 'juzgado')}
+                        disabled={this.state.disabled} />
+                </div>
+                <div className='element-wrapper'>
+                    <h5>Fecha de Presentación</h5>
+                    <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
+                </div>
+                <div className='element-wrapper'>
+                    <h5>Expediente Judicial</h5>
+                    <input
+                        type='text'
+                        value={respuestas.expedienteJudicial}
+                        onChange={this.handleChange.bind(this, 'expedienteJudicial')}
+                        disabled={this.state.disabled} />
+                </div>
                 {this.renderComentarios()}
                 {this.renderButton()}
             </div>
