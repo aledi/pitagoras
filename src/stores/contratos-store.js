@@ -30,7 +30,7 @@ class ContratosStore extends Flux.MapStore {
             case 'CONTRATOS_FETCH':
                 return state.merge({fetching: true, fetchError: null});
             case 'CONTRATOS_FETCH_SUCCESS':
-                return state.merge({fetching: false, contratos: action.contratos, notifications: action.notifications});
+                return state.merge({fetching: false, contratos: action.contratos});
             case 'CONTRATOS_FETCH_ERROR':
                 return state.merge({fetching: false, fetchError: action.error});
 

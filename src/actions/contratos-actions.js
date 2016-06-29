@@ -22,23 +22,15 @@ module.exports = {
         query.limit(1000);
         query.find().then(function (contratos) {
             var contratosByKey = {};
-            var notifications = {};
 
             for (var i = 0; i < contratos.length; i++) {
                 var contrato = createContratoRecord(contratos[i]);
-                var notification = contrato.notification;
-
-                if (notification) {
-                    notifications[contrato.numeroContrato] = notification;
-                }
-
                 contratosByKey[contrato.id] = contrato;
             }
 
             Dispatcher.dispatch({
                 type: 'CONTRATOS_FETCH_SUCCESS',
-                contratos: new Immutable.Map(contratosByKey),
-                notifications: new Immutable.Map(notifications)
+                contratos: new Immutable.Map(contratosByKey)
             });
         }).catch(function (error) {
             Dispatcher.dispatch({
