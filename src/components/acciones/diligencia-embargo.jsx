@@ -119,7 +119,10 @@ var DiligenciaEmbargo = React.createClass({
         respuestas.resultado = resultado;
 
         if (resultado === 'Se dejó citatorio') {
-            respuestas.cita = {fecha: moment()};
+            respuestas.cita = {
+                fecha: moment(),
+                hora: '8:00 am'
+            };
         } else if (respuestas.cita) {
             delete respuestas.cita;
         }

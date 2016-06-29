@@ -34,7 +34,8 @@ var DemandaAdmitida = React.createClass({
             respuestas: {
                 tipoJuicio: 'Oral Mercantil',
                 resultado: 'No vive en el domicilio',
-                fecha: moment()
+                fecha: moment(),
+                hora: '8:00 am'
             },
             disabled: false
         };

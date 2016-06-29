@@ -118,8 +118,10 @@ var RecoleccionDocumentos = React.createClass({
 
         if (!recogeDocumentos) {
             respuestas.fecha = moment();
+            respuestas.hora = '8:00 am';
         } else if (respuestas.fecha) {
             delete respuestas.fecha;
+            delete respuestas.hora;
         }
 
         this.setState({respuestas: respuestas});
