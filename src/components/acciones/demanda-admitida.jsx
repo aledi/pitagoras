@@ -6,6 +6,7 @@
 
 var React = require('react');
 var Parse = require('parse');
+var moment = require('moment');
 
 var AccionesMixin = require('./acciones-mixin');
 
@@ -33,7 +34,8 @@ var DemandaAdmitida = React.createClass({
             respuestas: {
                 tipoJuicio: 'Oral Mercantil',
                 resultado: 'No vive en el domicilio',
-                cita: {}
+                fecha: moment(),
+                hora: '8:00 am'
             },
             disabled: false
         };
@@ -103,7 +105,7 @@ var DemandaAdmitida = React.createClass({
         return (
             <div className='element-wrapper'>
                 <h5>Resultado de Emplazamiento</h5>
-                <select value={options[this.state.respuestas.resultado]} onChange={this.handleChange} disabled={this.state.disabled}>
+                <select value={options[this.state.respuestas.resultado]} onChange={this.handleSelectChange} disabled={this.state.disabled}>
                     {this.renderOptions()}
                 </select>
             </div>
@@ -155,7 +157,16 @@ var DemandaAdmitida = React.createClass({
     },
     handleRadioChange: function (event) {
         var respuestas = this.state.respuestas;
-        respuestas.tipoJuicio = event.target.value;
+        var tipoJuicio = event.target.value;
+
+        respuestas.tipoJuicio = tipoJuicio;
+
+        if (tipoJuicio === 'Ejecutiva Mercantil') {
+            respuestas.cita = {fecha: moment()};
+        } else if (respuestas.cita) {
+            delete respuestas.cita;
+        }
+
         this.setState({respuestas: respuestas});
     },
     handleCitaChange: function (key, event) {
@@ -185,6 +196,11 @@ var DemandaAdmitida = React.createClass({
         state.respuestas.cita.fecha = date.clone();
 
         this.setState(state);
+    },
+    handleSelectChange: function (event) {
+        var respuestas = this.state.respuestas;
+        respuestas.resultado = options[event.target.value];
+        this.setState({respuestas: respuestas});
     }
 });
 

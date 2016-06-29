@@ -6,6 +6,7 @@
 
 var React = require('react');
 var Parse = require('parse');
+var moment = require('moment');
 
 var AccionesMixin = require('./acciones-mixin');
 var DateSelect = require('src/components/shared/date-select');
@@ -35,12 +36,7 @@ var DemandaDesechada = React.createClass({
             contrato: this.props.contrato,
             respuestas: {
                 motivo: 'No coinciden los montos',
-                regresaDocumentos: false,
-                fecha: null,
-                horario: {
-                    start: null,
-                    end: null
-                }
+                regresaDocumentos: false
             },
             disabled: false
         };
@@ -145,7 +141,21 @@ var DemandaDesechada = React.createClass({
     },
     handleRegresaDocumentosChange: function (event) {
         var respuestas = this.state.respuestas;
-        respuestas.regresaDocumentos = parseInt(event.target.value, 10) === 1;
+        var regresaDocumentos = parseInt(event.target.value, 10) === 1;
+
+        respuestas.regresaDocumentos = regresaDocumentos;
+
+        if (regresaDocumentos) {
+            respuestas.fecha = moment();
+            respuestas.horario = {
+                start: '8:00 am',
+                end: '9:00 am'
+            };
+        } else if (respuestas.fecha) {
+            delete respuestas.fecha;
+            delete respuestas.horario;
+        }
+
         this.setState({respuestas: respuestas});
     },
     handleChange: function (key, event) {
