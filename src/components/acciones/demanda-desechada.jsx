@@ -36,11 +36,7 @@ var DemandaDesechada = React.createClass({
             contrato: this.props.contrato,
             respuestas: {
                 motivo: 'No coinciden los montos',
-                regresaDocumentos: false,
-                horario: {
-                    start: null,
-                    end: null
-                }
+                regresaDocumentos: false
             },
             disabled: false
         };
@@ -151,8 +147,13 @@ var DemandaDesechada = React.createClass({
 
         if (regresaDocumentos) {
             respuestas.fecha = moment();
+            respuestas.horario = {
+                start: '8:00 am',
+                end: '9:00 am'
+            };
         } else if (respuestas.fecha) {
             delete respuestas.fecha;
+            delete respuestas.horario;
         }
 
         this.setState({respuestas: respuestas});
