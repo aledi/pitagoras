@@ -35,10 +35,6 @@ class Contratos extends React.Component {
         };
     }
 
-    componentWillMount () {
-        ContratosActions.fetchContratos();
-    }
-
     render () {
         if (this.props.params.id) {
             return (
@@ -47,6 +43,7 @@ class Contratos extends React.Component {
                 </main>
             );
         }
+
         return (
             <main className='contratos'>
                 <ContratosTabla contratos={this.state.contratos} />

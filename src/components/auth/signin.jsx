@@ -2,9 +2,18 @@
 
 require('./signin.scss');
 
+// -----------------------------------------------------------------------------------------------
+// React + Other Modules
+// -----------------------------------------------------------------------------------------------
+
+var Pitagoras = require('src/pitagoras');
 var React = require('react');
 var Parse = require('parse');
 var classNames = require('classnames');
+
+// -----------------------------------------------------------------------------------------------
+// Signin
+// -----------------------------------------------------------------------------------------------
 
 var Signin = React.createClass({
     statics: {hideMenu: true},
@@ -69,6 +78,8 @@ var Signin = React.createClass({
     },
     handleAuthSuccess: function (authData) {
         this.setState({submitting: false});
+
+        Pitagoras.fetchContratos();
 
         var location = this.props.location;
 
