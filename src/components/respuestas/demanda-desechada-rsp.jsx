@@ -27,16 +27,26 @@ var DemandaDesechadaRsp = React.createClass({
                     <span className='bold'>¿Regresan documentos?: </span>
                     <span>{RespuestasUtils.formatBooleanRespuesta(respuestas.regresaDocumentos)}</span>
                 </div>
-                <div>
-                    <span className='bold'>Fecha de regreso de documentos: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
-                </div>
-                <div>
-                    <span className='bold'>Horario: </span>
-                    <span>{respuestas.horario.start + ' - ' + respuestas.horario.end}</span>
-                </div>
+                {this.renderFechaHorario()}
             </div>
         );
+    },
+    renderFechaHorario: function () {
+        var respuestas = this.props.accion.respuestas;
+        if (!respuestas.regresaDocumentos) {
+            return;
+        }
+
+        return [
+            <div key='fecha'>
+                <span className='bold'>Fecha de regreso de documentos: </span>
+                <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
+            </div>,
+            <div key='horario'>
+                <span className='bold'>Horario: </span>
+                <span>{respuestas.horario.start + ' - ' + respuestas.horario.end}</span>
+            </div>
+        ];
     }
 });
 

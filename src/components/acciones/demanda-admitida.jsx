@@ -6,6 +6,7 @@
 
 var React = require('react');
 var Parse = require('parse');
+var moment = require('moment');
 
 var AccionesMixin = require('./acciones-mixin');
 
@@ -31,9 +32,9 @@ var DemandaAdmitida = React.createClass({
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                tipoDemanda: 'Oral Mercantil',
+                tipoJuicio: 'Oral Mercantil',
                 resultado: 'No vive en el domicilio',
-                cita: {}
+                fecha: moment()
             },
             disabled: false
         };
@@ -56,7 +57,7 @@ var DemandaAdmitida = React.createClass({
                             type='radio'
                             id='oral'
                             value='Oral Mercantil'
-                            checked={respuestas.tipoDemanda === 'Oral Mercantil'}
+                            checked={respuestas.tipoJuicio === 'Oral Mercantil'}
                             onChange={this.handleRadioChange}
                             disabled={this.state.disabled} />
                         <label htmlFor='oral' disabled={this.state.disabled}>Oral Mercantil</label>
@@ -66,7 +67,7 @@ var DemandaAdmitida = React.createClass({
                             type='radio'
                             id='ejecutiva'
                             value='Ejecutiva Mercantil'
-                            checked={respuestas.tipoDemanda === 'Ejecutiva Mercantil'}
+                            checked={respuestas.tipoJuicio === 'Ejecutiva Mercantil'}
                             onChange={this.handleRadioChange}
                             disabled={this.state.disabled} />
                         <label htmlFor='ejecutiva' disabled={this.state.disabled}>Ejecutiva Mercantil</label>
@@ -96,14 +97,14 @@ var DemandaAdmitida = React.createClass({
         );
     },
     renderResultadoSelect: function () {
-        if (this.state.respuestas.tipoDemanda !== 'Oral Mercantil') {
+        if (this.state.respuestas.tipoJuicio !== 'Oral Mercantil') {
             return;
         }
 
         return (
             <div className='element-wrapper'>
                 <h5>Resultado de Emplazamiento</h5>
-                <select value={options[this.state.respuestas.resultado]} onChange={this.handleChange} disabled={this.state.disabled}>
+                <select value={options[this.state.respuestas.resultado]} onChange={this.handleSelectChange} disabled={this.state.disabled}>
                     {this.renderOptions()}
                 </select>
             </div>
@@ -115,7 +116,7 @@ var DemandaAdmitida = React.createClass({
         }));
     },
     renderTextInputs: function () {
-        if (this.state.respuestas.tipoDemanda !== 'Ejecutiva Mercantil') {
+        if (this.state.respuestas.tipoJuicio !== 'Ejecutiva Mercantil') {
             return;
         }
 
@@ -155,7 +156,16 @@ var DemandaAdmitida = React.createClass({
     },
     handleRadioChange: function (event) {
         var respuestas = this.state.respuestas;
-        respuestas.tipoDemanda = event.target.value;
+        var tipoJuicio = event.target.value;
+
+        respuestas.tipoJuicio = tipoJuicio;
+
+        if (tipoJuicio === 'Ejecutiva Mercantil') {
+            respuestas.cita = {fecha: moment()};
+        } else if (respuestas.cita) {
+            delete respuestas.cita;
+        }
+
         this.setState({respuestas: respuestas});
     },
     handleCitaChange: function (key, event) {
@@ -185,6 +195,11 @@ var DemandaAdmitida = React.createClass({
         state.respuestas.cita.fecha = date.clone();
 
         this.setState(state);
+    },
+    handleSelectChange: function (event) {
+        var respuestas = this.state.respuestas;
+        respuestas.resultado = options[event.target.value];
+        this.setState({respuestas: respuestas});
     }
 });
 

@@ -6,6 +6,7 @@
 
 var React = require('react');
 var Parse = require('parse');
+var moment = require('moment');
 
 var AccionesMixin = require('./acciones-mixin');
 var DateSelect = require('src/components/shared/date-select');
@@ -22,7 +23,7 @@ var AltaDocumentos = React.createClass({
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {fecha: null},
+            respuestas: {fecha: moment()},
             disabled: false
         };
     },
