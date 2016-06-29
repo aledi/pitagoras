@@ -24,8 +24,7 @@ var DemandaPrevenida = React.createClass({
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                desahogar: false,
-                fecha: moment()
+                desahogar: false
             },
             disabled: false
         };

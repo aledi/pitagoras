@@ -25,8 +25,7 @@ var RecoleccionDocumentos = React.createClass({
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                recogeDocumentos: false,
-                fecha: moment()
+                recogeDocumentos: true
             },
             disabled: false
         };
@@ -117,7 +116,7 @@ var RecoleccionDocumentos = React.createClass({
 
         respuestas.recogeDocumentos = recogeDocumentos;
 
-        if (recogeDocumentos) {
+        if (!recogeDocumentos) {
             respuestas.fecha = moment();
         } else if (respuestas.fecha) {
             delete respuestas.fecha;

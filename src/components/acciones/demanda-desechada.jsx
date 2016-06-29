@@ -37,7 +37,6 @@ var DemandaDesechada = React.createClass({
             respuestas: {
                 motivo: 'No coinciden los montos',
                 regresaDocumentos: false,
-                fecha: moment(),
                 horario: {
                     start: null,
                     end: null
