@@ -6,6 +6,7 @@
 
 var React = require('react');
 var Parse = require('parse');
+var moment = require('moment');
 
 var AccionesMixin = require('./acciones-mixin');
 
@@ -33,7 +34,10 @@ var DemandaAdmitida = React.createClass({
             respuestas: {
                 tipoDemanda: 'Oral Mercantil',
                 resultado: 'No vive en el domicilio',
-                cita: {}
+                fecha: moment(),
+                cita: {
+                    fecha: moment()
+                }
             },
             disabled: false
         };

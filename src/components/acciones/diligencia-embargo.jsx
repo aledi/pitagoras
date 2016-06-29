@@ -6,6 +6,7 @@
 
 var React = require('react');
 var Parse = require('parse');
+var moment = require('moment');
 
 var AccionesMixin = require('./acciones-mixin');
 var DateSelect = require('src/components/shared/date-select');
@@ -16,13 +17,13 @@ var TimeSelect = require('src/components/shared/time-select');
 // -----------------------------------------------------------------------------------------------
 
 var options = [
-    'Se dejó citatorio',
     'No encontró el domicilio',
     'El domicilio es incorrecto',
     'La persona no vive ahí',
     'No abre nadie en el domicilio',
     'Fallecimiento',
-    'Se realizó exitosamente'
+    'Se realizó exitosamente',
+    'Se dejó citatorio'
 ];
 
 var DiligenciaEmbargo = React.createClass({
@@ -34,8 +35,7 @@ var DiligenciaEmbargo = React.createClass({
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                resultado: 'Se dejó citatorio',
-                cita: {}
+                resultado: 'No encontró el domicilio'
             },
             disabled: false
         };
@@ -115,7 +115,15 @@ var DiligenciaEmbargo = React.createClass({
     },
     handleChange: function (event) {
         var respuestas = this.state.respuestas;
-        respuestas.resultado = options[event.target.value];
+        var resultado = options[event.target.value];
+        respuestas.resultado = resultado;
+
+        if (resultado === options[options.length - 1]) {
+            respuestas.cita = {fecha: moment()};
+        } else if (respuestas.cita) {
+            delete respuestas.cita;
+        }
+
         this.setState({respuestas: respuestas});
     },
     handleCitaFechaChange: function (date) {
