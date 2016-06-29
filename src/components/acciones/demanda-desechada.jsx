@@ -146,7 +146,16 @@ var DemandaDesechada = React.createClass({
     },
     handleRegresaDocumentosChange: function (event) {
         var respuestas = this.state.respuestas;
-        respuestas.regresaDocumentos = parseInt(event.target.value, 10) === 1;
+        var regresaDocumentos = parseInt(event.target.value, 10) === 1;
+
+        respuestas.regresaDocumentos = regresaDocumentos;
+
+        if (regresaDocumentos) {
+            respuestas.fecha = moment();
+        } else if (respuestas.fecha) {
+            delete respuestas.fecha;
+        }
+
         this.setState({respuestas: respuestas});
     },
     handleChange: function (key, event) {

@@ -113,7 +113,16 @@ var RecoleccionDocumentos = React.createClass({
     },
     handleRadioChange: function (event) {
         var respuestas = this.state.respuestas;
-        respuestas.recogeDocumentos = parseInt(event.target.value, 10) === 1;
+        var recogeDocumentos = parseInt(event.target.value, 10) === 1;
+
+        respuestas.recogeDocumentos = recogeDocumentos;
+
+        if (recogeDocumentos) {
+            respuestas.fecha = moment();
+        } else if (respuestas.fecha) {
+            delete respuestas.fecha;
+        }
+
         this.setState({respuestas: respuestas});
     },
     handleFechaChange: function (date) {

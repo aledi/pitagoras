@@ -159,7 +159,16 @@ var DemandaAdmitida = React.createClass({
     },
     handleRadioChange: function (event) {
         var respuestas = this.state.respuestas;
-        respuestas.tipoDemanda = event.target.value;
+        var tipoDemanda = event.target.value === 'Ejecutiva Mercantil';
+
+        respuestas.tipoDemanda = tipoDemanda;
+
+        if (tipoDemanda) {
+            respuestas.fecha = moment();
+        } else if (respuestas.fecha) {
+            delete respuestas.fecha;
+        }
+
         this.setState({respuestas: respuestas});
     },
     handleCitaChange: function (key, event) {
