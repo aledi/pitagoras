@@ -8,6 +8,7 @@ class ContratosStore extends Flux.MapStore {
     getInitialState () {
         return new Immutable.Map({
             contratos: new Immutable.Map(),
+            notificaciones: new Immutable.Map(),
 
             fetching: false,
             fetchError: null,
@@ -30,7 +31,7 @@ class ContratosStore extends Flux.MapStore {
             case 'CONTRATOS_FETCH':
                 return state.merge({fetching: true, fetchError: null});
             case 'CONTRATOS_FETCH_SUCCESS':
-                return state.merge({fetching: false, contratos: action.contratos});
+                return state.merge({fetching: false, contratos: action.contratos, notificaciones: action.notificaciones});
             case 'CONTRATOS_FETCH_ERROR':
                 return state.merge({fetching: false, fetchError: action.error});
 

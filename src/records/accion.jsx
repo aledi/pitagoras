@@ -12,7 +12,7 @@ var ContratoObject = Parse.Object.extend('Contrato');
 var ContratoRecord = require('./contrato');
 
 // -----------------------------------------------------------------------------------------------
-// ContratoRecord
+// AccionRecord
 // -----------------------------------------------------------------------------------------------
 
 var ACCIONES_TYPES = {
@@ -66,7 +66,7 @@ class Accion extends AccionRecord {
 
         // Notification for Recolección de documentos
         if ((accion.tipo === 5 && accion.respuestas.regresaDocumentos) || (accion.tipo === 6 && !accion.respuestas.recogeDocumentos)) {
-            contrato.notification = {
+            contrato.notificacion = {
                 fecha: accion.respuestas.fecha,
                 horario: accion.respuestas.horario
             };
@@ -74,12 +74,12 @@ class Accion extends AccionRecord {
 
         // Notification for Demanda Prevenida
         if (accion.tipo === 7 && accion.respuestas.desahogar) {
-            contrato.notification = {fecha: accion.respuestas.fecha};
+            contrato.notificacion = {fecha: accion.respuestas.fecha};
         }
 
         // Notification for Demanda Admitida
         if ((accion.tipo === 9 && accion.respuestas.tipoJuicio === 'Ejecutiva Mercantil') || (accion.tipo === 10 && accion.respuestas.resultado === 'Se dejó citatorio')) {
-            contrato.notification = {cita: accion.respuestas.cita};
+            contrato.notificacion = {cita: accion.respuestas.cita};
         }
 
         accion.contrato = new ContratoObject(ContratoRecord.prepareForParse(contrato));

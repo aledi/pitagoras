@@ -7,6 +7,7 @@ var Immutable = require('immutable');
 var Dispatcher = require('src/dispatcher');
 
 var ContratoRecord = require('src/records/contrato');
+var NotificacionRecord = require('src/records/notificacion');
 var ContratoObject = Parse.Object.extend('Contrato');
 var AccionObject = Parse.Object.extend('Accion');
 
@@ -22,15 +23,22 @@ module.exports = {
         query.limit(1000);
         query.find().then(function (contratos) {
             var contratosByKey = {};
+            var notificacionesByContrato = {};
 
             for (var i = 0; i < contratos.length; i++) {
                 var contrato = createContratoRecord(contratos[i]);
+
+                if (contrato.notificacion) {
+                    notificacionesByContrato[contrato.numeroContrato] = createNotificacionRecord(contrato.notificacion, contrato.numeroContrato);
+                }
+
                 contratosByKey[contrato.id] = contrato;
             }
 
             Dispatcher.dispatch({
                 type: 'CONTRATOS_FETCH_SUCCESS',
-                contratos: new Immutable.Map(contratosByKey)
+                contratos: new Immutable.Map(contratosByKey),
+                notificaciones: new Immutable.Map(notificacionesByContrato)
             });
         }).catch(function (error) {
             Dispatcher.dispatch({
@@ -81,4 +89,8 @@ module.exports = {
 
 function createContratoRecord (contrato) {
     return new ContratoRecord(contrato.toJSON());
+}
+
+function createNotificacionRecord (notificacion, numeroContrato) {
+    return new NotificacionRecord(notificacion, numeroContrato);
 }
