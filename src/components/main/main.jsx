@@ -80,7 +80,7 @@ var Main = React.createClass({
                     <Link activeClassName='active' className={classNames({admin: isAdmin})} to={this.state.links.reportes}>Reportes</Link>
                     {this.renderAgregarUsuarioItem(isAdmin)}
                 </div>
-                <div className='signout' onClick={this.signOut}>
+                <div className='signout' onClick={this.signOut} title='Cerrar sesión'>
                     <img src={require('src/assets/signOut.png')} />
                 </div>
             </header>
