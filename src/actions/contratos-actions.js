@@ -22,8 +22,10 @@ module.exports = {
         query.limit(1000);
         query.find().then(function (contratos) {
             var contratosByKey = {};
+
             for (var i = 0; i < contratos.length; i++) {
-                contratosByKey[contratos[i].id] = createContratoRecord(contratos[i]);
+                var contrato = createContratoRecord(contratos[i]);
+                contratosByKey[contrato.id] = contrato;
             }
 
             Dispatcher.dispatch({

@@ -46,8 +46,6 @@ class Accion extends AccionRecord {
     }
 
     static prepareForParse (accion) {
-        accion.contrato = new ContratoObject(ContratoRecord.prepareForParse(accion.contrato.toEditable()));
-
         if (accion.respuestas.fecha) {
             accion.respuestas.fecha = accion.respuestas.fecha.toDate();
         }
@@ -63,6 +61,28 @@ class Accion extends AccionRecord {
         if (accion.respuestas.fechaPublicacion) {
             accion.respuestas.fechaPublicacion = accion.respuestas.fechaPublicacion.toDate();
         }
+
+        var contrato = accion.contrato.toEditable();
+
+        // Notification for Recolección de documentos
+        if ((accion.tipo === 5 && accion.respuestas.regresaDocumentos) || (accion.tipo === 6 && !accion.respuestas.recogeDocumentos)) {
+            contrato.notification = {
+                fecha: accion.respuestas.fecha,
+                horario: accion.respuestas.horario
+            };
+        }
+
+        // Notification for Demanda Prevenida
+        if (accion.tipo === 7 && accion.respuestas.desahogar) {
+            contrato.notification = {fecha: accion.respuestas.fecha};
+        }
+
+        // Notification for Demanda Admitida
+        if ((accion.tipo === 9 && accion.respuestas.tipoJuicio === 'Ejecutiva Mercantil') || (accion.tipo === 10 && accion.respuestas.resultado === 'Se dejó citatorio')) {
+            contrato.notification = {cita: accion.respuestas.cita};
+        }
+
+        accion.contrato = new ContratoObject(ContratoRecord.prepareForParse(contrato));
 
         return accion;
     }

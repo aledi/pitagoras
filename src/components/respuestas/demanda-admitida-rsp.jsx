@@ -19,7 +19,7 @@ var DemandaAdmitidaRsp = React.createClass({
         return (
             <div className='respuestas-wrapper'>
                 <div>
-                    <span className='bold'>Tipo de demanda: </span>
+                    <span className='bold'>Tipo de juicio: </span>
                     <span>{respuestas.tipoJuicio}</span>
                 </div>
                 <div>
