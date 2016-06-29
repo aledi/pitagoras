@@ -77,7 +77,6 @@ var Main = React.createClass({
 
         return (
             <header>
-                <div className='logo' onClick={this.redirectToInicio} />
                 <div className='links-wrapper'>
                     <Link activeClassName='active' className={classNames({admin: isAdmin})} to={this.state.links.inicio}>Inicio</Link>
                     <Link activeClassName='active' className={classNames({admin: isAdmin})} to={this.state.links.agregarContrato}>Agregar contrato</Link>
@@ -85,7 +84,9 @@ var Main = React.createClass({
                     <Link activeClassName='active' className={classNames({admin: isAdmin})} to={this.state.links.reportes}>Reportes</Link>
                     {this.renderAgregarUsuarioItem(isAdmin)}
                 </div>
-                <div className='signout' onClick={this.signOut} />
+                <div className='signout' onClick={this.signOut} title='Cerrar sesión'>
+                    <img src={require('src/assets/signOut.png')} />
+                </div>
             </header>
         );
     },
@@ -106,9 +107,6 @@ var Main = React.createClass({
     },
     getCurrentUser: function () {
         return Parse.User.current();
-    },
-    redirectToInicio: function () {
-        this.context.router.replace('/inicio');
     }
 });
 
