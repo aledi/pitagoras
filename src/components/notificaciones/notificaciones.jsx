@@ -15,6 +15,7 @@ var NotificacionTres = require('src/components/notificaciones/notificacion-tres'
 // -----------------------------------------------------------------------------------------------
 
 var Notificaciones = React.createClass({
+    contextTypes: {router: React.PropTypes.object.isRequired},
     render: function () {
         return (
             <div className='notificaciones'>
@@ -29,12 +30,16 @@ var Notificaciones = React.createClass({
             return;
         }
 
+        if (this.props.notificaciones.size === 0) {
+            return (<div>Por el momento no tiene notificaciones.</div>);
+        }
+
         var notificaciones = [];
         var self = this;
 
         this.props.notificaciones.forEach(function (notificacion, index) {
             notificaciones.push(
-                <li key={notificacion.numeroContrato + '-' + index}>
+                <li key={notificacion.numeroContrato + '-' + index} onClick={self.redirectToContrato.bind(self, notificacion.contratoId)}>
                     {self.renderNotificacionContent(notificacion)}
                 </li>
             );
@@ -53,6 +58,10 @@ var Notificaciones = React.createClass({
             default:
                 break;
         }
+    },
+    redirectToContrato: function (contratoId) {
+
+        this.context.router.push('/contratos/' + contratoId);
     }
 });
 

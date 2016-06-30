@@ -33,9 +33,19 @@ class Inicio extends React.Component {
     render () {
         return (
             <main className='inicio'>
-                <Notificaciones notificaciones={this.state.notificaciones} />
+                {this.renderContent()}
             </main>
         );
+    }
+
+    renderContent () {
+        if (this.state.loading) {
+            return (<div>Cargando...</div>);
+        } else if (this.state.error) {
+            return (<div>Hubo un error. Favor de intentar de nuevo.</div>);
+        } else {
+            return (<Notificaciones notificaciones={this.state.notificaciones} />);
+        }
     }
 }
 
