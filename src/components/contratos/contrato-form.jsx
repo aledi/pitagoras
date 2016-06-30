@@ -19,7 +19,10 @@ var DateSelect = require('src/components/shared/date-select');
 
 var ContratoForm = React.createClass({
     getInitialState: function () {
-        return {contrato: this.props.contrato ? this.props.contrato.toEditable() : new ContratoRecord().toEditable()};
+        return {
+            contrato: this.props.contrato ? this.props.contrato.toEditable() : new ContratoRecord().toEditable(),
+            saving: false
+        };
     },
     componentDidMount: function () {
         this.storeListener = ContratosStore.addListener(this.onChange);
@@ -34,13 +37,13 @@ var ContratoForm = React.createClass({
 
         if (this.state.saving && !saving && !saveError) {
             feedbackText = 'El contrato se ha guardado.';
-            this.setState({feedbackText: feedbackText});
+            this.setState({feedbackText: feedbackText, contrato: new ContratoRecord().toEditable(), saving: false});
             return;
         }
 
         if (this.state.saving && !saving && saveError) {
             feedbackText = 'Error al guardar el contrato.';
-            this.setState({feedbackText: feedbackText});
+            this.setState({feedbackText: feedbackText, saving: false});
             return;
         }
 
@@ -55,96 +58,190 @@ var ContratoForm = React.createClass({
                     <h3 className='section-title'>Contrato</h3>
                     <div className='input-wrapper'>
                         <label>Número de Contrato</label>
-                        <input type='text' value={contrato.numeroContrato} onChange={this.handleChange.bind(this, 'numeroContrato')} />
+                        <input
+                            type='text'
+                            value={contrato.numeroContrato}
+                            disabled={this.state.saving}
+                            onChange={this.handleChange.bind(this, 'numeroContrato')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Plazo</label>
-                        <input type='text' value={contrato.plazo} onChange={this.handleChange.bind(this, 'plazo')} onKeyPress={this.restrictNumericInput.bind(this, false)} />
+                        <input
+                            type='text'
+                            value={contrato.plazo}
+                            disabled={this.state.saving}
+                            onChange={this.handleChange.bind(this, 'plazo')}
+                            onKeyPress={this.restrictNumericInput.bind(this, false)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Monto</label>
-                        <input type='text' value={contrato.monto} onChange={this.handleChange.bind(this, 'monto')} onKeyPress={this.restrictNumericInput.bind(this, true)} />
+                        <input
+                            type='text'
+                            value={contrato.monto}
+                            disabled={this.state.saving}
+                            onChange={this.handleChange.bind(this, 'monto')}
+                            onKeyPress={this.restrictNumericInput.bind(this, true)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Tasa</label>
-                        <input type='text' value={contrato.tasa} onChange={this.handleChange.bind(this, 'tasa')} onKeyPress={this.restrictNumericInput.bind(this, true)} />
+                        <input
+                            type='text'
+                            value={contrato.tasa}
+                            disabled={this.state.saving}
+                            onChange={this.handleChange.bind(this, 'tasa')}
+                            onKeyPress={this.restrictNumericInput.bind(this, true)} />
                     </div>
                     <DateSelect date={contrato.fechaContrato} onChange={this.handleFechaChange} />
                     <hr />
                     <h3 className='section-title'>Vehículo</h3>
                     <div className='input-wrapper'>
                         <label>Modelo</label>
-                        <input type='text' value={contrato.vehiculo.modelo} onChange={this.handleVehiculoChange.bind(this, 'modelo')} />
+                        <input
+                            type='text'
+                            value={contrato.vehiculo.modelo}
+                            disabled={this.state.saving}
+                            onChange={this.handleVehiculoChange.bind(this, 'modelo')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Marca</label>
-                        <input type='text' value={contrato.vehiculo.marca} onChange={this.handleVehiculoChange.bind(this, 'marca')} />
+                        <input
+                            type='text'
+                            value={contrato.vehiculo.marca}
+                            disabled={this.state.saving}
+                            onChange={this.handleVehiculoChange.bind(this, 'marca')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Clase</label>
-                        <input type='text' value={contrato.vehiculo.clase} onChange={this.handleVehiculoChange.bind(this, 'clase')} />
+                        <input
+                            type='text'
+                            value={contrato.vehiculo.clase}
+                            disabled={this.state.saving}
+                            onChange={this.handleVehiculoChange.bind(this, 'clase')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Distribuidor</label>
-                        <input type='text' value={contrato.vehiculo.distribuidor} onChange={this.handleVehiculoChange.bind(this, 'distribuidor')} />
+                        <input
+                            type='text'
+                            value={contrato.vehiculo.distribuidor}
+                            disabled={this.state.saving}
+                            onChange={this.handleVehiculoChange.bind(this, 'distribuidor')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Año</label>
-                        <input type='text' value={contrato.vehiculo.anio} onChange={this.handleVehiculoChange.bind(this, 'anio')} />
+                        <input
+                            type='text'
+                            value={contrato.vehiculo.anio}
+                            disabled={this.state.saving}
+                            onChange={this.handleVehiculoChange.bind(this, 'anio')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Serie</label>
-                        <input type='text' value={contrato.vehiculo.serie} onChange={this.handleVehiculoChange.bind(this, 'serie')} />
+                        <input
+                            type='text'
+                            value={contrato.vehiculo.serie}
+                            disabled={this.state.saving}
+                            onChange={this.handleVehiculoChange.bind(this, 'serie')} />
                     </div>
                     <hr />
                     <h3 className='section-title'>Cliente</h3>
                     <div className='input-wrapper'>
                         <label>Nombre</label>
-                        <input type='text' value={contrato.cliente.nombre} onChange={this.handleClienteChange.bind(this, 'nombre')} />
+                        <input
+                            type='text'
+                            value={contrato.cliente.nombre}
+                            disabled={this.state.saving}
+                            onChange={this.handleClienteChange.bind(this, 'nombre')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Apellido Paterno</label>
-                        <input type='text' value={this.state.contrato.cliente.apellidoPaterno} onChange={this.handleClienteChange.bind(this, 'apellidoPaterno')} />
+                        <input
+                            type='text'
+                            value={this.state.contrato.cliente.apellidoPaterno}
+                            disabled={this.state.saving}
+                            onChange={this.handleClienteChange.bind(this, 'apellidoPaterno')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Apellido Materno</label>
-                        <input type='text' value={contrato.cliente.apellidoMaterno} onChange={this.handleClienteChange.bind(this, 'apellidoMaterno')} />
+                        <input
+                            type='text'
+                            value={contrato.cliente.apellidoMaterno}
+                            disabled={this.state.saving}
+                            onChange={this.handleClienteChange.bind(this, 'apellidoMaterno')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Calle</label>
-                        <input type='text' value={contrato.cliente.domicilio.calle} onChange={this.handleDomicilioChange.bind(this, 'calle')} />
+                        <input
+                            type='text'
+                            value={contrato.cliente.domicilio.calle}
+                            disabled={this.state.saving}
+                            onChange={this.handleDomicilioChange.bind(this, 'calle')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Número Exterior</label>
-                        <input type='text' value={contrato.cliente.domicilio.exterior} onChange={this.handleDomicilioChange.bind(this, 'exterior')} />
+                        <input
+                            type='text'
+                            value={contrato.cliente.domicilio.exterior}
+                            disabled={this.state.saving}
+                            onChange={this.handleDomicilioChange.bind(this, 'exterior')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Número Interior</label>
-                        <input type='text' value={contrato.cliente.domicilio.interior} onChange={this.handleDomicilioChange.bind(this, 'interior')} />
+                        <input
+                            type='text'
+                            value={contrato.cliente.domicilio.interior}
+                            disabled={this.state.saving}
+                            onChange={this.handleDomicilioChange.bind(this, 'interior')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Colonia</label>
-                        <input type='text' value={contrato.cliente.domicilio.colonia} onChange={this.handleDomicilioChange.bind(this, 'colonia')} />
+                        <input
+                            type='text'
+                            value={contrato.cliente.domicilio.colonia}
+                            disabled={this.state.saving}
+                            onChange={this.handleDomicilioChange.bind(this, 'colonia')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Código Postal</label>
-                        <input type='text' value={contrato.cliente.domicilio.codigoPostal} onChange={this.handleDomicilioChange.bind(this, 'codigoPostal')} />
+                        <input
+                            type='text'
+                            value={contrato.cliente.domicilio.codigoPostal}
+                            disabled={this.state.saving}
+                            onChange={this.handleDomicilioChange.bind(this, 'codigoPostal')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Municipio / Delegación</label>
-                        <input type='text' value={contrato.cliente.domicilio.municipio} onChange={this.handleDomicilioChange.bind(this, 'municipio')} />
+                        <input
+                            type='text'
+                            value={contrato.cliente.domicilio.municipio}
+                            disabled={this.state.saving}
+                            onChange={this.handleDomicilioChange.bind(this, 'municipio')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Estado</label>
-                        <input type='text' value={contrato.cliente.domicilio.estado} onChange={this.handleDomicilioChange.bind(this, 'estado')} />
+                        <input
+                            type='text'
+                            value={contrato.cliente.domicilio.estado}
+                            disabled={this.state.saving}
+                            onChange={this.handleDomicilioChange.bind(this, 'estado')} />
                     </div>
                     {this.renderTelefonos()}
-                    <button type='button' className='add' onClick={this.addTelefono}>Agregar nuevo teléfono</button>
+                    <button
+                        type='button'
+                        className='add'
+                        disabled={this.state.saving}
+                        onClick={this.addTelefono}>Agregar nuevo teléfono</button>
                     <hr />
                     <h3 className='section-title'>Referencias</h3>
                     {this.renderReferencias()}
-                    <button type='button' className='add' onClick={this.addReferencia}>Agregar nueva referencia</button>
-                    <button type='submit' className='submit'>Guardar Contrato</button>
+                    <button
+                        type='button'
+                        className='add'
+                        disabled={this.state.saving}
+                        onClick={this.addReferencia}>Agregar nueva referencia</button>
+                    <button
+                        type='submit'
+                        className='submit'
+                        disabled={this.state.saving}>Guardar Contrato</button>
                     {this.renderFeedbackText()}
                 </form>
             </main>
@@ -164,7 +261,11 @@ var ContratoForm = React.createClass({
             return (
                 <div className='input-wrapper'>
                     <label>Teléfono 1</label>
-                    <input type='text' value={this.state.contrato.cliente.telefonos[0]} onChange={this.handleTelefonosChange.bind(this, 'telefonos', 0)} />
+                    <input
+                        type='text'
+                        value={this.state.contrato.cliente.telefonos[0]}
+                        disabled={this.state.saving}
+                        onChange={this.handleTelefonosChange.bind(this, 'telefonos', 0)} />
                 </div>
             );
         }
@@ -174,7 +275,11 @@ var ContratoForm = React.createClass({
             return (
                 <div key={'telefono-' + index} className='input-wrapper'>
                     <label>{'Teléfono ' + (index + 1)}</label>
-                    <input type='text' value={self.state.contrato.cliente.telefonos[index]} onChange={self.handleTelefonosChange.bind(self, 'telefonos', index)} />
+                    <input
+                        type='text'
+                        value={self.state.contrato.cliente.telefonos[index]}
+                        disabled={self.state.saving}
+                        onChange={self.handleTelefonosChange.bind(self, 'telefonos', index)} />
                     {self.renderRemoveButton(index)}
                 </div>
             );
@@ -186,7 +291,11 @@ var ContratoForm = React.createClass({
         }
 
         return (
-            <button type='button' className='remove remove-input' onClick={this.removeTelefono.bind(this, index)}>Borrar teléfono</button>
+            <button
+                type='button'
+                className='remove remove-input'
+                disabled={this.state.saving}
+                onClick={this.removeTelefono.bind(this, index)}>Borrar teléfono</button>
         );
     },
     renderReferencias: function () {
@@ -202,49 +311,97 @@ var ContratoForm = React.createClass({
                 <div key={'referencia-' + index} className='referencia-wrapper'>
                     <div className='input-wrapper'>
                         <label>Nombre</label>
-                        <input type='text' value={referencia.nombre} onChange={self.handleReferenciaChange.bind(self, 'nombre', index)} />
+                        <input
+                            type='text'
+                            value={referencia.nombre}
+                            disabled={self.state.saving}
+                            onChange={self.handleReferenciaChange.bind(self, 'nombre', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Apellido Paterno</label>
-                        <input type='text' value={referencia.apellidoPaterno} onChange={self.handleReferenciaChange.bind(self, 'apellidoPaterno', index)} />
+                        <input
+                            type='text'
+                            value={referencia.apellidoPaterno}
+                            disabled={self.state.saving}
+                            onChange={self.handleReferenciaChange.bind(self, 'apellidoPaterno', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Apellido Materno</label>
-                        <input type='text' value={referencia.apellidoMaterno} onChange={self.handleReferenciaChange.bind(self, 'apellidoMaterno', index)} />
+                        <input
+                            type='text'
+                            value={referencia.apellidoMaterno}
+                            disabled={self.state.saving}
+                            onChange={self.handleReferenciaChange.bind(self, 'apellidoMaterno', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Calle</label>
-                        <input type='text' value={referencia.domicilio.calle} onChange={self.handleReferenciaDomicilioChange.bind(self, 'calle', index)} />
+                        <input
+                            type='text'
+                            value={referencia.domicilio.calle}
+                            disabled={self.state.saving}
+                            onChange={self.handleReferenciaDomicilioChange.bind(self, 'calle', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Número Exterior</label>
-                        <input type='text' value={referencia.domicilio.exterior} onChange={self.handleReferenciaDomicilioChange.bind(self, 'exterior', index)} />
+                        <input
+                            type='text'
+                            value={referencia.domicilio.exterior}
+                            disabled={self.state.saving}
+                            onChange={self.handleReferenciaDomicilioChange.bind(self, 'exterior', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Número Interior</label>
-                        <input type='text' value={referencia.domicilio.interior} onChange={self.handleReferenciaDomicilioChange.bind(self, 'interior', index)} />
+                        <input
+                            type='text'
+                            value={referencia.domicilio.interior}
+                            disabled={self.state.saving}
+                            onChange={self.handleReferenciaDomicilioChange.bind(self, 'interior', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Colonia</label>
-                        <input type='text' value={referencia.domicilio.colonia} onChange={self.handleReferenciaDomicilioChange.bind(self, 'colonia', index)} />
+                        <input
+                            type='text'
+                            value={referencia.domicilio.colonia}
+                            disabled={self.state.saving}
+                            onChange={self.handleReferenciaDomicilioChange.bind(self, 'colonia', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Código Postal</label>
-                        <input type='text' value={referencia.domicilio.codigoPostal} onChange={self.handleReferenciaDomicilioChange.bind(self, 'codigoPostal', index)} />
+                        <input
+                            type='text'
+                            value={referencia.domicilio.codigoPostal}
+                            disabled={self.state.saving}
+                            onChange={self.handleReferenciaDomicilioChange.bind(self, 'codigoPostal', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Municipio / Delegación</label>
-                        <input type='text' value={referencia.domicilio.municipio} onChange={self.handleReferenciaDomicilioChange.bind(self, 'municipio', index)} />
+                        <input
+                            type='text'
+                            value={referencia.domicilio.municipio}
+                            disabled={self.state.saving}
+                            onChange={self.handleReferenciaDomicilioChange.bind(self, 'municipio', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Estado</label>
-                        <input type='text' value={referencia.domicilio.estado} onChange={self.handleReferenciaDomicilioChange.bind(self, 'estado', index)} />
+                        <input
+                            type='text'
+                            value={referencia.domicilio.estado}
+                            disabled={self.state.saving}
+                            onChange={self.handleReferenciaDomicilioChange.bind(self, 'estado', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Teléfono</label>
-                        <input type='text' value={referencia.telefono} onChange={self.handleReferenciaChange.bind(self, 'telefono', index)} />
+                        <input
+                            type='text'
+                            value={referencia.telefono}
+                            disabled={self.state.saving}
+                            onChange={self.handleReferenciaChange.bind(self, 'telefono', index)} />
                     </div>
-                    <button type='button' className='remove' onClick={self.removeReferencia.bind(self, index)}>Eliminar referencia</button>
+                    <button
+                        type='button'
+                        className='remove'
+                        disabled={self.state.saving}
+                        onClick={self.removeReferencia.bind(self, index)}>Eliminar referencia</button>
                 </div>
             );
         });
