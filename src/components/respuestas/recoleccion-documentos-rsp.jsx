@@ -50,8 +50,8 @@ var RecoleccionDocumentosRsp = React.createClass({
                     <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
                 </div>
                 <div>
-                    <span className='bold'>Hora: </span>
-                    <span>{respuestas.hora}</span>
+                    <span className='bold'>Horario: </span>
+                    <span>{respuestas.horario.start + ' - ' + respuestas.horario.end}</span>
                 </div>
             </div>
         );

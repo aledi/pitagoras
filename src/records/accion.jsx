@@ -64,9 +64,10 @@ class Accion extends AccionRecord {
 
         var contrato = accion.contrato.toEditable();
 
-        // Notification for Recolección de documentos
+        // Notification for Demanda Desechada & Recolección de documentos
         if ((accion.tipo === 5 && accion.respuestas.regresaDocumentos) || (accion.tipo === 6 && !accion.respuestas.recogeDocumentos)) {
             contrato.notificacion = {
+                tipo: 1,
                 fecha: accion.respuestas.fecha,
                 horario: accion.respuestas.horario
             };
@@ -74,12 +75,18 @@ class Accion extends AccionRecord {
 
         // Notification for Demanda Prevenida
         if (accion.tipo === 7 && accion.respuestas.desahogar) {
-            contrato.notificacion = {fecha: accion.respuestas.fecha};
+            contrato.notificacion = {
+                tipo: 2,
+                fecha: accion.respuestas.fecha
+            };
         }
 
-        // Notification for Demanda Admitida
+        // Notification for Demanda Admitida & Diligencia de Embargo
         if ((accion.tipo === 9 && accion.respuestas.tipoJuicio === 'Ejecutiva Mercantil') || (accion.tipo === 10 && accion.respuestas.resultado === 'Se dejó citatorio')) {
-            contrato.notificacion = {cita: accion.respuestas.cita};
+            contrato.notificacion = {
+                tipo: 3,
+                cita: accion.respuestas.cita
+            };
         }
 
         accion.contrato = new ContratoObject(ContratoRecord.prepareForParse(contrato));
