@@ -50,6 +50,13 @@ class ContratosStore extends Flux.MapStore {
             // Sort
             // -----------------------------------------------------------------------------------------------
 
+            case 'NOTIFICACIONES_UPDATE':
+                return state.merge({notificaciones: state.get('notificaciones').set(action.contratoId, action.notificacion)});
+
+            // -----------------------------------------------------------------------------------------------
+            // Sort
+            // -----------------------------------------------------------------------------------------------
+
             case 'CONTRATOS_SORT':
                 return updateSortColumn(state, action.sortColumn);
             default:

@@ -68,6 +68,7 @@ class Accion extends AccionRecord {
         if ((accion.tipo === 5 && accion.respuestas.regresaDocumentos) || (accion.tipo === 6 && !accion.respuestas.recogeDocumentos)) {
             contrato.notificacion = {
                 tipo: 1,
+                numeroContrato: contrato.numeroContrato,
                 contratoId: contrato.id,
                 fecha: accion.respuestas.fecha,
                 horario: accion.respuestas.horario
@@ -78,6 +79,7 @@ class Accion extends AccionRecord {
         if (accion.tipo === 7 && accion.respuestas.desahogar) {
             contrato.notificacion = {
                 tipo: 2,
+                numeroContrato: contrato.numeroContrato,
                 contratoId: contrato.id,
                 fecha: accion.respuestas.fecha
             };
@@ -87,6 +89,7 @@ class Accion extends AccionRecord {
         if ((accion.tipo === 9 && accion.respuestas.tipoJuicio === 'Ejecutiva Mercantil') || (accion.tipo === 10 && accion.respuestas.resultado === 'Se dejó citatorio')) {
             contrato.notificacion = {
                 tipo: 3,
+                numeroContrato: contrato.numeroContrato,
                 contratoId: contrato.id,
                 cita: accion.respuestas.cita
             };
