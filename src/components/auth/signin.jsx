@@ -22,6 +22,9 @@ var Signin = React.createClass({
     render: function () {
         return (
             <div className='signin-wrapper'>
+                <div className='logo'>
+                    <img src={require('src/assets/logo.png')} />
+                </div>
                 <form onSubmit={this.handleSignIn}>
                     <label>Usuario</label>
                     <input
