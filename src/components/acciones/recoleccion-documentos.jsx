@@ -99,8 +99,9 @@ var RecoleccionDocumentos = React.createClass({
                     <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
                 </div>
                 <div>
-                    <label className='text-label'>Hora</label>
-                    <TimeSelect time={this.state.respuestas.hora} onChange={this.handleHoraChange} />
+                    <label className='text-label'>Horario</label>
+                        <TimeSelect time={this.state.respuestas.horario.start} onChange={this.handleHorarioChange.bind(this, 'start')} />
+                        <TimeSelect time={this.state.respuestas.horario.end} onChange={this.handleHorarioChange.bind(this, 'end')} />
                 </div>
             </div>
         );
@@ -118,10 +119,13 @@ var RecoleccionDocumentos = React.createClass({
 
         if (!recogeDocumentos) {
             respuestas.fecha = moment();
-            respuestas.hora = '8:00 am';
+            respuestas.horario = {
+                start: '8:00 am',
+                end: '9:00 am'
+            };
         } else if (respuestas.fecha) {
             delete respuestas.fecha;
-            delete respuestas.hora;
+            delete respuestas.horario;
         }
 
         this.setState({respuestas: respuestas});
@@ -132,9 +136,9 @@ var RecoleccionDocumentos = React.createClass({
 
         this.setState(state);
     },
-    handleHoraChange: function (time) {
+    handleHorarioChange: function (key, time) {
         var state = {respuestas: this.state.respuestas};
-        state.respuestas.hora = time;
+        state.respuestas.horario[key] = time;
 
         this.setState(state);
     }

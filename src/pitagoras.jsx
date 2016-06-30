@@ -13,9 +13,20 @@ var hostConfig = config[window.location.host] || config['*'];
 Parse.initialize('pitagoras');
 Parse.serverURL = hostConfig.serverURL;
 
+var ContratosActions = require('src/actions/contratos-actions');
+
+function fetchContratos () {
+    if (!Parse.User.current()) {
+        return;
+    }
+
+    ContratosActions.fetchContratos();
+}
+
 // Export before settings routes given circular dependencies.
 module.exports = {
-    hostConfig: hostConfig
+    hostConfig: hostConfig,
+    fetchContratos: fetchContratos
 };
 
 // -----------------------------------------------------------------------------------------------

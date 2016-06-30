@@ -3,9 +3,10 @@
 require('./main.scss');
 
 // -----------------------------------------------------------------------------------------------
-// Dependencies
+// React + Other Modules
 // -----------------------------------------------------------------------------------------------
 
+var Pitagoras = require('src/pitagoras');
 var React = require('react');
 var Parse = require('parse');
 var ReactRouter = require('react-router');
@@ -24,6 +25,9 @@ var Main = React.createClass({
     },
     getInitialState: function () {
         return this.getState(this.props);
+    },
+    componentDidMount: function () {
+        Pitagoras.fetchContratos();
     },
     componentWillReceiveProps: function (nextProps) {
         this.setState(this.getState(nextProps));

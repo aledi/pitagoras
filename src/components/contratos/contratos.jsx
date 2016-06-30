@@ -9,7 +9,6 @@ require('./contratos.scss');
 var React = require('react');
 var Flux = require('flux/utils');
 
-var ContratosActions = require('src/actions/contratos-actions');
 var ContratosStore = require('src/stores/contratos-store');
 
 var ContratosTabla = require('./contratos-tabla');
@@ -35,10 +34,6 @@ class Contratos extends React.Component {
         };
     }
 
-    componentWillMount () {
-        ContratosActions.fetchContratos();
-    }
-
     render () {
         if (this.props.params.id) {
             return (
@@ -47,6 +42,7 @@ class Contratos extends React.Component {
                 </main>
             );
         }
+
         return (
             <main className='contratos'>
                 <ContratosTabla contratos={this.state.contratos} />
