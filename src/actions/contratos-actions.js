@@ -29,7 +29,7 @@ module.exports = {
                 var contrato = createContratoRecord(contratos[i]);
 
                 if (contrato.notificacion) {
-                    notificacionesByContrato[contrato.numeroContrato] = createNotificacionRecord(contrato.notificacion, contrato.numeroContrato);
+                    notificacionesByContrato[contrato.numeroContrato] = createNotificacionRecord(contrato.notificacion);
                 }
 
                 contratosByKey[contrato.id] = contrato;

@@ -24,7 +24,7 @@ var NotificacionRecord = Immutable.Record({
 });
 
 class Notificacion extends NotificacionRecord {
-    constructor (definition, numeroContrato) {
+    constructor (definition) {
         definition = definition || {};
         var formattedValues = {};
 
@@ -35,7 +35,7 @@ class Notificacion extends NotificacionRecord {
         definition.contratoId = definition.contratoId;
 
         // Numero de Contrato
-        definition.numeroContrato = numeroContrato;
+        definition.numeroContrato = definition.numeroContrato;
 
         // Fecha
         if (definition.fecha) {
