@@ -36,6 +36,7 @@ var AccionRecord = Immutable.Record({
     contrato: null,
     respuestas: null,
     fecha: null,
+    updatedAt: null,
 
     formattedValues: {}
 });
@@ -95,6 +96,8 @@ class Accion extends AccionRecord {
             };
         }
 
+        contrato.lastAccionAt = moment().toDate();
+
         accion.contrato = new ContratoObject(ContratoRecord.prepareForParse(contrato));
 
         return accion;
@@ -113,6 +116,12 @@ class Accion extends AccionRecord {
         // Fecha
         var createdAt = moment(definition.createdAt ? new Date(definition.createdAt) : new Date());
         definition.fecha = createdAt.format('D MMMM, YYYY');
+
+        // Contrato
+        definition.contrato = definition.contrato;
+
+        // Updated At
+        definition.updatedAt = moment(definition.updatedAt ? new Date(definition.updatedAt) : new Date());
 
         definition.formattedValues = formattedValues;
 

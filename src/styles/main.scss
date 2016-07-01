@@ -60,6 +60,10 @@
                 top: 12px; left: 10px;
                 position: relative;
             }
+
+            &:hover {
+                background-color: rgba($nightfall, 0.5);
+            }
         }
     }
 

@@ -32,6 +32,7 @@ var ContratoRecord = Immutable.Record({
     tasa: null,
     vehiculo: null,
     notificacion: null,
+    lastAccionAt: null,
 
     formattedValues: {},
     sortValues: {}
@@ -67,8 +68,11 @@ class Contrato extends ContratoRecord {
         definition.fechaContrato = definition.fechaContrato ? moment(definition.fechaContrato.iso) : moment();
         formattedValues.fechaContrato = definition.fechaContrato.format('D/MMM/YYYY');
 
+        // Fecha Contrato
+        definition.lastAccionAt = definition.lastAccionAt ? moment(definition.lastAccionAt.iso) : moment();
+
         // Vehiculo
-        definition.vehiculo = new VehiculoRecord(definition.vehiculo);
+        definition.vehiculo = definition.vehiculo ? new VehiculoRecord(definition.vehiculo) : null;
         sortValues.modelo = definition.vehiculo.modelo.toLowerCase();
         sortValues.marca = definition.vehiculo.marca.toLowerCase();
         sortValues.anio = definition.vehiculo.anio;
@@ -79,7 +83,7 @@ class Contrato extends ContratoRecord {
         sortValues.juzgado = definition.juzgado.toLowerCase();
 
         // Cliente
-        definition.cliente = new ClienteRecord(definition.cliente);
+        definition.cliente = definition.cliente ? new ClienteRecord(definition.cliente) : null;
         sortValues.cliente = definition.cliente.formattedValues.nombre.toLowerCase();
 
         // Monto
@@ -96,13 +100,13 @@ class Contrato extends ContratoRecord {
         formattedValues.tasa = formatNumber({suffix: '%'})(definition.tasa);
         sortValues.tasa = definition.tasa;
 
-        // Cliente
+        // Especial
         definition.especial = definition.especial || false;
         formattedValues.especial = RespuestasUtils.formatBooleanRespuesta(definition.especial);
         sortValues.especial = definition.especial;
 
         // Notificacion
-        definition.Notificacion = definition.Notificacion;
+        definition.notificacion = definition.notificacion;
 
         // Referencias
         if (definition.referencias && definition.referencias.length) {
@@ -138,7 +142,8 @@ class Contrato extends ContratoRecord {
             vehiculo: this.vehiculo.toEditable(),
             juzgado: this.juzgado,
             especial: this.especial,
-            notificacion: this.notificacion
+            notificacion: this.notificacion,
+            lastAccionAt: this.lastAccionAt
         };
     }
 }

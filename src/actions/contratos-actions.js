@@ -5,11 +5,12 @@ require('src/stores/contratos-store');
 var Parse = require('parse');
 var Immutable = require('immutable');
 var Dispatcher = require('src/dispatcher');
+var moment = require('moment');
 
+var AccionRecord = require('src/records/accion');
 var ContratoRecord = require('src/records/contrato');
 var NotificacionRecord = require('src/records/notificacion');
 var ContratoObject = Parse.Object.extend('Contrato');
-var AccionObject = Parse.Object.extend('Accion');
 
 module.exports = {
     fetchContratos: function () {
@@ -30,6 +31,16 @@ module.exports = {
 
                 if (contrato.notificacion) {
                     notificacionesByContrato[contrato.numeroContrato] = createNotificacionRecord(contrato.notificacion);
+                } else {
+                    var today = moment();
+                    if (today.diff(contrato.lastAccionAt, 'days') > 5) {
+                        notificacionesByContrato[contrato.numeroContrato] = createNotificacionRecord({
+                            tipo: 4,
+                            numeroContrato: contrato.numeroContrato,
+                            contratoId: contrato.id,
+                            fecha: contrato.lastAccionAt.clone().toISOString()
+                        });
+                    }
                 }
 
                 contratosByKey[contrato.id] = contrato;
@@ -67,18 +78,6 @@ module.exports = {
             });
         });
     },
-    saveAccion: function (accion) {
-        Dispatcher.dispatch({
-            type: 'CONTRATOS_SAVE_ACCION'
-        });
-
-        (new AccionObject()).save(accion).then(function (payload) {
-            Dispatcher.dispatch({
-                type: 'CONTRATOS_SAVE_ACCION_SUCCESS',
-                contrato: createContratoRecord(payload)
-            });
-        });
-    },
     sortContratos: function (sortColumn) {
         Dispatcher.dispatch({
             type: 'CONTRATOS_SORT',
@@ -93,4 +92,8 @@ function createContratoRecord (contrato) {
 
 function createNotificacionRecord (notificacion, numeroContrato) {
     return new NotificacionRecord(notificacion, numeroContrato);
+}
+
+function createAccionRecord (accion) {
+    return new AccionRecord(accion.toJSON());
 }
