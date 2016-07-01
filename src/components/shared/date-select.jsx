@@ -21,26 +21,38 @@ var DateSelect = React.createClass({
         this.setState(this.getState(nextProps));
     },
     getState: function (props) {
-        return {date: props.date ? moment(props.date).clone() : moment()};
+        return {
+            date: props.date ? moment(props.date).clone() : moment(),
+            saving: props.disabled
+        };
     },
     render: function () {
         return (
             <div className='date-select'>
                 <div className='select-wrapper'>
                     <label>Día</label>
-                    <select value={this.state.date.get('date')} onChange={this.handleChange.bind(this, 'date')}>
+                    <select
+                        value={this.state.date.get('date')}
+                        disabled={this.state.saving}
+                        onChange={this.handleChange.bind(this, 'date')}>
                         {this.renderDias()}
                     </select>
                 </div>
                 <div className='select-wrapper'>
                     <label>Mes</label>
-                    <select value={this.state.date.get('month')} onChange={this.handleChange.bind(this, 'month')}>
+                    <select
+                        value={this.state.date.get('month')}
+                        disabled={this.state.saving}
+                        onChange={this.handleChange.bind(this, 'month')}>
                         {this.renderMeses()}
                     </select>
                 </div>
                 <div className='select-wrapper'>
                     <label>Año</label>
-                    <select value={this.state.date.get('year')} onChange={this.handleChange.bind(this, 'year')}>
+                    <select
+                        value={this.state.date.get('year')}
+                        disabled={this.state.saving}
+                        onChange={this.handleChange.bind(this, 'year')}>
                         {this.renderAnios()}
                     </select>
                 </div>

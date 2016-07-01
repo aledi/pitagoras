@@ -91,7 +91,10 @@ var ContratoForm = React.createClass({
                             onChange={this.handleChange.bind(this, 'tasa')}
                             onKeyPress={this.restrictNumericInput.bind(this, true)} />
                     </div>
-                    <DateSelect date={contrato.fechaContrato} onChange={this.handleFechaChange} />
+                    <DateSelect
+                        date={contrato.fechaContrato}
+                        disabled={this.state.saving}
+                        onChange={this.handleFechaChange} />
                     <hr />
                     <h3 className='section-title'>Vehículo</h3>
                     <div className='input-wrapper'>
