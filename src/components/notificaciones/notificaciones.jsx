@@ -1,5 +1,7 @@
 'use strict';
 
+require('./notificaciones.scss');
+
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
 // -----------------------------------------------------------------------------------------------
@@ -20,21 +22,27 @@ var Notificaciones = React.createClass({
     render: function () {
         return (
             <div className='notificaciones'>
-                <ul>
-                    {this.getNotificacionesItems()}
-                </ul>
+                <h2>Notificaciones</h2>
+                {this.renderNotificaciones()}
             </div>
         );
     },
-    getNotificacionesItems: function () {
+    renderNotificaciones: function () {
         if (!this.props.notificaciones) {
             return;
         }
 
         if (this.props.notificaciones.size === 0) {
-            return (<div>Por el momento no tiene notificaciones.</div>);
+            return (<div className='no-notificaciones'>Por el momento no tiene notificaciones.</div>);
         }
 
+        return (
+            <ul className='notificaciones-list'>
+                {this.getNotificacionesItems()}
+            </ul>
+        );
+    },
+    getNotificacionesItems: function () {
         var notificaciones = [];
         var self = this;
 

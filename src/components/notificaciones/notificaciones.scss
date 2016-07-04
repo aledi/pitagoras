@@ -1,0 +1,28 @@
+@import '~src/styles/pitagoras.scss';
+
+.notificaciones {
+    h2 {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: bold;
+        color: $denim;
+        margin: 40px 0px;
+        text-align: center;
+    }
+
+    .no-notificaciones {
+        padding: 40px 0;
+        text-transform: uppercase;
+        text-align: center;
+        letter-spacing: 1px;
+        color: $denim;
+    }
+
+    .notificaciones-list {
+        position: relative;
+        width: 100%;
+        padding: 0;
+        list-style: none;
+        border: 1px solid $frost;
+    }
+}
