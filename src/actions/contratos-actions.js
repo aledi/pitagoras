@@ -33,7 +33,7 @@ module.exports = {
                     notificacionesByContrato[contrato.numeroContrato] = createNotificacionRecord(contrato.notificacion);
                 } else {
                     var today = moment();
-                    if (today.diff(contrato.lastAccionAt, 'days') > 5) {
+                    if (today.diff(contrato.lastAccionAt, 'days') > 7) {
                         notificacionesByContrato[contrato.numeroContrato] = createNotificacionRecord({
                             tipo: 4,
                             numeroContrato: contrato.numeroContrato,
