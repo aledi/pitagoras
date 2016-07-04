@@ -19,10 +19,7 @@ var DateSelect = require('src/components/shared/date-select');
 
 var ContratoForm = React.createClass({
     getInitialState: function () {
-        return {
-            contrato: this.props.contrato ? this.props.contrato.toEditable() : new ContratoRecord().toEditable(),
-            saving: false
-        };
+        return {contrato: this.props.contrato ? this.props.contrato.toEditable() : new ContratoRecord().toEditable()};
     },
     componentDidMount: function () {
         this.storeListener = ContratosStore.addListener(this.onChange);
@@ -37,13 +34,18 @@ var ContratoForm = React.createClass({
 
         if (this.state.saving && !saving && !saveError) {
             feedbackText = 'El contrato se ha guardado.';
-            this.setState({feedbackText: feedbackText, contrato: new ContratoRecord().toEditable(), saving: false});
+            this.setState({
+                feedbackText: feedbackText,
+                contrato: new ContratoRecord().toEditable()
+            });
+
             return;
         }
 
         if (this.state.saving && !saving && saveError) {
             feedbackText = 'Error al guardar el contrato.';
-            this.setState({feedbackText: feedbackText, saving: false});
+            this.setState({feedbackText: feedbackText});
+
             return;
         }
 
