@@ -11,6 +11,10 @@
 
         select {
             height: 30px;
+
+            &:disabled {
+                color: $disabled-text-color;
+            }
         }
     }
 }
