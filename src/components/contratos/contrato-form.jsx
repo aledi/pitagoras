@@ -36,7 +36,8 @@ var ContratoForm = React.createClass({
             feedbackText = 'El contrato se ha guardado.';
             this.setState({
                 feedbackText: feedbackText,
-                contrato: new ContratoRecord().toEditable()
+                contrato: new ContratoRecord().toEditable(),
+                saving: false
             });
 
             return;
@@ -44,7 +45,10 @@ var ContratoForm = React.createClass({
 
         if (this.state.saving && !saving && saveError) {
             feedbackText = 'Error al guardar el contrato.';
-            this.setState({feedbackText: feedbackText});
+            this.setState({
+                feedbackText: feedbackText,
+                saving: false
+            });
 
             return;
         }
