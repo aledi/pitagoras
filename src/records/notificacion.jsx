@@ -43,10 +43,6 @@ class Notificacion extends NotificacionRecord {
             formattedValues.fecha = definition.fecha.format('D/MMM/YYYY');
         }
 
-        if (definition.tipo === 4) {
-            console.log(definition.fecha)
-        }
-
         // Hora
         definition.hora = definition.hora;
 
