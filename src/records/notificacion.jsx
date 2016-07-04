@@ -39,7 +39,7 @@ class Notificacion extends NotificacionRecord {
 
         // Fecha
         if (definition.fecha) {
-            definition.fecha = moment(definition.fecha.iso);
+            definition.fecha = moment(definition.fecha.iso || definition.fecha);
             formattedValues.fecha = definition.fecha.format('D/MMM/YYYY');
         }
 
