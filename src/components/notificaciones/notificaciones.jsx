@@ -48,7 +48,7 @@ var Notificaciones = React.createClass({
 
         this.props.notificaciones.forEach(function (notificacion, index) {
             notificaciones.push(
-                <li key={notificacion.numeroContrato + '-' + index} onClick={self.redirectToContrato.bind(self, notificacion.contratoId)}>
+                <li key={notificacion.numeroContrato + '-' + index} className='notificaciones-list-item' onClick={self.redirectToContrato.bind(self, notificacion.contratoId)}>
                     {self.renderNotificacionContent(notificacion)}
                 </li>
             );
