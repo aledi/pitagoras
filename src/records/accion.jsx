@@ -47,6 +47,8 @@ class Accion extends AccionRecord {
     }
 
     static prepareForParse (accion) {
+        delete accion.disabled;
+
         if (accion.respuestas.fecha) {
             accion.respuestas.fecha = accion.respuestas.fecha.toDate();
         }
@@ -96,7 +98,7 @@ class Accion extends AccionRecord {
             };
         }
 
-        contrato.lastAccionAt = moment().toDate();
+        contrato.lastAccionAt = moment();
 
         accion.contrato = new ContratoObject(ContratoRecord.prepareForParse(contrato));
 
