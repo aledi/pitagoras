@@ -46,6 +46,8 @@ class Contrato extends ContratoRecord {
 
         contrato.fechaContrato = contrato.fechaContrato.toDate();
 
+        contrato.lastAccionAt = contrato.lastAccionAt.toDate();
+
         contrato.vehiculo = new VehiculoObject(VehiculoRecord.prepareForParse(contrato.vehiculo));
         contrato.cliente = new ClienteObject(ClienteRecord.prepareForParse(contrato.cliente));
 
@@ -68,22 +70,22 @@ class Contrato extends ContratoRecord {
         definition.fechaContrato = definition.fechaContrato ? moment(definition.fechaContrato.iso) : moment();
         formattedValues.fechaContrato = definition.fechaContrato.format('D/MMM/YYYY');
 
-        // Fecha Contrato
+        // Last Accion At
         definition.lastAccionAt = definition.lastAccionAt ? moment(definition.lastAccionAt.iso) : moment();
 
         // Vehiculo
-        definition.vehiculo = definition.vehiculo ? new VehiculoRecord(definition.vehiculo) : null;
-        sortValues.modelo = definition.vehiculo.modelo.toLowerCase();
-        sortValues.marca = definition.vehiculo.marca.toLowerCase();
+        definition.vehiculo = definition.vehiculo ? new VehiculoRecord(definition.vehiculo) : new VehiculoRecord();
+        sortValues.modelo = definition.vehiculo.modelo ? definition.vehiculo.modelo.toLowerCase() : '';
+        sortValues.marca = definition.vehiculo.marca ? definition.vehiculo.marca.toLowerCase() : '';
         sortValues.anio = definition.vehiculo.anio;
-        sortValues.distribuidor = definition.vehiculo.distribuidor.toLowerCase();
+        sortValues.distribuidor = definition.vehiculo.distribuidor ? definition.vehiculo.distribuidor.toLowerCase() : '';
 
         // Juzgado
         definition.juzgado = definition.juzgado || '';
         sortValues.juzgado = definition.juzgado.toLowerCase();
 
         // Cliente
-        definition.cliente = definition.cliente ? new ClienteRecord(definition.cliente) : null;
+        definition.cliente = definition.cliente ? new ClienteRecord(definition.cliente) : new ClienteRecord();
         sortValues.cliente = definition.cliente.formattedValues.nombre.toLowerCase();
 
         // Monto
