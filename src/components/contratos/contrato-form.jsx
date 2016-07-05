@@ -7,6 +7,7 @@ require('./contrato-form.scss');
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
+var classNames = require('classnames');
 
 var ContratosActions = require('src/actions/contratos-actions');
 var ContratoRecord = require('src/records/contrato');
@@ -19,7 +20,10 @@ var DateSelect = require('src/components/shared/date-select');
 
 var ContratoForm = React.createClass({
     getInitialState: function () {
-        return {contrato: this.props.contrato ? this.props.contrato.toEditable() : new ContratoRecord().toEditable()};
+        return {
+            contrato: this.props.contrato ? this.props.contrato.toEditable() : new ContratoRecord().toEditable(),
+            invalidFields: {}
+        };
     },
     componentDidMount: function () {
         this.storeListener = ContratosStore.addListener(this.onChange);
@@ -60,13 +64,14 @@ var ContratoForm = React.createClass({
 
         return (
             <main className='add-contrato'>
-                <form onSubmit={this.handleAddContract}>
+                <form onSubmit={this.saveContrato}>
                     <h3 className='section-title'>Contrato</h3>
                     <div className='input-wrapper'>
                         <label>Número de Contrato</label>
                         <input
                             type='text'
                             value={contrato.numeroContrato}
+                            className={classNames({invalid: this.state.invalidFields.numeroContrato})}
                             disabled={this.state.saving}
                             onChange={this.handleChange.bind(this, 'numeroContrato')} />
                     </div>
@@ -158,6 +163,7 @@ var ContratoForm = React.createClass({
                         <input
                             type='text'
                             value={contrato.cliente.nombre}
+                            className={classNames({invalid: this.state.invalidFields.nombre})}
                             disabled={this.state.saving}
                             onChange={this.handleClienteChange.bind(this, 'nombre')} />
                     </div>
@@ -166,6 +172,7 @@ var ContratoForm = React.createClass({
                         <input
                             type='text'
                             value={this.state.contrato.cliente.apellidoPaterno}
+                            className={classNames({invalid: this.state.invalidFields.apellidoPaterno})}
                             disabled={this.state.saving}
                             onChange={this.handleClienteChange.bind(this, 'apellidoPaterno')} />
                     </div>
@@ -463,10 +470,14 @@ var ContratoForm = React.createClass({
         this.setState({contrato: contrato});
     },
     handleChange: function (key, event) {
-        var contrato = this.state.contrato;
-        contrato[key] = event.target.value;
+        var state = {contrato: this.state.contrato, invalidFields: this.state.invalidFields};
+        state.contrato[key] = event.target.value;
 
-        this.setState({contrato: contrato});
+        if (key === 'numeroContrato' && this.state.invalidFields && this.state.invalidFields.numeroContrato) {
+            state.invalidFields.numeroContrato = false;
+        }
+
+        this.setState(state);
     },
     handleFechaChange: function (date) {
         var state = {contrato: this.state.contrato};
@@ -481,8 +492,14 @@ var ContratoForm = React.createClass({
         this.setState(state);
     },
     handleClienteChange: function (key, event) {
-        var state = {contrato: this.state.contrato};
+        var state = {contrato: this.state.contrato, invalidFields: this.state.invalidFields};
         state.contrato.cliente[key] = event.target.value;
+
+        if (key === 'nombre' && this.state.invalidFields && this.state.invalidFields.nombre) {
+            state.invalidFields.nombre = false;
+        } else if (key === 'apellidoPaterno' && this.state.invalidFields && this.state.invalidFields.apellidoPaterno) {
+            state.invalidFields.apellidoPaterno = false;
+        }
 
         this.setState(state);
     },
@@ -510,10 +527,34 @@ var ContratoForm = React.createClass({
 
         this.setState(state);
     },
-    handleAddContract: function (event) {
+    saveContrato: function (event) {
         event.preventDefault();
 
-        ContratosActions.saveContrato(this.state.contrato);
+        var contrato = this.state.contrato;
+        var state = this.state.invalidFields;
+        var invalidFields = false;
+
+        if (!contrato.numeroContrato || !contrato.numeroContrato.trim()) {
+            state.numeroContrato = true;
+            invalidFields = true;
+        }
+
+        if (!contrato.cliente.nombre || !contrato.cliente.nombre.trim()) {
+            state.nombre = true;
+            invalidFields = true;
+        }
+
+        if (!contrato.cliente.apellidoPaterno || !contrato.cliente.apellidoPaterno.trim()) {
+            state.apellidoPaterno = true;
+            invalidFields = true;
+        }
+
+        if (invalidFields) {
+            this.setState(state);
+            return;
+        }
+
+        ContratosActions.saveContrato(contrato);
     },
     restrictNumericInput: function (isFloat, event) {
         if (!event.metaKey && event.charCode !== 13 && (event.charCode < 48 || event.charCode > 57)) {
