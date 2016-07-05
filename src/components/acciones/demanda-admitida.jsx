@@ -11,7 +11,6 @@ var moment = require('moment');
 var AccionesMixin = require('./acciones-mixin');
 
 var DateSelect = require('src/components/shared/date-select');
-var TimeSelect = require('src/components/shared/time-select');
 
 // -----------------------------------------------------------------------------------------------
 // DemandaAdmitida
@@ -34,8 +33,8 @@ var DemandaAdmitida = React.createClass({
             respuestas: {
                 tipoJuicio: 'Oral Mercantil',
                 resultado: 'No vive en el domicilio',
-                fecha: moment(),
-                hora: '8:00 am'
+                fechaAcuerdo: moment(),
+                fechaPublicacion: moment()
             },
             disabled: false
         };
@@ -75,21 +74,14 @@ var DemandaAdmitida = React.createClass({
                     </div>
                 </div>
                 <div className='element-wrapper'>
-                    <h5>Fecha</h5>
-                    <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
+                    <h5>Fecha de Acuerdo</h5>
+                    <DateSelect date={this.state.respuestas.fechaAcuerdo} onChange={this.handleFechaChange.bind(this, 'fechaAcuerdo')} />
                 </div>
                 <div className='element-wrapper'>
-                    <h5>Hora</h5>
-                    <TimeSelect time={this.state.respuestas.hora} onChange={this.handleHoraChange} />
+                    <h5>Fecha de Publicación</h5>
+                    <DateSelect date={this.state.respuestas.fechaPublicacion} onChange={this.handleFechaChange.bind(this, 'fechaPublicacion')} />
                 </div>
-                <div className='element-wrapper'>
-                    <h5>Lugar</h5>
-                    <input
-                        type='text'
-                        value={respuestas.lugar}
-                        onChange={this.handleChange.bind(this, 'lugar')}
-                        disabled={this.state.disabled} />
-                </div>
+
                 {this.renderResultadoSelect()}
                 {this.renderTextInputs()}
                 {this.renderComentarios()}
@@ -179,9 +171,9 @@ var DemandaAdmitida = React.createClass({
         respuestas[key] = event.target.value;
         this.setState({respuestas: respuestas});
     },
-    handleFechaChange: function (date) {
+    handleFechaChange: function (key, date) {
         var state = {respuestas: this.state.respuestas};
-        state.respuestas.fecha = date.clone();
+        state.respuestas[key] = date.clone();
 
         this.setState(state);
     },

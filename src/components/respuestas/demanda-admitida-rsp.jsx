@@ -23,16 +23,12 @@ var DemandaAdmitidaRsp = React.createClass({
                     <span>{respuestas.tipoJuicio}</span>
                 </div>
                 <div>
-                    <span className='bold'>Fecha: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
+                    <span className='bold'>Fecha de acuerdo: </span>
+                    <span>{DateUtils.formatFechaRespuesta(respuestas.fechaAcuerdo)}</span>
                 </div>
                 <div>
-                    <span className='bold'>Hora: </span>
-                    <span>{respuestas.hora}</span>
-                </div>
-                <div>
-                    <span className='bold'>Lugar: </span>
-                    <span>{respuestas.lugar}</span>
+                    <span className='bold'>Fecha de publicación: </span>
+                    <span>{DateUtils.formatFechaRespuesta(respuestas.fechaPublicacion)}</span>
                 </div>
                 {this.renderMoreRespuestas()}
             </div>
