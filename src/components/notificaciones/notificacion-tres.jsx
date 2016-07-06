@@ -1,5 +1,7 @@
 'use strict';
 
+require('src/components/inicio/inicio.scss');
+
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
 // -----------------------------------------------------------------------------------------------
@@ -16,8 +18,9 @@ var NotificacionTres = React.createClass({
 
         return (
             <div className='notificacion'>
+                <h3>{'Contrato ' + notificacion.numeroContrato}</h3>
                 <p>
-                    {'El contrato ' + notificacion.numeroContrato + ' cuenta con una cita el día ' +
+                    {'Cuenta con una cita el día ' +
                     notificacion.formattedValues.cita.fecha + ' en ' + notificacion.cita.lugar +
                     ' con el actuario ' + notificacion.cita.nombreActuario + ' con teléfono ' + notificacion.cita.telefonoActuario}
                 </p>

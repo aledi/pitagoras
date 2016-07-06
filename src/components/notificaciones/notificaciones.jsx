@@ -1,6 +1,6 @@
 'use strict';
 
-require('./notificaciones.scss');
+require('src/components/inicio/inicio.scss');
 
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules

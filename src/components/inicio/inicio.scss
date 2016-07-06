@@ -1,1 +1,60 @@
 @import '~src/styles/pitagoras.scss';
+
+.notificaciones {
+    padding: 20px;
+
+    h2 {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: bold;
+        color: $denim;
+        margin-bottom: 30px;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .no-notificaciones {
+        padding: 40px 0;
+        text-transform: uppercase;
+        text-align: center;
+        letter-spacing: 1px;
+        color: $denim;
+    }
+
+    .notificaciones-list {
+        width: 600px;
+        padding: 0;
+        margin: 0 auto;
+        list-style: none;
+        border: 1px solid $frost;
+
+        .notificaciones-list-item {
+            padding: 20px;
+            border-bottom: 1px solid $frost;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            .notificacion {
+                h3 {
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    color: $denim;
+                    letter-spacing: 1px;
+                    margin-bottom: 10px;
+                }
+
+                label {
+                    display: inline;
+
+                    &.bold {
+                        display: inline;
+                        font-weight: bold;
+                        color: $nightfall;
+                    }
+                }
+            }
+        }
+    }
+}
