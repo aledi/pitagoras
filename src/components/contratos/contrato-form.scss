@@ -35,6 +35,10 @@
             input {
                 height: 30px;
                 width: 100%;
+
+                &.invalid {
+                    border-color: $invalid;
+                }
             }
         }
 
