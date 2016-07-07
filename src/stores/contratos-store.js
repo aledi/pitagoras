@@ -4,6 +4,8 @@ var Flux = require('flux/utils');
 var Immutable = require('immutable');
 var Dispatcher = require('src/dispatcher');
 
+var NotificacionRecord = require('src/records/notificacion');
+
 class ContratosStore extends Flux.MapStore {
     getInitialState () {
         return new Immutable.Map({
@@ -42,7 +44,16 @@ class ContratosStore extends Flux.MapStore {
             case 'CONTRATOS_SAVE':
                 return state.merge({saving: true, saveError: null});
             case 'CONTRATOS_SAVE_SUCCESS':
-                return state.merge({saving: false, contratos: state.get('contratos').set(action.contrato.id, action.contrato)});
+                var newState = {
+                    saving: false,
+                    contratos: state.get('contratos').set(action.contrato.id, action.contrato)
+                };
+
+                if (action.contrato.notificacion) {
+                    newState.notificaciones = state.get('notificaciones').set(action.contrato.id, createNotificacionRecord(action.contrato.notificacion));
+                }
+
+                return state.merge(newState);
             case 'CONTRATOS_SAVE_ERROR':
                 return state.merge({saving: false, saveError: action.error});
 
@@ -98,6 +109,10 @@ function sortContratos (contratos, sortColumn, ascending) {
             return ascending ? 1 : -1;
         }
     });
+}
+
+function createNotificacionRecord (notificacion, numeroContrato) {
+    return new NotificacionRecord(notificacion, numeroContrato);
 }
 
 module.exports = new ContratosStore(Dispatcher);
