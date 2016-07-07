@@ -16,23 +16,15 @@ var NotificacionUno = React.createClass({
     mixins: [NotificacionesMixin],
     render: function () {
         var notificacion = this.props.notificacion;
-        var horaText = this.getHoraText(notificacion);
 
         return (
-            <div className='notificacion'>
-                <h3>{'Contrato ' + notificacion.numeroContrato}</h3>
-                <label>Require recoger documentos el día &nbsp;</label>
-                {this.renderBoldLabel(notificacion.formattedValues.fecha)}
-                <label>{horaText}</label>
+            <div>
+                <span>{'Require recoger documentos el día '}</span>
+                <span className='bold'>{notificacion.formattedValues.fecha}</span>
+                <span>{' en un horario de '}</span>
+                <span className='bold'>{notificacion.formattedValues.horario}</span>
             </div>
         );
-    },
-    getHoraText: function (notificacion) {
-        if (notificacion.hora) {
-            return (' a las ');
-        } else if (notificacion.horario) {
-            return (' en un horario de ');
-        }
     }
 });
 

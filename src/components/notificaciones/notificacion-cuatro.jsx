@@ -17,9 +17,9 @@ var NotificacionCuatro = React.createClass({
         var notificacion = this.props.notificacion;
 
         return (
-            <div className='notificacion'>
-                <h3>{'Contrato ' + notificacion.numeroContrato}</h3>
-                <p>{'No ha sido atendido desde el ' + notificacion.formattedValues.fecha}</p>
+            <div>
+                <span>No ha sido atendido desde el </span>
+                <span className='bold'>{notificacion.formattedValues.fecha}</span>
             </div>
         );
     }
