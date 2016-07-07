@@ -1,5 +1,7 @@
 'use strict';
 
+require('src/components/inicio/inicio.scss');
+
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
 // -----------------------------------------------------------------------------------------------
@@ -20,27 +22,34 @@ var Notificaciones = React.createClass({
     render: function () {
         return (
             <div className='notificaciones'>
-                <ul>
-                    {this.getNotificacionesItems()}
-                </ul>
+                <h2>Notificaciones</h2>
+                {this.renderNotificaciones()}
             </div>
         );
     },
-    getNotificacionesItems: function () {
+    renderNotificaciones: function () {
         if (!this.props.notificaciones) {
             return;
         }
 
         if (this.props.notificaciones.size === 0) {
-            return (<div>Por el momento no tiene notificaciones.</div>);
+            return (<div className='no-notificaciones'>Por el momento no tiene notificaciones.</div>);
         }
 
+        return (
+            <ul className='notificaciones-list'>
+                {this.getNotificacionesItems()}
+            </ul>
+        );
+    },
+    getNotificacionesItems: function () {
         var notificaciones = [];
         var self = this;
 
         this.props.notificaciones.forEach(function (notificacion, index) {
             notificaciones.push(
-                <li key={notificacion.numeroContrato + '-' + index} onClick={self.redirectToContrato.bind(self, notificacion.contratoId)}>
+                <li key={notificacion.numeroContrato + '-' + index} className='notificaciones-list-item'>
+                    <h3 onClick={self.redirectToContrato.bind(self, notificacion.contratoId)}>{'Contrato ' + notificacion.numeroContrato}</h3>
                     {self.renderNotificacionContent(notificacion)}
                 </li>
             );

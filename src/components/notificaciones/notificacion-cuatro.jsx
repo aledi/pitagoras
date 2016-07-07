@@ -1,5 +1,7 @@
 'use strict';
 
+require('src/components/inicio/inicio.scss');
+
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
 // -----------------------------------------------------------------------------------------------
@@ -15,8 +17,9 @@ var NotificacionCuatro = React.createClass({
         var notificacion = this.props.notificacion;
 
         return (
-            <div className='notificacion'>
-                <p>{'El contrato ' + notificacion.numeroContrato + ' no ha sido atendido desde el ' + notificacion.formattedValues.fecha}</p>
+            <div>
+                <span>No ha sido atendido desde el </span>
+                <span className='bold'>{notificacion.formattedValues.fecha}</span>
             </div>
         );
     }
