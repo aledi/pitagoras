@@ -4,19 +4,19 @@
     padding: 20px;
 
     h2 {
+        margin-bottom: 30px;
+        margin-top: 10px;
+        text-align: center;
         text-transform: uppercase;
         letter-spacing: 1px;
         font-weight: bold;
         color: $denim;
-        margin-bottom: 30px;
-        margin-top: 10px;
-        text-align: center;
     }
 
     .no-notificaciones {
         padding: 40px 0;
-        text-transform: uppercase;
         text-align: center;
+        text-transform: uppercase;
         letter-spacing: 1px;
         color: $denim;
     }
@@ -37,11 +37,12 @@
             }
 
             h3 {
+                display: inline-block;
+                margin-bottom: 10px;
                 text-transform: uppercase;
+                letter-spacing: 1px;
                 font-weight: bold;
                 color: $denim;
-                letter-spacing: 1px;
-                margin-bottom: 10px;
                 cursor: pointer;
 
                 &:hover {
