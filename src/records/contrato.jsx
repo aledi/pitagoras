@@ -44,6 +44,10 @@ class Contrato extends ContratoRecord {
         contrato.plazo = (typeof contrato.plazo === 'string') ? parseFloat(contrato.plazo) : contrato.plazo;
         contrato.tasa = (typeof contrato.tasa === 'string') ? parseFloat(contrato.tasa.replace(/,/g, '')) : contrato.tasa;
 
+        if (contrato.notificacion) {
+            contrato.notificacion = cleanNotification(contrato);
+        }
+
         contrato.fechaContrato = contrato.fechaContrato.toDate();
 
         contrato.lastAccionAt = contrato.lastAccionAt.toDate();
@@ -147,6 +151,34 @@ class Contrato extends ContratoRecord {
             notificacion: this.notificacion,
             lastAccionAt: this.lastAccionAt
         };
+    }
+
+}
+
+function cleanNotification (contrato) {
+    var notificacion = contrato.notificacion;
+    var cleanedNotificacion = {
+        tipo: notificacion.tipo,
+        numeroContrato: contrato.numeroContrato,
+        contratoId: contrato.id
+    };
+
+    switch (notificacion.tipo) {
+        case 1:
+            cleanedNotificacion.fecha = notificacion.fecha.toDate();
+            cleanedNotificacion.horario = notificacion.horario;
+
+            return cleanedNotificacion;
+        case 2:
+            cleanedNotificacion.fecha = notificacion.fecha.toDate();
+
+            return cleanedNotificacion;
+        case 3:
+            cleanedNotificacion.cita = notificacion.cita;
+
+            return cleanedNotificacion;
+        default:
+            return cleanedNotificacion;
     }
 }
 
