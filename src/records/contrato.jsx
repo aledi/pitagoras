@@ -45,7 +45,7 @@ class Contrato extends ContratoRecord {
         contrato.tasa = (typeof contrato.tasa === 'string') ? parseFloat(contrato.tasa.replace(/,/g, '')) : contrato.tasa;
 
         if (contrato.notificacion) {
-            contrato.notificacion = clearNotification(contrato);
+            contrato.notificacion = cleanNotification(contrato);
         }
 
         contrato.fechaContrato = contrato.fechaContrato.toDate();
@@ -155,7 +155,7 @@ class Contrato extends ContratoRecord {
 
 }
 
-function clearNotification (contrato) {
+function cleanNotification (contrato) {
     var notificacion = contrato.notificacion;
     var cleanedNotificacion = {
         tipo: notificacion.tipo,
