@@ -1,12 +1,14 @@
 @import '~src/styles/pitagoras.scss';
 
-.contratos-table-wrapper {
+.reportes-table-wrapper {
+    overflow-x: auto;
+
     table {
         width: 100%;
 
         tr {
             th {
-                background-color: rgba($malbec, 0.8);
+                background-color: $pine;
                 border: 1px solid $creosote;
                 text-align: center;
                 padding: 10px 0;
@@ -20,12 +22,12 @@
             }
 
             &:nth-child(odd) {
-                background-color: rgba($jacaranda, 0.2);
+                background-color: rgba($fog, 0.3);
             }
 
             &.content-row {
                 &:hover {
-                    background-color: rgba($jacaranda, 0.4);
+                    background-color: $fog;
                     cursor: pointer;
                 }
             }
