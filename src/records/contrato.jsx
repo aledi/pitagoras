@@ -57,6 +57,10 @@ class Contrato extends ContratoRecord {
 
         contrato.vehiculo = new VehiculoObject(VehiculoRecord.prepareForParse(contrato.vehiculo));
         contrato.cliente = new ClienteObject(ClienteRecord.prepareForParse(contrato.cliente));
+
+        contrato.reporte.nombre = contrato.cliente.nombre + ' ' + contrato.cliente.apellidoPaterno + (contrato.cliente.apellidoMaterno ? ' ' + contrato.cliente.apellidoMaterno : '');
+        contrato.reporte.numeroContrato = contrato.numeroContrato;
+
         contrato.reporte = new ReporteObject(ReporteRecord.prepareForParse(contrato.reporte));
 
         return contrato;
