@@ -14,10 +14,10 @@ var ReporteRecord = Immutable.Record({
     numeroContrato: null,
     nombre: '',
     fechaAsignacion: null,
-    paqueteLegal: '',
+    paqueteLegal: null,
     fechaPaqueteLegal: null,
     fechaVisita: null,
-    resultadoVisita: '',
+    resultadoVisita: null,
     fechaPresentacionDemanda: null,
     expediente: '',
     juzgado: '',
@@ -64,7 +64,7 @@ class Reporte extends ReporteRecord {
 
         // Fecha de Visita
         definition.fechaVisita = definition.fechaVisita;
-        formattedValues.fechaVisita = definition.fechaVisita ? moment(definition.fechaVisita.iso) : null;
+        formattedValues.fechaVisita = definition.fechaVisita ? moment(definition.fechaVisita.iso).format('D MMMM, YYYY') : null;
 
         // Resultado de Visita
         definition.resultadoVisita = definition.resultadoVisita;
@@ -100,7 +100,7 @@ class Reporte extends ReporteRecord {
 
         // Horarios de Juzgado
         definition.horariosJuzgado = definition.horariosJuzgado;
-        formattedValues.horariosJuzgado = definition.horariosJuzgado;
+        formattedValues.horariosJuzgado = definition.horariosJuzgado ? moment(definition.horariosJuzgado.fecha.iso).format('D MMMM, YYYY') + ' de ' + definition.horariosJuzgado.horario.start + ' a ' + definition.horariosJuzgado.horario.end : null;
 
         // Etapa Actual
         definition.etapaActual = definition.etapaActual;

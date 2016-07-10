@@ -118,6 +118,31 @@ class Accion extends AccionRecord {
             contrato.reporte.fechaPaqueteLegal = accion.respuestas.fecha;
         }
 
+        if (accion.tipo === 3) {
+            contrato.reporte.fechaPresentacionDemanda = accion.respuestas.fecha;
+            contrato.reporte.expediente = accion.respuestas.expedienteJudicial;
+            contrato.reporte.juzgado = accion.respuestas.juzgado;
+            contrato.reporte.tipoJuicio = accion.respuestas.tipoJuicio;
+        }
+
+        if (accion.tipo === 4) {
+            contrato.reporte.fechaAcuerdo = accion.respuestas.fechaAcuerdo;
+        }
+
+        if (accion.tipo === 5) {
+            contrato.reporte.fechaDesechamiento = moment().toDate();
+            contrato.reporte.motivoDesechamiento = accion.respuestas.motivo;
+
+            if (accion.respuestas.regresaDocumentos) {
+                contrato.reporte.horariosJuzgado = {
+                    fecha: accion.respuestas.fecha,
+                    horario: accion.respuestas.horario
+                };
+            }
+        }
+
+        contrato.reporte.etapaActual = accion.tipo;
+
         accion.contrato = new ContratoObject(ContratoRecord.prepareForParse(contrato));
 
         return accion;

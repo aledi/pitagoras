@@ -62,7 +62,7 @@ var ReportesTabla = React.createClass({
                     <td>{reporte.formattedValues.paqueteLegal}</td>
                     <td>{reporte.formattedValues.fechaPaqueteLegal}</td>
                     <td>{reporte.formattedValues.fechaVisita}</td>
-                    <td>{reporte.resultadoVisita}</td>
+                    <td>{reporte.formattedValues.resultadoVisita}</td>
                     <td>{reporte.formattedValues.fechaPresentacionDemanda}</td>
                     <td>{reporte.expediente}</td>
                     <td>{reporte.juzgado}</td>

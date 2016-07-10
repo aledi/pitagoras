@@ -55,13 +55,12 @@ class Contrato extends ContratoRecord {
 
         contrato.lastAccionAt = contrato.lastAccionAt.toDate();
 
-        contrato.vehiculo = new VehiculoObject(VehiculoRecord.prepareForParse(contrato.vehiculo));
-        contrato.cliente = new ClienteObject(ClienteRecord.prepareForParse(contrato.cliente));
-
         contrato.reporte.nombre = contrato.cliente.nombre + ' ' + contrato.cliente.apellidoPaterno + (contrato.cliente.apellidoMaterno ? ' ' + contrato.cliente.apellidoMaterno : '');
         contrato.reporte.numeroContrato = contrato.numeroContrato;
-
         contrato.reporte = new ReporteObject(ReporteRecord.prepareForParse(contrato.reporte));
+
+        contrato.vehiculo = new VehiculoObject(VehiculoRecord.prepareForParse(contrato.vehiculo));
+        contrato.cliente = new ClienteObject(ClienteRecord.prepareForParse(contrato.cliente));
 
         return contrato;
     }
@@ -177,12 +176,12 @@ function cleanNotification (contrato) {
 
     switch (notificacion.tipo) {
         case 1:
-            cleanedNotificacion.fecha = notificacion.fecha.toDate();
+            cleanedNotificacion.fecha = moment(notificacion.fecha).toDate();
             cleanedNotificacion.horario = notificacion.horario;
 
             return cleanedNotificacion;
         case 2:
-            cleanedNotificacion.fecha = notificacion.fecha.toDate();
+            cleanedNotificacion.fecha = moment(notificacion.fecha).toDate();
 
             return cleanedNotificacion;
         case 3:
