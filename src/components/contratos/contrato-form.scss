@@ -40,6 +40,10 @@
                     border-color: $invalid;
                 }
             }
+
+            input[type='radio'] {
+                width: auto;
+            }
         }
 
         hr {

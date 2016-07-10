@@ -32,6 +32,7 @@ var ContratoRecord = Immutable.Record({
     plazo: null,
     referencias: null,
     tasa: null,
+    certificacionContable: null,
     vehiculo: null,
     notificacion: null,
     lastAccionAt: null,
@@ -61,6 +62,8 @@ class Contrato extends ContratoRecord {
 
         contrato.vehiculo = new VehiculoObject(VehiculoRecord.prepareForParse(contrato.vehiculo));
         contrato.cliente = new ClienteObject(ClienteRecord.prepareForParse(contrato.cliente));
+
+        console.log(contrato)
 
         return contrato;
     }
@@ -113,6 +116,9 @@ class Contrato extends ContratoRecord {
         formattedValues.tasa = formatNumber({suffix: '%'})(definition.tasa);
         sortValues.tasa = definition.tasa;
 
+        // Certificacion certificacionContable
+        definition.certificacionContable = definition.certificacionContable;
+
         // Especial
         definition.especial = definition.especial || false;
         formattedValues.especial = RespuestasUtils.formatBooleanRespuesta(definition.especial);
@@ -155,6 +161,7 @@ class Contrato extends ContratoRecord {
             plazo: this.plazo,
             referencias: this.referencias || [],
             tasa: this.tasa,
+            certificacionContable: this.certificacionContable,
             vehiculo: this.vehiculo.toEditable(),
             juzgado: this.juzgado,
             especial: this.especial,
