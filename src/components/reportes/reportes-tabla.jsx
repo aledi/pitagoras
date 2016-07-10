@@ -38,6 +38,8 @@ var ReportesTabla = React.createClass({
                             <th>Motivo Desechamiento</th>
                             <th>Fecha de Radicación o Confirma Desechamiento</th>
                             <th>Horarios Juzgados</th>
+                            <th>Fecha de Admisión</th>
+                            <th>Resultado de Emplazamiento</th>
                             <th>Etapa Actual</th>
                         </tr>
                         {this.renderContent()}
@@ -72,6 +74,8 @@ var ReportesTabla = React.createClass({
                     <td>{reporte.motivoDesechamiento}</td>
                     <td>{reporte.formattedValues.fechaRadicacion}</td>
                     <td>{reporte.formattedValues.horariosJuzgado}</td>
+                    <td>{reporte.formattedValues.fechaAdmision}</td>
+                    <td>{reporte.resultadoEmplazamiento}</td>
                     <td>{reporte.etapaActual ? AccionRecord.ACCIONES_TYPES[reporte.etapaActual] : ''}</td>
                 </tr>
             );

@@ -141,6 +141,11 @@ class Accion extends AccionRecord {
             }
         }
 
+        if (accion.tipo === 9) {
+            contrato.reporte.fechaAdmision = accion.respuestas.fechaAcuerdo;
+            contrato.reporte.resultadoEmplazamiento = accion.respuestas.resultado;
+        }
+
         contrato.reporte.etapaActual = accion.tipo;
 
         accion.contrato = new ContratoObject(ContratoRecord.prepareForParse(contrato));
