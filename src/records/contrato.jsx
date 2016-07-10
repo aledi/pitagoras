@@ -11,6 +11,8 @@ var moment = require('moment');
 
 var ClienteObject = Parse.Object.extend('Cliente');
 var ClienteRecord = require('./cliente');
+var ReporteObject = Parse.Object.extend('Reporte');
+var ReporteRecord = require('./reporte');
 var RespuestasUtils = require('src/components/respuestas/respuestas-utils');
 var VehiculoObject = Parse.Object.extend('Vehiculo');
 var VehiculoRecord = require('./vehiculo');
@@ -33,6 +35,7 @@ var ContratoRecord = Immutable.Record({
     vehiculo: null,
     notificacion: null,
     lastAccionAt: null,
+    reporte: null,
 
     formattedValues: {},
     sortValues: {}
@@ -54,6 +57,7 @@ class Contrato extends ContratoRecord {
 
         contrato.vehiculo = new VehiculoObject(VehiculoRecord.prepareForParse(contrato.vehiculo));
         contrato.cliente = new ClienteObject(ClienteRecord.prepareForParse(contrato.cliente));
+        contrato.reporte = new ReporteObject(ReporteRecord.prepareForParse(contrato.reporte));
 
         return contrato;
     }
@@ -114,6 +118,9 @@ class Contrato extends ContratoRecord {
         // Notificacion
         definition.notificacion = definition.notificacion;
 
+        // Reporte
+        definition.reporte = definition.reporte ? new ReporteRecord(definition.reporte) : new ReporteRecord();
+
         // Referencias
         if (definition.referencias && definition.referencias.length) {
             formattedValues.referencias = [];
@@ -149,7 +156,8 @@ class Contrato extends ContratoRecord {
             juzgado: this.juzgado,
             especial: this.especial,
             notificacion: this.notificacion,
-            lastAccionAt: this.lastAccionAt
+            lastAccionAt: this.lastAccionAt,
+            reporte: this.reporte.toEditable()
         };
     }
 

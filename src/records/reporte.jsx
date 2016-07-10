@@ -3,7 +3,7 @@
 var Immutable = require('immutable');
 var moment = require('moment');
 
-var AccionRecord = require('src/records/accion');
+var RespuestasUtils = require('src/components/respuestas/respuestas-utils');
 
 // -----------------------------------------------------------------------------------------------
 // ReporteRecord
@@ -26,17 +26,20 @@ var ReporteRecord = Immutable.Record({
     fechaDesechamiento: null,
     motivoDesechamiento: '',
     fechaRadicacion: null,
-    horariosJuzgado: '',
+    horariosJuzgado: null,
     etapaActual: null,
 
     formattedValues: {}
 });
 
 class Reporte extends ReporteRecord {
-    constructor (definition) {
-        var formattedValues = {};
+    static prepareForParse (reporte) {
+        return reporte;
+    }
 
+    constructor (definition) {
         definition = definition || {};
+        var formattedValues = {};
 
         // ID
         definition.id = definition.id || definition.objectId;
@@ -53,10 +56,11 @@ class Reporte extends ReporteRecord {
 
         // Paquete Legal
         definition.paqueteLegal = definition.paqueteLegal;
+        formattedValues.paqueteLegal = RespuestasUtils.formatBooleanRespuesta(definition.paqueteLegal);
 
         // Fecha de Paquete Legal
         definition.fechaPaqueteLegal = definition.fechaPaqueteLegal;
-        formattedValues.fechaPaqueteLegal = definition.fechaPaqueteLegal ? moment(definition.fechaPaqueteLegal.iso) : null;
+        formattedValues.fechaPaqueteLegal = definition.fechaPaqueteLegal ? moment(definition.fechaPaqueteLegal.iso).format('D MMMM, YYYY') : null;
 
         // Fecha de Visita
         definition.fechaVisita = definition.fechaVisita;
@@ -64,10 +68,11 @@ class Reporte extends ReporteRecord {
 
         // Resultado de Visita
         definition.resultadoVisita = definition.resultadoVisita;
+        formattedValues.resultadoVisita = RespuestasUtils.formatBooleanRespuesta(definition.resultadoVisita);
 
         // Fecha de Presentación de Demanda
         definition.fechaPresentacionDemanda = definition.fechaPresentacionDemanda;
-        formattedValues.fechaPresentacionDemanda = definition.fechaPresentacionDemanda ? moment(definition.fechaPresentacionDemanda.iso) : null;
+        formattedValues.fechaPresentacionDemanda = definition.fechaPresentacionDemanda ? moment(definition.fechaPresentacionDemanda.iso).format('D MMMM, YYYY') : null;
 
         // Expediente
         definition.expediente = definition.expediente;
@@ -80,18 +85,18 @@ class Reporte extends ReporteRecord {
 
         // Fecha de Acuerdo
         definition.fechaAcuerdo = definition.fechaAcuerdo;
-        formattedValues.fechaAcuerdo = definition.fechaAcuerdo ? moment(definition.fechaAcuerdo.iso) : null;
+        formattedValues.fechaAcuerdo = definition.fechaAcuerdo ? moment(definition.fechaAcuerdo.iso).format('D MMMM, YYYY') : null;
 
         // Fecha de Desechamiento
         definition.fechaDesechamiento = definition.fechaDesechamiento;
-        formattedValues.fechaDesechamiento = definition.fechaDesechamiento ? moment(definition.fechaDesechamiento.iso) : null;
+        formattedValues.fechaDesechamiento = definition.fechaDesechamiento ? moment(definition.fechaDesechamiento.iso).format('D MMMM, YYYY') : null;
 
         // Motivo de Desechamiento
         definition.motivoDesechamiento = definition.motivoDesechamiento;
 
         // Fecha de Radicación
         definition.fechaRadicacion = definition.fechaRadicacion;
-        formattedValues.fechaRadicacion = definition.fechaRadicacion ? moment(definition.fechaRadicacion.iso) : null;
+        formattedValues.fechaRadicacion = definition.fechaRadicacion ? moment(definition.fechaRadicacion.iso).format('D MMMM, YYYY') : null;
 
         // Horarios de Juzgado
         definition.horariosJuzgado = definition.horariosJuzgado;
@@ -99,7 +104,6 @@ class Reporte extends ReporteRecord {
 
         // Etapa Actual
         definition.etapaActual = definition.etapaActual;
-        formattedValues.etapaActual = definition.etapaActual ? AccionRecord.ACCIONES_TYPES[definition.etapaActual] : '';
 
         definition.formattedValues = formattedValues;
 

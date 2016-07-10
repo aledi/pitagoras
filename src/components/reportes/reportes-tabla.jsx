@@ -8,6 +8,8 @@ require('./reportes-tabla.scss');
 
 var React = require('react');
 
+var AccionRecord = require('src/records/accion');
+
 // -----------------------------------------------------------------------------------------------
 // ReportesTabla
 // -----------------------------------------------------------------------------------------------
@@ -57,7 +59,7 @@ var ReportesTabla = React.createClass({
                     <td>{reporte.nombre}</td>
                     <td>{reporte.numeroContrato}</td>
                     <td>{reporte.formattedValues.fechaAsignacion}</td>
-                    <td>{reporte.paqueteLegal}</td>
+                    <td>{reporte.formattedValues.paqueteLegal}</td>
                     <td>{reporte.formattedValues.fechaPaqueteLegal}</td>
                     <td>{reporte.formattedValues.fechaVisita}</td>
                     <td>{reporte.resultadoVisita}</td>
@@ -70,7 +72,7 @@ var ReportesTabla = React.createClass({
                     <td>{reporte.motivoDesechamiento}</td>
                     <td>{reporte.formattedValues.fechaRadicacion}</td>
                     <td>{reporte.formattedValues.horariosJuzgado}</td>
-                    <td>{reporte.formattedValues.etapaActual}</td>
+                    <td>{reporte.etapaActual ? AccionRecord.ACCIONES_TYPES[reporte.etapaActual] : ''}</td>
                 </tr>
             );
         });
