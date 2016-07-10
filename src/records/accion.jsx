@@ -123,6 +123,10 @@ class Accion extends AccionRecord {
             contrato.reporte.expediente = accion.respuestas.expedienteJudicial;
             contrato.reporte.juzgado = accion.respuestas.juzgado;
             contrato.reporte.tipoJuicio = accion.respuestas.tipoJuicio;
+
+            if (accion.respuestas.pendiente) {
+                contrato.reporte.comentarioAcuerdoPendiente = accion.respuestas.comentarioAcuerdoPendiente;
+            }
         }
 
         if (accion.tipo === 4) {
