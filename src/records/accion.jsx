@@ -20,12 +20,13 @@ var ACCIONES_TYPES = {
     2: 'Alta de documentos',
     3: 'Presentación de demanda',
     4: 'Acuerdo de demanda',
-    5: 'Demanda desechada',
-    6: 'Recolección de documentos',
-    7: 'Demanda prevenida',
-    8: 'Desahogo / Cierre',
-    9: 'Demanda admitida',
-    10: 'Diligencia de embargo'
+    5: 'Amparo',
+    6: 'Demanda desechada',
+    7: 'Recolección de documentos',
+    8: 'Demanda prevenida',
+    9: 'Desahogo / Cierre',
+    10: 'Demanda admitida',
+    11: 'Diligencia de embargo'
 };
 
 var AccionRecord = Immutable.Record({
@@ -65,6 +66,14 @@ class Accion extends AccionRecord {
             accion.respuestas.fechaPublicacion = accion.respuestas.fechaPublicacion.toDate();
         }
 
+        if (accion.respuestas.fechaPresentacion) {
+            accion.respuestas.fechaPresentacion = accion.respuestas.fechaPresentacion.toDate();
+        }
+
+        if (accion.respuestas.fechaResolucion) {
+            accion.respuestas.fechaResolucion = accion.respuestas.fechaResolucion.toDate();
+        }
+
         var contrato = accion.contrato.toEditable();
 
         // -----------------------------------------------------------------------------------------------
@@ -72,7 +81,7 @@ class Accion extends AccionRecord {
         // -----------------------------------------------------------------------------------------------
 
         // Notification for Demanda Desechada & Recolección de documentos
-        if ((accion.tipo === 5 && accion.respuestas.regresaDocumentos) || (accion.tipo === 6 && !accion.respuestas.recogeDocumentos)) {
+        if ((accion.tipo === 6 && accion.respuestas.regresaDocumentos) || (accion.tipo === 7 && !accion.respuestas.recogeDocumentos)) {
             contrato.notificacion = {
                 tipo: 1,
                 numeroContrato: contrato.numeroContrato,
@@ -83,7 +92,7 @@ class Accion extends AccionRecord {
         }
 
         // Notification for Demanda Prevenida
-        if (accion.tipo === 7 && accion.respuestas.desahogar) {
+        if (accion.tipo === 8 && accion.respuestas.desahogar) {
             contrato.notificacion = {
                 tipo: 2,
                 numeroContrato: contrato.numeroContrato,
@@ -93,7 +102,7 @@ class Accion extends AccionRecord {
         }
 
         // Notification for Demanda Admitida & Diligencia de Embargo
-        if ((accion.tipo === 9 && accion.respuestas.tipoJuicio === 'Ejecutiva Mercantil') || (accion.tipo === 10 && accion.respuestas.resultado === 'Se dejó citatorio')) {
+        if ((accion.tipo === 10 && accion.respuestas.tipoJuicio === 'Ejecutiva Mercantil') || (accion.tipo === 11 && accion.respuestas.resultado === 'Se dejó citatorio')) {
             contrato.notificacion = {
                 tipo: 3,
                 numeroContrato: contrato.numeroContrato,
@@ -134,6 +143,12 @@ class Accion extends AccionRecord {
         }
 
         if (accion.tipo === 5) {
+            contrato.reporte.fechaPresentacionAmparo = accion.respuestas.fechaPresentacion;
+            contrato.reporte.resolucionAmparo = accion.respuestas.resolucion;
+            contrato.reporte.fechaResolucionAmparo = accion.respuestas.fechaResolucion;
+        }
+
+        if (accion.tipo === 6) {
             contrato.reporte.fechaDesechamiento = moment().toDate();
             contrato.reporte.motivoDesechamiento = accion.respuestas.motivo;
 
@@ -145,7 +160,7 @@ class Accion extends AccionRecord {
             }
         }
 
-        if (accion.tipo === 9) {
+        if (accion.tipo === 10) {
             contrato.reporte.fechaAdmision = accion.respuestas.fechaAcuerdo;
             contrato.reporte.resultadoEmplazamiento = accion.respuestas.resultado;
         }

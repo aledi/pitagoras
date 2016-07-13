@@ -38,6 +38,9 @@ var ReportesTabla = React.createClass({
                             <th>Comentario de Acuerdo Pendiente</th>
                             <th>Fecha Desechamiento</th>
                             <th>Motivo Desechamiento</th>
+                            <th>Fecha de Amparo</th>
+                            <th>Resolución de Amparo</th>
+                            <th>Fecha de Resolución de Amparo</th>
                             <th>Fecha de Radicación o Confirma Desechamiento</th>
                             <th>Horarios Juzgados</th>
                             <th>Fecha de Admisión</th>
@@ -76,6 +79,9 @@ var ReportesTabla = React.createClass({
                     <td>{reporte.comentarioAcuerdoPendiente}</td>
                     <td>{reporte.formattedValues.fechaDesechamiento}</td>
                     <td>{reporte.motivoDesechamiento}</td>
+                    <td>{reporte.formattedValues.fechaPresentacionAmparo}</td>
+                    <td>{reporte.resolucionAmparo}</td>
+                    <td>{reporte.formattedValues.fechaResolucionAmparo}</td>
                     <td>{reporte.formattedValues.fechaRadicacion}</td>
                     <td>{reporte.formattedValues.horariosJuzgado}</td>
                     <td>{reporte.formattedValues.fechaAdmision}</td>

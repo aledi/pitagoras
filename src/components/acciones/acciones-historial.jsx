@@ -14,12 +14,13 @@ var VisitaRsp = require('src/components/respuestas/visita-rsp'); // 1
 var AltaDocumentosRsp = require('src/components/respuestas/alta-documentos-rsp'); // 2
 var PresentacionDemandaRsp = require('src/components/respuestas/presentacion-demanda-rsp'); // 3
 var AcuerdoDemandaRsp = require('src/components/respuestas/acuerdo-demanda-rsp'); // 4
-var DemandaDesechadaRsp = require('src/components/respuestas/demanda-desechada-rsp'); // 5
-var RecoleccionDocumentosRsp = require('src/components/respuestas/recoleccion-documentos-rsp'); // 6
-var DemandaPrevenidaRsp = require('src/components/respuestas/demanda-prevenida-rsp'); // 7
-var DesahogoRsp = require('src/components/respuestas/desahogo-rsp'); // 8
-var DemandaAdmitidaRsp = require('src/components/respuestas/demanda-admitida-rsp'); // 9
-var DiligenciaEmbargoRsp = require('src/components/respuestas/diligencia-embargo-rsp'); // 10
+var Amparo = require('src/components/respuestas/amparo-rsp'); // 5
+var DemandaDesechadaRsp = require('src/components/respuestas/demanda-desechada-rsp'); // 6
+var RecoleccionDocumentosRsp = require('src/components/respuestas/recoleccion-documentos-rsp'); // 7
+var DemandaPrevenidaRsp = require('src/components/respuestas/demanda-prevenida-rsp'); // 8
+var DesahogoRsp = require('src/components/respuestas/desahogo-rsp'); // 9
+var DemandaAdmitidaRsp = require('src/components/respuestas/demanda-admitida-rsp'); // 10
+var DiligenciaEmbargoRsp = require('src/components/respuestas/diligencia-embargo-rsp'); // 11
 
 // -----------------------------------------------------------------------------------------------
 // AccionesHistorial
@@ -78,16 +79,18 @@ var AccionesHistorial = React.createClass({
             case 4:
                 return (<AcuerdoDemandaRsp accion={accion} />);
             case 5:
-                return (<DemandaDesechadaRsp accion={accion} />);
+                return (<Amparo accion={accion} />);
             case 6:
-                return (<RecoleccionDocumentosRsp accion={accion} />);
+                return (<DemandaDesechadaRsp accion={accion} />);
             case 7:
-                return (<DemandaPrevenidaRsp accion={accion} />);
+                return (<RecoleccionDocumentosRsp accion={accion} />);
             case 8:
-                return (<DesahogoRsp accion={accion} />);
+                return (<DemandaPrevenidaRsp accion={accion} />);
             case 9:
-                return (<DemandaAdmitidaRsp accion={accion} />);
+                return (<DesahogoRsp accion={accion} />);
             case 10:
+                return (<DemandaAdmitidaRsp accion={accion} />);
+            case 11:
                 return (<DiligenciaEmbargoRsp accion={accion} />);
             default:
                 break;

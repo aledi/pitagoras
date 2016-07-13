@@ -17,6 +17,7 @@ var Visita = require('src/components/acciones/visita');
 var AltaDocumentos = require('src/components/acciones/alta-documentos');
 var PresentacionDemanda = require('src/components/acciones/presentacion-demanda');
 var AcuerdoDemanda = require('src/components/acciones/acuerdo-demanda');
+var Amparo = require('src/components/acciones/amparo');
 var DemandaDesechada = require('src/components/acciones/demanda-desechada');
 var RecoleccionDocumentos = require('src/components/acciones/recoleccion-documentos');
 var DemandaPrevenida = require('src/components/acciones/demanda-prevenida');
@@ -49,6 +50,7 @@ var ContratoDetalle = React.createClass({
                 <AltaDocumentos key='altaDocumentos' contrato={props.contrato} disabled={props.savingAccion} />,
                 <PresentacionDemanda key='presentacionDemanda' contrato={props.contrato} disabled={props.savingAccion} />,
                 <AcuerdoDemanda key='acuerdoDemanda' contrato={props.contrato} disabled={props.savingAccion} />,
+                <Amparo key='amparo' contrato={props.contrato} disabled={props.savingAccion} />,
                 <DemandaDesechada key='demandaDesechada' contrato={props.contrato} disabled={props.savingAccion} />,
                 <RecoleccionDocumentos key='recoleccionDocumentos' contrato={props.contrato} disabled={props.savingAccion} />,
                 <DemandaPrevenida key='demandaPrevenida' contrato={props.contrato} disabled={props.savingAccion} />,
