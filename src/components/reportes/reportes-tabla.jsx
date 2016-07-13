@@ -27,6 +27,7 @@ var ReportesTabla = React.createClass({
                             <th>Fecha de Asignación</th>
                             <th>Paquete Legal</th>
                             <th>Fecha Paquete Legal Recibido</th>
+                            <th>Certificación Contable</th>
                             <th>Fecha de Visita</th>
                             <th>Resultado de Visita</th>
                             <th>Fecha Presentación de Demanda</th>
@@ -62,10 +63,11 @@ var ReportesTabla = React.createClass({
                     <td>{reporte.nombre}</td>
                     <td>{reporte.numeroContrato}</td>
                     <td>{reporte.formattedValues.fechaAsignacion}</td>
-                    <td>{reporte.formattedValues.paqueteLegal}</td>
+                    <td className='centered'>{reporte.formattedValues.paqueteLegal}</td>
                     <td>{reporte.formattedValues.fechaPaqueteLegal}</td>
+                    <td className='centered'>{reporte.formattedValues.certificacionContable}</td>
                     <td>{reporte.formattedValues.fechaVisita}</td>
-                    <td>{reporte.formattedValues.resultadoVisita}</td>
+                    <td className='centered'>{reporte.formattedValues.resultadoVisita}</td>
                     <td>{reporte.formattedValues.fechaPresentacionDemanda}</td>
                     <td>{reporte.expediente}</td>
                     <td>{reporte.juzgado}</td>

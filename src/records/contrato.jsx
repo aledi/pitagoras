@@ -58,6 +58,7 @@ class Contrato extends ContratoRecord {
 
         contrato.reporte.nombre = contrato.cliente.nombre + ' ' + contrato.cliente.apellidoPaterno + (contrato.cliente.apellidoMaterno ? ' ' + contrato.cliente.apellidoMaterno : '');
         contrato.reporte.numeroContrato = contrato.numeroContrato;
+        contrato.reporte.certificacionContable = contrato.certificacionContable;
         contrato.reporte = new ReporteObject(ReporteRecord.prepareForParse(contrato.reporte));
 
         contrato.vehiculo = new VehiculoObject(VehiculoRecord.prepareForParse(contrato.vehiculo));
@@ -159,7 +160,7 @@ class Contrato extends ContratoRecord {
             plazo: this.plazo,
             referencias: this.referencias || [],
             tasa: this.tasa,
-            certificacionContable: this.certificacionContable,
+            certificacionContable: this.certificacionContable || false,
             vehiculo: this.vehiculo.toEditable(),
             juzgado: this.juzgado,
             especial: this.especial,

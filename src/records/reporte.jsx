@@ -16,6 +16,7 @@ var ReporteRecord = Immutable.Record({
     fechaAsignacion: null,
     paqueteLegal: null,
     fechaPaqueteLegal: null,
+    certificacionContable: null,
     fechaVisita: null,
     resultadoVisita: null,
     fechaPresentacionDemanda: null,
@@ -64,6 +65,10 @@ class Reporte extends ReporteRecord {
         // Fecha de Paquete Legal
         definition.fechaPaqueteLegal = definition.fechaPaqueteLegal;
         formattedValues.fechaPaqueteLegal = definition.fechaPaqueteLegal ? moment(definition.fechaPaqueteLegal.iso).format('D MMMM, YYYY') : null;
+
+        // Certificacion Contable
+        definition.certificacionContable = definition.certificacionContable;
+        formattedValues.certificacionContable = RespuestasUtils.formatBooleanRespuesta(definition.certificacionContable);
 
         // Fecha de Visita
         definition.fechaVisita = definition.fechaVisita;

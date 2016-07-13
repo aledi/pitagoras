@@ -19,6 +19,10 @@
             td {
                 padding: 10px 5px;
                 border: 1px solid $creosote;
+
+                &.centered {
+                    text-align: center;
+                }
             }
 
             &:nth-child(odd) {
