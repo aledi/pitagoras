@@ -106,7 +106,7 @@ var ContratoForm = React.createClass({
                         date={contrato.fechaContrato}
                         disabled={this.state.saving}
                         onChange={this.handleFechaChange} />
-                    <div className='input-wrapper'>
+                    <div className='input-wrapper full-width'>
                         <label>¿Recibe Certificación Contable correcta y completa?</label>
                             <div>
                                 <input
