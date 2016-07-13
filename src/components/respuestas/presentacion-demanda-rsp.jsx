@@ -7,6 +7,7 @@
 var React = require('react');
 
 var DateUtils = require('src/utils/date-utils');
+var RespuestasUtils = require('src/components/respuestas/respuestas-utils');
 
 // -----------------------------------------------------------------------------------------------
 // Presentacion Demanda Respuestas
@@ -34,6 +35,25 @@ var PresentacionDemandaRsp = React.createClass({
                     <span className='bold'>Tipo de Juicio: </span>
                     <span>{respuestas.tipoJuicio}</span>
                 </div>
+                <div>
+                    <span className='bold'>Pendiente: </span>
+                    <span>{RespuestasUtils.formatBooleanRespuesta(respuestas.pendiente)}</span>
+                </div>
+                {this.renderComentarioAcuerdoPendiente()}
+            </div>
+        );
+    },
+    renderComentarioAcuerdoPendiente: function () {
+        var respuestas = this.props.accion.respuestas;
+
+        if (!respuestas.pendiente) {
+            return;
+        }
+
+        return (
+            <div>
+                <span className='bold'>Comentarios de Acuerdo Pendiente: </span>
+                <span>{respuestas.comentarioAcuerdoPendiente}</span>
             </div>
         );
     }

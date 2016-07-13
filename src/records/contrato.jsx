@@ -11,6 +11,8 @@ var moment = require('moment');
 
 var ClienteObject = Parse.Object.extend('Cliente');
 var ClienteRecord = require('./cliente');
+var ReporteObject = Parse.Object.extend('Reporte');
+var ReporteRecord = require('./reporte');
 var RespuestasUtils = require('src/components/respuestas/respuestas-utils');
 var VehiculoObject = Parse.Object.extend('Vehiculo');
 var VehiculoRecord = require('./vehiculo');
@@ -30,9 +32,11 @@ var ContratoRecord = Immutable.Record({
     plazo: null,
     referencias: null,
     tasa: null,
+    certificacionContable: null,
     vehiculo: null,
     notificacion: null,
     lastAccionAt: null,
+    reporte: null,
 
     formattedValues: {},
     sortValues: {}
@@ -51,6 +55,11 @@ class Contrato extends ContratoRecord {
         contrato.fechaContrato = contrato.fechaContrato.toDate();
 
         contrato.lastAccionAt = contrato.lastAccionAt.toDate();
+
+        contrato.reporte.nombre = contrato.cliente.nombre + ' ' + contrato.cliente.apellidoPaterno + (contrato.cliente.apellidoMaterno ? ' ' + contrato.cliente.apellidoMaterno : '');
+        contrato.reporte.numeroContrato = contrato.numeroContrato;
+        contrato.reporte.certificacionContable = contrato.certificacionContable;
+        contrato.reporte = new ReporteObject(ReporteRecord.prepareForParse(contrato.reporte));
 
         contrato.vehiculo = new VehiculoObject(VehiculoRecord.prepareForParse(contrato.vehiculo));
         contrato.cliente = new ClienteObject(ClienteRecord.prepareForParse(contrato.cliente));
@@ -106,6 +115,9 @@ class Contrato extends ContratoRecord {
         formattedValues.tasa = formatNumber({suffix: '%'})(definition.tasa);
         sortValues.tasa = definition.tasa;
 
+        // Certificacion Contable
+        definition.certificacionContable = definition.certificacionContable;
+
         // Especial
         definition.especial = definition.especial || false;
         formattedValues.especial = RespuestasUtils.formatBooleanRespuesta(definition.especial);
@@ -113,6 +125,9 @@ class Contrato extends ContratoRecord {
 
         // Notificacion
         definition.notificacion = definition.notificacion;
+
+        // Reporte
+        definition.reporte = definition.reporte ? new ReporteRecord(definition.reporte) : new ReporteRecord();
 
         // Referencias
         if (definition.referencias && definition.referencias.length) {
@@ -145,11 +160,13 @@ class Contrato extends ContratoRecord {
             plazo: this.plazo,
             referencias: this.referencias || [],
             tasa: this.tasa,
+            certificacionContable: this.certificacionContable || false,
             vehiculo: this.vehiculo.toEditable(),
             juzgado: this.juzgado,
             especial: this.especial,
             notificacion: this.notificacion,
-            lastAccionAt: this.lastAccionAt
+            lastAccionAt: this.lastAccionAt,
+            reporte: this.reporte.toEditable()
         };
     }
 
@@ -165,12 +182,12 @@ function cleanNotification (contrato) {
 
     switch (notificacion.tipo) {
         case 1:
-            cleanedNotificacion.fecha = notificacion.fecha.toDate();
+            cleanedNotificacion.fecha = moment(notificacion.fecha).toDate();
             cleanedNotificacion.horario = notificacion.horario;
 
             return cleanedNotificacion;
         case 2:
-            cleanedNotificacion.fecha = notificacion.fecha.toDate();
+            cleanedNotificacion.fecha = moment(notificacion.fecha).toDate();
 
             return cleanedNotificacion;
         case 3:

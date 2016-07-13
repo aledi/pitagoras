@@ -106,6 +106,29 @@ var ContratoForm = React.createClass({
                         date={contrato.fechaContrato}
                         disabled={this.state.saving}
                         onChange={this.handleFechaChange} />
+                    <div className='input-wrapper full-width'>
+                        <label>¿Recibe Certificación Contable correcta y completa?</label>
+                            <div>
+                                <input
+                                    type='radio'
+                                    id='certificacion'
+                                    value={1}
+                                    checked={this.state.contrato.certificacionContable}
+                                    onChange={this.handleRadioChange}
+                                    disabled={this.state.disabled} />
+                                <label htmlFor='certificacion' disabled={this.state.disabled}>Sí</label>
+                            </div>
+                            <div>
+                                <input
+                                    type='radio'
+                                    id='noCertificacion'
+                                    value={0}
+                                    checked={!this.state.contrato.certificacionContable}
+                                    onChange={this.handleRadioChange}
+                                    disabled={this.state.disabled} />
+                                <label htmlFor='noCertificacion' disabled={this.state.disabled}>No</label>
+                            </div>
+                    </div>
                     <hr />
                     <h3 className='section-title'>Vehículo</h3>
                     <div className='input-wrapper'>
@@ -477,6 +500,11 @@ var ContratoForm = React.createClass({
             state.invalidFields.numeroContrato = false;
         }
 
+        this.setState(state);
+    },
+    handleRadioChange: function (event) {
+        var state = {contrato: this.state.contrato};
+        state.contrato.certificacionContable = parseInt(event.target.value, 10) === 1;
         this.setState(state);
     },
     handleFechaChange: function (date) {

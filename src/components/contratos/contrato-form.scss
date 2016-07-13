@@ -32,6 +32,10 @@
         .input-wrapper {
             width: 33.3%;
 
+            &.full-width {
+                width: 100%;
+            }
+
             input {
                 height: 30px;
                 width: 100%;
@@ -39,6 +43,11 @@
                 &.invalid {
                     border-color: $invalid;
                 }
+            }
+
+            input[type='radio'] {
+                height: auto;
+                width: auto;
             }
         }
 

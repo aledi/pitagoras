@@ -20,6 +20,7 @@ module.exports = {
         var query = new Parse.Query(ContratoObject);
         query.include('cliente');
         query.include('vehiculo');
+        query.include('reporte');
         query.limit(1000);
         query.find().then(function (contratos) {
             var contratosByKey = {};
