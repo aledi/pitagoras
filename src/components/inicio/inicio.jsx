@@ -40,9 +40,9 @@ class Inicio extends React.Component {
 
     renderContent () {
         if (this.state.loading) {
-            return (<div>Cargando...</div>);
+            return (<h2>Cargando...</h2>);
         } else if (this.state.error) {
-            return (<div>Hubo un error. Favor de intentar de nuevo.</div>);
+            return (<div className='error'>Hubo un error. Favor de intentar de nuevo.</div>);
         } else {
             return (<Notificaciones notificaciones={this.state.notificaciones} />);
         }

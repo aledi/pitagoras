@@ -45,9 +45,19 @@ class Contratos extends React.Component {
 
         return (
             <main className='contratos'>
-                <ContratosTabla contratos={this.state.contratos} />
+                {this.renderContent()}
             </main>
         );
+    }
+
+    renderContent () {
+        if (this.state.loading) {
+            return (<h2>Cargando...</h2>);
+        } else if (this.state.error) {
+            return (<div className='error'>Hubo un error. Favor de intentar de nuevo.</div>);
+        } else {
+            return (<ContratosTabla contratos={this.state.contratos} />);
+        }
     }
 }
 

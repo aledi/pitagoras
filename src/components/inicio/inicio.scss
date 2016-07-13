@@ -1,11 +1,10 @@
 @import '~src/styles/pitagoras.scss';
 
-.notificaciones {
-    padding: 20px;
+.inicio {
+    padding: 30px;
 
     h2 {
         margin-bottom: 30px;
-        margin-top: 10px;
         text-align: center;
         text-transform: uppercase;
         letter-spacing: 1px;
@@ -13,40 +12,48 @@
         color: $denim;
     }
 
-    .no-notificaciones {
-        padding: 40px 0;
+    .error {
         text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: $denim;
+        color: $invalid;
+        font-size: 20px;
     }
 
-    .notificaciones-list {
-        width: 600px;
-        padding: 0;
-        margin: 0 auto;
-        list-style: none;
-        border: 1px solid $frost;
+    .notificaciones {
+        .no-notificaciones {
+            padding: 40px 0;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: $denim;
+        }
 
-        .notificaciones-list-item {
-            padding: 20px;
-            border-bottom: 1px solid $frost;
+        .notificaciones-list {
+            width: 600px;
+            padding: 0;
+            margin: 0 auto;
+            list-style: none;
+            border: 1px solid $frost;
 
-            &:last-child {
-                border-bottom: none;
-            }
+            .notificaciones-list-item {
+                padding: 20px;
+                border-bottom: 1px solid $frost;
 
-            h3 {
-                display: inline-block;
-                margin-bottom: 10px;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                font-weight: bold;
-                color: $denim;
-                cursor: pointer;
+                &:last-child {
+                    border-bottom: none;
+                }
 
-                &:hover {
-                    color: $nightfall;
+                h3 {
+                    display: inline-block;
+                    margin-bottom: 10px;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    font-weight: bold;
+                    color: $denim;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: $nightfall;
+                    }
                 }
             }
         }
