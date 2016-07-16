@@ -63,7 +63,7 @@ var ContratoForm = React.createClass({
         var contrato = this.state.contrato;
 
         return (
-            <main className='add-contrato'>
+            <main className='contrato-form'>
                 <form onSubmit={this.saveContrato}>
                     <h3 className='section-title'>Contrato</h3>
                     <div className='input-wrapper'>

@@ -21,16 +21,11 @@ class Contrato extends React.Component {
     }
 
     static calculateState (prevState, props) {
-        var contrato = props.contrato;
-        var acciones = AccionesStore.get(props.id);
-        var savingAccion = AccionesStore.get('saving');
-        var saveErrorAccion = AccionesStore.get('saveError');
-
         return {
-            contrato: contrato,
-            acciones: acciones,
-            savingAccion: savingAccion,
-            saveError: saveErrorAccion
+            contrato: props.contrato,
+            acciones: AccionesStore.get(props.id),
+            savingAccion: AccionesStore.get('saving'),
+            saveError: AccionesStore.get('saveError')
         };
     }
 
