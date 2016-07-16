@@ -11,8 +11,8 @@ var Flux = require('flux/utils');
 
 var ContratosStore = require('src/stores/contratos-store');
 
-var ContratosTabla = require('./contratos-tabla');
 var Contrato = require('./contrato');
+var ContratosTabla = require('./contratos-tabla');
 
 // -----------------------------------------------------------------------------------------------
 // Contratos

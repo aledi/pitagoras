@@ -45,12 +45,12 @@ var ContratosTabla = React.createClass({
             return;
         }
 
-        var self = this;
         var contratos = [];
+        var self = this;
 
         this.props.contratos.forEach(function (contrato) {
             contratos.push(
-                <tr className='content-row' onClick={self.handleContratoClick.bind(self, contrato.id)} key={contrato.id}>
+                <tr className='content-row' onClick={self.goToContrato.bind(self, contrato.id)} key={contrato.id}>
                     <td>{contrato.numeroContrato}</td>
                     <td>{contrato.juzgado}</td>
                     <td>{contrato.cliente.formattedValues.nombre}</td>
@@ -68,7 +68,7 @@ var ContratosTabla = React.createClass({
 
         return contratos;
     },
-    handleContratoClick: function (id) {
+    goToContrato: function (id) {
         this.context.router.push('/contratos/' + id);
     }
 });

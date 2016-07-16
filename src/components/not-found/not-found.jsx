@@ -1,7 +1,5 @@
 'use strict';
 
-require('./not-found.scss');
-
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
 // -----------------------------------------------------------------------------------------------
@@ -16,7 +14,7 @@ var NotFound = React.createClass({
     render: function () {
         return (
             <main className='not-found'>
-                <h1>404 - Not Found</h1>
+                <h2>La página que está buscando, no se ha encontrado.</h2>
             </main>
         );
     }

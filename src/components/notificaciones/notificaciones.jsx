@@ -1,7 +1,5 @@
 'use strict';
 
-require('src/components/inicio/inicio.scss');
-
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
 // -----------------------------------------------------------------------------------------------
@@ -38,26 +36,26 @@ var Notificaciones = React.createClass({
 
         return (
             <ul className='notificaciones-list'>
-                {this.getNotificacionesItems()}
+                {this.getNotificaciones()}
             </ul>
         );
     },
-    getNotificacionesItems: function () {
+    getNotificaciones: function () {
         var notificaciones = [];
         var self = this;
 
         this.props.notificaciones.forEach(function (notificacion, index) {
             notificaciones.push(
-                <li key={notificacion.numeroContrato + '-' + index} className='notificaciones-list-item'>
-                    <h3 onClick={self.redirectToContrato.bind(self, notificacion.contratoId)}>{'Contrato ' + notificacion.numeroContrato}</h3>
-                    {self.renderNotificacionContent(notificacion)}
+                <li className='notificaciones-list-item' key={notificacion.numeroContrato + '-' + index}>
+                    <h3 onClick={self.goToContrato.bind(self, notificacion.contratoId)}>{'Contrato ' + notificacion.numeroContrato}</h3>
+                    {self.renderNotificacionDetails(notificacion)}
                 </li>
             );
         });
 
         return notificaciones;
     },
-    renderNotificacionContent: function (notificacion) {
+    renderNotificacionDetails: function (notificacion) {
         switch (notificacion.tipo) {
             case 1:
                 return (<NotificacionUno notificacion={notificacion} />);
@@ -71,8 +69,7 @@ var Notificaciones = React.createClass({
                 break;
         }
     },
-    redirectToContrato: function (contratoId) {
-
+    goToContrato: function (contratoId) {
         this.context.router.push('/contratos/' + contratoId);
     }
 });
