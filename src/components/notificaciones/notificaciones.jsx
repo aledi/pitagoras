@@ -7,6 +7,7 @@ require('src/components/inicio/inicio.scss');
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
+var Parse = require('parse');
 
 var NotificacionUno = require('src/components/notificaciones/notificacion-uno');
 var NotificacionDos = require('src/components/notificaciones/notificacion-dos');
