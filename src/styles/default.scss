@@ -21,6 +21,15 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
 
+h2 {
+    margin-bottom: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: $denim;
+}
+
 #pitagoras-wrapper, #pitagoras {
     height: 100%;
     overflow: hidden;

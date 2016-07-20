@@ -1,7 +1,5 @@
 'use strict';
 
-require('src/components/inicio/inicio.scss');
-
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
 // -----------------------------------------------------------------------------------------------
@@ -14,12 +12,10 @@ var React = require('react');
 
 var NotificacionCuatro = React.createClass({
     render: function () {
-        var notificacion = this.props.notificacion;
-
         return (
             <div>
                 <span>No ha sido atendido desde el </span>
-                <span className='bold'>{notificacion.formattedValues.fecha}</span>
+                <span className='bold'>{this.props.notificacion.formattedValues.fecha}</span>
             </div>
         );
     }

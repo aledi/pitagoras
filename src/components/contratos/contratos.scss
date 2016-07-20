@@ -1,17 +1,6 @@
 @import '~src/styles/pitagoras.scss';
 
 .contratos {
-    padding: 30px;
-
-    h2 {
-        margin-bottom: 30px;
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: bold;
-        color: $denim;
-    }
-
     .error {
         text-align: center;
         color: $invalid;
