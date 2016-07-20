@@ -166,6 +166,14 @@ class Accion extends AccionRecord {
             contrato.reporte.resultadoEmplazamiento = accion.respuestas.resultado;
         }
 
+        if (accion.tipo === 12) {
+            contrato.reporte.extrajudicial.push({
+                // TODO creador
+                comentarios: accion.comentarios,
+                fecha: moment().toDate()
+            });
+        }
+
         contrato.reporte.etapaActual = accion.tipo;
 
         accion.contrato = new ContratoObject(ContratoRecord.prepareForParse(contrato));
