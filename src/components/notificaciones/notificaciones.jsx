@@ -19,7 +19,7 @@ var NotificacionCuatro = require('src/components/notificaciones/notificacion-cua
 var Notificaciones = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
     getInitialState: function () {
-        return {showingPasswordForm: false};
+        return {showingPasswordForm: this.props.newUser};
     },
     render: function () {
         return (
@@ -30,7 +30,7 @@ var Notificaciones = React.createClass({
     },
     renderContent: function () {
         if (this.state.showingPasswordForm) {
-            return (<ChangePassword togglePasswordForm={this.togglePasswordForm} />);
+            return (<ChangePassword newUser={this.props.newUser} togglePasswordForm={this.togglePasswordForm} />);
         }
 
         return (

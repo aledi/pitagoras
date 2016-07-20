@@ -43,7 +43,6 @@ var Routes = (
 // -----------------------------------------------------------------------------------------------
 
 function redirectToInicio (nextState, replace) {
-    // Redirect to either /inicio or /signin
     replace({
         pathname: '/inicio',
         query: nextState.location.query,
