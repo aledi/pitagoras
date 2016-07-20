@@ -35,6 +35,7 @@ var ReporteRecord = Immutable.Record({
     fechaAdmision: null,
     resultadoEmplazamiento: null,
     etapaActual: null,
+    extrajudicial: null,
 
     formattedValues: {}
 });
@@ -164,7 +165,8 @@ class Reporte extends ReporteRecord {
             horariosJuzgado: this.horariosJuzgado,
             fechaAdmision: this.fechaAdmision,
             resultadoEmplazamiento: this.resultadoEmplazamiento,
-            etapaActual: this.etapaActual
+            etapaActual: this.etapaActual,
+            extrajudicial: this.extrajudicial || []
         };
     }
 }
