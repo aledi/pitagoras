@@ -28,6 +28,7 @@ var ChangePassword = React.createClass({
         return (
             <div className='change-password'>
                 <span className='side-button' onClick={this.props.togglePasswordForm}>Regresar a inicio</span>
+                {this.renderInitialMessage()}
                 <form onSubmit={this.changePassword}>
                     <div className='input-wrapper'>
                         <label>Contraseña actual</label>
@@ -60,6 +61,17 @@ var ChangePassword = React.createClass({
                     <button type='submit' className='submit' disabled={this.state.submitting}>Guardar</button>
                 </form>
             </div>
+        );
+    },
+    renderInitialMessage: function () {
+        if (!this.props.newUser) {
+            return;
+        }
+
+        return (
+            <p className='initial-message'>
+                Tu contraseña fue asignada por el administrador, por lo que se te sugiere cambiarla. Si no deseas hacerlo en este momento, podrás hacerlo después.
+            </p>
         );
     },
     handleChange: function (key, event) {
@@ -104,6 +116,11 @@ var ChangePassword = React.createClass({
         this.setState({submitting: true});
 
         Parse.User.current().setPassword(this.state.newPassword);
+
+        if (this.props.newUser) {
+            Parse.User.current().set('usuarioNuevo', false);
+        }
+
         Parse.User.current().save().then(this.handleSuccess).catch(this.handleError);
     },
     handleSuccess: function (user) {

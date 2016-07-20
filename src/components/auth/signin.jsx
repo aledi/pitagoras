@@ -84,6 +84,16 @@ var Signin = React.createClass({
 
         var location = this.props.location;
 
+        // If usuarioNuevo, redirect to inicio to change password
+        if (authData.get('usuarioNuevo')) {
+            this.context.router.replace({
+                pathname: '/',
+                state: {newUser: true}
+            });
+
+            return;
+        }
+
         if (location.state && location.state.nextPathname) {
             this.context.router.replace(location.state.nextPathname);
         } else {
