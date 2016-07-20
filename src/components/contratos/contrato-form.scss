@@ -71,15 +71,6 @@
                 padding-bottom: 0;
             }
 
-            &.submit {
-                padding: 0 80px;
-                margin-top: 50px;
-
-                &:disabled {
-                    background-color: $disabled-button-background;
-                }
-            }
-
             &:disabled {
                 color: $disabled-text-color;
             }
