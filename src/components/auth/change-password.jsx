@@ -17,6 +17,7 @@ var classNames = require('classnames');
 var ChangePassword = React.createClass({
     getInitialState: function () {
         return {
+            newUser: this.props.newUser || Parse.User.current().get('usuarioNuevo'),
             currentPassword: '',
             newPassword: '',
             confirmPassword: '',
@@ -64,7 +65,7 @@ var ChangePassword = React.createClass({
         );
     },
     renderInitialMessage: function () {
-        if (!this.props.newUser) {
+        if (!this.state.newUser) {
             return;
         }
 
@@ -117,7 +118,7 @@ var ChangePassword = React.createClass({
 
         Parse.User.current().setPassword(this.state.newPassword);
 
-        if (this.props.newUser) {
+        if (this.state.newUser) {
             Parse.User.current().set('usuarioNuevo', false);
         }
 
