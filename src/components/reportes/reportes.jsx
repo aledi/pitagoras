@@ -10,6 +10,7 @@ var Flux = require('flux/utils');
 var ReportesActions = require('src/actions/reportes-actions');
 var ReportesStore = require('src/stores/reportes-store');
 
+var Reporte = require('./reporte');
 var ReportesTabla = require('./reportes-tabla');
 
 // -----------------------------------------------------------------------------------------------
@@ -27,7 +28,8 @@ class Reportes extends React.Component {
         return {
             loading: reportes.size === 0 && ReportesStore.get('fetching'),
             error: reportes.size === 0 ? ReportesStore.get('fetchError') : null,
-            reportes: reportes
+            reportes: reportes,
+            reporte: reportes.get(props.params.id)
         };
     }
 
@@ -36,6 +38,14 @@ class Reportes extends React.Component {
     }
 
     render () {
+        if (this.props.params.id) {
+            return (
+                <main className='reportes'>
+                    <Reporte content={this.state.reporte.extrajudicial} id={this.props.params.id} />
+                </main>
+            );
+        }
+
         return (
             <main className='reportes'>
                 <ReportesTabla reportes={this.state.reportes} />

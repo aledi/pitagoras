@@ -138,6 +138,9 @@ class Reporte extends ReporteRecord {
         // Etapa Actual
         definition.etapaActual = definition.etapaActual;
 
+        // Extrajudicial
+        definition.extrajudicial = definition.extrajudicial;
+
         definition.formattedValues = formattedValues;
 
         super(definition);
