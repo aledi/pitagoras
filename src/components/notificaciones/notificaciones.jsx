@@ -6,6 +6,7 @@
 
 var React = require('react');
 
+var ChangePassword = require('src/components/auth/change-password');
 var NotificacionUno = require('src/components/notificaciones/notificacion-uno');
 var NotificacionDos = require('src/components/notificaciones/notificacion-dos');
 var NotificacionTres = require('src/components/notificaciones/notificacion-tres');
@@ -17,10 +18,25 @@ var NotificacionCuatro = require('src/components/notificaciones/notificacion-cua
 
 var Notificaciones = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
+    getInitialState: function () {
+        return {showingPasswordForm: this.props.newUser};
+    },
     render: function () {
         return (
             <div className='notificaciones'>
+                {this.renderContent()}
+            </div>
+        );
+    },
+    renderContent: function () {
+        if (this.state.showingPasswordForm) {
+            return (<ChangePassword newUser={this.props.newUser} togglePasswordForm={this.togglePasswordForm} />);
+        }
+
+        return (
+            <div>
                 <h2>Notificaciones</h2>
+                <span className='side-button right' onClick={this.togglePasswordForm}>Cambiar contraseña</span>
                 {this.renderNotificaciones()}
             </div>
         );
@@ -39,6 +55,9 @@ var Notificaciones = React.createClass({
                 {this.getNotificaciones()}
             </ul>
         );
+    },
+    togglePasswordForm: function () {
+        this.setState({showingPasswordForm: !this.state.showingPasswordForm});
     },
     getNotificaciones: function () {
         var notificaciones = [];

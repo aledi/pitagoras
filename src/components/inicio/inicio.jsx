@@ -27,7 +27,8 @@ class Inicio extends React.Component {
         return {
             loading: notificaciones.size === 0 && ContratosStore.get('fetching'),
             error: notificaciones.size === 0 ? ContratosStore.get('fetchError') : null,
-            notificaciones: notificaciones
+            notificaciones: notificaciones,
+            newUser: props.location.state ? props.location.state.newUser : false
         };
     }
 
@@ -45,7 +46,7 @@ class Inicio extends React.Component {
         } else if (this.state.error) {
             return (<div className='error'>Hubo un error. Favor de intentar de nuevo.</div>);
         } else {
-            return (<Notificaciones notificaciones={this.state.notificaciones} />);
+            return (<Notificaciones notificaciones={this.state.notificaciones} newUser={this.state.newUser} />);
         }
     }
 }

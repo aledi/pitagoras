@@ -85,7 +85,7 @@ var ContratoDetalle = React.createClass({
         if (this.state.editingContrato) {
             return (
                 <div className='contrato'>
-                    <span className='go-back' onClick={this.handleContratoEdit}>Regresar a Detalles</span>
+                    <span className='side-button' onClick={this.handleContratoEdit}>Regresar a Detalles</span>
                     <ContratoForm contrato={contrato} />
                 </div>
             );
@@ -93,8 +93,8 @@ var ContratoDetalle = React.createClass({
 
         return (
             <div className='contrato'>
-                <span className='go-back' onClick={this.goBack}>Regresar a Contratos</span>
-                <span className='go-back right' onClick={this.toggleDetails}>{'Mostrar' + (this.state.showingFullDetails ? ' resumen' : ' todos los detalles')}</span>
+                <span className='side-button' onClick={this.goBack}>Regresar a Contratos</span>
+                <span className='side-button right' onClick={this.toggleDetails}>{'Mostrar' + (this.state.showingFullDetails ? ' resumen' : ' todos los detalles')}</span>
 
                 <div className='contrato-detalles'>
                     <button type='button' className='top-right' onClick={this.handleContratoEdit}>Editar Contrato</button>

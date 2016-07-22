@@ -77,7 +77,7 @@ var AltaUsuarioForm = React.createClass({
 
         user.set({
             nombre: this.state.nombre,
-            apellido: this.state.apellidos,
+            apellido: this.state.apellido,
             email: this.state.email,
             tipo: parseInt(this.state.tipo, 10),
             username: this.state.username,
