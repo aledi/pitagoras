@@ -167,8 +167,9 @@ class Accion extends AccionRecord {
         }
 
         if (accion.tipo === 12) {
+            var user = Parse.User.current();
             contrato.reporte.extrajudicial.push({
-                // TODO creador
+                creador: user.get('nombre') + ' ' + user.get('apellido'),
                 comentarios: accion.comentarios,
                 fecha: moment().toDate()
             });

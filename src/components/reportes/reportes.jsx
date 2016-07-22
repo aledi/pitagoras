@@ -41,7 +41,7 @@ class Reportes extends React.Component {
         if (this.props.params.id) {
             return (
                 <main className='reportes'>
-                    <Reporte content={this.state.reporte.extrajudicial} id={this.props.params.id} />
+                    <Reporte reporte={this.state.reporte} id={this.props.params.id} />
                 </main>
             );
         }
