@@ -16,7 +16,18 @@ var AccionRecord = require('src/records/accion');
 
 var ReportesTabla = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
+    getInitialState: function () {
+        return {showingReportesGenerales: true};
+    },
     render: function () {
+        return (
+            <div>
+                <span className='side-button right' onClick={this.toggleDetails}>{'Mostrar' + (this.state.showingReportesGenerales ? ' Extrajudiciales' : ' Generales')}</span>
+                {this.renderReportesGenerales()}
+            </div>
+        );
+    },
+    renderReportesGenerales: function () {
         return (
             <div className='reportes-table-wrapper'>
                 <table>
