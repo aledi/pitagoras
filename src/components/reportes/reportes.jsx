@@ -10,7 +10,6 @@ var Flux = require('flux/utils');
 var ReportesActions = require('src/actions/reportes-actions');
 var ReportesStore = require('src/stores/reportes-store');
 
-var Reporte = require('./reporte');
 var ReportesTabla = require('./reportes-tabla');
 
 // -----------------------------------------------------------------------------------------------
@@ -28,8 +27,7 @@ class Reportes extends React.Component {
         return {
             loading: reportes.size === 0 && ReportesStore.get('fetching'),
             error: reportes.size === 0 ? ReportesStore.get('fetchError') : null,
-            reportes: reportes,
-            reporte: reportes.get(props.params.id)
+            reportes: reportes
         };
     }
 
@@ -38,19 +36,21 @@ class Reportes extends React.Component {
     }
 
     render () {
-        if (this.props.params.id) {
-            return (
-                <main className='reportes'>
-                    <Reporte reporte={this.state.reporte} id={this.props.params.id} />
-                </main>
-            );
-        }
-
         return (
             <main className='reportes'>
-                <ReportesTabla reportes={this.state.reportes} />
+                {this.renderContent()}
             </main>
         );
+    }
+
+    renderContent () {
+        if (this.state.loading) {
+            return (<h2>Cargando...</h2>);
+        } else if (this.state.error) {
+            return (<div className='error'>Hubo un error. Favor de intentar de nuevo.</div>);
+        } else {
+            return (<ReportesTabla reportes={this.state.reportes} />);
+        }
     }
 }
 

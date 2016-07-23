@@ -33,9 +33,7 @@ var Routes = (
         <Route path='contratos' component={Contratos} onEnter={requireAuth}>
             <Route path=':id' component={Contratos} onEnter={requireAuth} />
         </Route>
-        <Route path='reportes' component={Reportes} onEnter={requireAuth}>
-            <Route path=':id' component={Reportes} onEnter={requireAuth} />
-        </Route>
+        <Route path='reportes' component={Reportes} onEnter={requireAuth} />
         <Route path='*' component={NotFound} />
     </Route>
 );

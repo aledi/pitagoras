@@ -59,11 +59,10 @@ var ReportesTabla = React.createClass({
         }
 
         var reportes = [];
-        var self = this;
 
         this.props.reportes.forEach(function (reporte) {
             reportes.push(
-                <tr className='content-row' onClick={self.goToReporte.bind(self, reporte.id)} key={reporte.id}>
+                <tr className='content-row' key={reporte.id}>
                     <td>{reporte.nombre}</td>
                     <td>{reporte.numeroContrato}</td>
                     <td>{reporte.formattedValues.fechaAsignacion}</td>
@@ -93,9 +92,6 @@ var ReportesTabla = React.createClass({
         });
 
         return reportes;
-    },
-    goToReporte: function (id) {
-        this.context.router.push('/reportes/' + id);
     }
 });
 
