@@ -47,13 +47,13 @@ var ReportesTabla = React.createClass({
                             <th>Resultado de Emplazamiento</th>
                             <th>Etapa Actual</th>
                         </tr>
-                        {this.renderContent()}
+                        {this.renderReportes()}
                     </tbody>
                 </table>
             </div>
         );
     },
-    renderContent: function () {
+    renderReportes: function () {
         if (!this.props.reportes) {
             return;
         }
@@ -62,7 +62,7 @@ var ReportesTabla = React.createClass({
 
         this.props.reportes.forEach(function (reporte) {
             reportes.push(
-                <tr key={reporte.id} className='content-row'>
+                <tr className='content-row' key={reporte.id}>
                     <td>{reporte.nombre}</td>
                     <td>{reporte.numeroContrato}</td>
                     <td>{reporte.formattedValues.fechaAsignacion}</td>

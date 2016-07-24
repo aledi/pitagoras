@@ -2,9 +2,11 @@
 
 .reportes-table-wrapper {
     overflow-x: auto;
+    margin-top: 20px;
 
     table {
         width: 100%;
+        display: block;
 
         tr {
             th {
@@ -13,7 +15,6 @@
                 text-align: center;
                 padding: 10px 0;
                 color: white;
-                cursor: pointer;
             }
 
             td {
@@ -32,7 +33,6 @@
             &.content-row {
                 &:hover {
                     background-color: $fog;
-                    cursor: pointer;
                 }
             }
         }
