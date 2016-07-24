@@ -18,14 +18,40 @@
 
         .reportes-list {
             li {
+                padding: 0px 5px;
+                margin-bottom: 5px;
                 cursor: pointer;
+
+                .cliente {
+                    display: block;
+                    font-size: 13px;
+                    color: gray;
+                }
+
+                &:hover {
+                    background-color: rgba($pine, 0.8);
+                    color: white;
+
+                    .cliente {
+                        color: white;
+                    }
+                }
+
+                &.selected {
+                    background-color: $pine;
+                    color: white;
+
+                    .cliente {
+                        color: white;
+                    }
+                }
             }
         }
     }
 
     .acciones {
         position: absolute;
-        right: 0; left: 300px;
+        right: 0; left: 350px;
 
         .acciones-list {
             width: 100%;

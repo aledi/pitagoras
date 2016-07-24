@@ -7,6 +7,7 @@ require('./reportes-extrajudiciales.scss');
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
+var classNames = require('classnames');
 var moment = require('moment');
 
 // -----------------------------------------------------------------------------------------------
@@ -57,8 +58,9 @@ var ReportesExtrajudiciales = React.createClass({
             }
 
             reportes.push(
-                <li key={reporte.id} onClick={self.selectReporte.bind(self, reporte)}>
-                    {reporte.numeroContrato}
+                <li key={reporte.id} className={classNames({selected: self.state.reporte && self.state.reporte.id === reporte.id})} onClick={self.selectReporte.bind(self, reporte)}>
+                    <span>{reporte.numeroContrato}</span>
+                    <span className='cliente'>{reporte.nombre}</span>
                 </li>
             );
         });
