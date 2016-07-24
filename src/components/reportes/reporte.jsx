@@ -26,11 +26,7 @@ var Reporte = React.createClass({
             return (<div />);
         }
 
-        return (
-            <div>
-                {this.renderAcciones()}
-            </div>
-        );
+        return (<div>{this.renderAcciones()}</div>);
     },
     renderAcciones: function () {
         var reporte = this.state.reporte;

@@ -10,7 +10,7 @@ var Flux = require('flux/utils');
 var ReportesActions = require('src/actions/reportes-actions');
 var ReportesStore = require('src/stores/reportes-store');
 
-var ReportesTabla = require('./reportes-tabla');
+var ReportesContent = require('./reportes-content');
 
 // -----------------------------------------------------------------------------------------------
 // Reportes
@@ -49,7 +49,7 @@ class Reportes extends React.Component {
         } else if (this.state.error) {
             return (<div className='error'>Hubo un error. Favor de intentar de nuevo.</div>);
         } else {
-            return (<ReportesTabla reportes={this.state.reportes} />);
+            return (<ReportesContent reportes={this.state.reportes} />);
         }
     }
 }
