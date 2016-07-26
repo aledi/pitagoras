@@ -1,5 +1,87 @@
 @import '~src/styles/pitagoras.scss';
 
+.table-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-x: auto;
+
+    .table-header-wrapper {
+        position: relative;
+        z-index: 2;
+        border-bottom: 1px solid gray;
+        overflow-y: scroll;
+
+        table {
+            th {
+                position: relative;
+                text-transform: uppercase;
+                font-size: 12px;
+                letter-spacing: 1.8px;
+                cursor: pointer;
+                border-right: 1px solid gray;
+                background-color: rgba($malbec, 0.8);
+                color: white;
+                user-select: none;
+            }
+        }
+    }
+
+    .table-body-wrapper {
+        position: absolute;
+        z-index: 1;
+        top: 50px - 1; // 1px "hidden" top border
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        background-color: white;
+
+        table {
+            border-top: 1px solid gray;
+            border-bottom: 1px solid gray;
+
+            tr {
+                cursor: pointer;
+
+                &:nth-child(even) {
+                    background-color: rgba($jacaranda, 0.2);
+                }
+            }
+        }
+    }
+
+    table {
+        width: 100%;
+        table-layout: fixed;
+
+        thead tr {
+            height: 49px; // Since 1px bottom border is drawn by parent div
+        }
+
+        tr {
+            height: 50px;
+            line-height: 1;
+
+            td {
+                font-size: 15px;
+                border-right: 1px solid gray;
+            }
+
+            th, td {
+                padding: 0 15px;
+
+                > span {
+                    line-height: 18px;
+                }
+            }
+        }
+    }
+}
+
 .contratos-table-wrapper {
     table {
         width: 100%;

@@ -18,26 +18,66 @@ var ContratosTabla = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
     render: function () {
         return (
-            <div className='contratos-table-wrapper'>
-                <table>
-                    <tbody>
-                        <tr>
-                            <th onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>Número de Contrato</th>
-                            <th onClick={ContratosActions.sortContratos.bind(this, 'juzgado')}>Juzgado</th>
-                            <th onClick={ContratosActions.sortContratos.bind(this, 'cliente')}>Nombre de Cliente</th>
-                            <th onClick={ContratosActions.sortContratos.bind(this, 'modelo')}>Modelo Vehículo</th>
-                            <th onClick={ContratosActions.sortContratos.bind(this, 'marca')}>Marca</th>
-                            <th onClick={ContratosActions.sortContratos.bind(this, 'anio')}>Año</th>
-                            <th onClick={ContratosActions.sortContratos.bind(this, 'distribuidor')}>Distribuidor</th>
-                            <th onClick={ContratosActions.sortContratos.bind(this, 'monto')}>Monto</th>
-                            <th onClick={ContratosActions.sortContratos.bind(this, 'plazo')}>Plazo</th>
-                            <th onClick={ContratosActions.sortContratos.bind(this, 'tasa')}>Tasa</th>
-                            <th onClick={ContratosActions.sortContratos.bind(this, 'especial')}>Especial</th>
-                        </tr>
-                        {this.renderContratos()}
-                    </tbody>
-                </table>
+            <div className='table-wrapper'>
+                <div className='table-header-wrapper' style={{minWidth: '2750px'}}>
+                    <table>
+                        <thead>
+                            <tr className='header'>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                    <span className='ellipsis-text'>Número de Contrato</span>
+                                </th>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                    <span className='ellipsis-text'>Juzgado</span>
+                                </th>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                    <span className='ellipsis-text'>Nombre de Cliente</span>
+                                </th>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                    <span className='ellipsis-text'>Modelo Vehículo</span>
+                                </th>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                    <span className='ellipsis-text'>Marca</span>
+                                </th>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                    <span className='ellipsis-text'>Año</span>
+                                </th>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                    <span className='ellipsis-text'>Distribuidor</span>
+                                </th>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                    <span className='ellipsis-text'>Monto</span>
+                                </th>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                    <span className='ellipsis-text'>Plazo</span>
+                                </th>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                    <span className='ellipsis-text'>Tasa</span>
+                                </th>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                    <span className='ellipsis-text'>Especial</span>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                {this.renderTableBodyWrapper()}
             </div>
+        );
+    },
+    renderTableBodyWrapper: function () {
+        return (
+            <div className='table-body-wrapper' style={{minWidth: '2750px'}}>
+                {this.renderTableBody()}
+            </div>
+        );
+    },
+    renderTableBody: function () {
+        return (
+            <table className='table-body'>
+                <tbody>
+                    {this.renderContratos()}
+                </tbody>
+            </table>
         );
     },
     renderContratos: function () {
@@ -51,17 +91,17 @@ var ContratosTabla = React.createClass({
         this.props.contratos.forEach(function (contrato) {
             contratos.push(
                 <tr className='content-row' onClick={self.goToContrato.bind(self, contrato.id)} key={contrato.id}>
-                    <td>{contrato.numeroContrato}</td>
-                    <td>{contrato.juzgado}</td>
-                    <td>{contrato.cliente.formattedValues.nombre}</td>
-                    <td>{contrato.vehiculo.modelo}</td>
-                    <td>{contrato.vehiculo.marca}</td>
-                    <td>{contrato.vehiculo.anio}</td>
-                    <td>{contrato.vehiculo.distribuidor}</td>
-                    <td>{contrato.formattedValues.monto}</td>
-                    <td>{contrato.plazo}</td>
-                    <td>{contrato.formattedValues.tasa}</td>
-                    <td>{contrato.formattedValues.especial}</td>
+                    <td style={{width: '250px'}}><span className='ellipsis-text'>{contrato.numeroContrato}</span></td>
+                    <td style={{width: '250px'}}><span className='ellipsis-text'>{contrato.juzgado}</span></td>
+                    <td style={{width: '250px'}}><span className='ellipsis-text'>{contrato.cliente.formattedValues.nombre}</span></td>
+                    <td style={{width: '250px'}}><span className='ellipsis-text'>{contrato.vehiculo.modelo}</span></td>
+                    <td style={{width: '250px'}}><span className='ellipsis-text'>{contrato.vehiculo.marca}</span></td>
+                    <td style={{width: '250px'}}><span className='ellipsis-text'>{contrato.vehiculo.anio}</span></td>
+                    <td style={{width: '250px'}}><span className='ellipsis-text'>{contrato.vehiculo.distribuidor}</span></td>
+                    <td style={{width: '250px'}}><span className='ellipsis-text'>{contrato.formattedValues.monto}</span></td>
+                    <td style={{width: '250px'}}><span className='ellipsis-text'>{contrato.plazo}</span></td>
+                    <td style={{width: '250px'}}><span className='ellipsis-text'>{contrato.formattedValues.tasa}</span></td>
+                    <td style={{width: '250px'}}><span className='ellipsis-text'>{contrato.formattedValues.especial}</span></td>
                 </tr>
             );
         });
