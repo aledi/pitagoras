@@ -2,7 +2,7 @@
 
 .table-wrapper {
     position: absolute;
-    top: 0;
+    top: 20px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -74,6 +74,14 @@
 
             th, td {
                 padding: 0 15px;
+
+                &.centered {
+                    text-align: center;
+                }
+
+                &.right {
+                    text-align: right;
+                }
 
                 > span {
                     line-height: 18px;
