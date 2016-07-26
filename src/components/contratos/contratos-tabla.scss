@@ -25,6 +25,7 @@
                 background-color: rgba($malbec, 0.8);
                 color: white;
                 user-select: none;
+                text-align: center;
             }
         }
     }
@@ -41,8 +42,8 @@
         background-color: white;
 
         table {
-            border-top: 1px solid gray;
-            border-bottom: 1px solid gray;
+            border-top: 1px solid $creosote;
+            border-bottom: 1px solid $creosote;
 
             tr {
                 cursor: pointer;
@@ -68,7 +69,7 @@
 
             td {
                 font-size: 15px;
-                border-right: 1px solid gray;
+                border-right: 1px solid $creosote;
             }
 
             th, td {
@@ -77,32 +78,6 @@
                 > span {
                     line-height: 18px;
                 }
-            }
-        }
-    }
-}
-
-.contratos-table-wrapper {
-    table {
-        width: 100%;
-
-        tr {
-            th {
-                padding: 10px 0;
-                background-color: rgba($malbec, 0.8);
-                border: 1px solid $creosote;
-                text-align: center;
-                color: white;
-                cursor: pointer;
-            }
-
-            td {
-                padding: 10px 5px;
-                border: 1px solid $creosote;
-            }
-
-            &:nth-child(odd) {
-                background-color: rgba($jacaranda, 0.2);
             }
 
             &.content-row {
