@@ -26,34 +26,34 @@ var ContratosTabla = React.createClass({
                                 <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
                                     <span className='ellipsis-text'>Número de Contrato</span>
                                 </th>
-                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'juzgado')}>
                                     <span className='ellipsis-text'>Juzgado</span>
                                 </th>
-                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'cliente')}>
                                     <span className='ellipsis-text'>Nombre de Cliente</span>
                                 </th>
-                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'modelo')}>
                                     <span className='ellipsis-text'>Modelo Vehículo</span>
                                 </th>
-                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'marca')}>
                                     <span className='ellipsis-text'>Marca</span>
                                 </th>
-                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'anio')}>
                                     <span className='ellipsis-text'>Año</span>
                                 </th>
-                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'distribuidor')}>
                                     <span className='ellipsis-text'>Distribuidor</span>
                                 </th>
-                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'monto')}>
                                     <span className='ellipsis-text'>Monto</span>
                                 </th>
-                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'plazo')}>
                                     <span className='ellipsis-text'>Plazo</span>
                                 </th>
-                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'tasa')}>
                                     <span className='ellipsis-text'>Tasa</span>
                                 </th>
-                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'especial')}>
                                     <span className='ellipsis-text'>Especial</span>
                                 </th>
                             </tr>
