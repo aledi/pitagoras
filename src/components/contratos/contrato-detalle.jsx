@@ -207,6 +207,14 @@ var ContratoDetalle = React.createClass({
                     <span className='title'>Tasa:</span>
                     <span className='value'>{contrato.tasa}</span>
                 </div>
+                <div className='detalle-wrapper'>
+                    <span className='title'>Creador:</span>
+                    <span className='value'>{contrato.formattedValues.creador}</span>
+                </div>
+                <div className='detalle-wrapper'>
+                    <span className='title'>Ultima Edición:</span>
+                    <span className='value'>{contrato.formattedValues.ultimoEditor}</span>
+                </div>
             </div>
         );
     },

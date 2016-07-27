@@ -68,7 +68,7 @@ class Contrato extends ContratoRecord {
 
         var currentUser = Parse.User.current();
 
-        if (contrato.creador) {
+        if (contrato.id) {
             contrato.ultimoEditor = currentUser;
         } else {
             contrato.creador = currentUser;
@@ -153,6 +153,20 @@ class Contrato extends ContratoRecord {
                     telefono: referencia.telefono
                 });
             }
+        }
+
+        // Creador
+        definition.creador = definition.creador;
+
+        if (definition.creador) {
+            formattedValues.creador = definition.creador.nombre + ' ' + definition.creador.apellido;
+        }
+
+        // Ultimo Editor
+        definition.ultimoEditor = definition.ultimoEditor;
+
+        if (definition.ultimoEditor) {
+            formattedValues.ultimoEditor = definition.ultimoEditor.nombre + ' ' + definition.ultimoEditor.apellido;
         }
 
         definition.formattedValues = formattedValues;
