@@ -18,7 +18,7 @@ var ContratosTabla = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
     render: function () {
         return (
-            <div className='table-wrapper'>
+            <div className='contratos-table table-wrapper'>
                 <div className='table-header-wrapper' style={{minWidth: '2050px'}}>
                     <table>
                         <thead>
