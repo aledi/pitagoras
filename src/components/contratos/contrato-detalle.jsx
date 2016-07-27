@@ -133,9 +133,7 @@ var ContratoDetalle = React.createClass({
         );
     },
     renderEditarContrato: function () {
-        var isAdmin = Parse.User.current().get('tipo') === 3;
-
-        if (!isAdmin) {
+        if (!(Parse.User.current().get('tipo') === 3)) {
             return;
         }
 
