@@ -95,9 +95,9 @@ var ContratoDetalle = React.createClass({
         return (
             <div className='contrato'>
                 <span className='side-button' onClick={this.goBack}>Regresar a Contratos</span>
-                <span className='side-button right' onClick={this.toggleDetails}>{'Mostrar' + (this.state.showingFullDetails ? ' resumen' : ' todos los detalles')}</span>
 
                 <div className='contrato-detalles'>
+                    <button type='button' className='top-right' onClick={this.toggleDetails}>{'Mostrar' + (this.state.showingFullDetails ? ' resumen' : ' todos los detalles')}</button>
                     {this.renderEditarContrato()}
                     <div className='contrato-detalles-column'>
                         <h4>Detalles del Contrato</h4>
@@ -137,7 +137,7 @@ var ContratoDetalle = React.createClass({
             return;
         }
 
-        return (<button type='button' className='top-right' onClick={this.handleContratoEdit}>Editar Contrato</button>);
+        return (<button type='button' className='top-right' onClick={this.handleContratoEdit} style={{top: '55px'}}>Editar Contrato</button>);
     },
     renderHistorialTitle: function () {
         if (this.state.selectedAccionIndex == null) {
