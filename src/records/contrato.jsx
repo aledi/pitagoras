@@ -37,6 +37,8 @@ var ContratoRecord = Immutable.Record({
     notificacion: null,
     lastAccionAt: null,
     reporte: null,
+    creador: null,
+    ultimoEditor: null,
 
     formattedValues: {},
     sortValues: {}
@@ -63,6 +65,15 @@ class Contrato extends ContratoRecord {
 
         contrato.vehiculo = new VehiculoObject(VehiculoRecord.prepareForParse(contrato.vehiculo));
         contrato.cliente = new ClienteObject(ClienteRecord.prepareForParse(contrato.cliente));
+
+        var currentUser = Parse.User.current();
+
+        if (contrato.creador) {
+            contrato.ultimoEditor = currentUser;
+        } else {
+            contrato.creador = currentUser;
+            contrato.ultimoEditor = currentUser;
+        }
 
         return contrato;
     }
