@@ -106,7 +106,7 @@ class Contrato extends ContratoRecord {
         formattedValues.monto = formatNumber({prefix: '$', padRight: 2})(definition.monto);
         sortValues.monto = definition.monto;
 
-        // Monto
+        // Plazo
         definition.plazo = definition.plazo;
         sortValues.plazo = definition.plazo;
 
