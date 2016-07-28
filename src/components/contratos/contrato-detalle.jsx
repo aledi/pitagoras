@@ -137,7 +137,7 @@ var ContratoDetalle = React.createClass({
             return;
         }
 
-        return (<button type='button' className='top-right' onClick={this.handleContratoEdit} style={{top: '55px'}}>Editar Contrato</button>);
+        return (<button type='button' className='top-right editar-button' onClick={this.handleContratoEdit}>Editar Contrato</button>);
     },
     renderHistorialTitle: function () {
         if (this.state.selectedAccionIndex == null) {
@@ -212,7 +212,7 @@ var ContratoDetalle = React.createClass({
                     <span className='value'>{contrato.formattedValues.creador}</span>
                 </div>
                 <div className='detalle-wrapper'>
-                    <span className='title'>Ultima Edición:</span>
+                    <span className='title'>Última Edición:</span>
                     <span className='value'>{contrato.formattedValues.ultimoEditor}</span>
                 </div>
             </div>
