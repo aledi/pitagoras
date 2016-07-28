@@ -37,6 +37,8 @@ var ContratoRecord = Immutable.Record({
     notificacion: null,
     lastAccionAt: null,
     reporte: null,
+    creador: null,
+    ultimoEditor: null,
 
     formattedValues: {},
     sortValues: {}
@@ -63,6 +65,15 @@ class Contrato extends ContratoRecord {
 
         contrato.vehiculo = new VehiculoObject(VehiculoRecord.prepareForParse(contrato.vehiculo));
         contrato.cliente = new ClienteObject(ClienteRecord.prepareForParse(contrato.cliente));
+
+        var currentUser = Parse.User.current();
+
+        if (contrato.id) {
+            contrato.ultimoEditor = currentUser;
+        } else {
+            contrato.creador = currentUser;
+            contrato.ultimoEditor = currentUser;
+        }
 
         return contrato;
     }
@@ -106,7 +117,7 @@ class Contrato extends ContratoRecord {
         formattedValues.monto = formatNumber({prefix: '$', padRight: 2})(definition.monto);
         sortValues.monto = definition.monto;
 
-        // Monto
+        // Plazo
         definition.plazo = definition.plazo;
         sortValues.plazo = definition.plazo;
 
@@ -142,6 +153,20 @@ class Contrato extends ContratoRecord {
                     telefono: referencia.telefono
                 });
             }
+        }
+
+        // Creador
+        definition.creador = definition.creador;
+
+        if (definition.creador) {
+            formattedValues.creador = definition.creador.nombre + ' ' + definition.creador.apellido;
+        }
+
+        // Ultimo Editor
+        definition.ultimoEditor = definition.ultimoEditor;
+
+        if (definition.ultimoEditor) {
+            formattedValues.ultimoEditor = definition.ultimoEditor.nombre + ' ' + definition.ultimoEditor.apellido;
         }
 
         definition.formattedValues = formattedValues;
