@@ -16,6 +16,10 @@
         top: 20px; right: 20px;
         font-size: 13px;
         z-index: 10;
+
+        &.editar-button {
+            top: 55px;
+        }
     }
 
     .contrato-detalles {

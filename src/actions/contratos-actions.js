@@ -21,6 +21,8 @@ module.exports = {
         query.include('cliente');
         query.include('vehiculo');
         query.include('reporte');
+        query.include('creador');
+        query.include('ultimoEditor');
         query.limit(1000);
         query.find().then(function (contratos) {
             var contratosByKey = {};
