@@ -196,6 +196,14 @@ var ContratoDetalle = React.createClass({
                     <span className='value'>{contrato.formattedValues.fechaContrato}</span>
                 </div>
                 <div className='detalle-wrapper'>
+                    <span className='title'>Tipo de Asignacion:</span>
+                    <span className='value'>{contrato.tipoAsignacion}</span>
+                </div>
+                <div className='detalle-wrapper'>
+                    <span className='title'>Tipo de Contrato:</span>
+                    <span className='value'>{contrato.tipoContrato}</span>
+                </div>
+                <div className='detalle-wrapper'>
                     <span className='title'>Plazo:</span>
                     <span className='value'>{contrato.plazo}</span>
                 </div>
