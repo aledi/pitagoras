@@ -8,19 +8,6 @@
     bottom: 0;
     overflow-x: auto;
 
-    .export {
-        position: absolute;
-        top: 0px;
-        background-color: red;
-        z-index: 100;
-        right: 0;
-        bottom: 0;
-
-        &:hover {
-            background-color: blue;
-        }
-    }
-
     .table-header-wrapper {
         position: relative;
         z-index: 2;
@@ -58,6 +45,10 @@
         table {
             border-top: 1px solid $creosote;
             border-bottom: 1px solid $creosote;
+
+            .fake-header {
+                display: none;
+            }
 
             tr {
                 cursor: pointer;

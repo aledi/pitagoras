@@ -4,4 +4,13 @@
     .side-button {
         float: none !important;
     }
+
+    button.top-right {
+        height: auto;
+        padding: 2px 10px;
+        position: absolute;
+        top: 30px; right: 20px;
+        font-size: 13px;
+        z-index: 10;
+    }
 }

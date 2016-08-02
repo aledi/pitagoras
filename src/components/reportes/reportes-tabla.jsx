@@ -21,25 +21,8 @@ var ReportesTabla = React.createClass({
     render: function () {
         return (
             <div className='reportes-table table-wrapper'>
-                <table id='example'>
-  <tr>
-    <th>Firstname</th>
-    <th>Lastname</th>
-    <th>Age</th>
-  </tr>
-  <tr>
-    <td>Jill</td>
-    <td>Smith</td>
-    <td>50</td>
-  </tr>
-  <tr>
-    <td>Eve</td>
-    <td>Jackson</td>
-    <td>94</td>
-  </tr>
-</table>
                 <div className='table-header-wrapper' style={{minWidth: tableMinWidth}}>
-                    <table id='reportes'>
+                    <table>
                         <thead>
                             <tr className='header'>
                                 <th style={{width: '250px'}}>
@@ -117,22 +100,8 @@ var ReportesTabla = React.createClass({
                 </div>
                 {this.renderTableBodyWrapper()}
                 <a id='dlink' style={{display: 'none'}} />
-                <button type='button' className='export' onClick={this.tableToExcel}>Export</button>
             </div>
         );
-    },
-    tableToExcel: function () {
-        var uri = 'data:application/vnd.ms-excel;base64,'
-        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
-        , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
-        , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
-
-        var table = document.getElementById('example');
-        var ctx = {worksheet: 'reportes' || 'Worksheet', table: table.innerHTML};
-
-        document.getElementById('dlink').href = uri + base64(format(template, ctx));
-        document.getElementById('dlink').download = 'reportes.xls';
-        document.getElementById('dlink').click();
     },
     renderTableBodyWrapper: function () {
         return (
@@ -143,11 +112,89 @@ var ReportesTabla = React.createClass({
     },
     renderTableBody: function () {
         return (
-            <table className='table-body'>
+            <table className='table-body' id='reportes'>
+                {this.renderFakeHeader()}
                 <tbody>
                     {this.renderReportes()}
                 </tbody>
             </table>
+        );
+    },
+    renderFakeHeader: function () {
+        return (
+            <thead className='fake-header'>
+                <tr className='header'>
+                    <th style={{width: '250px'}}>
+                        <span>Número de Contrato</span>
+                    </th>
+                    <th style={{width: '350px'}}>
+                        <span>Nombre</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Fecha de Asignación</span>
+                    </th>
+                    <th style={{width: '100px'}}>
+                        <span>Paquete Legal</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Fecha Paquete Legal Recibido</span>
+                    </th>
+                    <th style={{width: '150px'}}>
+                        <span>Certificación Contable</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Fecha de Visita</span>
+                    </th>
+                    <th style={{width: '150px'}}>
+                        <span>Resultado de Visita</span>
+                    </th>
+                    <th style={{width: '250px'}}>
+                        <span>Fecha de Presentación de Demanda</span>
+                    </th>
+                    <th style={{width: '250px'}}>
+                        <span>Expediente</span>
+                    </th>
+                    <th style={{width: '250px'}}>
+                        <span>Juzgado</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Tipo de Juicio</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Fecha de Acuerdo</span>
+                    </th>
+                    <th style={{width: '350px'}}>
+                        <span>Comentario de Acuerdo Pendiente</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Fecha de Desechamiento</span>
+                    </th>
+                    <th style={{width: '250px'}}>
+                        <span>Motivo Desechamiento</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Fecha de Amparo</span>
+                    </th>
+                    <th style={{width: '150px'}}>
+                        <span>Resolución de Amparo</span>
+                    </th>
+                    <th style={{width: '250px'}}>
+                        <span>Fecha de Resolución de Amparo</span>
+                    </th>
+                    <th style={{width: '350px'}}>
+                        <span>Horarios Juzgados</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Fecha de Admisión</span>
+                    </th>
+                    <th style={{width: '250px'}}>
+                        <span>Resultado de Emplazamiento</span>
+                    </th>
+                    <th style={{width: '250px'}}>
+                        <span>Etapa Actual</span>
+                    </th>
+                </tr>
+            </thead>
         );
     },
     renderReportes: function () {
