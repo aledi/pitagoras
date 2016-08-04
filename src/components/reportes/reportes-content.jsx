@@ -23,7 +23,7 @@ var ReportesContent = React.createClass({
         return (
             <div className='reportes-content'>
                 <span className='side-button right' onClick={this.toggleReportes}>
-                    {'Mostrar Reportes' + (this.state.showingReportesGenerales ? ' Extrajudiciales' : ' Generales')}
+                    {'Mostrar Reporte' + (this.state.showingReportesGenerales ? ' Extrajudiciales' : ' Generales')}
                 </span>
                 <button type='button' className='top-right export' onClick={this.exportTable}>Exportar Reportes</button>
                 {this.renderReportes()}
