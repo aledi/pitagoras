@@ -50,6 +50,34 @@ var ReportesContent = React.createClass({
             table: table.innerHTML
         };
 
+        while (ctx.table.indexOf('á') !== -1) {
+            ctx.table = ctx.table.replace('á', '&aacute;');
+        }
+
+        while (ctx.table.indexOf('é') !== -1) {
+            ctx.table = ctx.table.replace('é', '&eacute;');
+        }
+
+        while (ctx.table.indexOf('í') !== -1) {
+            ctx.table = ctx.table.replace('í', '&iacute;');
+        }
+
+        while (ctx.table.indexOf('ó') !== -1) {
+            ctx.table = ctx.table.replace('ó', '&oacute;');
+        }
+
+        while (ctx.table.indexOf('ú') !== -1) {
+            ctx.table = ctx.table.replace('ú', '&uacute;');
+        }
+
+        while (ctx.table.indexOf('º') !== -1) {
+            ctx.table = ctx.table.replace('º', '&ordm;');
+        }
+
+        while (ctx.table.indexOf('ñ') !== -1) {
+            ctx.table = ctx.table.replace('ñ', '&ntilde;');
+        }
+
         document.getElementById('dlink').href = uri + this.base64(this.format(template, ctx));
         document.getElementById('dlink').download = tipoReportes + '.xls';
         document.getElementById('dlink').click();

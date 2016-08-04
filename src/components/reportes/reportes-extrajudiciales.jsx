@@ -145,11 +145,11 @@ var ReportesExtrajudiciales = React.createClass({
                 var accion = acciones[j];
                 rows.push(
                     <tr key={reporte.id + '-' + j}>
-                        <td style={{width: '250px'}} className='left'><span>{reporte.numeroContrato}</span></td>
-                        <td style={{width: '350px'}} className='left'><span>{reporte.nombre}</span></td>
-                        <td style={{width: '200px'}} className='left'><span>{accion.comentarios}</span></td>
-                        <td style={{width: '200px'}} className='left'><span>{moment(accion.fecha).format('DD MMMM, YYYY')}</span></td>
-                        <td style={{width: '200px'}} className='left'><span>{accion.creador}</span></td>
+                        <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.numeroContrato}</span></td>
+                        <td style={{width: '350px', textAlign: 'left'}}><span>{reporte.nombre}</span></td>
+                        <td style={{width: '200px', textAlign: 'left'}}><span>{accion.comentarios}</span></td>
+                        <td style={{width: '200px', textAlign: 'left'}}><span>{moment(accion.fecha).format('DD MMMM, YYYY')}</span></td>
+                        <td style={{width: '200px', textAlign: 'left'}}><span>{accion.creador}</span></td>
                     </tr>
                 );
             }

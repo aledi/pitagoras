@@ -14,24 +14,6 @@
         z-index: 10;
     }
 
-    table {
-        tr {
-            th, td {
-                &.centered {
-                    text-align: center;
-                }
-
-                &.left {
-                    text-align: left;
-                }
-
-                &.right {
-                    text-align: right;
-                }
-            }
-        }
-    }
-
     .reportes-table {
         position: absolute;
         top: 80px;

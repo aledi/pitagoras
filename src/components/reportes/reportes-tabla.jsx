@@ -133,29 +133,29 @@ var ReportesTabla = React.createClass({
         this.props.reportes.forEach(function (reporte) {
             reportes.push(
                 <tr className='content-row' key={reporte.id}>
-                    <td style={{width: '250px'}} className='left'><span>{reporte.numeroContrato}</span></td>
-                    <td style={{width: '350px'}} className='left'><span>{reporte.nombre}</span></td>
-                    <td style={{width: '200px'}} className='left'><span>{reporte.formattedValues.fechaAsignacion}</span></td>
-                    <td style={{width: '100px'}} className='centered'><span>{reporte.formattedValues.paqueteLegal}</span></td>
-                    <td style={{width: '200px'}} className='left'><span>{reporte.formattedValues.fechaPaqueteLegal}</span></td>
-                    <td style={{width: '150px'}} className='centered'><span>{reporte.formattedValues.certificacionContable}</span></td>
-                    <td style={{width: '200px'}} className='left'><span>{reporte.formattedValues.fechaVisita}</span></td>
-                    <td style={{width: '150px'}} className='centered'><span>{reporte.formattedValues.resultadoVisita}</span></td>
-                    <td style={{width: '250px'}} className='left'><span>{reporte.formattedValues.fechaPresentacionDemanda}</span></td>
-                    <td style={{width: '250px'}} className='left'><span>{reporte.expediente}</span></td>
-                    <td style={{width: '250px'}} className='left'><span>{reporte.juzgado}</span></td>
-                    <td style={{width: '200px'}} className='left'><span>{reporte.tipoJuicio}</span></td>
-                    <td style={{width: '200px'}} className='left'><span>{reporte.formattedValues.fechaAcuerdo}</span></td>
-                    <td style={{width: '350px'}} className='left'><span>{reporte.comentarioAcuerdoPendiente}</span></td>
-                    <td style={{width: '200px'}} className='left'><span>{reporte.formattedValues.fechaDesechamiento}</span></td>
-                    <td style={{width: '250px'}} className='left'><span>{reporte.motivoDesechamiento}</span></td>
-                    <td style={{width: '200px'}} className='left'><span>{reporte.formattedValues.fechaPresentacionAmparo}</span></td>
-                    <td style={{width: '150px'}} className='centered'><span>{reporte.resolucionAmparo}</span></td>
-                    <td style={{width: '250px'}} className='left'><span>{reporte.formattedValues.fechaResolucionAmparo}</span></td>
-                    <td style={{width: '350px'}} className='left'><span>{reporte.formattedValues.horariosJuzgado}</span></td>
-                    <td style={{width: '200px'}} className='left'><span>{reporte.formattedValues.fechaAdmision}</span></td>
-                    <td style={{width: '250px'}} className='left'><span>{reporte.resultadoEmplazamiento}</span></td>
-                    <td style={{width: '250px'}} className='left'><span>{reporte.etapaActual ? AccionRecord.ACCIONES_TYPES[reporte.etapaActual] : ''}</span></td>
+                    <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.numeroContrato}</span></td>
+                    <td style={{width: '350px', textAlign: 'left'}}><span>{reporte.nombre}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAsignacion}</span></td>
+                    <td style={{width: '100px', textAlign: 'center'}}><span>{reporte.formattedValues.paqueteLegal}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaPaqueteLegal}</span></td>
+                    <td style={{width: '150px', textAlign: 'center'}}><span>{reporte.formattedValues.certificacionContable}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaVisita}</span></td>
+                    <td style={{width: '150px', textAlign: 'center'}}><span>{reporte.formattedValues.resultadoVisita}</span></td>
+                    <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaPresentacionDemanda}</span></td>
+                    <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.expediente}</span></td>
+                    <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.juzgado}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.tipoJuicio}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAcuerdo}</span></td>
+                    <td style={{width: '350px', textAlign: 'left'}}><span>{reporte.comentarioAcuerdoPendiente}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaDesechamiento}</span></td>
+                    <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.motivoDesechamiento}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaPresentacionAmparo}</span></td>
+                    <td style={{width: '150px', textAlign: 'center'}}><span>{reporte.resolucionAmparo}</span></td>
+                    <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaResolucionAmparo}</span></td>
+                    <td style={{width: '350px', textAlign: 'left'}}><span>{reporte.formattedValues.horariosJuzgado}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAdmision}</span></td>
+                    <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.resultadoEmplazamiento}</span></td>
+                    <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.etapaActual ? AccionRecord.ACCIONES_TYPES[reporte.etapaActual] : ''}</span></td>
                 </tr>
             );
         });
