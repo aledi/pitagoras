@@ -70,8 +70,8 @@ var ReportesContent = React.createClass({
             ctx.table = ctx.table.replace('ú', '&uacute;');
         }
 
-        while (ctx.table.indexOf('º') !== -1) {
-            ctx.table = ctx.table.replace('º', '&ordm;');
+        while (ctx.table.indexOf('ü') !== -1) {
+            ctx.table = ctx.table.replace('ü', '&uuml;');
         }
 
         while (ctx.table.indexOf('ñ') !== -1) {
