@@ -30,6 +30,8 @@ var ReportesExtrajudiciales = React.createClass({
                 <div className='acciones'>
                     {this.renderAcciones()}
                 </div>
+                {this.createFakeTable()}
+                <a id='dlink' style={{display: 'none'}} />
             </div>
         );
     },
@@ -92,6 +94,68 @@ var ReportesExtrajudiciales = React.createClass({
         });
 
         return items;
+    },
+    createFakeTable: function () {
+        return (
+            <table id='extrajudiciales' style={{marginTop: 300}}>
+                <thead>
+                    <tr className='header'>
+                        <th style={{width: '250px'}}>
+                            <span>Número de Contrato</span>
+                        </th>
+                        <th style={{width: '350px'}}>
+                            <span>Nombre</span>
+                        </th>
+                        <th style={{width: '200px'}}>
+                            <span>Comentarios</span>
+                        </th>
+                        <th style={{width: '200px'}}>
+                            <span>Fecha</span>
+                        </th>
+                        <th style={{width: '200px'}}>
+                            <span>Creador</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.getRows()}
+                </tbody>
+            </table>
+        );
+    },
+    getRows: function () {
+        var rows = [];
+        var reportes = [];
+
+        // Get reportes with acciones extrajudiciales
+        this.props.reportes.forEach(function (reporte) {
+            if (!reporte.extrajudicial || !reporte.extrajudicial.length) {
+                return;
+            }
+
+            reportes.push(reporte);
+        });
+
+        // Iterate over each reporte to get all acciones extrajudiciales for that reporte
+        for (var i = 0; i < reportes.length; i++) {
+            var reporte = reportes[i];
+            var acciones = reporte.extrajudicial;
+
+            for (var j = 0; j < acciones.length; j++) {
+                var accion = acciones[j];
+                rows.push(
+                    <tr key={reporte.id + '-' + j}>
+                        <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.numeroContrato}</span></td>
+                        <td style={{width: '350px', textAlign: 'left'}}><span>{reporte.nombre}</span></td>
+                        <td style={{width: '200px', textAlign: 'left'}}><span>{accion.comentarios}</span></td>
+                        <td style={{width: '200px', textAlign: 'left'}}><span>{moment(accion.fecha).format('DD MMMM, YYYY')}</span></td>
+                        <td style={{width: '200px', textAlign: 'left'}}><span>{accion.creador}</span></td>
+                    </tr>
+                );
+            }
+        }
+
+        return rows;
     },
     selectReporte: function (reporte) {
         this.setState({reporte: reporte});
