@@ -14,6 +14,8 @@ var ReporteRecord = Immutable.Record({
     numeroContrato: null,
     nombre: '',
     fechaAsignacion: null,
+    tipoAsignacion: null,
+    tipoContrato: null,
     paqueteLegal: null,
     fechaPaqueteLegal: null,
     certificacionContable: null,
@@ -60,6 +62,12 @@ class Reporte extends ReporteRecord {
         // Fecha de Asignación
         definition.fechaAsignacion = definition.createdAt;
         formattedValues.fechaAsignacion = definition.createdAt ? moment(definition.createdAt).format('D MMMM, YYYY') : moment();
+
+        // Tipo Asignación
+        definition.tipoAsignacion = definition.tipoAsignacion;
+
+        // Tipo Contrato
+        definition.tipoContrato = definition.tipoContrato;
 
         // Paquete Legal
         definition.paqueteLegal = definition.paqueteLegal;
@@ -147,6 +155,8 @@ class Reporte extends ReporteRecord {
             numeroContrato: this.numeroContrato,
             nombre: this.nombre,
             fechaAsignacion: this.fechaAsignacion,
+            tipoAsignacion: this.tipoAsignacion,
+            tipoContrato: this.tipoContrato,
             paqueteLegal: this.paqueteLegal,
             fechaPaqueteLegal: this.fechaPaqueteLegal,
             fechaVisita: this.fechaVisita,

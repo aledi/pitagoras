@@ -76,6 +76,38 @@ var ContratoForm = React.createClass({
                             onChange={this.handleChange.bind(this, 'numeroContrato')} />
                     </div>
                     <div className='input-wrapper'>
+                        <label>Tipo de Contrato</label>
+                            <div>
+                                <input
+                                    type='radio'
+                                    id='perdida'
+                                    value={ContratoRecord.CONTRATO_TYPES.PERDIDA}
+                                    checked={this.state.contrato.tipoContrato === ContratoRecord.CONTRATO_TYPES.PERDIDA}
+                                    onChange={this.handleTipoContratoChange}
+                                    disabled={this.state.disabled} />
+                                <label htmlFor='perdida' disabled={this.state.disabled}>Pérdida</label>
+                            </div>
+                            <div>
+                                <input
+                                    type='radio'
+                                    id='perdida-posible'
+                                    value={ContratoRecord.CONTRATO_TYPES.PERDIDA_POSIBLE}
+                                    checked={this.state.contrato.tipoContrato === ContratoRecord.CONTRATO_TYPES.PERDIDA_POSIBLE}
+                                    onChange={this.handleTipoContratoChange}
+                                    disabled={this.state.disabled} />
+                                <label htmlFor='perdida-posible' disabled={this.state.disabled}>Pérdida Posible</label>
+                            </div>
+                    </div>
+                    <div className='input-wrapper'>
+                        <label>Tipo de Asignación</label>
+                        <select value={this.state.contrato.tipoAsignacion} onChange={this.handleSelectChange} disabled={this.state.disabled}>
+                            <option value={ContratoRecord.ASIGNACION_TYPES.NORMAL}>Normal</option>
+                            <option value={ContratoRecord.ASIGNACION_TYPES.ESPECIAL}>Especial</option>
+                            <option value={ContratoRecord.ASIGNACION_TYPES.PILOTO}>Piloto</option>
+                            <option value={ContratoRecord.ASIGNACION_TYPES.OTRO}>Otro</option>
+                        </select>
+                    </div>
+                    <div className='input-wrapper'>
                         <label>Plazo</label>
                         <input
                             type='text'
@@ -502,9 +534,19 @@ var ContratoForm = React.createClass({
 
         this.setState(state);
     },
+    handleSelectChange: function (event) {
+        var state = {contrato: this.state.contrato};
+        state.contrato.tipoAsignacion = event.target.value;
+        this.setState(state);
+    },
     handleRadioChange: function (event) {
         var state = {contrato: this.state.contrato};
         state.contrato.certificacionContable = parseInt(event.target.value, 10) === 1;
+        this.setState(state);
+    },
+    handleTipoContratoChange: function (event) {
+        var state = {contrato: this.state.contrato};
+        state.contrato.tipoContrato = event.target.value;
         this.setState(state);
     },
     handleFechaChange: function (date) {

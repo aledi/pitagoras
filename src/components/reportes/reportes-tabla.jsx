@@ -12,7 +12,7 @@ var AccionRecord = require('src/records/accion');
 // ReportesTabla
 // -----------------------------------------------------------------------------------------------
 
-var tableMinWidth = '5200px';
+var tableMinWidth = '5600px';
 
 var ReportesTabla = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
@@ -58,6 +58,12 @@ var ReportesTabla = React.createClass({
                     </th>
                     <th style={{width: '200px'}}>
                         <span>Fecha de Asignación</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Tipo de Asignación</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Tipo de Contrato</span>
                     </th>
                     <th style={{width: '100px'}}>
                         <span>Paquete Legal</span>
@@ -136,6 +142,8 @@ var ReportesTabla = React.createClass({
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.numeroContrato}</span></td>
                     <td style={{width: '350px', textAlign: 'left'}}><span>{reporte.nombre}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAsignacion}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.tipoAsignacion}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.tipoContrato}</span></td>
                     <td style={{width: '100px', textAlign: 'center'}}><span>{reporte.formattedValues.paqueteLegal}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaPaqueteLegal}</span></td>
                     <td style={{width: '150px', textAlign: 'center'}}><span>{reporte.formattedValues.certificacionContable}</span></td>

@@ -13,7 +13,6 @@ var ClienteObject = Parse.Object.extend('Cliente');
 var ClienteRecord = require('./cliente');
 var ReporteObject = Parse.Object.extend('Reporte');
 var ReporteRecord = require('./reporte');
-var RespuestasUtils = require('src/components/respuestas/respuestas-utils');
 var VehiculoObject = Parse.Object.extend('Vehiculo');
 var VehiculoRecord = require('./vehiculo');
 
@@ -21,10 +20,23 @@ var VehiculoRecord = require('./vehiculo');
 // ContratoRecord
 // -----------------------------------------------------------------------------------------------
 
+var CONTRATO_TYPES = {
+    PERDIDA: 'Pérdida',
+    PERDIDA_POSIBLE: 'Pérdida Posible'
+};
+
+var ASIGNACION_TYPES = {
+    NORMAL: 'Normal',
+    ESPECIAL: 'Especial',
+    PILOTO: 'Piloto',
+    OTRO: 'Otro'
+};
+
 var ContratoRecord = Immutable.Record({
     id: null,
+    tipoAsignacion: null,
+    tipoContrato: null,
     cliente: null,
-    especial: null,
     fechaContrato: null,
     juzgado: null,
     monto: null,
@@ -45,6 +57,14 @@ var ContratoRecord = Immutable.Record({
 });
 
 class Contrato extends ContratoRecord {
+    static get CONTRATO_TYPES () {
+        return CONTRATO_TYPES;
+    }
+
+    static get ASIGNACION_TYPES () {
+        return ASIGNACION_TYPES;
+    }
+
     static prepareForParse (contrato) {
         contrato.monto = (typeof contrato.monto === 'string') ? parseFloat(contrato.monto.replace(/,/g, '')) : contrato.monto;
         contrato.plazo = (typeof contrato.plazo === 'string') ? parseFloat(contrato.plazo) : contrato.plazo;
@@ -60,6 +80,8 @@ class Contrato extends ContratoRecord {
 
         contrato.reporte.nombre = contrato.cliente.nombre + ' ' + contrato.cliente.apellidoPaterno + (contrato.cliente.apellidoMaterno ? ' ' + contrato.cliente.apellidoMaterno : '');
         contrato.reporte.numeroContrato = contrato.numeroContrato;
+        contrato.reporte.tipoContrato = contrato.tipoContrato;
+        contrato.reporte.tipoAsignacion = contrato.tipoAsignacion;
         contrato.reporte.certificacionContable = contrato.certificacionContable;
         contrato.reporte = new ReporteObject(ReporteRecord.prepareForParse(contrato.reporte));
 
@@ -85,6 +107,12 @@ class Contrato extends ContratoRecord {
         var sortValues = {};
 
         definition.id = definition.id || definition.objectId;
+
+        // Tipo Asignación
+        definition.tipoAsignacion = definition.tipoAsignacion;
+
+        // Tipo Contrato
+        definition.tipoContrato = definition.tipoContrato;
 
         // Número de Contrato
         definition.numeroContrato = definition.numeroContrato;
@@ -128,11 +156,6 @@ class Contrato extends ContratoRecord {
 
         // Certificacion Contable
         definition.certificacionContable = definition.certificacionContable;
-
-        // Especial
-        definition.especial = definition.especial || false;
-        formattedValues.especial = RespuestasUtils.formatBooleanRespuesta(definition.especial);
-        sortValues.especial = definition.especial;
 
         // Notificacion
         definition.notificacion = definition.notificacion;
@@ -178,6 +201,8 @@ class Contrato extends ContratoRecord {
     toEditable () {
         return {
             id: this.id,
+            tipoAsignacion: this.tipoAsignacion || ASIGNACION_TYPES.NORMAL,
+            tipoContrato: this.tipoContrato || CONTRATO_TYPES.PERDIDA,
             cliente: this.cliente.toEditable(),
             fechaContrato: this.fechaContrato ? this.fechaContrato : moment(),
             monto: this.monto,
@@ -188,7 +213,6 @@ class Contrato extends ContratoRecord {
             certificacionContable: this.certificacionContable || false,
             vehiculo: this.vehiculo.toEditable(),
             juzgado: this.juzgado,
-            especial: this.especial,
             notificacion: this.notificacion,
             lastAccionAt: this.lastAccionAt,
             reporte: this.reporte.toEditable()
