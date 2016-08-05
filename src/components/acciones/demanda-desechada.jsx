@@ -30,7 +30,7 @@ var DemandaDesechada = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
         return {
-            tipo: 5,
+            tipo: 6,
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,

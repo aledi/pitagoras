@@ -19,7 +19,7 @@ var DemandaPrevenida = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
         return {
-            tipo: 7,
+            tipo: 8,
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
