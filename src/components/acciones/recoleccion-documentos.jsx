@@ -20,7 +20,7 @@ var RecoleccionDocumentos = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
         return {
-            tipo: 6,
+            tipo: 7,
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,

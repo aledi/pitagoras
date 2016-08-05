@@ -55,6 +55,7 @@ class Notificacion extends NotificacionRecord {
         // Cita
         if (definition.cita) {
             definition.cita = definition.cita;
+            definition.fecha = moment(definition.cita.fecha.iso);
             formattedValues.cita = {
                 fecha: moment(definition.cita.fecha.iso).format('D/MMM/YYYY'),
                 lugar: definition.lugar,
