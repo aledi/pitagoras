@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "description": "Pitágoras",
   "scripts": {
-    "preinstall": "npm install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "webpack-dev-server --progress --colors --host 0.0.0.0 --port 8081 --content-base build/ --history-api-fallback",
     "lint": "eslint --ext .jsx --ext .js ."
@@ -19,7 +18,7 @@
     "url": "https://github.com/ecristerna/pitagoras/issues"
   },
   "homepage": "https://github.com/ecristerna/pitagoras#readme",
-  "devDependencies": {
+  "dependencies": {
     "autoprefixer": "6.3.3",
     "babel-core": "6.6.5",
     "babel-loader": "6.2.4",
