@@ -2,34 +2,11 @@
 @import '~src/components/acciones/accion-form.scss';
 
 .contrato {
-    h2 {
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: bold;
-        color: $denim;
-        margin-bottom: 40px;
-        text-align: center;
-    }
-
     h4 {
         text-transform: uppercase;
         letter-spacing: 1px;
         font-weight: bold;
         color: $denim;
-    }
-
-    span.go-back {
-        display: inline-block;
-        text-transform: uppercase;
-        font-weight: bold;
-        letter-spacing: 1px;
-        font-size: 13px;
-        color: $taupe;
-        cursor: pointer;
-
-        &.right {
-            float: right;
-        }
     }
 
     button.top-right {
@@ -39,6 +16,10 @@
         top: 20px; right: 20px;
         font-size: 13px;
         z-index: 10;
+
+        &.editar-button {
+            top: 55px;
+        }
     }
 
     .contrato-detalles {

@@ -1,5 +1,9 @@
 @import '~src/styles/pitagoras.scss';
 
 .contratos {
-    padding: 30px;
+    .error {
+        text-align: center;
+        color: $invalid;
+        font-size: 20px;
+    }
 }

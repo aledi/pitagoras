@@ -7,22 +7,26 @@ require('./contrato-detalle.scss');
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
+var Parse = require('parse');
 var classNames = require('classnames');
 
-var ContratoForm = require('src/components/contratos/contrato-form');
-var AccionesHistorial = require('src/components/acciones/acciones-historial');
 var AccionRecord = require('src/records/accion');
 
-var Visita = require('src/components/acciones/visita');
-var AltaDocumentos = require('src/components/acciones/alta-documentos');
-var PresentacionDemanda = require('src/components/acciones/presentacion-demanda');
-var AcuerdoDemanda = require('src/components/acciones/acuerdo-demanda');
-var DemandaDesechada = require('src/components/acciones/demanda-desechada');
-var RecoleccionDocumentos = require('src/components/acciones/recoleccion-documentos');
-var DemandaPrevenida = require('src/components/acciones/demanda-prevenida');
-var Desahogo = require('src/components/acciones/desahogo');
-var DemandaAdmitida = require('src/components/acciones/demanda-admitida');
-var DiligenciaEmbargo = require('src/components/acciones/diligencia-embargo');
+var AccionesHistorial = require('src/components/acciones/acciones-historial');
+var ContratoForm = require('src/components/contratos/contrato-form');
+
+var Visita = require('src/components/acciones/visita'); // 1
+var AltaDocumentos = require('src/components/acciones/alta-documentos'); // 2
+var PresentacionDemanda = require('src/components/acciones/presentacion-demanda'); // 3
+var AcuerdoDemanda = require('src/components/acciones/acuerdo-demanda'); // 4
+var Amparo = require('src/components/acciones/amparo'); // 5
+var DemandaDesechada = require('src/components/acciones/demanda-desechada'); // 6
+var RecoleccionDocumentos = require('src/components/acciones/recoleccion-documentos'); // 7
+var DemandaPrevenida = require('src/components/acciones/demanda-prevenida'); // 8
+var Desahogo = require('src/components/acciones/desahogo'); // 9
+var DemandaAdmitida = require('src/components/acciones/demanda-admitida'); // 10
+var DiligenciaEmbargo = require('src/components/acciones/diligencia-embargo'); // 11
+var Extrajudicial = require('src/components/acciones/extrajudicial'); // 12
 
 // -----------------------------------------------------------------------------------------------
 // Contrato
@@ -45,16 +49,18 @@ var ContratoDetalle = React.createClass({
 
         if (props.contrato) {
             accionesComponents = [
-                <Visita key='visita' contrato={props.contrato} disabled={props.savingAccion} />,
-                <AltaDocumentos key='altaDocumentos' contrato={props.contrato} disabled={props.savingAccion} />,
-                <PresentacionDemanda key='presentacionDemanda' contrato={props.contrato} disabled={props.savingAccion} />,
-                <AcuerdoDemanda key='acuerdoDemanda' contrato={props.contrato} disabled={props.savingAccion} />,
-                <DemandaDesechada key='demandaDesechada' contrato={props.contrato} disabled={props.savingAccion} />,
-                <RecoleccionDocumentos key='recoleccionDocumentos' contrato={props.contrato} disabled={props.savingAccion} />,
-                <DemandaPrevenida key='demandaPrevenida' contrato={props.contrato} disabled={props.savingAccion} />,
-                <Desahogo key='desahogo' contrato={props.contrato} disabled={props.savingAccion} />,
-                <DemandaAdmitida key='demandaAdmitida' contrato={props.contrato} disabled={props.savingAccion} />,
-                <DiligenciaEmbargo key='diligenciaEmbargo' contrato={props.contrato} disabled={props.savingAccion} />
+                <Visita contrato={props.contrato} disabled={props.savingAccion} key='visita' />,
+                <AltaDocumentos contrato={props.contrato} disabled={props.savingAccion} key='altaDocumentos' />,
+                <PresentacionDemanda contrato={props.contrato} disabled={props.savingAccion} key='presentacionDemanda' />,
+                <AcuerdoDemanda contrato={props.contrato} disabled={props.savingAccion} key='acuerdoDemanda' />,
+                <Amparo contrato={props.contrato} disabled={props.savingAccion} key='amparo' />,
+                <DemandaDesechada contrato={props.contrato} disabled={props.savingAccion} key='demandaDesechada' />,
+                <RecoleccionDocumentos contrato={props.contrato} disabled={props.savingAccion} key='recoleccionDocumentos' />,
+                <DemandaPrevenida contrato={props.contrato} disabled={props.savingAccion} key='demandaPrevenida' />,
+                <Desahogo contrato={props.contrato} disabled={props.savingAccion} key='desahogo' />,
+                <DemandaAdmitida contrato={props.contrato} disabled={props.savingAccion} key='demandaAdmitida' />,
+                <DiligenciaEmbargo contrato={props.contrato} disabled={props.savingAccion} key='diligenciaEmbargo' />,
+                <Extrajudicial contrato={props.contrato} disabled={props.savingAccion} key='extrajudicial' />
             ];
         }
 
@@ -80,7 +86,7 @@ var ContratoDetalle = React.createClass({
         if (this.state.editingContrato) {
             return (
                 <div className='contrato'>
-                    <span className='go-back' onClick={this.handleContratoEdit}>Regresar a Detalles</span>
+                    <span className='side-button' onClick={this.handleContratoEdit}>Regresar a Detalles</span>
                     <ContratoForm contrato={contrato} />
                 </div>
             );
@@ -88,11 +94,11 @@ var ContratoDetalle = React.createClass({
 
         return (
             <div className='contrato'>
-                <span className='go-back' onClick={this.goBack}>Regresar a Contratos</span>
-                <span className='go-back right' onClick={this.showFullDetails}>{'Mostrar' + (this.state.showingFullDetails ? ' resumen' : ' todos los detalles')}</span>
+                <span className='side-button' onClick={this.goBack}>Regresar a Contratos</span>
 
                 <div className='contrato-detalles'>
-                    <button type='button' className='top-right' onClick={this.handleContratoEdit}>Editar Contrato</button>
+                    <button type='button' className='top-right' onClick={this.toggleDetails}>{'Mostrar' + (this.state.showingFullDetails ? ' resumen' : ' todos los detalles')}</button>
+                    {this.renderEditarContrato()}
                     <div className='contrato-detalles-column'>
                         <h4>Detalles del Contrato</h4>
                         <div className='detalle-wrapper'>
@@ -115,7 +121,7 @@ var ContratoDetalle = React.createClass({
                 <h2>Acciones</h2>
                 <div className='acciones-wrapper'>
                     <ul className='acciones-list'>
-                        {this.getAccionesListItems()}
+                        {this.getAcciones()}
                     </ul>
                     <div className='accion-forma-historial'>
                         {this.renderAccion()}
@@ -126,6 +132,13 @@ var ContratoDetalle = React.createClass({
             </div>
         );
     },
+    renderEditarContrato: function () {
+        if (!(Parse.User.current().get('tipo') === 3)) {
+            return;
+        }
+
+        return (<button type='button' className='top-right editar-button' onClick={this.handleContratoEdit}>Editar Contrato</button>);
+    },
     renderHistorialTitle: function () {
         if (this.state.selectedAccionIndex == null) {
             return;
@@ -133,14 +146,20 @@ var ContratoDetalle = React.createClass({
 
         return (<h4>Historial de acciones</h4>);
     },
-    getAccionesListItems: function () {
+    getAcciones: function () {
         if (!this.state.accionesComponents) {
             return;
         }
 
         var self = this;
         return (this.state.accionesComponents.map(function (accionComponent, index) {
-            return (<li key={index} className={classNames({selected: self.state.selectedAccionIndex === index})} onClick={self.showAccion.bind(self, index)}>{AccionRecord.ACCIONES_TYPES[index + 1]}</li>);
+            return (
+                <li key={index}
+                    className={classNames({selected: self.state.selectedAccionIndex === index})}
+                    onClick={self.showAccion.bind(self, index)}>
+                        {AccionRecord.ACCIONES_TYPES[index + 1]}
+                </li>
+            );
         }));
     },
     handleContratoEdit: function () {
@@ -170,12 +189,19 @@ var ContratoDetalle = React.createClass({
         }
 
         var contrato = this.props.contrato;
-
         return (
             <div>
                 <div className='detalle-wrapper'>
                     <span className='title'>Fecha:</span>
                     <span className='value'>{contrato.formattedValues.fechaContrato}</span>
+                </div>
+                <div className='detalle-wrapper'>
+                    <span className='title'>Tipo de Asignacion:</span>
+                    <span className='value'>{contrato.tipoAsignacion}</span>
+                </div>
+                <div className='detalle-wrapper'>
+                    <span className='title'>Tipo de Contrato:</span>
+                    <span className='value'>{contrato.tipoContrato}</span>
                 </div>
                 <div className='detalle-wrapper'>
                     <span className='title'>Plazo:</span>
@@ -189,6 +215,14 @@ var ContratoDetalle = React.createClass({
                     <span className='title'>Tasa:</span>
                     <span className='value'>{contrato.tasa}</span>
                 </div>
+                <div className='detalle-wrapper'>
+                    <span className='title'>Creador:</span>
+                    <span className='value'>{contrato.formattedValues.creador}</span>
+                </div>
+                <div className='detalle-wrapper'>
+                    <span className='title'>Última Edición:</span>
+                    <span className='value'>{contrato.formattedValues.ultimoEditor}</span>
+                </div>
             </div>
         );
     },
@@ -197,12 +231,11 @@ var ContratoDetalle = React.createClass({
             return;
         }
 
-        var contrato = this.props.contrato;
         return (
             <div>
                 <div className='detalle-wrapper'>
                     <span className='title'>Domicilio:</span>
-                    <span className='value'>{contrato.cliente.formattedValues.domicilio}</span>
+                    <span className='value'>{this.props.contrato.cliente.formattedValues.domicilio}</span>
                 </div>
                 {this.renderTelefonos()}
                 {this.renderReferencias()}
@@ -298,7 +331,7 @@ var ContratoDetalle = React.createClass({
 
         return referenciasArray;
     },
-    showFullDetails: function () {
+    toggleDetails: function () {
         this.setState({showingFullDetails: !this.state.showingFullDetails});
     },
     goBack: function () {

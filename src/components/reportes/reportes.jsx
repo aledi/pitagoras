@@ -1,25 +1,57 @@
 'use strict';
 
-require('./reportes.scss');
-
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
+var Flux = require('flux/utils');
+
+var ReportesActions = require('src/actions/reportes-actions');
+var ReportesStore = require('src/stores/reportes-store');
+
+var ReportesContent = require('./reportes-content');
 
 // -----------------------------------------------------------------------------------------------
 // Reportes
 // -----------------------------------------------------------------------------------------------
 
-var Reportes = React.createClass({
-    render: function () {
+class Reportes extends React.Component {
+    static getStores () {
+        return [ReportesStore];
+    }
+
+    static calculateState (prevState, props) {
+        var reportes = ReportesStore.get('reportes');
+
+        return {
+            loading: reportes.size === 0 && ReportesStore.get('fetching'),
+            error: reportes.size === 0 ? ReportesStore.get('fetchError') : null,
+            reportes: reportes
+        };
+    }
+
+    componentWillMount () {
+        ReportesActions.fetchReportes();
+    }
+
+    render () {
         return (
             <main className='reportes'>
-                <h2>Reportes</h2>
+                {this.renderContent()}
             </main>
         );
     }
-});
 
-module.exports = Reportes;
+    renderContent () {
+        if (this.state.loading) {
+            return (<h2>Cargando...</h2>);
+        } else if (this.state.error) {
+            return (<div className='error'>Hubo un error. Favor de intentar de nuevo.</div>);
+        } else {
+            return (<ReportesContent reportes={this.state.reportes} />);
+        }
+    }
+}
+
+module.exports = Flux.Container.create(Reportes, {withProps: true});

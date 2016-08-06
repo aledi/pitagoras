@@ -28,8 +28,8 @@ var Routes = (
         <IndexRoute onEnter={redirectToInicio} />
         <Route path='signin' component={Signin} onEnter={requireNoAuth} />
         <Route path='inicio' component={Inicio} onEnter={requireAuth} />
-        <Route path='agregar-contrato' component={ContratoForm} onEnter={requireAuth} />
-        <Route path='alta-usuario' component={AltaUsuarioForm} onEnter={requireAuth} />
+        <Route path='agregar-contrato' component={ContratoForm} onEnter={requireAdminAuth} />
+        <Route path='alta-usuario' component={AltaUsuarioForm} onEnter={requireAdminAuth} />
         <Route path='contratos' component={Contratos} onEnter={requireAuth}>
             <Route path=':id' component={Contratos} onEnter={requireAuth} />
         </Route>
@@ -43,7 +43,6 @@ var Routes = (
 // -----------------------------------------------------------------------------------------------
 
 function redirectToInicio (nextState, replace) {
-    // Redirect to either /inicio or /signin
     replace({
         pathname: '/inicio',
         query: nextState.location.query,
@@ -63,15 +62,7 @@ function requireNoAuth (nextState, replace) {
 function requireAuth (nextState, replace) {
     // If user is authenticated, check for valid session.
     if (Parse.User.current()) {
-        Parse.Session.current().catch(function (error) {
-            if (error.code !== Parse.Error.INVALID_SESSION_TOKEN) {
-                return;
-            }
-
-            Parse.User.logOut().then(function () {
-                window.location = '/signin';
-            });
-        });
+        Parse.Session.current().catch(handleSessionError);
 
         return;
     }
@@ -79,6 +70,29 @@ function requireAuth (nextState, replace) {
     replace({
         pathname: '/signin',
         state: {nextPathname: nextState.location.pathname}
+    });
+}
+
+function requireAdminAuth (nextState, replace) {
+    // If user is authenticated, check for admin permissions.
+    var currentUser = Parse.User.current();
+
+    if (currentUser && currentUser.get('tipo') === 3) {
+        Parse.Session.current().catch(handleSessionError);
+    } else if (currentUser) {
+        replace('/access-denied');
+    } else {
+        replace('/signin');
+    }
+}
+
+function handleSessionError (error) {
+    if (error.code !== Parse.Error.INVALID_SESSION_TOKEN) {
+        return;
+    }
+
+    Parse.User.logOut().then(function () {
+        window.location = '/signin';
     });
 }
 

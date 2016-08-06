@@ -21,6 +21,15 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
 
+h2 {
+    margin-bottom: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: $denim;
+}
+
 #pitagoras-wrapper, #pitagoras {
     height: 100%;
     overflow: hidden;
@@ -38,6 +47,20 @@ input[type='text'], input[type='password'], textarea {
 
 input[type='radio'] + label {
     margin-left: 5px;
+}
+
+span.side-button {
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 13px;
+    color: $taupe;
+    cursor: pointer;
+
+    &.right {
+        float: right;
+    }
 }
 
 button {
@@ -73,6 +96,15 @@ button {
 
     &.remove {
         font-size: 11px;
+    }
+
+    &.submit {
+        padding: 0 80px;
+        margin-top: 50px;
+
+        &:disabled {
+            background-color: $disabled-button-background;
+        }
     }
 }
 

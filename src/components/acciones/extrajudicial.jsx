@@ -7,23 +7,21 @@
 var React = require('react');
 var Parse = require('parse');
 
-var AccionesActions = require('src/actions/acciones-actions');
-var AccionRecord = require('src/records/accion');
 var AccionesMixin = require('./acciones-mixin');
 
 // -----------------------------------------------------------------------------------------------
-// Desahogo
+// Extrajudicial
 // -----------------------------------------------------------------------------------------------
 
-var Desahogo = React.createClass({
+var Extrajudicial = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
         return {
-            tipo: 9,
+            tipo: 12,
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {desahogar: true},
+            respuestas: {},
             disabled: false
         };
     },
@@ -35,15 +33,12 @@ var Desahogo = React.createClass({
     },
     render: function () {
         return (
-            <div className='desahogo accion-form'>
+            <div className='extrajudicial accion-form'>
                 {this.renderComentarios()}
-                <button type='button' onClick={this.handleDesahogo} disabled={this.state.disabled}>Desahogar</button>
+                {this.renderButton()}
             </div>
         );
-    },
-    handleDesahogo: function () {
-        AccionesActions.saveAccion(AccionRecord.prepareForParse(this.state), this.state.contrato.id);
     }
 });
 
-module.exports = Desahogo;
+module.exports = Extrajudicial;

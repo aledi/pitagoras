@@ -1,5 +1,7 @@
 'use strict';
 
+require('./inicio.scss');
+
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
 // -----------------------------------------------------------------------------------------------
@@ -8,7 +10,6 @@ var React = require('react');
 var Flux = require('flux/utils');
 
 var ContratosStore = require('src/stores/contratos-store');
-
 var Notificaciones = require('src/components/notificaciones/notificaciones');
 
 // -----------------------------------------------------------------------------------------------
@@ -26,7 +27,8 @@ class Inicio extends React.Component {
         return {
             loading: notificaciones.size === 0 && ContratosStore.get('fetching'),
             error: notificaciones.size === 0 ? ContratosStore.get('fetchError') : null,
-            notificaciones: notificaciones
+            notificaciones: notificaciones,
+            newUser: props.location.state ? props.location.state.newUser : false
         };
     }
 
@@ -40,11 +42,11 @@ class Inicio extends React.Component {
 
     renderContent () {
         if (this.state.loading) {
-            return (<div>Cargando...</div>);
+            return (<h2>Cargando...</h2>);
         } else if (this.state.error) {
-            return (<div>Hubo un error. Favor de intentar de nuevo.</div>);
+            return (<div className='error'>Hubo un error. Favor de intentar de nuevo.</div>);
         } else {
-            return (<Notificaciones notificaciones={this.state.notificaciones} />);
+            return (<Notificaciones notificaciones={this.state.notificaciones} newUser={this.state.newUser} />);
         }
     }
 }

@@ -11,7 +11,8 @@ var moment = require('moment');
 
 var ClienteObject = Parse.Object.extend('Cliente');
 var ClienteRecord = require('./cliente');
-var RespuestasUtils = require('src/components/respuestas/respuestas-utils');
+var ReporteObject = Parse.Object.extend('Reporte');
+var ReporteRecord = require('./reporte');
 var VehiculoObject = Parse.Object.extend('Vehiculo');
 var VehiculoRecord = require('./vehiculo');
 
@@ -19,10 +20,23 @@ var VehiculoRecord = require('./vehiculo');
 // ContratoRecord
 // -----------------------------------------------------------------------------------------------
 
+var CONTRATO_TYPES = {
+    PERDIDA: 'Pérdida',
+    PERDIDA_POSIBLE: 'Pérdida Posible'
+};
+
+var ASIGNACION_TYPES = {
+    NORMAL: 'Normal',
+    ESPECIAL: 'Especial',
+    PILOTO: 'Piloto',
+    OTRO: 'Otro'
+};
+
 var ContratoRecord = Immutable.Record({
     id: null,
+    tipoAsignacion: null,
+    tipoContrato: null,
     cliente: null,
-    especial: null,
     fechaContrato: null,
     juzgado: null,
     monto: null,
@@ -30,26 +44,58 @@ var ContratoRecord = Immutable.Record({
     plazo: null,
     referencias: null,
     tasa: null,
+    certificacionContable: null,
     vehiculo: null,
     notificacion: null,
     lastAccionAt: null,
+    reporte: null,
+    creador: null,
+    ultimoEditor: null,
 
     formattedValues: {},
     sortValues: {}
 });
 
 class Contrato extends ContratoRecord {
+    static get CONTRATO_TYPES () {
+        return CONTRATO_TYPES;
+    }
+
+    static get ASIGNACION_TYPES () {
+        return ASIGNACION_TYPES;
+    }
+
     static prepareForParse (contrato) {
         contrato.monto = (typeof contrato.monto === 'string') ? parseFloat(contrato.monto.replace(/,/g, '')) : contrato.monto;
         contrato.plazo = (typeof contrato.plazo === 'string') ? parseFloat(contrato.plazo) : contrato.plazo;
         contrato.tasa = (typeof contrato.tasa === 'string') ? parseFloat(contrato.tasa.replace(/,/g, '')) : contrato.tasa;
 
+        if (contrato.notificacion) {
+            contrato.notificacion = cleanNotification(contrato);
+        }
+
         contrato.fechaContrato = contrato.fechaContrato.toDate();
 
         contrato.lastAccionAt = contrato.lastAccionAt.toDate();
 
+        contrato.reporte.nombre = contrato.cliente.nombre + ' ' + contrato.cliente.apellidoPaterno + (contrato.cliente.apellidoMaterno ? ' ' + contrato.cliente.apellidoMaterno : '');
+        contrato.reporte.numeroContrato = contrato.numeroContrato;
+        contrato.reporte.tipoContrato = contrato.tipoContrato;
+        contrato.reporte.tipoAsignacion = contrato.tipoAsignacion;
+        contrato.reporte.certificacionContable = contrato.certificacionContable;
+        contrato.reporte = new ReporteObject(ReporteRecord.prepareForParse(contrato.reporte));
+
         contrato.vehiculo = new VehiculoObject(VehiculoRecord.prepareForParse(contrato.vehiculo));
         contrato.cliente = new ClienteObject(ClienteRecord.prepareForParse(contrato.cliente));
+
+        var currentUser = Parse.User.current();
+
+        if (contrato.id) {
+            contrato.ultimoEditor = currentUser;
+        } else {
+            contrato.creador = currentUser;
+            contrato.ultimoEditor = currentUser;
+        }
 
         return contrato;
     }
@@ -61,6 +107,12 @@ class Contrato extends ContratoRecord {
         var sortValues = {};
 
         definition.id = definition.id || definition.objectId;
+
+        // Tipo Asignación
+        definition.tipoAsignacion = definition.tipoAsignacion;
+
+        // Tipo Contrato
+        definition.tipoContrato = definition.tipoContrato;
 
         // Número de Contrato
         definition.numeroContrato = definition.numeroContrato;
@@ -93,7 +145,7 @@ class Contrato extends ContratoRecord {
         formattedValues.monto = formatNumber({prefix: '$', padRight: 2})(definition.monto);
         sortValues.monto = definition.monto;
 
-        // Monto
+        // Plazo
         definition.plazo = definition.plazo;
         sortValues.plazo = definition.plazo;
 
@@ -102,13 +154,14 @@ class Contrato extends ContratoRecord {
         formattedValues.tasa = formatNumber({suffix: '%'})(definition.tasa);
         sortValues.tasa = definition.tasa;
 
-        // Especial
-        definition.especial = definition.especial || false;
-        formattedValues.especial = RespuestasUtils.formatBooleanRespuesta(definition.especial);
-        sortValues.especial = definition.especial;
+        // Certificacion Contable
+        definition.certificacionContable = definition.certificacionContable;
 
         // Notificacion
         definition.notificacion = definition.notificacion;
+
+        // Reporte
+        definition.reporte = definition.reporte ? new ReporteRecord(definition.reporte) : new ReporteRecord();
 
         // Referencias
         if (definition.referencias && definition.referencias.length) {
@@ -125,6 +178,20 @@ class Contrato extends ContratoRecord {
             }
         }
 
+        // Creador
+        definition.creador = definition.creador;
+
+        if (definition.creador) {
+            formattedValues.creador = definition.creador.nombre + ' ' + definition.creador.apellido;
+        }
+
+        // Ultimo Editor
+        definition.ultimoEditor = definition.ultimoEditor;
+
+        if (definition.ultimoEditor) {
+            formattedValues.ultimoEditor = definition.ultimoEditor.nombre + ' ' + definition.ultimoEditor.apellido;
+        }
+
         definition.formattedValues = formattedValues;
         definition.sortValues = sortValues;
 
@@ -134,6 +201,8 @@ class Contrato extends ContratoRecord {
     toEditable () {
         return {
             id: this.id,
+            tipoAsignacion: this.tipoAsignacion || ASIGNACION_TYPES.NORMAL,
+            tipoContrato: this.tipoContrato || CONTRATO_TYPES.PERDIDA,
             cliente: this.cliente.toEditable(),
             fechaContrato: this.fechaContrato ? this.fechaContrato : moment(),
             monto: this.monto,
@@ -141,12 +210,41 @@ class Contrato extends ContratoRecord {
             plazo: this.plazo,
             referencias: this.referencias || [],
             tasa: this.tasa,
+            certificacionContable: this.certificacionContable || false,
             vehiculo: this.vehiculo.toEditable(),
             juzgado: this.juzgado,
-            especial: this.especial,
             notificacion: this.notificacion,
-            lastAccionAt: this.lastAccionAt
+            lastAccionAt: this.lastAccionAt,
+            reporte: this.reporte.toEditable()
         };
+    }
+
+}
+
+function cleanNotification (contrato) {
+    var notificacion = contrato.notificacion;
+    var cleanedNotificacion = {
+        tipo: notificacion.tipo,
+        numeroContrato: contrato.numeroContrato,
+        contratoId: contrato.id
+    };
+
+    switch (notificacion.tipo) {
+        case 1:
+            cleanedNotificacion.fecha = moment(notificacion.fecha).toDate();
+            cleanedNotificacion.horario = notificacion.horario;
+
+            return cleanedNotificacion;
+        case 2:
+            cleanedNotificacion.fecha = moment(notificacion.fecha).toDate();
+
+            return cleanedNotificacion;
+        case 3:
+            cleanedNotificacion.cita = notificacion.cita;
+
+            return cleanedNotificacion;
+        default:
+            return cleanedNotificacion;
     }
 }
 

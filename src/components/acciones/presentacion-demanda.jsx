@@ -25,7 +25,8 @@ var PresentacionDemanda = React.createClass({
             contrato: this.props.contrato,
             respuestas: {
                 tipoJuicio: 'Oral Mercantil',
-                fecha: moment()
+                fecha: moment(),
+                pendiente: false
             },
             disabled: false
         };
@@ -92,14 +93,67 @@ var PresentacionDemanda = React.createClass({
                         onChange={this.handleChange.bind(this, 'expedienteJudicial')}
                         disabled={this.state.disabled} />
                 </div>
+                <div className='element-wrapper'>
+                    <h5>¿Pendiente?</h5>
+                        <div>
+                            <input
+                                type='radio'
+                                id='si'
+                                value={1}
+                                checked={respuestas.pendiente}
+                                onChange={this.handleRadioChange}
+                                disabled={this.state.disabled} />
+                            <label htmlFor='si' disabled={this.state.disabled}>Si</label>
+                        </div>
+                        <div>
+                            <input
+                                type='radio'
+                                id='no'
+                                value={0}
+                                checked={!respuestas.pendiente}
+                                onChange={this.handleRadioChange}
+                                disabled={this.state.disabled} />
+                            <label htmlFor='no' disabled={this.state.disabled}>No</label>
+                        </div>
+                    {this.renderComentarioAcuerdoPendiente()}
+                </div>
                 {this.renderComentarios()}
                 {this.renderButton()}
+            </div>
+        );
+    },
+    renderComentarioAcuerdoPendiente: function () {
+        if (!this.state.respuestas.pendiente) {
+            return;
+        }
+
+        return (
+            <div className='element-wrapper'>
+                <h5 className='text-label'>Comentarios de Acuerdo Pendiente</h5>
+                <textarea
+                    value={this.state.respuestas.comentarioAcuerdoPendiente}
+                    onChange={this.handleChange.bind(this, 'comentarioAcuerdoPendiente')}
+                    disabled={this.state.disabled} />
             </div>
         );
     },
     handleChange: function (key, event) {
         var respuestas = this.state.respuestas;
         respuestas[key] = event.target.value;
+        this.setState({respuestas: respuestas});
+    },
+    handleRadioChange: function (event) {
+        var respuestas = this.state.respuestas;
+        var pendiente = parseInt(event.target.value, 10) === 1;
+
+        respuestas.pendiente = pendiente;
+
+        if (pendiente) {
+            respuestas.comentarioAcuerdoPendiente = '';
+        } else {
+            delete respuestas.comentarioAcuerdoPendiente;
+        }
+
         this.setState({respuestas: respuestas});
     },
     handleFechaChange: function (date) {

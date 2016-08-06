@@ -20,12 +20,14 @@ var ACCIONES_TYPES = {
     2: 'Alta de documentos',
     3: 'Presentación de demanda',
     4: 'Acuerdo de demanda',
-    5: 'Demanda desechada',
-    6: 'Recolección de documentos',
-    7: 'Demanda prevenida',
-    8: 'Desahogo / Cierre',
-    9: 'Demanda admitida',
-    10: 'Diligencia de embargo'
+    5: 'Amparo',
+    6: 'Demanda desechada',
+    7: 'Recolección de documentos',
+    8: 'Demanda prevenida',
+    9: 'Desahogo / Cierre',
+    10: 'Demanda admitida',
+    11: 'Diligencia de embargo',
+    12: 'Extrajudicial'
 };
 
 var AccionRecord = Immutable.Record({
@@ -65,10 +67,22 @@ class Accion extends AccionRecord {
             accion.respuestas.fechaPublicacion = accion.respuestas.fechaPublicacion.toDate();
         }
 
+        if (accion.respuestas.fechaPresentacion) {
+            accion.respuestas.fechaPresentacion = accion.respuestas.fechaPresentacion.toDate();
+        }
+
+        if (accion.respuestas.fechaResolucion) {
+            accion.respuestas.fechaResolucion = accion.respuestas.fechaResolucion.toDate();
+        }
+
         var contrato = accion.contrato.toEditable();
 
+        // -----------------------------------------------------------------------------------------------
+        // Notificaciones
+        // -----------------------------------------------------------------------------------------------
+
         // Notification for Demanda Desechada & Recolección de documentos
-        if ((accion.tipo === 5 && accion.respuestas.regresaDocumentos) || (accion.tipo === 6 && !accion.respuestas.recogeDocumentos)) {
+        if ((accion.tipo === 6 && accion.respuestas.regresaDocumentos) || (accion.tipo === 7 && !accion.respuestas.recogeDocumentos)) {
             contrato.notificacion = {
                 tipo: 1,
                 numeroContrato: contrato.numeroContrato,
@@ -79,7 +93,7 @@ class Accion extends AccionRecord {
         }
 
         // Notification for Demanda Prevenida
-        if (accion.tipo === 7 && accion.respuestas.desahogar) {
+        if (accion.tipo === 8 && accion.respuestas.desahogar) {
             contrato.notificacion = {
                 tipo: 2,
                 numeroContrato: contrato.numeroContrato,
@@ -89,7 +103,7 @@ class Accion extends AccionRecord {
         }
 
         // Notification for Demanda Admitida & Diligencia de Embargo
-        if ((accion.tipo === 9 && accion.respuestas.tipoJuicio === 'Ejecutiva Mercantil') || (accion.tipo === 10 && accion.respuestas.resultado === 'Se dejó citatorio')) {
+        if ((accion.tipo === 10 && accion.respuestas.tipoJuicio === 'Ejecutiva Mercantil') || (accion.tipo === 11 && accion.respuestas.resultado === 'Se dejó citatorio')) {
             contrato.notificacion = {
                 tipo: 3,
                 numeroContrato: contrato.numeroContrato,
@@ -99,6 +113,70 @@ class Accion extends AccionRecord {
         }
 
         contrato.lastAccionAt = moment();
+
+        // -----------------------------------------------------------------------------------------------
+        // Reportes
+        // -----------------------------------------------------------------------------------------------
+
+        if (accion.tipo === 1) {
+            contrato.reporte.fechaVisita = moment().toDate();
+            contrato.reporte.resultadoVisita = accion.respuestas.domicilioUbicado;
+        }
+
+        if (accion.tipo === 2) {
+            contrato.reporte.paqueteLegal = true;
+            contrato.reporte.fechaPaqueteLegal = accion.respuestas.fecha;
+        }
+
+        if (accion.tipo === 3) {
+            contrato.reporte.fechaPresentacionDemanda = accion.respuestas.fecha;
+            contrato.reporte.expediente = accion.respuestas.expedienteJudicial;
+            contrato.reporte.juzgado = accion.respuestas.juzgado;
+            contrato.reporte.tipoJuicio = accion.respuestas.tipoJuicio;
+            contrato.juzgado = accion.respuestas.juzgado;
+
+            if (accion.respuestas.pendiente) {
+                contrato.reporte.comentarioAcuerdoPendiente = accion.respuestas.comentarioAcuerdoPendiente;
+            }
+        }
+
+        if (accion.tipo === 4) {
+            contrato.reporte.fechaAcuerdo = accion.respuestas.fechaAcuerdo;
+        }
+
+        if (accion.tipo === 5) {
+            contrato.reporte.fechaPresentacionAmparo = accion.respuestas.fechaPresentacion;
+            contrato.reporte.resolucionAmparo = accion.respuestas.resolucion;
+            contrato.reporte.fechaResolucionAmparo = accion.respuestas.fechaResolucion;
+        }
+
+        if (accion.tipo === 6) {
+            contrato.reporte.fechaDesechamiento = moment().toDate();
+            contrato.reporte.motivoDesechamiento = accion.respuestas.motivo;
+
+            if (accion.respuestas.regresaDocumentos) {
+                contrato.reporte.horariosJuzgado = {
+                    fecha: accion.respuestas.fecha,
+                    horario: accion.respuestas.horario
+                };
+            }
+        }
+
+        if (accion.tipo === 10) {
+            contrato.reporte.fechaAdmision = accion.respuestas.fechaAcuerdo;
+            contrato.reporte.resultadoEmplazamiento = accion.respuestas.resultado;
+        }
+
+        if (accion.tipo === 12) {
+            var user = Parse.User.current();
+            contrato.reporte.extrajudicial.push({
+                creador: user.get('nombre') + ' ' + user.get('apellido'),
+                comentarios: accion.comentarios,
+                fecha: moment().toDate()
+            });
+        }
+
+        contrato.reporte.etapaActual = accion.tipo;
 
         accion.contrato = new ContratoObject(ContratoRecord.prepareForParse(contrato));
 

@@ -7,7 +7,6 @@ var Immutable = require('immutable');
 var Dispatcher = require('src/dispatcher');
 var moment = require('moment');
 
-var AccionRecord = require('src/records/accion');
 var ContratoRecord = require('src/records/contrato');
 var NotificacionRecord = require('src/records/notificacion');
 var ContratoObject = Parse.Object.extend('Contrato');
@@ -21,20 +20,23 @@ module.exports = {
         var query = new Parse.Query(ContratoObject);
         query.include('cliente');
         query.include('vehiculo');
+        query.include('reporte');
+        query.include('creador');
+        query.include('ultimoEditor');
         query.limit(1000);
         query.find().then(function (contratos) {
             var contratosByKey = {};
-            var notificacionesByContrato = {};
+            var notificacionesByContratoId = {};
 
             for (var i = 0; i < contratos.length; i++) {
                 var contrato = createContratoRecord(contratos[i]);
 
                 if (contrato.notificacion) {
-                    notificacionesByContrato[contrato.numeroContrato] = createNotificacionRecord(contrato.notificacion);
+                    notificacionesByContratoId[contrato.id] = createNotificacionRecord(contrato.notificacion);
                 } else {
                     var today = moment();
                     if (today.diff(contrato.lastAccionAt, 'days') > 7) {
-                        notificacionesByContrato[contrato.numeroContrato] = createNotificacionRecord({
+                        notificacionesByContratoId[contrato.id] = createNotificacionRecord({
                             tipo: 4,
                             numeroContrato: contrato.numeroContrato,
                             contratoId: contrato.id,
@@ -49,7 +51,7 @@ module.exports = {
             Dispatcher.dispatch({
                 type: 'CONTRATOS_FETCH_SUCCESS',
                 contratos: new Immutable.Map(contratosByKey),
-                notificaciones: new Immutable.Map(notificacionesByContrato)
+                notificaciones: new Immutable.Map(notificacionesByContratoId)
             });
         }).catch(function (error) {
             Dispatcher.dispatch({
@@ -92,8 +94,4 @@ function createContratoRecord (contrato) {
 
 function createNotificacionRecord (notificacion, numeroContrato) {
     return new NotificacionRecord(notificacion, numeroContrato);
-}
-
-function createAccionRecord (accion) {
-    return new AccionRecord(accion.toJSON());
 }

@@ -6,12 +6,13 @@ require('./main.scss');
 // React + Other Modules
 // -----------------------------------------------------------------------------------------------
 
-var Pitagoras = require('src/pitagoras');
 var React = require('react');
 var Parse = require('parse');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 var classNames = require('classnames');
+
+var Pitagoras = require('src/pitagoras');
 
 // -----------------------------------------------------------------------------------------------
 // Main
@@ -38,7 +39,6 @@ var Main = React.createClass({
         var state = {
             hideMenu: !!component.hideMenu,
             children: props.children,
-            title: component.title || 'MISSING_TITLE',
 
             links: this.state ? this.state.links : {
                 inicio: '/inicio',
@@ -48,12 +48,6 @@ var Main = React.createClass({
                 altaUsuario: '/alta-usuario'
             }
         };
-
-        // If route was changed, hide mobile nav & header menu
-        if (this.props.location.pathname !== props.location.pathname) {
-            state.showMobileNav = false;
-            state.showMobileHeaderMenu = false;
-        }
 
         // NOTE: routes[0] is always main, routes[1] is always top level component
         state.links[props.routes[1].path] = props.location.pathname;
@@ -74,14 +68,15 @@ var Main = React.createClass({
         }
 
         var isAdmin = this.getCurrentUser().get('tipo') === 3;
+        var links = this.state.links;
 
         return (
             <header>
                 <div className='links-wrapper'>
-                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={this.state.links.inicio}>Inicio</Link>
-                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={this.state.links.agregarContrato}>Agregar contrato</Link>
-                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={this.state.links.contratos}>Ver contratos</Link>
-                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={this.state.links.reportes}>Reportes</Link>
+                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={links.inicio}>Inicio</Link>
+                    {this.renderAgregarContrato(isAdmin)}
+                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={links.contratos}>Ver contratos</Link>
+                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={links.reportes}>Reportes</Link>
                     {this.renderAgregarUsuarioItem(isAdmin)}
                 </div>
                 <div className='signout' onClick={this.signOut} title='Cerrar sesión'>
@@ -96,6 +91,13 @@ var Main = React.createClass({
         }
 
         return (<Link activeClassName='active' className='admin' to={this.state.links.altaUsuario}>Agregar usuario</Link>);
+    },
+    renderAgregarContrato: function (isAdmin) {
+        if (!isAdmin) {
+            return;
+        }
+
+        return (<Link activeClassName='active' className='admin' to={this.state.links.agregarContrato}>Agregar contrato</Link>);
     },
     renderChildren: function () {
         return this.state.children;
