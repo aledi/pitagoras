@@ -2,7 +2,7 @@
 
 var express = require('express');
 var app = express();
-var pitagoras = require('./pitagoras');
+var pitagoras = require('./index.html');
 var PORT = process.env.PORT || 5000;
 
 app.set('port', PORT);
