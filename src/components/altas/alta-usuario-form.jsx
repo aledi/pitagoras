@@ -40,7 +40,7 @@ var AltaUsuarioForm = React.createClass({
                         <input type='text' value={this.state.apellido} onChange={this.handleChange.bind(this, 'apellido')} />
                     </div>
                     <div className='input-wrapper'>
-                        <label>Correo Electroónico</label>
+                        <label>Correo Electrónico</label>
                         <input type='text' value={this.state.email} onChange={this.handleChange.bind(this, 'email')} />
                     </div>
                     <div className='input-wrapper'>
@@ -59,7 +59,7 @@ var AltaUsuarioForm = React.createClass({
                         <label>Contraseña Provisional</label>
                         <input type='text' value={this.state.password} onChange={this.handleChange.bind(this, 'password')} />
                     </div>
-                    <button type='submit'>Agregar Usuario</button>
+                    <button type='submit' className='submit'>Agregar Usuario</button>
                 </form>
             </main>
         );
