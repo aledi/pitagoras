@@ -1,3 +1,5 @@
 {
-
+    "*": {
+        "serverURL": "https://pitagoras-server.herokuapp.com/pitagoras"
+    }
 }
