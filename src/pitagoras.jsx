@@ -7,7 +7,7 @@ require('moment').locale('es-MX');
 // -----------------------------------------------------------------------------------------------
 
 var Parse = require('parse');
-var hostConfig = config['*'];
+var hostConfig = 'https://pitagoras-server.herokuapp.com/pitagoras';
 
 // Initialize Parse
 Parse.initialize('pitagoras');
