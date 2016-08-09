@@ -7,7 +7,7 @@ require('moment').locale('es-MX');
 // -----------------------------------------------------------------------------------------------
 
 var Parse = require('parse');
-var hostConfig = config[window.location.host] || config['*'];
+var hostConfig = config['*'];
 
 // Initialize Parse
 Parse.initialize('pitagoras');
