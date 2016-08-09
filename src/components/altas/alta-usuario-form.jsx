@@ -59,9 +59,7 @@ var AltaUsuarioForm = React.createClass({
                         <label>Contraseña Provisional</label>
                         <input type='text' value={this.state.password} onChange={this.handleChange.bind(this, 'password')} />
                     </div>
-                    <button
-                        type='submit'
-                        className='submit'>Agregar Usuario</button>
+                    <button type='submit' className='submit'>Agregar Usuario</button>
                 </form>
             </main>
         );
