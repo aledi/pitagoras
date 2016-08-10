@@ -1,5 +1,3 @@
 {
-    "*": {
-        "serverURL": "https://pitagoras-server.herokuapp.com/pitagoras"
-    }
+    "serverURL": "https://pitagoras-server.herokuapp.com/pitagoras"
 }
