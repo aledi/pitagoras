@@ -9,6 +9,10 @@ app.set('port', PORT);
 
 app.use(express.static(path.join(__dirname, '..', 'build')));
 
+app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname, '/index.html'));
+});
+
 // For avoidong Heroku $PORT error
 app.listen(PORT, function () {
     console.log('App is running, server is listening on port ', app.get('port'));
