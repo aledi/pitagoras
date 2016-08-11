@@ -36,6 +36,16 @@
             }
         }
 
+        .feedback-text {
+            margin-top: 20px;
+            text-align: center;
+            color: $pine;
+
+            &.error {
+                color: $invalid;
+            }
+        }
+
         button {
             &:disabled {
                 color: $disabled-text-color;

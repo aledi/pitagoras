@@ -7,9 +7,9 @@ require('./alta-usuario-form.scss');
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
+var Parse = require('parse');
 var classNames = require('classnames');
 
-var Parse = require('parse');
 var UserObject = Parse.Object.extend('User');
 
 // -----------------------------------------------------------------------------------------------
@@ -25,6 +25,7 @@ var AltaUsuarioForm = React.createClass({
             tipo: 1,
             username: null,
             password: null,
+            feedbackText: {},
             invalidFields: {}
         };
     },
@@ -76,27 +77,32 @@ var AltaUsuarioForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Contraseña Provisional</label>
                         <input
-                            type='text'
+                            type='password'
                             value={this.state.password}
                             className={classNames({invalid: this.state.invalidFields.password})}
                             onChange={this.handleChange.bind(this, 'password')} />
                     </div>
-                    <button type='submit' className='submit'>Agregar Usuario</button>
                     {this.renderFeedbackText()}
+                    <button type='submit' className='submit'>Agregar Usuario</button>
                 </form>
             </main>
         );
     },
     renderFeedbackText: function () {
-        if (!this.state.feedbackText) {
+        var feedbackText = this.state.feedbackText;
+        if (!feedbackText.text) {
             return;
         }
 
-        return (<p>{this.state.feedbackText}</p>);
+        return (<p className={classNames('feedback-text', {error: feedbackText.error})}>{feedbackText.text}</p>);
     },
     handleChange: function (key, event) {
         var state = {invalidFields: this.state.invalidFields};
         state[key] = event.target.value;
+
+        if (this.state.feedbackText.text) {
+            state.feedbackText = {error: false, text: null};
+        }
 
         if (state.invalidFields[key]) {
             state.invalidFields[key] = false;
@@ -107,7 +113,6 @@ var AltaUsuarioForm = React.createClass({
     handleAltaUsuario: function (event) {
         event.preventDefault();
 
-        var user = new UserObject();
         var state = this.state;
         var invalidFields = false;
 
@@ -141,6 +146,8 @@ var AltaUsuarioForm = React.createClass({
             return;
         }
 
+        var user = new UserObject();
+
         user.set({
             nombre: this.state.nombre,
             apellido: this.state.apellido,
@@ -154,13 +161,31 @@ var AltaUsuarioForm = React.createClass({
         var self = this;
 
         user.signUp(null, {
-            success: function (user) {
-                self.setState({feedbackText: 'El usuario ha sido creado.'});
+            success: function (newUser) {
+                self.setState({
+                    nombre: null,
+                    apellido: null,
+                    email: null,
+                    tipo: 1,
+                    username: null,
+                    password: null,
+                    feedbackText: {error: false, text: 'El usuario ha sido creado.'}
+                });
             },
-            error: function (user, error) {
-                self.setState({feedbackText: 'Error al crear el usuario.'});
+            error: function (newUser, error) {
+                self.setState({feedbackText: {error: true, text: self.getErrorText(error.code)}});
             }
         });
+    },
+    getErrorText: function (errorCode) {
+        switch (errorCode) {
+            case 203:
+                return 'El correo proporcionado ya está asociado a una cuenta.';
+            case 125:
+                return 'El formato del correo es inválido.';
+            default:
+                return 'Error al crear usuario.';
+        }
     }
 });
 
