@@ -11,7 +11,7 @@ var hostConfig = config['*'];
 
 // Initialize Parse
 Parse.initialize('pitagoras');
-Parse.serverURL = hostConfig.serverURL;
+Parse.serverURL = config.serverURL;
 
 var ContratosActions = require('src/actions/contratos-actions');
 
