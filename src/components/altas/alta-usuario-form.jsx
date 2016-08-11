@@ -147,6 +147,7 @@ var AltaUsuarioForm = React.createClass({
         }
 
         var user = new UserObject();
+        var currentUser = Parse.User.current();
 
         user.set({
             nombre: this.state.nombre,
@@ -160,8 +161,8 @@ var AltaUsuarioForm = React.createClass({
 
         var self = this;
 
-        user.signUp(null, {
-            success: function (newUser) {
+        user.signUp(null).then(function (newUser) {
+            Parse.User.become(currentUser.getSessionToken()).then(function (param) {
                 self.setState({
                     nombre: null,
                     apellido: null,
@@ -171,10 +172,9 @@ var AltaUsuarioForm = React.createClass({
                     password: null,
                     feedbackText: {error: false, text: 'El usuario ha sido creado.'}
                 });
-            },
-            error: function (newUser, error) {
-                self.setState({feedbackText: {error: true, text: self.getErrorText(error.code)}});
-            }
+            });
+        }).catch(function (newUser, error) {
+            self.setState({feedbackText: {error: true, text: self.getErrorText(error.code)}});
         });
     },
     getErrorText: function (errorCode) {
