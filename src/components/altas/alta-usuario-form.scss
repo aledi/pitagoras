@@ -3,16 +3,21 @@
 .alta-usuario {
     form {
         width: 800px;
-        padding: 40px 20px;
+        padding: 20px 10px;
         margin: 0 auto;
-        border: 1px solid black;
+        border: 1px solid $frost;
 
         .section-title {
+            padding: 0 10px;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            font-size: 18px;
+            color: $denim;
         }
 
         .input-wrapper {
-            width: 33.3%;
+            width: 50%;
             display: inline-block;
             padding: 10px;
             box-sizing: border-box;
@@ -20,44 +25,30 @@
             input {
                 height: 30px;
                 width: 100%;
+
+                &.invalid {
+                    border-color: $invalid;
+                }
             }
 
             select {
-                height: 30px;
-                width: 100%;
+                display: block;
             }
         }
 
-        hr {
-            margin: 0 -20px;
-            border: none;
-            border-bottom: 1px solid black;
+        .feedback-text {
+            margin-top: 20px;
+            text-align: center;
+            color: $pine;
+
+            &.error {
+                color: $invalid;
+            }
         }
 
         button {
-            height: 40px;
-            width: 100%;
-            margin-top: 20px;
-            background-color: $denim;
-            border: none;
-            border-radius: 3px;
-            letter-spacing: 1px;
-            color: white;
-
-            &:hover {
-                background-color: $nightfall;
-            }
-
             &:disabled {
-                background-color: $disabled-button-background;
                 color: $disabled-text-color;
-            }
-
-            &.add {
-                color: black;
-                width: auto;
-                background-color: transparent;
-                border: 1px solid red;
             }
         }
     }
