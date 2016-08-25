@@ -61,7 +61,7 @@ var DateSelect = React.createClass({
     },
     renderDias: function (event) {
         var dias = [];
-        var limite = this.getDaysForMonth(this.state.date.get('month') + 1, this.state.date.get('year'));
+        var limite = this.getDaysForMonth(this.state.date.get('month'), this.state.date.get('year'));
 
         for (var index = 1; index <= limite; index++) {
             dias.push(<option key={index} value={index}>{index}</option>);
@@ -118,9 +118,9 @@ var DateSelect = React.createClass({
         }
     },
     getDaysForMonth: function (mes, anio) {
-        if (mes === 1 || mes === 3 || mes === 5 || mes === 7 || mes === 8 || mes === 10 || mes === 12) {
+        if (mes === 0 || mes === 2 || mes === 4 || mes === 6 || mes === 7 || mes === 9 || mes === 11) {
             return 31;
-        } else if (mes === 2) {
+        } else if (mes === 1) {
             return (((anio % 4 === 0) && (anio % 100 !== 0)) || (anio % 400 === 0)) ? 29 : 28;
         }
 
