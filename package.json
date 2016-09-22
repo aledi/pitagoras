@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/ecristerna/pitagoras.git"
   },
-  "author": "Aledic",
+  "author": "Aledi",
   "license": "Unlicense",
   "bugs": {
     "url": "https://github.com/ecristerna/pitagoras/issues"
@@ -33,12 +33,8 @@
     "eslint": "2.10.2",
     "eslint-plugin-react": "5.1.1",
     "express": "4.14.0",
-    "extract-loader": "0.0.2",
-    "extract-text-webpack-plugin": "1.0.1",
-    "file-loader": "0.8.5",
     "flux": "2.1.1",
     "format-number": "2.0.1",
-    "html-loader": "0.4.3",
     "immutable": "3.8.1",
     "json-loader": "0.5.4",
     "moment": "2.13.0",
@@ -46,12 +42,9 @@
     "parse": "1.8.1",
     "postcss-loader": "0.8.1",
     "react": "0.14.7",
-    "react-addons-css-transition-group": "0.14.7",
     "react-dom": "0.14.7",
-    "react-hot-loader": "1.3.0",
     "react-router": "2.0.0",
     "sass-loader": "3.1.2",
-    "script-loader": "0.6.1",
     "style-loader": "0.13.0",
     "webpack": "1.12.14",
     "webpack-dev-server": "1.14.1"
