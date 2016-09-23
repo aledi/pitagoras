@@ -1,6 +1,6 @@
 'use strict';
 
-require('./alta-usuario-form.scss');
+require('./alta-usuario.scss');
 
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
@@ -13,27 +13,29 @@ var classNames = require('classnames');
 var UserObject = Parse.Object.extend('User');
 
 // -----------------------------------------------------------------------------------------------
-// Alta Usuario Form
+// AltaUsuario
 // -----------------------------------------------------------------------------------------------
 
-var AltaUsuarioForm = React.createClass({
+var AltaUsuario = React.createClass({
     getInitialState: function () {
+        var usuario = this.props.usuario || {};
+
         return {
-            nombre: null,
-            apellido: null,
-            email: null,
-            tipo: 1,
-            username: null,
-            password: null,
+            nombre: usuario.nombre || '',
+            apellido: usuario.apellido || '',
+            email: usuario.email || '',
+            tipo: usuario.tipo || 1,
+            username: usuario.username || '',
+            password: '',
             feedbackText: {},
             invalidFields: {}
         };
     },
     render: function () {
         return (
-            <main className='alta-usuario'>
+            <div className='alta-usuario'>
                 <form onSubmit={this.handleAltaUsuario}>
-                    <p className='section-title'>Nuevo Usuario</p>
+                    <p className='section-title'>{(this.props.usuario ? 'Editar ' : 'Agregar ') + 'Usuario'}</p>
                     <div className='input-wrapper'>
                         <label>Nombre</label>
                         <input
@@ -74,18 +76,27 @@ var AltaUsuarioForm = React.createClass({
                             className={classNames({invalid: this.state.invalidFields.username})}
                             onChange={this.handleChange.bind(this, 'username')} />
                     </div>
-                    <div className='input-wrapper'>
-                        <label>Contraseña Provisional</label>
-                        <input
-                            type='password'
-                            value={this.state.password}
-                            className={classNames({invalid: this.state.invalidFields.password})}
-                            onChange={this.handleChange.bind(this, 'password')} />
-                    </div>
+                    {this.renderPassword()}
                     {this.renderFeedbackText()}
-                    <button type='submit' className='submit'>Agregar Usuario</button>
+                    <button type='submit' className='submit'>{(this.props.usuario ? 'Editar ' : 'Agregar ') + 'Usuario'}</button>
                 </form>
-            </main>
+            </div>
+        );
+    },
+    renderPassword: function () {
+        if (this.props.usuario) {
+            return;
+        }
+
+        return (
+            <div className='input-wrapper'>
+                <label>Contraseña Provisional</label>
+                <input
+                    type='password'
+                    value={this.state.password}
+                    className={classNames({invalid: this.state.invalidFields.password})}
+                    onChange={this.handleChange.bind(this, 'password')} />
+            </div>
         );
     },
     renderFeedbackText: function () {
@@ -189,4 +200,4 @@ var AltaUsuarioForm = React.createClass({
     }
 });
 
-module.exports = AltaUsuarioForm;
+module.exports = AltaUsuario;
