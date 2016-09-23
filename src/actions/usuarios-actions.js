@@ -40,6 +40,19 @@ module.exports = {
             usuarioId: usuarioId
         });
 
+        Parse.Cloud.run('deleteUsuario', {usuarioId: usuarioId}).then(function () {
+            Dispatcher.dispatch({
+                type: 'USUARIOS_DELETE_SUCCESS',
+                usuarioId: usuarioId
+            });
+        }).catch(function (error) {
+            Dispatcher.dispatch({
+                type: 'USUARIOS_DELETE_ERROR',
+                error: error,
+                usuarioId: usuarioId
+            });
+        });
+
         (new Parse.Query(UsuarioObject)).get(usuarioId).then(function (usuario) {
             usuario.destroy().then(function () {
                 Dispatcher.dispatch({

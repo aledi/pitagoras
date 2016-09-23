@@ -32,6 +32,18 @@ class UsuariosStore extends Flux.MapStore {
                 return state.merge({fetching: false, usuarios: action.usuarios});
             case 'USUARIOS_FETCH_ERROR':
                 return state.merge({fetching: false, fetchError: action.error});
+
+            // -----------------------------------------------------------------------------------------------
+            // Delete
+            // -----------------------------------------------------------------------------------------------
+
+            case 'USUARIOS_DELETE':
+                return state.merge({deleting: true, deleteError: null});
+            case 'USUARIOS_DELETE_SUCCESS':
+                var usuarios = state.get('usuarios').delete(action.usuarioId);
+                return state.merge({deleting: false, usuarios: usuarios});
+            case 'USUARIOS_DELETE_ERROR':
+                return state.merge({deleting: false, deleteError: action.error});
             default:
                 return state;
         }
