@@ -1,22 +1,21 @@
 'use strict';
 
-require('./alta-usuario.scss');
+require('./usuario-edit.scss');
 
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
-var Parse = require('parse');
 var classNames = require('classnames');
 
 var UsuariosActions = require('src/actions/usuarios-actions');
 
 // -----------------------------------------------------------------------------------------------
-// AltaUsuario
+// UsuarioEdit
 // -----------------------------------------------------------------------------------------------
 
-var AltaUsuario = React.createClass({
+var UsuarioEdit = React.createClass({
     getInitialState: function () {
         var usuario = this.props.usuario || {};
 
@@ -34,8 +33,8 @@ var AltaUsuario = React.createClass({
     },
     render: function () {
         return (
-            <div className='alta-usuario'>
-                <form onSubmit={this.handleAltaUsuario}>
+            <div className='usuario-edit'>
+                <form onSubmit={this.handleSubmit}>
                     <p className='section-title'>{(this.props.usuario ? 'Editar ' : 'Agregar ') + 'Usuario'}</p>
                     <div className='input-wrapper'>
                         <label>Nombre</label>
@@ -122,7 +121,7 @@ var AltaUsuario = React.createClass({
 
         this.setState(state);
     },
-    handleAltaUsuario: function (event) {
+    handleSubmit: function (event) {
         event.preventDefault();
 
         var state = this.state;
@@ -187,4 +186,4 @@ var AltaUsuario = React.createClass({
     }
 });
 
-module.exports = AltaUsuario;
+module.exports = UsuarioEdit;

@@ -10,7 +10,7 @@ var React = require('react');
 var Parse = require('parse');
 var UsuariosActions = require('src/actions/usuarios-actions');
 
-var AltaUsuario = require('./alta-usuario');
+var UsuarioEdit = require('./usuario-edit');
 
 // -----------------------------------------------------------------------------------------------
 // UsuariosContent
@@ -38,7 +38,7 @@ var UsuariosContent = React.createClass({
     },
     renderContent: function () {
         if (this.state.savingUser) {
-            return (<AltaUsuario usuario={this.state.usuario} />);
+            return (<UsuarioEdit usuario={this.state.usuario} />);
         }
 
         return (
@@ -72,7 +72,7 @@ var UsuariosContent = React.createClass({
             }
 
             usuariosArray.push(
-                <li>
+                <li key={usuario.id}>
                     <span className='name'>{usuario.nombre + ' ' + usuario.apellido}</span>
                     <div className='buttons-wrapper'>
                         <button type='button' onClick={self.editUser.bind(self, usuario)}>Editar</button>
