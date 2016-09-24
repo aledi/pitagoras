@@ -7,6 +7,7 @@ require('./usuarios-content.scss');
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
+var Parse = require('parse');
 var UsuariosActions = require('src/actions/usuarios-actions');
 
 var AltaUsuario = require('./alta-usuario');
@@ -64,8 +65,9 @@ var UsuariosContent = React.createClass({
 
         var usuariosArray = [];
         var self = this;
+        var currentUserId = Parse.User.current().id;
         usuarios.forEach(function (usuario) {
-            if (usuario.tipo === 3) {
+            if (usuario.id === currentUserId) {
                 return;
             }
 

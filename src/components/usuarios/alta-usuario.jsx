@@ -10,7 +10,7 @@ var React = require('react');
 var Parse = require('parse');
 var classNames = require('classnames');
 
-var UserObject = Parse.Object.extend('User');
+var UsuariosActions = require('src/actions/usuarios-actions');
 
 // -----------------------------------------------------------------------------------------------
 // AltaUsuario
@@ -27,6 +27,7 @@ var AltaUsuario = React.createClass({
             tipo: usuario.tipo || 1,
             username: usuario.username || '',
             password: '',
+            usuarioNuevo: this.props.usuario ? usuario.usuarioNuevo : true,
             feedbackText: {},
             invalidFields: {}
         };
@@ -147,7 +148,7 @@ var AltaUsuario = React.createClass({
             invalidFields = true;
         }
 
-        if (!state.password || !state.password.trim()) {
+        if (!this.props.usuario && (!state.password || !state.password.trim())) {
             state.invalidFields.password = true;
             invalidFields = true;
         }
@@ -157,36 +158,22 @@ var AltaUsuario = React.createClass({
             return;
         }
 
-        var user = new UserObject();
-        var currentUser = Parse.User.current();
-
-        user.set({
+        var user = {
             nombre: this.state.nombre,
             apellido: this.state.apellido,
             email: this.state.email,
             tipo: parseInt(this.state.tipo, 10),
             username: this.state.username,
-            password: this.state.password,
-            usuarioNuevo: true
-        });
+            usuarioNuevo: this.state.usuarioNuevo
+        };
 
-        var self = this;
+        if (this.props.usuario) {
+            user.id = this.props.usuario.id;
+        } else {
+            user.password = this.state.password;
+        }
 
-        user.signUp(null).then(function (newUser) {
-            Parse.User.become(currentUser.getSessionToken()).then(function (param) {
-                self.setState({
-                    nombre: null,
-                    apellido: null,
-                    email: null,
-                    tipo: 1,
-                    username: null,
-                    password: null,
-                    feedbackText: {error: false, text: 'El usuario ha sido creado.'}
-                });
-            });
-        }).catch(function (newUser, error) {
-            self.setState({feedbackText: {error: true, text: self.getErrorText(error.code)}});
-        });
+        UsuariosActions.saveUsuario(user);
     },
     getErrorText: function (errorCode) {
         switch (errorCode) {

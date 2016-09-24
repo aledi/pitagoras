@@ -34,37 +34,36 @@ module.exports = {
             });
         });
     },
+    saveUsuario: function (changes) {
+        Dispatcher.dispatch({
+            type: 'USUARIOS_SAVE',
+            changes: changes
+        });
+
+        Parse.Cloud.run('saveUser', {user: changes}).then(function (usuario) {
+            Dispatcher.dispatch({
+                type: 'USUARIOS_SAVE_SUCCESS',
+                changes: changes,
+                usuario: createUsuarioRecord(usuario)
+            });
+        }).catch(function (error) {
+            Dispatcher.dispatch({
+                type: 'USUARIOS_SAVE_ERROR',
+                error: error,
+                changes: changes
+            });
+        });
+    },
     deleteUsuario: function (usuarioId) {
         Dispatcher.dispatch({
             type: 'USUARIOS_DELETE',
             usuarioId: usuarioId
         });
 
-        Parse.Cloud.run('deleteUsuario', {usuarioId: usuarioId}).then(function () {
+        Parse.Cloud.run('deleteUser', {usuarioId: usuarioId}).then(function () {
             Dispatcher.dispatch({
                 type: 'USUARIOS_DELETE_SUCCESS',
                 usuarioId: usuarioId
-            });
-        }).catch(function (error) {
-            Dispatcher.dispatch({
-                type: 'USUARIOS_DELETE_ERROR',
-                error: error,
-                usuarioId: usuarioId
-            });
-        });
-
-        (new Parse.Query(UsuarioObject)).get(usuarioId).then(function (usuario) {
-            usuario.destroy().then(function () {
-                Dispatcher.dispatch({
-                    type: 'USUARIOS_DELETE_SUCCESS',
-                    usuarioId: usuarioId
-                });
-            }).catch(function (error) {
-                Dispatcher.dispatch({
-                    type: 'USUARIOS_DELETE_ERROR',
-                    error: error,
-                    usuarioId: usuarioId
-                });
             });
         }).catch(function (error) {
             Dispatcher.dispatch({
