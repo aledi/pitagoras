@@ -173,16 +173,6 @@ var UsuarioEdit = React.createClass({
         }
 
         UsuariosActions.saveUsuario(user);
-    },
-    getErrorText: function (errorCode) {
-        switch (errorCode) {
-            case 203:
-                return 'El correo proporcionado ya está asociado a una cuenta.';
-            case 125:
-                return 'El formato del correo es inválido.';
-            default:
-                return 'Error al crear usuario.';
-        }
     }
 });
 
