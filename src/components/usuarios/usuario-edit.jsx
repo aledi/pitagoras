@@ -1,39 +1,41 @@
 'use strict';
 
-require('./alta-usuario-form.scss');
+require('./usuario-edit.scss');
 
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
-var Parse = require('parse');
 var classNames = require('classnames');
 
-var UserObject = Parse.Object.extend('User');
+var UsuariosActions = require('src/actions/usuarios-actions');
 
 // -----------------------------------------------------------------------------------------------
-// Alta Usuario Form
+// UsuarioEdit
 // -----------------------------------------------------------------------------------------------
 
-var AltaUsuarioForm = React.createClass({
+var UsuarioEdit = React.createClass({
     getInitialState: function () {
+        var usuario = this.props.usuario || {};
+
         return {
-            nombre: null,
-            apellido: null,
-            email: null,
-            tipo: 1,
-            username: null,
-            password: null,
+            nombre: usuario.nombre || '',
+            apellido: usuario.apellido || '',
+            email: usuario.email || '',
+            tipo: usuario.tipo || 1,
+            username: usuario.username || '',
+            password: '',
+            usuarioNuevo: this.props.usuario ? usuario.usuarioNuevo : true,
             feedbackText: {},
             invalidFields: {}
         };
     },
     render: function () {
         return (
-            <main className='alta-usuario'>
-                <form onSubmit={this.handleAltaUsuario}>
-                    <p className='section-title'>Nuevo Usuario</p>
+            <div className='usuario-edit'>
+                <form onSubmit={this.handleSubmit}>
+                    <p className='section-title'>{(this.props.usuario ? 'Editar ' : 'Agregar ') + 'Usuario'}</p>
                     <div className='input-wrapper'>
                         <label>Nombre</label>
                         <input
@@ -74,18 +76,27 @@ var AltaUsuarioForm = React.createClass({
                             className={classNames({invalid: this.state.invalidFields.username})}
                             onChange={this.handleChange.bind(this, 'username')} />
                     </div>
-                    <div className='input-wrapper'>
-                        <label>Contraseña Provisional</label>
-                        <input
-                            type='password'
-                            value={this.state.password}
-                            className={classNames({invalid: this.state.invalidFields.password})}
-                            onChange={this.handleChange.bind(this, 'password')} />
-                    </div>
+                    {this.renderPassword()}
                     {this.renderFeedbackText()}
-                    <button type='submit' className='submit'>Agregar Usuario</button>
+                    <button type='submit' className='submit'>{(this.props.usuario ? 'Editar ' : 'Agregar ') + 'Usuario'}</button>
                 </form>
-            </main>
+            </div>
+        );
+    },
+    renderPassword: function () {
+        if (this.props.usuario) {
+            return;
+        }
+
+        return (
+            <div className='input-wrapper'>
+                <label>Contraseña Provisional</label>
+                <input
+                    type='password'
+                    value={this.state.password}
+                    className={classNames({invalid: this.state.invalidFields.password})}
+                    onChange={this.handleChange.bind(this, 'password')} />
+            </div>
         );
     },
     renderFeedbackText: function () {
@@ -110,7 +121,7 @@ var AltaUsuarioForm = React.createClass({
 
         this.setState(state);
     },
-    handleAltaUsuario: function (event) {
+    handleSubmit: function (event) {
         event.preventDefault();
 
         var state = this.state;
@@ -136,7 +147,7 @@ var AltaUsuarioForm = React.createClass({
             invalidFields = true;
         }
 
-        if (!state.password || !state.password.trim()) {
+        if (!this.props.usuario && (!state.password || !state.password.trim())) {
             state.invalidFields.password = true;
             invalidFields = true;
         }
@@ -146,47 +157,23 @@ var AltaUsuarioForm = React.createClass({
             return;
         }
 
-        var user = new UserObject();
-        var currentUser = Parse.User.current();
-
-        user.set({
+        var user = {
             nombre: this.state.nombre,
             apellido: this.state.apellido,
             email: this.state.email,
             tipo: parseInt(this.state.tipo, 10),
             username: this.state.username,
-            password: this.state.password,
-            usuarioNuevo: true
-        });
+            usuarioNuevo: this.state.usuarioNuevo
+        };
 
-        var self = this;
-
-        user.signUp(null).then(function (newUser) {
-            Parse.User.become(currentUser.getSessionToken()).then(function (param) {
-                self.setState({
-                    nombre: null,
-                    apellido: null,
-                    email: null,
-                    tipo: 1,
-                    username: null,
-                    password: null,
-                    feedbackText: {error: false, text: 'El usuario ha sido creado.'}
-                });
-            });
-        }).catch(function (newUser, error) {
-            self.setState({feedbackText: {error: true, text: self.getErrorText(error.code)}});
-        });
-    },
-    getErrorText: function (errorCode) {
-        switch (errorCode) {
-            case 203:
-                return 'El correo proporcionado ya está asociado a una cuenta.';
-            case 125:
-                return 'El formato del correo es inválido.';
-            default:
-                return 'Error al crear usuario.';
+        if (this.props.usuario) {
+            user.id = this.props.usuario.id;
+        } else {
+            user.password = this.state.password;
         }
+
+        UsuariosActions.saveUsuario(user);
     }
 });
 
-module.exports = AltaUsuarioForm;
+module.exports = UsuarioEdit;

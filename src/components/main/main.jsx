@@ -45,7 +45,7 @@ var Main = React.createClass({
                 agregarContrato: '/agregar-contrato',
                 contratos: '/contratos',
                 reportes: '/reportes',
-                altaUsuario: '/alta-usuario'
+                usuarios: '/usuarios'
             }
         };
 
@@ -74,7 +74,7 @@ var Main = React.createClass({
             <header>
                 <div className='links-wrapper'>
                     <Link activeClassName='active' className={classNames({admin: isAdmin})} to={links.inicio}>Inicio</Link>
-                    {this.renderAgregarContrato(isAdmin)}
+                    {this.renderAgregarContratoItem(isAdmin)}
                     <Link activeClassName='active' className={classNames({admin: isAdmin})} to={links.contratos}>Ver contratos</Link>
                     <Link activeClassName='active' className={classNames({admin: isAdmin})} to={links.reportes}>Reportes</Link>
                     {this.renderAgregarUsuarioItem(isAdmin)}
@@ -85,22 +85,22 @@ var Main = React.createClass({
             </header>
         );
     },
-    renderAgregarUsuarioItem: function (isAdmin) {
-        if (!isAdmin) {
-            return;
-        }
-
-        return (<Link activeClassName='active' className='admin' to={this.state.links.altaUsuario}>Agregar usuario</Link>);
+    renderChildren: function () {
+        return this.state.children;
     },
-    renderAgregarContrato: function (isAdmin) {
+    renderAgregarContratoItem: function (isAdmin) {
         if (!isAdmin) {
             return;
         }
 
         return (<Link activeClassName='active' className='admin' to={this.state.links.agregarContrato}>Agregar contrato</Link>);
     },
-    renderChildren: function () {
-        return this.state.children;
+    renderAgregarUsuarioItem: function (isAdmin) {
+        if (!isAdmin) {
+            return;
+        }
+
+        return (<Link activeClassName='active' className='admin' to={this.state.links.usuarios}>Usuarios</Link>);
     },
     signOut: function () {
         Parse.User.logOut().then(function () {
