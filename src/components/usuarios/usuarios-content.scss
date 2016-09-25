@@ -1,0 +1,61 @@
+@import '~src/styles/pitagoras.scss';
+
+.usuarios-content {
+    button.top-right, button.top-left {
+        height: auto;
+        position: absolute;
+        top: 20px;
+        padding: 2px 10px;
+        font-size: 13px;
+    }
+
+    button.top-right {
+        right: 20px;
+    }
+
+    button.top-left {
+        left: 20px;
+    }
+
+    .usuarios-list {
+        width: 700px;
+        margin: auto;
+        list-style: none;
+
+        li {
+            height: 30px;
+            padding: 0 10px;
+
+            .name {
+                vertical-align: middle;
+                line-height: 30px;
+            }
+
+            .buttons-wrapper {
+                height: 100%;
+                display: inline-block;
+                vertical-align: middle;
+                line-height: 30px;
+                float: right;
+
+                button {
+                    height: auto;
+                    width: auto;
+                    display: inline-block;
+                    padding: 1px 10px;
+                    margin-left: 10px;
+                    line-height: normal;
+                    font-size: 12px;
+                }
+            }
+
+            &:nth-child(odd) {
+                background-color: $frost;
+            }
+
+            &:nth-child(even) {
+                background-color: #F8F8F8;
+            }
+        }
+    }
+}

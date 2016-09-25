@@ -49,12 +49,10 @@ module.exports = {
 
     module: {
         loaders: [
-            {test: /\.jsx?$/, loader: (debug ? 'react-hot!babel?' : 'babel?') + JSON.stringify({presets: ['react', 'es2015']}), include: include, exclude: exclude},
+            {test: /\.jsx?$/, loader: 'babel?' + JSON.stringify({presets: ['react', 'es2015']}), include: include, exclude: exclude},
             {test: /\.json$/, loader: 'json', include: include},
             {test: /\.scss$/, loader: 'style!css!postcss!sass', include: include},
             {test: /\.(ico|gif|png|jpe?g)$/, loader: 'file?' + options, include: include},
-            {test: /\.(ttf|eot|svg|woff(2)?)(\?.*)?$/, loader: 'file?' + options, include: include},
-
             {test: /\.html$/, loaders: [
                 'file?' + options,
                 'extract',
