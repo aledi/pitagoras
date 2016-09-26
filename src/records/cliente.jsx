@@ -43,7 +43,7 @@ class Cliente extends ClienteRecord {
         definition.nombre = definition.nombre;
         definition.apellidoPaterno = definition.apellidoPaterno;
         definition.apellidoMaterno = definition.apellidoMaterno;
-        formattedValues.nombre = definition.nombre + ' ' + definition.apellidoPaterno + ' ' + definition.apellidoMaterno;
+        formattedValues.nombre = definition.nombre + ' ' + (definition.apellidoPaterno || '') + ' ' + (definition.apellidoMaterno || '');
 
         // Domicilio
         if (definition.domicilio) {
