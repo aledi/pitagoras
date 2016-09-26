@@ -10,6 +10,7 @@ var React = require('react');
 var classNames = require('classnames');
 
 var UsuariosActions = require('src/actions/usuarios-actions');
+var UsuariosStore = require('src/stores/usuarios-store');
 
 // -----------------------------------------------------------------------------------------------
 // UsuarioEdit
@@ -27,15 +28,52 @@ var UsuarioEdit = React.createClass({
             username: usuario.username || '',
             password: '',
             usuarioNuevo: this.props.usuario ? usuario.usuarioNuevo : true,
-            feedbackText: {},
             invalidFields: {}
         };
+    },
+    componentDidMount: function () {
+        this.storeListener = UsuariosStore.addListener(this.onChange);
+    },
+    componentWillUnmount: function () {
+        this.storeListener.remove();
+    },
+    onChange: function () {
+        var saving = UsuariosStore.get('saving');
+        var saveError = UsuariosStore.get('saveError');
+
+        if (this.state.saving && !saving && !saveError) {
+            this.setState({
+                feedbackText: 'El usuario se ha creado exitosamente',
+                nombre: '',
+                apellido: '',
+                email: '',
+                tipo: 1,
+                username: '',
+                password: '',
+                saving: false,
+                saveError: false
+            });
+
+            return;
+        }
+
+        if (this.state.saving && !saving && saveError) {
+            this.setState({
+                feedbackText: 'Error al crear el usuario',
+                saving: false,
+                saveError: true
+            });
+
+            return;
+        }
+
+        this.setState({saving: saving});
     },
     render: function () {
         return (
             <div className='usuario-edit'>
                 <form onSubmit={this.handleSubmit}>
-                    <p className='section-title'>{(this.props.usuario ? 'Editar ' : 'Agregar ') + 'Usuario'}</p>
+                    <p className='section-title'>{(this.props.usuario ? 'Editar ' : 'Crear ') + 'Usuario'}</p>
                     <div className='input-wrapper'>
                         <label>Nombre</label>
                         <input
@@ -77,8 +115,8 @@ var UsuarioEdit = React.createClass({
                             onChange={this.handleChange.bind(this, 'username')} />
                     </div>
                     {this.renderPassword()}
+                    <button type='submit' className='submit'>{(this.props.usuario ? 'Editar ' : 'Crear ') + 'Usuario'}</button>
                     {this.renderFeedbackText()}
-                    <button type='submit' className='submit'>{(this.props.usuario ? 'Editar ' : 'Agregar ') + 'Usuario'}</button>
                 </form>
             </div>
         );
@@ -101,18 +139,22 @@ var UsuarioEdit = React.createClass({
     },
     renderFeedbackText: function () {
         var feedbackText = this.state.feedbackText;
-        if (!feedbackText.text) {
+        if (!feedbackText) {
             return;
         }
 
-        return (<p className={classNames('feedback-text', {error: feedbackText.error})}>{feedbackText.text}</p>);
+        return (
+            <p className={classNames('feedback-text', {success: !this.state.saveError}, {error: this.state.saveError})}>
+                {feedbackText}
+            </p>
+        );
     },
     handleChange: function (key, event) {
         var state = {invalidFields: this.state.invalidFields};
         state[key] = event.target.value;
 
-        if (this.state.feedbackText.text) {
-            state.feedbackText = {error: false, text: null};
+        if (this.state.feedbackText) {
+            state.feedbackText = null;
         }
 
         if (state.invalidFields[key]) {

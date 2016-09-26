@@ -63,7 +63,7 @@ var ContratoForm = React.createClass({
 
         return (
             <main className='contrato-form'>
-                <form onSubmit={this.saveContrato}>
+                <form onSubmit={this.handleSubmit}>
                     <h3 className='section-title'>Contrato</h3>
                     <div className='input-wrapper'>
                         <label>Número de Contrato</label>
@@ -601,7 +601,7 @@ var ContratoForm = React.createClass({
 
         this.setState(state);
     },
-    saveContrato: function (event) {
+    handleSubmit: function (event) {
         event.preventDefault();
 
         var contrato = this.state.contrato;

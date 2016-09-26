@@ -8,6 +8,7 @@ class UsuariosStore extends Flux.MapStore {
     getInitialState () {
         return new Immutable.Map({
             usuarios: new Immutable.Map(),
+
             fetching: false,
             fetchError: null,
 
