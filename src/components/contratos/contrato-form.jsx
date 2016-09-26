@@ -243,7 +243,7 @@ var ContratoForm = React.createClass({
                         <label>Calle</label>
                         <input
                             type='text'
-                            value={contrato.cliente.domicilio.calle}
+                            value={contrato.cliente.domicilio.calle || ''}
                             disabled={this.state.saving}
                             onChange={this.handleDomicilioChange.bind(this, 'calle')} />
                     </div>
@@ -251,7 +251,7 @@ var ContratoForm = React.createClass({
                         <label>Número Exterior</label>
                         <input
                             type='text'
-                            value={contrato.cliente.domicilio.exterior}
+                            value={contrato.cliente.domicilio.exterior || ''}
                             disabled={this.state.saving}
                             onChange={this.handleDomicilioChange.bind(this, 'exterior')} />
                     </div>
@@ -259,7 +259,7 @@ var ContratoForm = React.createClass({
                         <label>Número Interior</label>
                         <input
                             type='text'
-                            value={contrato.cliente.domicilio.interior}
+                            value={contrato.cliente.domicilio.interior || ''}
                             disabled={this.state.saving}
                             onChange={this.handleDomicilioChange.bind(this, 'interior')} />
                     </div>
@@ -267,7 +267,7 @@ var ContratoForm = React.createClass({
                         <label>Colonia</label>
                         <input
                             type='text'
-                            value={contrato.cliente.domicilio.colonia}
+                            value={contrato.cliente.domicilio.colonia || ''}
                             disabled={this.state.saving}
                             onChange={this.handleDomicilioChange.bind(this, 'colonia')} />
                     </div>
@@ -275,7 +275,7 @@ var ContratoForm = React.createClass({
                         <label>Código Postal</label>
                         <input
                             type='text'
-                            value={contrato.cliente.domicilio.codigoPostal}
+                            value={contrato.cliente.domicilio.codigoPostal || ''}
                             disabled={this.state.saving}
                             onChange={this.handleDomicilioChange.bind(this, 'codigoPostal')} />
                     </div>
@@ -283,7 +283,7 @@ var ContratoForm = React.createClass({
                         <label>Municipio / Delegación</label>
                         <input
                             type='text'
-                            value={contrato.cliente.domicilio.municipio}
+                            value={contrato.cliente.domicilio.municipio || ''}
                             disabled={this.state.saving}
                             onChange={this.handleDomicilioChange.bind(this, 'municipio')} />
                     </div>
@@ -291,7 +291,7 @@ var ContratoForm = React.createClass({
                         <label>Estado</label>
                         <input
                             type='text'
-                            value={contrato.cliente.domicilio.estado}
+                            value={contrato.cliente.domicilio.estado || ''}
                             disabled={this.state.saving}
                             onChange={this.handleDomicilioChange.bind(this, 'estado')} />
                     </div>
