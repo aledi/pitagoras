@@ -138,7 +138,7 @@ class Contrato extends ContratoRecord {
 
         // Cliente
         definition.cliente = definition.cliente ? new ClienteRecord(definition.cliente) : new ClienteRecord();
-        sortValues.cliente = definition.cliente.formattedValues.nombre.toLowerCase();
+        sortValues.cliente = definition.cliente.formattedValues.nombre.trim().toLowerCase();
 
         // Monto
         definition.monto = definition.monto;
