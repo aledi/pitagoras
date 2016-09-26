@@ -8,7 +8,7 @@ var Immutable = require('immutable');
 
 var VehiculoRecord = Immutable.Record({
     id: null,
-    anio: null,
+    anio: '',
     clase: '',
     distribuidor: '',
     marca: '',

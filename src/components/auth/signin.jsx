@@ -20,8 +20,8 @@ var Signin = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
     getInitialState: function () {
         return {
-            email: null,
-            password: null,
+            email: '',
+            password: '',
             emailRequired: false,
             passwordRequired: false,
             submitting: false,
