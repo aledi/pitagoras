@@ -34,24 +34,23 @@ var ContratoForm = React.createClass({
     onChange: function () {
         var saving = ContratosStore.get('saving');
         var saveError = ContratosStore.get('saveError');
-        var feedbackText = '';
 
         if (this.state.saving && !saving && !saveError) {
-            feedbackText = 'El contrato se ha guardado exitosamente.';
             this.setState({
-                feedbackText: feedbackText,
+                feedbackText: 'El contrato se ha guardado exitosamente',
                 contrato: new ContratoRecord().toEditable(),
-                saving: false
+                saving: false,
+                saveError: false
             });
 
             return;
         }
 
         if (this.state.saving && !saving && saveError) {
-            feedbackText = 'Error al guardar el contrato.';
             this.setState({
-                feedbackText: feedbackText,
-                saving: false
+                feedbackText: 'Error al guardar el contrato',
+                saving: false,
+                saveError: true
             });
 
             return;
@@ -319,11 +318,16 @@ var ContratoForm = React.createClass({
         );
     },
     renderFeedbackText: function () {
-        if (!this.state.feedbackText) {
+        var feedbackText = this.state.feedbackText;
+        if (!feedbackText) {
             return;
         }
 
-        return (<p>{this.state.feedbackText}</p>);
+        return (
+            <p className={classNames('feedback-text', {success: !this.state.saveError}, {error: this.state.saveError})}>
+                {feedbackText}
+            </p>
+        );
     },
     renderTelefonos: function () {
         var telefonos = this.state.contrato.cliente.telefonos;
