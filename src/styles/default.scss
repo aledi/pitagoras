@@ -111,3 +111,18 @@ button {
 .bold {
     font-weight: bold;
 }
+
+.feedback-text {
+    margin-top: 20px;
+    margin-bottom: 0;
+    text-align: center;
+    text-transform: uppercase;
+
+    &.success {
+        color: $pine;
+    }
+
+    &.error {
+        color: $invalid;
+    }
+}
