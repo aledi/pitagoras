@@ -37,7 +37,7 @@ var ContratoForm = React.createClass({
         var feedbackText = '';
 
         if (this.state.saving && !saving && !saveError) {
-            feedbackText = 'El contrato se ha guardado.';
+            feedbackText = 'El contrato se ha guardado exitosamente.';
             this.setState({
                 feedbackText: feedbackText,
                 contrato: new ContratoRecord().toEditable(),
@@ -70,7 +70,7 @@ var ContratoForm = React.createClass({
                         <label>Número de Contrato</label>
                         <input
                             type='text'
-                            value={contrato.numeroContrato}
+                            value={contrato.numeroContrato || ''}
                             className={classNames({invalid: this.state.invalidFields.numeroContrato})}
                             disabled={this.state.saving}
                             onChange={this.handleChange.bind(this, 'numeroContrato')} />
@@ -628,13 +628,12 @@ var ContratoForm = React.createClass({
     },
     restrictNumericInput: function (isFloat, event) {
         if (!event.metaKey && event.charCode !== 13 && (event.charCode < 48 || event.charCode > 57)) {
-
-            // Allow commans and periods if applicable.
             if (!isFloat) {
                 event.preventDefault();
                 return;
             }
 
+            // Allow commas and periods
             if (event.charCode !== 44 && event.charCode !== 46) {
                 event.preventDefault();
             }
