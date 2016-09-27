@@ -39,11 +39,11 @@ var ContratoRecord = Immutable.Record({
     cliente: null,
     fechaContrato: null,
     juzgado: null,
-    monto: null,
+    monto: '',
     numeroContrato: '',
-    plazo: null,
+    plazo: '',
     referencias: null,
-    tasa: null,
+    tasa: '',
     certificacionContable: null,
     vehiculo: null,
     notificacion: null,
@@ -115,7 +115,7 @@ class Contrato extends ContratoRecord {
         definition.tipoContrato = definition.tipoContrato;
 
         // Número de Contrato
-        definition.numeroContrato = definition.numeroContrato;
+        definition.numeroContrato = definition.numeroContrato || '';
         sortValues.numeroContrato = definition.numeroContrato;
 
         // Fecha Contrato
@@ -138,19 +138,19 @@ class Contrato extends ContratoRecord {
 
         // Cliente
         definition.cliente = definition.cliente ? new ClienteRecord(definition.cliente) : new ClienteRecord();
-        sortValues.cliente = definition.cliente.formattedValues.nombre.toLowerCase();
+        sortValues.cliente = definition.cliente.formattedValues.nombre.trim().toLowerCase();
 
         // Monto
-        definition.monto = definition.monto;
+        definition.monto = definition.monto || '';
         formattedValues.monto = formatNumber({prefix: '$', padRight: 2})(definition.monto);
         sortValues.monto = definition.monto;
 
         // Plazo
-        definition.plazo = definition.plazo;
+        definition.plazo = definition.plazo || '';
         sortValues.plazo = definition.plazo;
 
         // Tasa
-        definition.tasa = definition.tasa;
+        definition.tasa = definition.tasa || '';
         formattedValues.tasa = formatNumber({suffix: '%'})(definition.tasa);
         sortValues.tasa = definition.tasa;
 

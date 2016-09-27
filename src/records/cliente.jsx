@@ -8,10 +8,10 @@ var Immutable = require('immutable');
 
 var ClienteRecord = Immutable.Record({
     id: null,
-    apellidoMaterno: '',
-    apellidoPaterno: '',
-    domicilio: null,
     nombre: '',
+    apellidoPaterno: '',
+    apellidoMaterno: '',
+    domicilio: null,
     telefonos: null,
 
     formattedValues: {}
@@ -40,9 +40,9 @@ class Cliente extends ClienteRecord {
         definition.domicilio = definition.domicilio || {};
 
         // Nombre
-        definition.nombre = definition.nombre;
-        definition.apellidoPaterno = definition.apellidoPaterno;
-        definition.apellidoMaterno = definition.apellidoMaterno;
+        definition.nombre = definition.nombre || '';
+        definition.apellidoPaterno = definition.apellidoPaterno || '';
+        definition.apellidoMaterno = definition.apellidoMaterno || '';
         formattedValues.nombre = definition.nombre + ' ' + definition.apellidoPaterno + ' ' + definition.apellidoMaterno;
 
         // Domicilio
@@ -59,10 +59,10 @@ class Cliente extends ClienteRecord {
     toEditable () {
         return {
             id: this.id,
-            apellidoMaterno: this.apellidoMaterno,
-            apellidoPaterno: this.apellidoPaterno,
-            domicilio: this.domicilio || {},
             nombre: this.nombre,
+            apellidoPaterno: this.apellidoPaterno,
+            apellidoMaterno: this.apellidoMaterno,
+            domicilio: this.domicilio || {},
             telefonos: this.telefonos || ['']
         };
     }

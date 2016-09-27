@@ -34,24 +34,23 @@ var ContratoForm = React.createClass({
     onChange: function () {
         var saving = ContratosStore.get('saving');
         var saveError = ContratosStore.get('saveError');
-        var feedbackText = '';
 
         if (this.state.saving && !saving && !saveError) {
-            feedbackText = 'El contrato se ha guardado.';
             this.setState({
-                feedbackText: feedbackText,
+                feedbackText: 'El contrato se ha guardado exitosamente',
                 contrato: new ContratoRecord().toEditable(),
-                saving: false
+                saving: false,
+                saveError: false
             });
 
             return;
         }
 
         if (this.state.saving && !saving && saveError) {
-            feedbackText = 'Error al guardar el contrato.';
             this.setState({
-                feedbackText: feedbackText,
-                saving: false
+                feedbackText: 'Error al guardar el contrato',
+                saving: false,
+                saveError: true
             });
 
             return;
@@ -64,13 +63,13 @@ var ContratoForm = React.createClass({
 
         return (
             <main className='contrato-form'>
-                <form onSubmit={this.saveContrato}>
+                <form onSubmit={this.handleSubmit}>
                     <h3 className='section-title'>Contrato</h3>
                     <div className='input-wrapper'>
                         <label>Número de Contrato</label>
                         <input
                             type='text'
-                            value={contrato.numeroContrato}
+                            value={contrato.numeroContrato || ''}
                             className={classNames({invalid: this.state.invalidFields.numeroContrato})}
                             disabled={this.state.saving}
                             onChange={this.handleChange.bind(this, 'numeroContrato')} />
@@ -243,7 +242,7 @@ var ContratoForm = React.createClass({
                         <label>Calle</label>
                         <input
                             type='text'
-                            value={contrato.cliente.domicilio.calle}
+                            value={contrato.cliente.domicilio.calle || ''}
                             disabled={this.state.saving}
                             onChange={this.handleDomicilioChange.bind(this, 'calle')} />
                     </div>
@@ -251,7 +250,7 @@ var ContratoForm = React.createClass({
                         <label>Número Exterior</label>
                         <input
                             type='text'
-                            value={contrato.cliente.domicilio.exterior}
+                            value={contrato.cliente.domicilio.exterior || ''}
                             disabled={this.state.saving}
                             onChange={this.handleDomicilioChange.bind(this, 'exterior')} />
                     </div>
@@ -259,7 +258,7 @@ var ContratoForm = React.createClass({
                         <label>Número Interior</label>
                         <input
                             type='text'
-                            value={contrato.cliente.domicilio.interior}
+                            value={contrato.cliente.domicilio.interior || ''}
                             disabled={this.state.saving}
                             onChange={this.handleDomicilioChange.bind(this, 'interior')} />
                     </div>
@@ -267,7 +266,7 @@ var ContratoForm = React.createClass({
                         <label>Colonia</label>
                         <input
                             type='text'
-                            value={contrato.cliente.domicilio.colonia}
+                            value={contrato.cliente.domicilio.colonia || ''}
                             disabled={this.state.saving}
                             onChange={this.handleDomicilioChange.bind(this, 'colonia')} />
                     </div>
@@ -275,7 +274,7 @@ var ContratoForm = React.createClass({
                         <label>Código Postal</label>
                         <input
                             type='text'
-                            value={contrato.cliente.domicilio.codigoPostal}
+                            value={contrato.cliente.domicilio.codigoPostal || ''}
                             disabled={this.state.saving}
                             onChange={this.handleDomicilioChange.bind(this, 'codigoPostal')} />
                     </div>
@@ -283,7 +282,7 @@ var ContratoForm = React.createClass({
                         <label>Municipio / Delegación</label>
                         <input
                             type='text'
-                            value={contrato.cliente.domicilio.municipio}
+                            value={contrato.cliente.domicilio.municipio || ''}
                             disabled={this.state.saving}
                             onChange={this.handleDomicilioChange.bind(this, 'municipio')} />
                     </div>
@@ -291,7 +290,7 @@ var ContratoForm = React.createClass({
                         <label>Estado</label>
                         <input
                             type='text'
-                            value={contrato.cliente.domicilio.estado}
+                            value={contrato.cliente.domicilio.estado || ''}
                             disabled={this.state.saving}
                             onChange={this.handleDomicilioChange.bind(this, 'estado')} />
                     </div>
@@ -319,11 +318,16 @@ var ContratoForm = React.createClass({
         );
     },
     renderFeedbackText: function () {
-        if (!this.state.feedbackText) {
+        var feedbackText = this.state.feedbackText;
+        if (!feedbackText) {
             return;
         }
 
-        return (<p>{this.state.feedbackText}</p>);
+        return (
+            <p className={classNames('feedback-text', {success: !this.state.saveError}, {error: this.state.saveError})}>
+                {feedbackText}
+            </p>
+        );
     },
     renderTelefonos: function () {
         var telefonos = this.state.contrato.cliente.telefonos;
@@ -597,7 +601,7 @@ var ContratoForm = React.createClass({
 
         this.setState(state);
     },
-    saveContrato: function (event) {
+    handleSubmit: function (event) {
         event.preventDefault();
 
         var contrato = this.state.contrato;
@@ -628,13 +632,12 @@ var ContratoForm = React.createClass({
     },
     restrictNumericInput: function (isFloat, event) {
         if (!event.metaKey && event.charCode !== 13 && (event.charCode < 48 || event.charCode > 57)) {
-
-            // Allow commans and periods if applicable.
             if (!isFloat) {
                 event.preventDefault();
                 return;
             }
 
+            // Allow commas and periods
             if (event.charCode !== 44 && event.charCode !== 46) {
                 event.preventDefault();
             }
