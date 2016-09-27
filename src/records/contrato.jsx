@@ -80,6 +80,7 @@ class Contrato extends ContratoRecord {
 
         contrato.reporte.nombre = contrato.cliente.nombre + ' ' + contrato.cliente.apellidoPaterno + (contrato.cliente.apellidoMaterno ? ' ' + contrato.cliente.apellidoMaterno : '');
         contrato.reporte.numeroContrato = contrato.numeroContrato;
+        contrato.reporte.fechaAsignacion = contrato.fechaContrato;
         contrato.reporte.tipoContrato = contrato.tipoContrato;
         contrato.reporte.tipoAsignacion = contrato.tipoAsignacion;
         contrato.reporte.certificacionContable = contrato.certificacionContable;
