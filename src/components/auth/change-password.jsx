@@ -58,8 +58,8 @@ var ChangePassword = React.createClass({
                             onChange={this.handleChange.bind(this, 'confirmPassword')}
                             disabled={this.state.submitting} />
                     </div>
-                    <p className={classNames('message', {error: this.state.error})}>{this.state.message}</p>
                     <button type='submit' className='submit' disabled={this.state.submitting}>Guardar</button>
+                    <p className={classNames('feedback-text', {success: !this.state.error}, {error: this.state.error})}>{this.state.message}</p>
                 </form>
             </div>
         );
@@ -126,16 +126,17 @@ var ChangePassword = React.createClass({
     },
     handleSuccess: function (user) {
         this.setState({
-            message: 'La contraseña se ha cambiado exitosamente.',
+            message: 'La contraseña se ha cambiado exitosamente',
             currentPassword: '',
             newPassword: '',
             confirmPassword: '',
-            submitting: false
+            submitting: false,
+            error: null
         });
     },
     handleError: function (error) {
         this.setState({
-            message: 'Error. Favor de intentar de nuevo.',
+            message: 'Error. Favor de intentar de nuevo',
             error: error.message,
             submitting: false
         });
