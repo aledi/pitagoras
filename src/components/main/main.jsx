@@ -74,7 +74,7 @@ var Main = React.createClass({
             <header>
                 <div className='links-wrapper'>
                     <Link activeClassName='active' className={classNames({admin: isAdmin})} to={links.inicio}>Inicio</Link>
-                    {this.renderAgregarContratoItem(isAdmin)}
+                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={this.state.links.agregarContrato}>Agregar contrato</Link>
                     <Link activeClassName='active' className={classNames({admin: isAdmin})} to={links.contratos}>Ver contratos</Link>
                     <Link activeClassName='active' className={classNames({admin: isAdmin})} to={links.reportes}>Reportes</Link>
                     {this.renderAgregarUsuarioItem(isAdmin)}
@@ -87,13 +87,6 @@ var Main = React.createClass({
     },
     renderChildren: function () {
         return this.state.children;
-    },
-    renderAgregarContratoItem: function (isAdmin) {
-        if (!isAdmin) {
-            return;
-        }
-
-        return (<Link activeClassName='active' className='admin' to={this.state.links.agregarContrato}>Agregar contrato</Link>);
     },
     renderAgregarUsuarioItem: function (isAdmin) {
         if (!isAdmin) {
