@@ -28,7 +28,7 @@ var Routes = (
         <IndexRoute onEnter={redirectToInicio} />
         <Route path='signin' component={Signin} onEnter={requireNoAuth} />
         <Route path='inicio' component={Inicio} onEnter={requireAuth} />
-        <Route path='agregar-contrato' component={ContratoForm} onEnter={requireAdminAuth} />
+        <Route path='agregar-contrato' component={ContratoForm} onEnter={requireAuth} />
         <Route path='usuarios' component={Usuarios} onEnter={requireAdminAuth} />
         <Route path='contratos' component={Contratos} onEnter={requireAuth}>
             <Route path=':id' component={Contratos} onEnter={requireAuth} />
