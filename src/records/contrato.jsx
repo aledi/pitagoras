@@ -29,6 +29,8 @@ var ASIGNACION_TYPES = {
     NORMAL: 'Normal',
     ESPECIAL: 'Especial',
     PILOTO: 'Piloto',
+    PILOTO_NL: 'Piloto NL',
+    PILOTO_INT: 'Piloto Interior',
     OTRO: 'Otro'
 };
 
