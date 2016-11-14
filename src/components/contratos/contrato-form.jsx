@@ -103,6 +103,8 @@ var ContratoForm = React.createClass({
                             <option value={ContratoRecord.ASIGNACION_TYPES.NORMAL}>Normal</option>
                             <option value={ContratoRecord.ASIGNACION_TYPES.ESPECIAL}>Especial</option>
                             <option value={ContratoRecord.ASIGNACION_TYPES.PILOTO}>Piloto</option>
+                            <option value={ContratoRecord.ASIGNACION_TYPES.PILOTO_NL}>Piloto NL</option>
+                            <option value={ContratoRecord.ASIGNACION_TYPES.PILOTO_INT}>Piloto Interior</option>
                             <option value={ContratoRecord.ASIGNACION_TYPES.OTRO}>Otro</option>
                         </select>
                     </div>
