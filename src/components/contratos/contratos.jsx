@@ -44,7 +44,7 @@ class Contratos extends React.Component {
         }
 
         return (
-            <main className='contratos'>
+            <main className='contratos' onClick={this.handleClick}>
                 {this.renderContent()}
             </main>
         );
@@ -57,6 +57,15 @@ class Contratos extends React.Component {
             return (<div className='error'>Hubo un error. Favor de intentar de nuevo.</div>);
         } else {
             return (<ContratosTabla contratos={this.state.contratos} />);
+        }
+    }
+
+    handleClick (event) {
+        var tableWrapper = document.getElementById('table-wrapper-contratos');
+
+        // Keep table focused
+        if (tableWrapper) {
+            tableWrapper.focus();
         }
     }
 }
