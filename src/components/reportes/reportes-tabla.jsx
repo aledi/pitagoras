@@ -19,29 +19,6 @@ var ReportesTabla = React.createClass({
     componentDidMount: function () {
         document.getElementById('table-wrapper-reportes').focus();
     },
-    handleKeyUp: function (event) {
-        event.persist();
-
-        // Left arrow
-        if (event.keyCode === 37) {
-            document.getElementById('table-wrapper-reportes').focus();
-        }
-
-        // Up arrow
-        if (event.keyCode === 38) {
-            document.getElementById('table-body-wrapper-reportes').focus();
-        }
-
-        // Right arrow
-        if (event.keyCode === 39) {
-            document.getElementById('table-wrapper-reportes').focus();
-        }
-
-        // Down arrow
-        if (event.keyCode === 40) {
-            document.getElementById('table-body-wrapper-reportes').focus();
-        }
-    },
     render: function () {
         return (
             <div id='table-wrapper-reportes' className='reportes-table table-wrapper' tabIndex='0' onKeyUp={this.handleKeyUp}>
@@ -195,6 +172,29 @@ var ReportesTabla = React.createClass({
         });
 
         return reportes;
+    },
+    handleKeyUp: function (event) {
+        event.persist();
+
+        // Left arrow
+        if (event.keyCode === 37) {
+            document.getElementById('table-wrapper-reportes').focus();
+        }
+
+        // Up arrow
+        if (event.keyCode === 38) {
+            document.getElementById('table-body-wrapper-reportes').focus();
+        }
+
+        // Right arrow
+        if (event.keyCode === 39) {
+            document.getElementById('table-wrapper-reportes').focus();
+        }
+
+        // Down arrow
+        if (event.keyCode === 40) {
+            document.getElementById('table-body-wrapper-reportes').focus();
+        }
     }
 });
 
