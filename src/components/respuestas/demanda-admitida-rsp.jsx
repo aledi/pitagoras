@@ -53,6 +53,10 @@ var DemandaAdmitidaRsp = React.createClass({
                     <span>{DateUtils.formatFechaRespuesta(respuestas.cita.fecha)}</span>
                 </div>
                 <div>
+                    <span className='bold'>Hora de cita: </span>
+                    <span>{respuestas.cita.hora}</span>
+                </div>
+                <div>
                     <span className='bold'>Lugar de cita: </span>
                     <span>{respuestas.cita.lugar}</span>
                 </div>
