@@ -16,9 +16,12 @@ var ContratosActions = require('src/actions/contratos-actions');
 
 var ContratosTabla = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
+    componentDidMount: function () {
+        document.getElementById('table-wrapper-contratos').focus();
+    },
     render: function () {
         return (
-            <div className='contratos-table table-wrapper'>
+            <div id='table-wrapper-contratos' className='contratos-table table-wrapper' tabIndex='0' onKeyUp={this.handleKeyUp}>
                 <div className='table-header-wrapper' style={{minWidth: '2050px'}}>
                     <table>
                         <thead>
@@ -66,7 +69,7 @@ var ContratosTabla = React.createClass({
     },
     renderTableBodyWrapper: function () {
         return (
-            <div className='table-body-wrapper' style={{minWidth: '2050px'}}>
+            <div id='table-body-wrapper-contratos' className='table-body-wrapper' style={{minWidth: '2050px'}} tabIndex='1'>
                 {this.renderTableBody()}
             </div>
         );
@@ -110,6 +113,29 @@ var ContratosTabla = React.createClass({
     },
     goToContrato: function (id) {
         this.context.router.push('/contratos/' + id);
+    },
+    handleKeyUp: function (event) {
+        event.persist();
+
+        // Left arrow
+        if (event.keyCode === 37) {
+            document.getElementById('table-wrapper-contratos').focus();
+        }
+
+        // Up arrow
+        if (event.keyCode === 38) {
+            document.getElementById('table-body-wrapper-contratos').focus();
+        }
+
+        // Right arrow
+        if (event.keyCode === 39) {
+            document.getElementById('table-wrapper-contratos').focus();
+        }
+
+        // Down arrow
+        if (event.keyCode === 40) {
+            document.getElementById('table-body-wrapper-contratos').focus();
+        }
     }
 });
 

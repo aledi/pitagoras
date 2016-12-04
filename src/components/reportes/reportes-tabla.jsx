@@ -16,9 +16,12 @@ var tableMinWidth = '5600px';
 
 var ReportesTabla = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
+    componentDidMount: function () {
+        document.getElementById('table-wrapper-reportes').focus();
+    },
     render: function () {
         return (
-            <div className='reportes-table table-wrapper'>
+            <div id='table-wrapper-reportes' className='reportes-table table-wrapper' tabIndex='0' onKeyUp={this.handleKeyUp}>
                 <div className='table-header-wrapper' style={{minWidth: tableMinWidth}}>
                     <table>
                         {this.renderHeader()}
@@ -31,7 +34,7 @@ var ReportesTabla = React.createClass({
     },
     renderTableBodyWrapper: function () {
         return (
-            <div className='table-body-wrapper' style={{minWidth: tableMinWidth}}>
+            <div id='table-body-wrapper-reportes' className='table-body-wrapper' style={{minWidth: tableMinWidth}} tabIndex='1'>
                 {this.renderTableBody()}
             </div>
         );
@@ -169,6 +172,29 @@ var ReportesTabla = React.createClass({
         });
 
         return reportes;
+    },
+    handleKeyUp: function (event) {
+        event.persist();
+
+        // Left arrow
+        if (event.keyCode === 37) {
+            document.getElementById('table-wrapper-reportes').focus();
+        }
+
+        // Up arrow
+        if (event.keyCode === 38) {
+            document.getElementById('table-body-wrapper-reportes').focus();
+        }
+
+        // Right arrow
+        if (event.keyCode === 39) {
+            document.getElementById('table-wrapper-reportes').focus();
+        }
+
+        // Down arrow
+        if (event.keyCode === 40) {
+            document.getElementById('table-body-wrapper-reportes').focus();
+        }
     }
 });
 
