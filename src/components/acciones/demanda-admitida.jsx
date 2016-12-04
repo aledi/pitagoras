@@ -20,7 +20,10 @@ var TimeSelect = require('src/components/shared/time-select');
 var options = [
     'No vive en el domicilio',
     'Se niega a recibir demanda',
-    'Se realizó exitosamente'
+    'Se realizó exitosamente',
+    'Oficios de búsqueda',
+    'Exhorto',
+    'Domicilio ilocalizable'
 ];
 
 var DemandaAdmitida = React.createClass({
