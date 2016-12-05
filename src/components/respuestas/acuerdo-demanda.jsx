@@ -12,7 +12,7 @@ var DateUtils = require('src/utils/date-utils');
 // Acuerdo Demanda Respuestas
 // -----------------------------------------------------------------------------------------------
 
-var AcuerdoDemandaRsp = React.createClass({
+var AcuerdoDemanda = React.createClass({
     render: function () {
         var respuestas = this.props.accion.respuestas;
 
@@ -35,4 +35,4 @@ var AcuerdoDemandaRsp = React.createClass({
     }
 });
 
-module.exports = AcuerdoDemandaRsp;
+module.exports = AcuerdoDemanda;

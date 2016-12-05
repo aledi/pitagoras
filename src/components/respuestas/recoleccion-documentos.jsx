@@ -13,7 +13,7 @@ var DateUtils = require('src/utils/date-utils');
 // Recoleccion Documentos Respuestas
 // -----------------------------------------------------------------------------------------------
 
-var RecoleccionDocumentosRsp = React.createClass({
+var RecoleccionDocumentos = React.createClass({
     render: function () {
         return (
             <div className='respuestas-wrapper'>
@@ -58,4 +58,4 @@ var RecoleccionDocumentosRsp = React.createClass({
     }
 });
 
-module.exports = RecoleccionDocumentosRsp;
+module.exports = RecoleccionDocumentos;

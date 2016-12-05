@@ -27,7 +27,8 @@ var ACCIONES_TYPES = {
     9: 'Desahogo / Cierre',
     10: 'Demanda admitida',
     11: 'Diligencia de embargo',
-    12: 'Extrajudicial'
+    12: 'Extrajudicial',
+    13: 'Fecha Audiencia Previa'
 };
 
 var AccionRecord = Immutable.Record({
@@ -174,6 +175,10 @@ class Accion extends AccionRecord {
                 comentarios: accion.comentarios,
                 fecha: moment().toDate()
             });
+        }
+
+        if (accion.tipo === 13) {
+            contrato.reporte.fechaAudienciaPrevia = accion.respuestas.fecha;
         }
 
         contrato.reporte.etapaActual = accion.tipo;

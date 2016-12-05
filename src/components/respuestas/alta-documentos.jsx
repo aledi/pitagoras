@@ -12,7 +12,7 @@ var DateUtils = require('src/utils/date-utils');
 // Alta Documentos Respuestas
 // -----------------------------------------------------------------------------------------------
 
-var AltaDocumentosRsp = React.createClass({
+var AltaDocumentos = React.createClass({
     render: function () {
         var respuestas = this.props.accion.respuestas;
 
@@ -31,4 +31,4 @@ var AltaDocumentosRsp = React.createClass({
     }
 });
 
-module.exports = AltaDocumentosRsp;
+module.exports = AltaDocumentos;

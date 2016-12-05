@@ -12,7 +12,7 @@ var RespuestasUtils = require('src/components/respuestas/respuestas-utils');
 // Desahogo Respuestas
 // -----------------------------------------------------------------------------------------------
 
-var DesahogoRsp = React.createClass({
+var Desahogo = React.createClass({
     render: function () {
         return (
             <div className='respuestas-wrapper'>
@@ -23,4 +23,4 @@ var DesahogoRsp = React.createClass({
     }
 });
 
-module.exports = DesahogoRsp;
+module.exports = Desahogo;

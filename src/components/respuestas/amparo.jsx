@@ -12,7 +12,7 @@ var DateUtils = require('src/utils/date-utils');
 // Amparo Respuestas
 // -----------------------------------------------------------------------------------------------
 
-var AmparoRsp = React.createClass({
+var Amparo = React.createClass({
     render: function () {
         var respuestas = this.props.accion.respuestas;
 
@@ -43,4 +43,4 @@ var AmparoRsp = React.createClass({
     }
 });
 
-module.exports = AmparoRsp;
+module.exports = Amparo;

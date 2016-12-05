@@ -12,7 +12,7 @@ var DateUtils = require('src/utils/date-utils');
 // Diligencia Embargo Respuestas
 // -----------------------------------------------------------------------------------------------
 
-var DiligenciaEmbargoRsp = React.createClass({
+var DiligenciaEmbargo = React.createClass({
     render: function () {
         return (
             <div className='respuestas-wrapper'>
@@ -58,4 +58,4 @@ var DiligenciaEmbargoRsp = React.createClass({
     }
 });
 
-module.exports = DiligenciaEmbargoRsp;
+module.exports = DiligenciaEmbargo;
