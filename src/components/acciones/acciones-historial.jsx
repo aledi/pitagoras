@@ -10,17 +10,17 @@ var React = require('react');
 
 var AccionRecord = require('src/records/accion');
 
-var VisitaRsp = require('src/components/respuestas/visita-rsp'); // 1
-var AltaDocumentosRsp = require('src/components/respuestas/alta-documentos-rsp'); // 2
-var PresentacionDemandaRsp = require('src/components/respuestas/presentacion-demanda-rsp'); // 3
-var AcuerdoDemandaRsp = require('src/components/respuestas/acuerdo-demanda-rsp'); // 4
-var Amparo = require('src/components/respuestas/amparo-rsp'); // 5
-var DemandaDesechadaRsp = require('src/components/respuestas/demanda-desechada-rsp'); // 6
-var RecoleccionDocumentosRsp = require('src/components/respuestas/recoleccion-documentos-rsp'); // 7
-var DemandaPrevenidaRsp = require('src/components/respuestas/demanda-prevenida-rsp'); // 8
-var DesahogoRsp = require('src/components/respuestas/desahogo-rsp'); // 9
-var DemandaAdmitidaRsp = require('src/components/respuestas/demanda-admitida-rsp'); // 10
-var DiligenciaEmbargoRsp = require('src/components/respuestas/diligencia-embargo-rsp'); // 11
+var VisitaRsp = require('src/components/respuestas/visita'); // 1
+var AltaDocumentosRsp = require('src/components/respuestas/alta-documentos'); // 2
+var PresentacionDemandaRsp = require('src/components/respuestas/presentacion-demanda'); // 3
+var AcuerdoDemandaRsp = require('src/components/respuestas/acuerdo-demanda'); // 4
+var Amparo = require('src/components/respuestas/amparo'); // 5
+var DemandaDesechadaRsp = require('src/components/respuestas/demanda-desechada'); // 6
+var RecoleccionDocumentosRsp = require('src/components/respuestas/recoleccion-documentos'); // 7
+var DemandaPrevenidaRsp = require('src/components/respuestas/demanda-prevenida'); // 8
+var DesahogoRsp = require('src/components/respuestas/desahogo'); // 9
+var DemandaAdmitidaRsp = require('src/components/respuestas/demanda-admitida'); // 10
+var DiligenciaEmbargoRsp = require('src/components/respuestas/diligencia-embargo'); // 11
 
 // -----------------------------------------------------------------------------------------------
 // AccionesHistorial
