@@ -34,6 +34,7 @@ var ReporteRecord = Immutable.Record({
     fechaResolucionAmparo: null,
     horariosJuzgado: null,
     fechaAdmision: null,
+    FechaAudienciaPrevia: null,
     resultadoEmplazamiento: null,
     etapaActual: null,
     extrajudicial: null,
@@ -119,6 +120,10 @@ class Reporte extends ReporteRecord {
         // Fecha de Presentación Amparo
         definition.fechaPresentacionAmparo = definition.fechaPresentacionAmparo;
         formattedValues.fechaPresentacionAmparo = definition.fechaPresentacionAmparo ? moment(definition.fechaPresentacionAmparo.iso).format('D MMMM, YYYY') : null;
+
+        // Fecha de Audiencia Previa
+        definition.fechaAudienciaPrevia = definition.fechaAudienciaPrevia;
+        formattedValues.fechaAudienciaPrevia = definition.fechaAudienciaPrevia ? moment(definition.fechaAudienciaPrevia.iso).format('D MMMM, YYYY') : null;
 
         // Resolución de Amparo
         definition.resolucionAmparo = definition.resolucionAmparo;

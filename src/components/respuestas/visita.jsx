@@ -6,29 +6,33 @@
 
 var React = require('react');
 
-var DateUtils = require('src/utils/date-utils');
+var RespuestasUtils = require('src/components/respuestas/respuestas-utils');
 
 // -----------------------------------------------------------------------------------------------
-// Alta Documentos Respuestas
+// Visita Respuestas
 // -----------------------------------------------------------------------------------------------
 
-var AltaDocumentosRsp = React.createClass({
+var Visita = React.createClass({
     render: function () {
         var respuestas = this.props.accion.respuestas;
 
         return (
             <div className='respuestas-wrapper'>
                 <div>
-                    <span className='bold'>Número interno: </span>
-                    <span>{respuestas.numeroInterno}</span>
+                    <span className='bold'>¿Encontró el domicilio?: </span>
+                    <span>{RespuestasUtils.formatBooleanRespuesta(respuestas.domicilioUbicado)}</span>
                 </div>
                 <div>
-                    <span className='bold'>Fecha de recepción: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
+                    <span className='bold'>¿Ubicó al cliente?: </span>
+                    <span>{RespuestasUtils.formatBooleanRespuesta(respuestas.clienteUbicado)}</span>
+                </div>
+                <div>
+                    <span className='bold'>Datos de contacto: </span>
+                    <span>{respuestas.datosDeContacto}</span>
                 </div>
             </div>
         );
     }
 });
 
-module.exports = AltaDocumentosRsp;
+module.exports = Visita;

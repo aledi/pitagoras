@@ -9,41 +9,26 @@ var React = require('react');
 var DateUtils = require('src/utils/date-utils');
 
 // -----------------------------------------------------------------------------------------------
-// Demanda Admitida Respuestas
+// Diligencia Embargo Respuestas
 // -----------------------------------------------------------------------------------------------
 
-var DemandaAdmitidaRsp = React.createClass({
+var DiligenciaEmbargo = React.createClass({
     render: function () {
-        var respuestas = this.props.accion.respuestas;
-
         return (
             <div className='respuestas-wrapper'>
                 <div>
-                    <span className='bold'>Tipo de juicio: </span>
-                    <span>{respuestas.tipoJuicio}</span>
+                    <span className='bold'>Resultado: </span>
+                    <span>{this.props.accion.respuestas.resultado}</span>
                 </div>
-                <div>
-                    <span className='bold'>Fecha de acuerdo: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fechaAcuerdo)}</span>
-                </div>
-                <div>
-                    <span className='bold'>Fecha de publicación: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fechaPublicacion)}</span>
-                </div>
-                {this.renderMoreRespuestas()}
+                {this.renderCitaRespuestas()}
             </div>
         );
     },
-    renderMoreRespuestas: function () {
+    renderCitaRespuestas: function () {
         var respuestas = this.props.accion.respuestas;
 
-        if (respuestas.tipoJuicio === 'Oral Mercantil') {
-            return (
-                <div>
-                    <span className='bold'>Resultado: </span>
-                    <span>{respuestas.resultado}</span>
-                </div>
-            );
+        if (!respuestas.cita) {
+            return;
         }
 
         return (
@@ -65,7 +50,7 @@ var DemandaAdmitidaRsp = React.createClass({
                     <span>{respuestas.cita.nombreActuario}</span>
                 </div>
                 <div>
-                    <span className='bold'>Teléfono del actuario: </span>
+                    <span className='bold'>Telefono del actuario: </span>
                     <span>{respuestas.cita.telefonoActuario}</span>
                 </div>
             </div>
@@ -73,4 +58,4 @@ var DemandaAdmitidaRsp = React.createClass({
     }
 });
 
-module.exports = DemandaAdmitidaRsp;
+module.exports = DiligenciaEmbargo;
