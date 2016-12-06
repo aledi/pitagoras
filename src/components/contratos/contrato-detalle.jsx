@@ -29,6 +29,7 @@ var DiligenciaEmbargo = require('src/components/acciones/diligencia-embargo'); /
 var Extrajudicial = require('src/components/acciones/extrajudicial'); // 12
 var FechaAudienciaPrevia = require('src/components/acciones/fecha-audiencia-previa'); // 13
 var FechaAudienciaPrueba = require('src/components/acciones/fecha-audiencia-prueba'); // 14
+var FechaSentencia = require('src/components/acciones/fecha-sentencia'); // 15
 
 // -----------------------------------------------------------------------------------------------
 // Contrato
