@@ -29,6 +29,7 @@ var DiligenciaEmbargo = require('src/components/acciones/diligencia-embargo'); /
 var Extrajudicial = require('src/components/acciones/extrajudicial'); // 12
 var FechaAudienciaPrevia = require('src/components/acciones/fecha-audiencia-previa'); // 13
 var FechaAudienciaPrueba = require('src/components/acciones/fecha-audiencia-prueba'); // 14
+var FechaSentencia = require('src/components/acciones/fecha-sentencia'); // 15
 
 // -----------------------------------------------------------------------------------------------
 // Contrato
@@ -64,7 +65,8 @@ var ContratoDetalle = React.createClass({
                 <DiligenciaEmbargo contrato={props.contrato} disabled={props.savingAccion} key='diligenciaEmbargo' />,
                 <Extrajudicial contrato={props.contrato} disabled={props.savingAccion} key='extrajudicial' />,
                 <FechaAudienciaPrevia contrato={props.contrato} disabled={props.savingAccion} key='fechaAudienciaPrevia' />,
-                <FechaAudienciaPrueba contrato={props.contrato} disabled={props.savingAccion} key='fechaAudienciaPrueba' />
+                <FechaAudienciaPrueba contrato={props.contrato} disabled={props.savingAccion} key='fechaAudienciaPrueba' />,
+                <FechaSentencia contrato={props.contrato} disabled={props.savingAccion} key='fechaSentencia' />
             ];
         }
 

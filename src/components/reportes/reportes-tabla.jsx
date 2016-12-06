@@ -12,7 +12,7 @@ var AccionRecord = require('src/records/accion');
 // ReportesTabla
 // -----------------------------------------------------------------------------------------------
 
-var tableMinWidth = '6100px';
+var tableMinWidth = '6300px';
 
 var ReportesTabla = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
@@ -128,6 +128,9 @@ var ReportesTabla = React.createClass({
                     <th style={{width: '250px'}}>
                         <span>Fecha de Audiencia Prueba</span>
                     </th>
+                    <th style={{width: '200px'}}>
+                        <span>Fecha de Sentencia</span>
+                    </th>
                     <th style={{width: '250px'}}>
                         <span>Resultado de Emplazamiento</span>
                     </th>
@@ -173,6 +176,7 @@ var ReportesTabla = React.createClass({
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAdmision}</span></td>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAudienciaPrevia}</span></td>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAudienciaPrueba}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaSentencia}</span></td>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.resultadoEmplazamiento}</span></td>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.etapaActual ? AccionRecord.ACCIONES_TYPES[reporte.etapaActual] : ''}</span></td>
                 </tr>
