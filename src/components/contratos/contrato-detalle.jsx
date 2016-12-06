@@ -27,6 +27,7 @@ var Desahogo = require('src/components/acciones/desahogo'); // 9
 var DemandaAdmitida = require('src/components/acciones/demanda-admitida'); // 10
 var DiligenciaEmbargo = require('src/components/acciones/diligencia-embargo'); // 11
 var Extrajudicial = require('src/components/acciones/extrajudicial'); // 12
+var FechaAudienciaPrevia = require('src/components/acciones/fecha-audiencia-previa'); // 13
 
 // -----------------------------------------------------------------------------------------------
 // Contrato
@@ -60,7 +61,8 @@ var ContratoDetalle = React.createClass({
                 <Desahogo contrato={props.contrato} disabled={props.savingAccion} key='desahogo' />,
                 <DemandaAdmitida contrato={props.contrato} disabled={props.savingAccion} key='demandaAdmitida' />,
                 <DiligenciaEmbargo contrato={props.contrato} disabled={props.savingAccion} key='diligenciaEmbargo' />,
-                <Extrajudicial contrato={props.contrato} disabled={props.savingAccion} key='extrajudicial' />
+                <Extrajudicial contrato={props.contrato} disabled={props.savingAccion} key='extrajudicial' />,
+                <FechaAudienciaPrevia contrato={props.contrato} disabled={props.savingAccion} key='fechaAudienciaPrevia' />
             ];
         }
 

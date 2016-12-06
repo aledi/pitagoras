@@ -13,7 +13,7 @@ var RespuestasUtils = require('src/components/respuestas/respuestas-utils');
 // Presentacion Demanda Respuestas
 // -----------------------------------------------------------------------------------------------
 
-var PresentacionDemandaRsp = React.createClass({
+var PresentacionDemanda = React.createClass({
     render: function () {
         var respuestas = this.props.accion.respuestas;
 
@@ -59,4 +59,4 @@ var PresentacionDemandaRsp = React.createClass({
     }
 });
 
-module.exports = PresentacionDemandaRsp;
+module.exports = PresentacionDemanda;
