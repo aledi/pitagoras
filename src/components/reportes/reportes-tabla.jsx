@@ -12,7 +12,7 @@ var AccionRecord = require('src/records/accion');
 // ReportesTabla
 // -----------------------------------------------------------------------------------------------
 
-var tableMinWidth = '6100px';
+var tableMinWidth = '6350px';
 
 var ReportesTabla = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
@@ -129,6 +129,9 @@ var ReportesTabla = React.createClass({
                         <span>Fecha de Audiencia Prueba</span>
                     </th>
                     <th style={{width: '250px'}}>
+                        <span>Fecha de Sentencia</span>
+                    </th>
+                    <th style={{width: '250px'}}>
                         <span>Resultado de Emplazamiento</span>
                     </th>
                     <th style={{width: '250px'}}>
@@ -172,7 +175,8 @@ var ReportesTabla = React.createClass({
                     <td style={{width: '350px', textAlign: 'left'}}><span>{reporte.formattedValues.horariosJuzgado}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAdmision}</span></td>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAudienciaPrevia}</span></td>
-                    <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAudienciaPrueba}</span></td>
+                    <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAudienciaPrueba}</span></td>,
+                        <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaSentencia}</span></td>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.resultadoEmplazamiento}</span></td>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.etapaActual ? AccionRecord.ACCIONES_TYPES[reporte.etapaActual] : ''}</span></td>
                 </tr>

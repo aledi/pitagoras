@@ -64,7 +64,8 @@ var ContratoDetalle = React.createClass({
                 <DiligenciaEmbargo contrato={props.contrato} disabled={props.savingAccion} key='diligenciaEmbargo' />,
                 <Extrajudicial contrato={props.contrato} disabled={props.savingAccion} key='extrajudicial' />,
                 <FechaAudienciaPrevia contrato={props.contrato} disabled={props.savingAccion} key='fechaAudienciaPrevia' />,
-                <FechaAudienciaPrueba contrato={props.contrato} disabled={props.savingAccion} key='fechaAudienciaPrueba' />
+                <FechaAudienciaPrueba contrato={props.contrato} disabled={props.savingAccion} key='fechaAudienciaPrueba' />,
+                <FechaSentencia contrato={props.contrato} disabled={props.savingAccion} key='fechaSentencia' />
             ];
         }
 
