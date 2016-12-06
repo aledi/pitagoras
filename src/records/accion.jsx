@@ -28,7 +28,8 @@ var ACCIONES_TYPES = {
     10: 'Demanda admitida',
     11: 'Diligencia de embargo',
     12: 'Extrajudicial',
-    13: 'Fecha Audiencia Previa'
+    13: 'Fecha Audiencia Previa',
+    14: 'Fecha Audiencia Prueba'
 };
 
 var AccionRecord = Immutable.Record({
@@ -179,6 +180,10 @@ class Accion extends AccionRecord {
 
         if (accion.tipo === 13) {
             contrato.reporte.fechaAudienciaPrevia = accion.respuestas.fecha;
+        }
+
+        if (accion.tipo === 14) {
+            contrato.reporte.fechaAudienciaPrueba = accion.respuestas.fecha;
         }
 
         contrato.reporte.etapaActual = accion.tipo;
