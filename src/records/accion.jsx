@@ -30,7 +30,8 @@ var ACCIONES_TYPES = {
     12: 'Extrajudicial',
     13: 'Fecha Audiencia Previa',
     14: 'Fecha Audiencia Prueba',
-    15: 'Fecha Sentencia'
+    15: 'Fecha Sentencia',
+    16: 'Sentencia'
 };
 
 var AccionRecord = Immutable.Record({
