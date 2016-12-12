@@ -192,6 +192,11 @@ class Accion extends AccionRecord {
             contrato.reporte.fechaSentencia = accion.respuestas.fecha;
         }
 
+        if (accion.tipo === 16 && accion.respuestas.favorable === 'Tercero') {
+            accion.respuestas.favorable = accion.respuestas.tercero;
+            delete accion.respuestas.tercero;
+        }
+
         contrato.reporte.etapaActual = accion.tipo;
 
         accion.contrato = new ContratoObject(ContratoRecord.prepareForParse(contrato));
