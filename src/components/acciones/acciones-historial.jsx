@@ -24,6 +24,7 @@ var DiligenciaEmbargo = require('src/components/respuestas/diligencia-embargo');
 var FechaAudienciaPrevia = require('src/components/respuestas/fecha-audiencia-previa'); // 13
 var FechaAudienciaPrueba = require('src/components/respuestas/fecha-audiencia-prueba'); // 14
 var FechaSentencia = require('src/components/respuestas/fecha-sentencia'); // 15
+var Sentencia = require('src/components/respuestas/sentencia'); // 16
 
 // -----------------------------------------------------------------------------------------------
 // AccionesHistorial
@@ -101,6 +102,8 @@ var AccionesHistorial = React.createClass({
                 return (<FechaAudienciaPrueba accion={accion} />);
             case 15:
                 return (<FechaSentencia accion={accion} />);
+            case 16:
+                return (<Sentencia accion={accion} />);
             default:
                 break;
         }
