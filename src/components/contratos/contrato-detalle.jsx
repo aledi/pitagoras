@@ -30,6 +30,7 @@ var Extrajudicial = require('src/components/acciones/extrajudicial'); // 12
 var FechaAudienciaPrevia = require('src/components/acciones/fecha-audiencia-previa'); // 13
 var FechaAudienciaPrueba = require('src/components/acciones/fecha-audiencia-prueba'); // 14
 var FechaSentencia = require('src/components/acciones/fecha-sentencia'); // 15
+var Sentencia = require('src/components/acciones/sentencia'); // 16
 
 // -----------------------------------------------------------------------------------------------
 // Contrato
@@ -66,7 +67,8 @@ var ContratoDetalle = React.createClass({
                 <Extrajudicial contrato={props.contrato} disabled={props.savingAccion} key='extrajudicial' />,
                 <FechaAudienciaPrevia contrato={props.contrato} disabled={props.savingAccion} key='fechaAudienciaPrevia' />,
                 <FechaAudienciaPrueba contrato={props.contrato} disabled={props.savingAccion} key='fechaAudienciaPrueba' />,
-                <FechaSentencia contrato={props.contrato} disabled={props.savingAccion} key='fechaSentencia' />
+                <FechaSentencia contrato={props.contrato} disabled={props.savingAccion} key='fechaSentencia' />,
+                <Sentencia contrato={props.contrato} disabled={props.savingAccion} key='sentencia' />
             ];
         }
 

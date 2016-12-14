@@ -30,7 +30,8 @@ var ACCIONES_TYPES = {
     12: 'Extrajudicial',
     13: 'Fecha Audiencia Previa',
     14: 'Fecha Audiencia Prueba',
-    15: 'Fecha Sentencia'
+    15: 'Fecha Sentencia',
+    16: 'Sentencia'
 };
 
 var AccionRecord = Immutable.Record({
@@ -53,6 +54,7 @@ class Accion extends AccionRecord {
 
     static prepareForParse (accion) {
         delete accion.disabled;
+        delete accion.invalidFields;
 
         if (accion.respuestas.fecha) {
             accion.respuestas.fecha = accion.respuestas.fecha.toDate();
@@ -189,6 +191,11 @@ class Accion extends AccionRecord {
 
         if (accion.tipo === 15) {
             contrato.reporte.fechaSentencia = accion.respuestas.fecha;
+        }
+
+        if (accion.tipo === 16 && accion.respuestas.favorable === 'Tercero') {
+            accion.respuestas.favorable = accion.respuestas.tercero;
+            delete accion.respuestas.tercero;
         }
 
         contrato.reporte.etapaActual = accion.tipo;

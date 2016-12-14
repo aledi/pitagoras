@@ -12,6 +12,10 @@
         margin-bottom: 20px;
     }
 
+    .invalid {
+        border-color: $invalid;
+    }
+
     h5 {
         display: block;
         text-transform: uppercase;
