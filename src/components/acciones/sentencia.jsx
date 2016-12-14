@@ -6,6 +6,7 @@
 
 var React = require('react');
 var Parse = require('parse');
+var classNames = require('classnames');
 
 var AccionesMixin = require('./acciones-mixin');
 
@@ -24,6 +25,9 @@ var Sentencia = React.createClass({
             respuestas: {
                 favorable: 'Admite',
                 tercero: ''
+            },
+            invalidFields: {
+                tercero: false
             },
             disabled: false
         };
@@ -86,6 +90,7 @@ var Sentencia = React.createClass({
         return (
             <input
                 type='text'
+                className={classNames({invalid: this.state.invalidFields.tercero})}
                 value={this.state.respuestas.tercero}
                 onChange={this.handleChange.bind(this, 'tercero')}
                 disabled={this.state.disabled} />
@@ -93,8 +98,11 @@ var Sentencia = React.createClass({
     },
     handleChange: function (key, event) {
         var respuestas = this.state.respuestas;
-        respuestas[key] = event.target.value;
-        this.setState({respuestas: respuestas});
+        var invalidFields = this.state.invalidFields;
+        respuestas.tercero = event.target.value;
+        invalidFields.tercero = false;
+
+        this.setState({respuestas: respuestas, invalidFields: invalidFields});
     },
     handleRadioChange: function (event) {
         var respuestas = this.state.respuestas;

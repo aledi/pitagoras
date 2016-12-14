@@ -54,6 +54,7 @@ class Accion extends AccionRecord {
 
     static prepareForParse (accion) {
         delete accion.disabled;
+        delete accion.invalidFields;
 
         if (accion.respuestas.fecha) {
             accion.respuestas.fecha = accion.respuestas.fecha.toDate();

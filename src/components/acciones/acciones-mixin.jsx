@@ -32,6 +32,14 @@ var AccionesMixin = {
         this.setState(state);
     },
     saveAccion: function () {
+        var state = this.state;
+        if (state.tipo === 16 && state.respuestas.favorable === 'Tercero' && (!state.respuestas.tercero || !state.respuestas.tercero.trim())) {
+            state.invalidFields.tercero = true;
+            this.setState(state);
+
+            return;
+        }
+
         AccionesActions.saveAccion(AccionRecord.prepareForParse(this.state), this.state.contrato.id);
     }
 };
