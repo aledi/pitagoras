@@ -11,6 +11,7 @@ var Parse = require('parse');
 var classNames = require('classnames');
 
 var AccionRecord = require('src/records/accion');
+var ContratoRecord = require('src/records/contrato');
 
 var AccionesHistorial = require('src/components/acciones/acciones-historial');
 var ContratoForm = require('src/components/contratos/contrato-form');
@@ -64,12 +65,17 @@ var ContratoDetalle = React.createClass({
                 <Desahogo contrato={props.contrato} disabled={props.savingAccion} key='desahogo' />,
                 <DemandaAdmitida contrato={props.contrato} disabled={props.savingAccion} key='demandaAdmitida' />,
                 <DiligenciaEmbargo contrato={props.contrato} disabled={props.savingAccion} key='diligenciaEmbargo' />,
-                <Extrajudicial contrato={props.contrato} disabled={props.savingAccion} key='extrajudicial' />,
-                <FechaAudienciaPrevia contrato={props.contrato} disabled={props.savingAccion} key='fechaAudienciaPrevia' />,
-                <FechaAudienciaPrueba contrato={props.contrato} disabled={props.savingAccion} key='fechaAudienciaPrueba' />,
-                <FechaSentencia contrato={props.contrato} disabled={props.savingAccion} key='fechaSentencia' />,
-                <Sentencia contrato={props.contrato} disabled={props.savingAccion} key='sentencia' />
+                <Extrajudicial contrato={props.contrato} disabled={props.savingAccion} key='extrajudicial' />
             ];
+
+            if (props.contrato.tipoJuicio === ContratoRecord.JUICIO_TYPES.ORAL) {
+                accionesComponents.push(
+                    <FechaAudienciaPrevia contrato={props.contrato} disabled={props.savingAccion} key='fechaAudienciaPrevia' />,
+                    <FechaAudienciaPrueba contrato={props.contrato} disabled={props.savingAccion} key='fechaAudienciaPrueba' />,
+                    <FechaSentencia contrato={props.contrato} disabled={props.savingAccion} key='fechaSentencia' />,
+                    <Sentencia contrato={props.contrato} disabled={props.savingAccion} key='sentencia' />
+                );
+            }
         }
 
         var state = {

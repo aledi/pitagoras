@@ -34,10 +34,16 @@ var ASIGNACION_TYPES = {
     OTRO: 'Otro'
 };
 
+var JUICIO_TYPES = {
+    ORAL: 'Oral Mercantil',
+    EJECUTIVA: 'Ejecutiva Mercantil'
+};
+
 var ContratoRecord = Immutable.Record({
     id: null,
     tipoAsignacion: null,
     tipoContrato: null,
+    tipoJuicio: null,
     cliente: null,
     fechaContrato: null,
     juzgado: null,
@@ -65,6 +71,10 @@ class Contrato extends ContratoRecord {
 
     static get ASIGNACION_TYPES () {
         return ASIGNACION_TYPES;
+    }
+
+    static get JUICIO_TYPES () {
+        return JUICIO_TYPES;
     }
 
     static prepareForParse (contrato) {
@@ -116,6 +126,9 @@ class Contrato extends ContratoRecord {
 
         // Tipo Contrato
         definition.tipoContrato = definition.tipoContrato;
+
+        // Tipo Juicio
+        definition.tipoJuicio = definition.tipoJuicio;
 
         // Número de Contrato
         definition.numeroContrato = definition.numeroContrato || '';
@@ -206,6 +219,7 @@ class Contrato extends ContratoRecord {
             id: this.id,
             tipoAsignacion: this.tipoAsignacion || ASIGNACION_TYPES.NORMAL,
             tipoContrato: this.tipoContrato || CONTRATO_TYPES.PERDIDA,
+            tipoJuicio: this.tipoJuicio,
             cliente: this.cliente.toEditable(),
             fechaContrato: this.fechaContrato ? this.fechaContrato : moment(),
             monto: this.monto,
