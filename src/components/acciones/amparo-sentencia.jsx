@@ -11,14 +11,14 @@ var classNames = require('classnames');
 var AccionesMixin = require('./acciones-mixin');
 
 // -----------------------------------------------------------------------------------------------
-// Sentencia
+// Amparo vs Sentencia
 // -----------------------------------------------------------------------------------------------
 
-var Sentencia = React.createClass({
+var AmparoSentencia = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
         return {
-            tipo: 16,
+            tipo: 17,
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
@@ -112,4 +112,4 @@ var Sentencia = React.createClass({
     }
 });
 
-module.exports = Sentencia;
+module.exports = AmparoSentencia;

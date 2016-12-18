@@ -31,7 +31,8 @@ var ACCIONES_TYPES = {
     13: 'Fecha Audiencia Previa',
     14: 'Fecha Audiencia Prueba',
     15: 'Fecha Sentencia',
-    16: 'Sentencia'
+    16: 'Sentencia',
+    17: 'Amparo vs Sentencia'
 };
 
 var AccionRecord = Immutable.Record({
@@ -194,7 +195,7 @@ class Accion extends AccionRecord {
             contrato.reporte.fechaSentencia = accion.respuestas.fecha;
         }
 
-        if (accion.tipo === 16 && accion.respuestas.favorable === 'Tercero') {
+        if ((accion.tipo === 16 || accion.tipo === 17) && accion.respuestas.favorable === 'Tercero') {
             accion.respuestas.favorable = accion.respuestas.tercero;
             delete accion.respuestas.tercero;
         }

@@ -103,6 +103,7 @@ var AccionesHistorial = React.createClass({
             case 15:
                 return (<FechaSentencia accion={accion} />);
             case 16:
+            case 17:
                 return (<Sentencia accion={accion} />);
             default:
                 break;
