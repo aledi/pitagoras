@@ -32,6 +32,7 @@ var ACCIONES_TYPES = {
     14: 'Fecha Audiencia Prueba',
     15: 'Fecha Sentencia',
     16: 'Sentencia',
+    17: 'Amparo vs Sentencia',
     18: 'Resolución Amparo vs Sentencia'
 };
 
@@ -197,6 +198,11 @@ class Accion extends AccionRecord {
 
         if (accion.tipo === 16 && accion.respuestas.favorable === 'Tercero') {
             accion.respuestas.favorable = accion.respuestas.tercero;
+            delete accion.respuestas.tercero;
+        }
+
+        if (accion.tipo === 17 && accion.respuestas.promovido === 'Tercero') {
+            accion.respuestas.promovido = accion.respuestas.tercero;
             delete accion.respuestas.tercero;
         }
 
