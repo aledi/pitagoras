@@ -31,7 +31,8 @@ var ACCIONES_TYPES = {
     13: 'Fecha Audiencia Previa',
     14: 'Fecha Audiencia Prueba',
     15: 'Fecha Sentencia',
-    16: 'Sentencia'
+    16: 'Sentencia',
+    18: 'Resolución Amparo vs Sentencia'
 };
 
 var AccionRecord = Immutable.Record({

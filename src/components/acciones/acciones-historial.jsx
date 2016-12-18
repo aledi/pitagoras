@@ -25,6 +25,7 @@ var FechaAudienciaPrevia = require('src/components/respuestas/fecha-audiencia-pr
 var FechaAudienciaPrueba = require('src/components/respuestas/fecha-audiencia-prueba'); // 14
 var FechaSentencia = require('src/components/respuestas/fecha-sentencia'); // 15
 var Sentencia = require('src/components/respuestas/sentencia'); // 16
+var ResolucionAmparoSentencia = require('src/components/respuestas/resolucion-amparo-sentencia'); // 18
 
 // -----------------------------------------------------------------------------------------------
 // AccionesHistorial
