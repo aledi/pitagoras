@@ -7,7 +7,7 @@
 var React = require('react');
 
 // -----------------------------------------------------------------------------------------------
-// Sentencia
+// Amparo vs Sentencia
 // -----------------------------------------------------------------------------------------------
 
 var Sentencia = React.createClass({
@@ -15,8 +15,8 @@ var Sentencia = React.createClass({
         return (
             <div className='respuestas-wrapper'>
                 <div>
-                    <span className='bold'>Favorable a: </span>
-                    <span>{this.props.accion.respuestas.favorable}</span>
+                    <span className='bold'>Promovido por: </span>
+                    <span>{this.props.accion.respuestas.promovido}</span>
                 </div>
             </div>
         );
