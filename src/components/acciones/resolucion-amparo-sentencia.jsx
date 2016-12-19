@@ -7,8 +7,10 @@
 var React = require('react');
 var Parse = require('parse');
 var classNames = require('classnames');
+var moment = require('moment');
 
 var AccionesMixin = require('./acciones-mixin');
+var DateSelect = require('src/components/shared/date-select');
 
 // -----------------------------------------------------------------------------------------------
 // Resolución Amparo vs Sentencia
@@ -23,6 +25,7 @@ var ResolucionAmparoSentencia = React.createClass({
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
+                fecha: moment(),
                 favorable: 'GMF',
                 tercero: ''
             },
@@ -43,6 +46,10 @@ var ResolucionAmparoSentencia = React.createClass({
 
         return (
             <div className='acuerdo-demanda accion-form'>
+                <div className='element-wrapper'>
+                    <h5>Fecha</h5>
+                    <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
+                </div>
                 <div className='element-wrapper'>
                     <h5>Favorable a</h5>
                     <div>
@@ -109,6 +116,12 @@ var ResolucionAmparoSentencia = React.createClass({
         respuestas.favorable = event.target.value;
 
         this.setState({respuestas: respuestas});
+    },
+    handleFechaChange: function (date) {
+        var state = {respuestas: this.state.respuestas};
+        state.respuestas.fecha = date.clone();
+
+        this.setState(state);
     }
 });
 

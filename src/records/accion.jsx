@@ -206,6 +206,10 @@ class Accion extends AccionRecord {
             delete accion.respuestas.tercero;
         }
 
+        if (accion.tipo === 18) {
+            contrato.reporte.fechaResolucionAmparoSentencia = accion.respuestas.fecha;
+        }
+
         contrato.reporte.etapaActual = accion.tipo;
 
         accion.contrato = new ContratoObject(ContratoRecord.prepareForParse(contrato));
