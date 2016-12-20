@@ -33,6 +33,7 @@ var FechaAudienciaPrueba = require('src/components/acciones/fecha-audiencia-prue
 var FechaSentencia = require('src/components/acciones/fecha-sentencia'); // 15
 var Sentencia = require('src/components/acciones/sentencia'); // 16
 var AmparoSentencia = require('src/components/acciones/amparo-sentencia'); // 17
+var ResolucionAmparoSentencia = require('src/components/acciones/resolucion-amparo-sentencia'); // 18
 
 // -----------------------------------------------------------------------------------------------
 // Contrato
@@ -75,7 +76,8 @@ var ContratoDetalle = React.createClass({
                     <FechaAudienciaPrueba contrato={props.contrato} disabled={props.savingAccion} key='fechaAudienciaPrueba' />,
                     <FechaSentencia contrato={props.contrato} disabled={props.savingAccion} key='fechaSentencia' />,
                     <Sentencia contrato={props.contrato} disabled={props.savingAccion} key='sentencia' />,
-                    <AmparoSentencia contrato={props.contrato} disabled={props.savingAccion} key='sentencia' />
+                    <AmparoSentencia contrato={props.contrato} disabled={props.savingAccion} key='amparoSentencia' />,
+                    <ResolucionAmparoSentencia contrato={props.contrato} disabled={props.savingAccion} key='resolucionAmparoSentencia' />
                 );
             }
         }

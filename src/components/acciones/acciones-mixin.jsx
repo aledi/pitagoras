@@ -33,7 +33,7 @@ var AccionesMixin = {
     },
     saveAccion: function () {
         var state = this.state;
-        if ((state.tipo === 16 && state.respuestas.favorable === 'Tercero') || (state.tipo === 17 && state.respuestas.promovido === 'Tercero') && (!state.respuestas.tercero || !state.respuestas.tercero.trim())) {
+        if (((state.tipo === 16 || state.tipo === 18) && state.respuestas.favorable === 'Tercero') || (state.tipo === 17 && state.respuestas.promovido === 'Tercero') && (!state.respuestas.tercero || !state.respuestas.tercero.trim())) {
             state.invalidFields.tercero = true;
             this.setState(state);
 
