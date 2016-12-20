@@ -15,6 +15,10 @@ var ContratoRecord = require('./contrato');
 // AccionRecord
 // -----------------------------------------------------------------------------------------------
 
+// 1 - 12 acciones normales
+// 13 - 18 acciones para juicio oral
+// 16 acciones para juicio ejecutiva
+
 var ACCIONES_TYPES = {
     1: 'Visita',
     2: 'Alta de documentos',
