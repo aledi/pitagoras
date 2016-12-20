@@ -80,6 +80,12 @@ var ContratoDetalle = React.createClass({
                     <ResolucionAmparoSentencia contrato={props.contrato} disabled={props.savingAccion} key='resolucionAmparoSentencia' />
                 );
             }
+
+            if (props.contrato.tipoJuicio === ContratoRecord.JUICIO_TYPES.EJECUTIVA) {
+                accionesComponents.push(
+                    <Sentencia contrato={props.contrato} disabled={props.savingAccion} key='sentencia' />
+                );
+            }
         }
 
         var state = {

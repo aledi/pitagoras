@@ -196,9 +196,15 @@ class Accion extends AccionRecord {
             contrato.reporte.fechaSentencia = accion.respuestas.fecha;
         }
 
-        if (accion.tipo === 16 && accion.respuestas.favorable === 'Tercero') {
-            accion.respuestas.favorable = accion.respuestas.tercero;
-            delete accion.respuestas.tercero;
+        if (accion.tipo === 16) {
+            if (accion.respuestas.favorable === 'Tercero') {
+                accion.respuestas.favorable = accion.respuestas.tercero;
+                delete accion.respuestas.tercero;
+            }
+
+            if (contrato.tipoJuicio === ContratoRecord.JUICIO_TYPES.ORAL) {
+                delete accion.respuestas.fecha;
+            }
         }
 
         if (accion.tipo === 17 && accion.respuestas.promovido === 'Tercero') {
