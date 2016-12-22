@@ -8,7 +8,10 @@ var React = require('react');
 var Parse = require('parse');
 var classNames = require('classnames');
 
+var ContratoRecord = require('../../records/contrato');
+
 var AccionesMixin = require('./acciones-mixin');
+var DateSelect = require('src/components/shared/date-select');
 
 // -----------------------------------------------------------------------------------------------
 // Amparo vs Sentencia
@@ -96,6 +99,18 @@ var AmparoSentencia = React.createClass({
                 disabled={this.state.disabled} />
         );
     },
+    renderDate: function () {
+        if (this.state.contrato.tipoJuicio !== ContratoRecord.JUICIO_TYPES.EJECUTIVA) {
+            return;
+        }
+
+        return (
+            <div className='element-wrapper'>
+                <h5>Fecha</h5>
+                <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
+            </div>
+        );
+    },
     handleChange: function (key, event) {
         var respuestas = this.state.respuestas;
         var invalidFields = this.state.invalidFields;
@@ -103,6 +118,12 @@ var AmparoSentencia = React.createClass({
         invalidFields.tercero = false;
 
         this.setState({respuestas: respuestas, invalidFields: invalidFields});
+    },
+    handleFechaChange: function (date) {
+        var state = {respuestas: this.state.respuestas};
+        state.respuestas.fecha = date.clone();
+
+        this.setState(state);
     },
     handleRadioChange: function (event) {
         var respuestas = this.state.respuestas;

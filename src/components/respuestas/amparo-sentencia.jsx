@@ -10,7 +10,7 @@ var React = require('react');
 // Amparo vs Sentencia
 // -----------------------------------------------------------------------------------------------
 
-var Sentencia = React.createClass({
+var AmparoSentencia = React.createClass({
     render: function () {
         return (
             <div className='respuestas-wrapper'>
@@ -23,4 +23,4 @@ var Sentencia = React.createClass({
     }
 });
 
-module.exports = Sentencia;
+module.exports = AmparoSentencia;
