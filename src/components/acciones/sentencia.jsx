@@ -7,8 +7,12 @@
 var React = require('react');
 var Parse = require('parse');
 var classNames = require('classnames');
+var moment = require('moment');
+
+var ContratoRecord = require('../../records/contrato');
 
 var AccionesMixin = require('./acciones-mixin');
+var DateSelect = require('src/components/shared/date-select');
 
 // -----------------------------------------------------------------------------------------------
 // Sentencia
@@ -24,7 +28,8 @@ var Sentencia = React.createClass({
             contrato: this.props.contrato,
             respuestas: {
                 favorable: 'GMF',
-                tercero: ''
+                tercero: '',
+                fecha: moment()
             },
             invalidFields: {
                 tercero: false
@@ -77,6 +82,7 @@ var Sentencia = React.createClass({
                     </div>
                 </div>
                 {this.renderInput()}
+                {this.renderDate()}
                 {this.renderComentarios()}
                 {this.renderButton()}
             </div>
@@ -95,6 +101,24 @@ var Sentencia = React.createClass({
                 onChange={this.handleChange.bind(this, 'tercero')}
                 disabled={this.state.disabled} />
         );
+    },
+    renderDate: function () {
+        if (this.state.contrato.tipoJuicio !== ContratoRecord.JUICIO_TYPES.EJECUTIVA) {
+            return;
+        }
+
+        return (
+            <div className='element-wrapper'>
+                <h5>Fecha de presentación</h5>
+                <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange} />
+            </div>
+        );
+    },
+    handleFechaChange: function (date) {
+        var state = {respuestas: this.state.respuestas};
+        state.respuestas.fecha = date.clone();
+
+        this.setState(state);
     },
     handleChange: function (key, event) {
         var respuestas = this.state.respuestas;
