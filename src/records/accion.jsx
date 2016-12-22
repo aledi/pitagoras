@@ -37,7 +37,8 @@ var ACCIONES_TYPES = {
     15: 'Fecha Sentencia',
     16: 'Sentencia',
     17: 'Amparo vs Sentencia',
-    18: 'Resolución Amparo vs Sentencia'
+    18: 'Resolución Amparo vs Sentencia',
+    19: 'Apelación'
 };
 
 var AccionRecord = Immutable.Record({
