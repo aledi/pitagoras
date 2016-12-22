@@ -208,6 +208,8 @@ class Accion extends AccionRecord {
 
             if (contrato.tipoJuicio === ContratoRecord.JUICIO_TYPES.ORAL) {
                 delete accion.respuestas.fecha;
+            } else if (contrato.tipoJuicio === ContratoRecord.JUICIO_TYPES.EJECUTIVA) {
+                contrato.reporte.sentencia = accion.respuestas.fecha;
             }
         }
 
