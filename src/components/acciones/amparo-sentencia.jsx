@@ -42,7 +42,7 @@ var AmparoSentencia = React.createClass({
         var respuestas = this.state.respuestas;
 
         return (
-            <div className='acuerdo-demanda accion-form'>
+            <div className='amparo-sentencia accion-form'>
                 <div className='element-wrapper'>
                     <h5>Promovido por</h5>
                     <div>
@@ -63,7 +63,7 @@ var AmparoSentencia = React.createClass({
                             checked={respuestas.promovido === 'Demandado'}
                             onChange={this.handleRadioChange}
                             disabled={this.state.disabled} />
-                        <label htmlFor='confirma' disabled={this.state.disabled}>Demandado</label>
+                        <label htmlFor='demandado' disabled={this.state.disabled}>Demandado</label>
                     </div>
                     <div>
                         <input
@@ -73,7 +73,7 @@ var AmparoSentencia = React.createClass({
                             checked={respuestas.promovido === 'Tercero'}
                             onChange={this.handleRadioChange}
                             disabled={this.state.disabled} />
-                        <label htmlFor='confirma' disabled={this.state.disabled}>Tercero</label>
+                        <label htmlFor='tercero' disabled={this.state.disabled}>Tercero</label>
                     </div>
                 </div>
                 {this.renderInput()}

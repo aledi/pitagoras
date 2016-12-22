@@ -47,7 +47,7 @@ var Sentencia = React.createClass({
         var respuestas = this.state.respuestas;
 
         return (
-            <div className='acuerdo-demanda accion-form'>
+            <div className='sentencia accion-form'>
                 <div className='element-wrapper'>
                     <h5>Favorable a</h5>
                     <div>
@@ -68,7 +68,7 @@ var Sentencia = React.createClass({
                             checked={respuestas.favorable === 'Demandado'}
                             onChange={this.handleRadioChange}
                             disabled={this.state.disabled} />
-                        <label htmlFor='confirma' disabled={this.state.disabled}>Demandado</label>
+                        <label htmlFor='demandado' disabled={this.state.disabled}>Demandado</label>
                     </div>
                     <div>
                         <input
@@ -78,7 +78,7 @@ var Sentencia = React.createClass({
                             checked={respuestas.favorable === 'Tercero'}
                             onChange={this.handleRadioChange}
                             disabled={this.state.disabled} />
-                        <label htmlFor='confirma' disabled={this.state.disabled}>Tercero</label>
+                        <label htmlFor='tercero' disabled={this.state.disabled}>Tercero</label>
                     </div>
                 </div>
                 {this.renderInput()}

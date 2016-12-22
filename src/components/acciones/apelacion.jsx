@@ -10,23 +10,19 @@ var Parse = require('parse');
 var AccionesMixin = require('./acciones-mixin');
 
 // -----------------------------------------------------------------------------------------------
-// Amparo
+// Apelacion
 // -----------------------------------------------------------------------------------------------
 
-var Amparo = React.createClass({
+var Apelacion = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
         return {
-            tipo: 16,
+            tipo: 19,
             comentarios: '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                favorable: 'GMF',
-                tercero: ''
-            },
-            invalidFields: {
-                tercero: false
+                interpuesta: 'GMF'
             },
             disabled: false
         };
@@ -41,7 +37,7 @@ var Amparo = React.createClass({
         var respuestas = this.state.respuestas;
 
         return (
-            <div className='acuerdo-demanda accion-form'>
+            <div className='apelacion accion-form'>
                 <div className='element-wrapper'>
                     <h5>Interpuesta por</h5>
                     <div>
@@ -49,7 +45,7 @@ var Amparo = React.createClass({
                             type='radio'
                             id='gmf'
                             value='GMF'
-                            checked={respuestas.favorable === 'GMF'}
+                            checked={respuestas.interpuesta === 'GMF'}
                             onChange={this.handleRadioChange}
                             disabled={this.state.disabled} />
                         <label htmlFor='gmf' disabled={this.state.disabled}>GMF</label>
@@ -59,10 +55,10 @@ var Amparo = React.createClass({
                             type='radio'
                             id='demandado'
                             value='Demandado'
-                            checked={respuestas.favorable === 'Demandado'}
+                            checked={respuestas.interpuesta === 'Demandado'}
                             onChange={this.handleRadioChange}
                             disabled={this.state.disabled} />
-                        <label htmlFor='confirma' disabled={this.state.disabled}>Demandado</label>
+                        <label htmlFor='demandado' disabled={this.state.disabled}>Demandado</label>
                     </div>
                 </div>
                 {this.renderComentarios()}
@@ -72,10 +68,10 @@ var Amparo = React.createClass({
     },
     handleRadioChange: function (event) {
         var respuestas = this.state.respuestas;
-        respuestas.favorable = event.target.value;
+        respuestas.interpuesta = event.target.value;
 
         this.setState({respuestas: respuestas});
     }
 });
 
-module.exports = Amparo;
+module.exports = Apelacion;

@@ -41,7 +41,7 @@ var Amparo = React.createClass({
         var respuestas = this.state.respuestas;
 
         return (
-            <div className='acuerdo-demanda accion-form'>
+            <div className='amparo accion-form'>
                 <div className='element-wrapper'>
                     <h5>Fecha de presentación</h5>
                     <DateSelect date={respuestas.fechaPresentacion} onChange={this.handleFechaChange.bind(this, 'fechaPresentacion')} />
