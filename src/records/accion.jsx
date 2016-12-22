@@ -38,7 +38,8 @@ var ACCIONES_TYPES = {
     16: 'Sentencia',
     17: 'Amparo vs Sentencia',
     18: 'Resolución Amparo vs Sentencia',
-    19: 'Apelación'
+    19: 'Apelación',
+    20: 'Sentencia de Apelación'
 };
 
 var AccionRecord = Immutable.Record({
@@ -221,6 +222,10 @@ class Accion extends AccionRecord {
 
         if (accion.tipo === 18) {
             contrato.reporte.fechaResolucionAmparoSentencia = accion.respuestas.fecha;
+        }
+
+        if (accion.tipo === 20) {
+            contrato.reporte.fechaSentenciaApelacion = accion.respuestas.fecha;
         }
 
         contrato.reporte.etapaActual = accion.tipo;
