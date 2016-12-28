@@ -39,7 +39,8 @@ var ACCIONES_TYPES = {
     17: 'Amparo vs Sentencia',
     18: 'Resolución Amparo vs Sentencia',
     19: 'Apelación',
-    20: 'Sentencia de Apelación'
+    20: 'Sentencia de Apelación',
+    21: 'Fecha Audiencia Pruebas'
 };
 
 var AccionRecord = Immutable.Record({
@@ -66,6 +67,18 @@ class Accion extends AccionRecord {
 
         if (accion.respuestas.fecha) {
             accion.respuestas.fecha = accion.respuestas.fecha.toDate();
+        }
+
+        if (accion.respuestas.fecha1) {
+            accion.respuestas.fecha1 = accion.respuestas.fecha1.toDate();
+        }
+
+        if (accion.respuestas.fecha2) {
+            accion.respuestas.fecha2 = accion.respuestas.fecha2.toDate();
+        }
+
+        if (accion.respuestas.fecha3) {
+            accion.respuestas.fecha3 = accion.respuestas.fecha3.toDate();
         }
 
         if (accion.respuestas.cita && accion.respuestas.cita.fecha) {
