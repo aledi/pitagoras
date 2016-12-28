@@ -7,6 +7,7 @@
 var React = require('react');
 var Parse = require('parse');
 var classNames = require('classnames');
+var moment = require('moment');
 
 var ContratoRecord = require('../../records/contrato');
 
@@ -20,7 +21,9 @@ var DateSelect = require('src/components/shared/date-select');
 var AmparoSentencia = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
-        return {
+        var juicioEjecutiva = this.props.contrato.tipoJuicio === ContratoRecord.JUICIO_TYPES.EJECUTIVA;
+
+        var state = {
             tipo: 17,
             comentarios: '',
             creador: Parse.User.current(),
@@ -34,6 +37,12 @@ var AmparoSentencia = React.createClass({
             },
             disabled: false
         };
+
+        if (juicioEjecutiva) {
+            state.respuestas.fecha = moment();
+        }
+
+        return state;
     },
     componentWillReceiveProps: function (nextProps) {
         this.getState(nextProps);
@@ -43,11 +52,12 @@ var AmparoSentencia = React.createClass({
     },
     render: function () {
         var respuestas = this.state.respuestas;
+        var juicioEjecutiva = this.state.contrato.tipoJuicio === ContratoRecord.JUICIO_TYPES.EJECUTIVA;
 
         return (
             <div className='amparo-sentencia accion-form'>
                 <div className='element-wrapper'>
-                    <h5>Promovido por</h5>
+                    <h5>{juicioEjecutiva ? 'Favorable a' : 'Promovido por'}</h5>
                     <div>
                         <input
                             type='radio'
@@ -80,6 +90,7 @@ var AmparoSentencia = React.createClass({
                     </div>
                 </div>
                 {this.renderInput()}
+                {this.renderDate()}
                 {this.renderComentarios()}
                 {this.renderButton()}
             </div>

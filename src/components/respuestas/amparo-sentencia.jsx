@@ -12,11 +12,13 @@ var React = require('react');
 
 var AmparoSentencia = React.createClass({
     render: function () {
+        var juicioEjecutiva = !!this.props.accion.respuestas.favorable;
+
         return (
             <div className='respuestas-wrapper'>
                 <div>
-                    <span className='bold'>Promovido por: </span>
-                    <span>{this.props.accion.respuestas.promovido}</span>
+                    <span className='bold'>{juicioEjecutiva ? 'Favorable a: ' : 'Promovido por: '}</span>
+                    <span>{juicioEjecutiva ? this.props.accion.respuestas.favorable : this.props.accion.respuestas.promovido}</span>
                 </div>
             </div>
         );
