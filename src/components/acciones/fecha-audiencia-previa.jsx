@@ -26,8 +26,7 @@ var FechaAudienciaPrevia = React.createClass({
             contrato: this.props.contrato,
             respuestas: {
                 fecha: moment(),
-                hora: '8:00 am',
-                pendiente: false
+                hora: '8:00 am'
             },
             disabled: false
         };
