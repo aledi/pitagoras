@@ -228,9 +228,19 @@ class Accion extends AccionRecord {
             }
         }
 
-        if (accion.tipo === 17 && accion.respuestas.promovido === 'Tercero') {
-            accion.respuestas.promovido = accion.respuestas.tercero;
-            delete accion.respuestas.tercero;
+        if (accion.tipo === 17) {
+            var juicioEjecutiva = contrato.tipoJuicio === ContratoRecord.JUICIO_TYPES.EJECUTIVA;
+            var key = juicioEjecutiva ? 'favorable' : 'promovido';
+
+            if (juicioEjecutiva) {
+                accion.respuestas.favorable = accion.respuestas.promovido;
+                delete accion.respuestas.promovido;
+            }
+
+            if (accion.respuestas[key] === 'Tercero') {
+                accion.respuestas[key] = accion.respuestas.tercero;
+                delete accion.respuestas.tercero;
+            }
         }
 
         if (accion.tipo === 18) {

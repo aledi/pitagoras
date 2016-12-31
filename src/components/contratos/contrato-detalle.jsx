@@ -145,6 +145,10 @@ var ContratoDetalle = React.createClass({
                         component: <Sentencia contrato={props.contrato} disabled={props.savingAccion} key='sentencia' />
                     },
                     {
+                        id: 17,
+                        component: <AmparoSentencia contrato={props.contrato} disabled={props.savingAccion} key='amparoSentencia' />
+                    },
+                    {
                         id: 19,
                         component: <Apelacion contrato={props.contrato} disabled={props.savingAccion} key='apelacion' />
                     },
