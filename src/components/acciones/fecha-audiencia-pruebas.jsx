@@ -86,6 +86,7 @@ var FechaAudienciaPruebas = React.createClass({
                         <label htmlFor='no' disabled={this.state.disabled}>No</label>
                     </div>
                 </div>
+                <h5>Continuación de Audiencia</h5>
                 <div className='element-wrapper'>
                     <h5>Fecha 1</h5>
                     <DateSelect date={this.state.respuestas.fecha1} onChange={this.handleFechaChange.bind(this, 'fecha1')} />
