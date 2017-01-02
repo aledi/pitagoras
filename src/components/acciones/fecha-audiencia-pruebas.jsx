@@ -39,7 +39,6 @@ var FechaAudienciaPruebas = React.createClass({
         this.setState({disabled: props.disabled});
     },
     render: function () {
-        console.log(this.state.respuestas.fecha1)
         return (
             <div className='fecha-audiencia-pruebas accion-form'>
                 <div className='element-wrapper'>
@@ -82,9 +81,9 @@ var FechaAudienciaPruebas = React.createClass({
                     </div>
                 </div>
                 <h5>Continuación de Audiencia</h5>
-                {this.renderFecha('fecha1', 'hora1', 1)}
-                {this.renderFecha('fecha2', 'hora2', 2)}
-                {this.renderFecha('fecha3', 'hora3', 3)}
+                {this.renderFecha(1)}
+                {this.renderFecha(2)}
+                {this.renderFecha(3)}
                 {this.renderAddDateButton()}
 
                 {this.renderComentarios()}
@@ -97,10 +96,10 @@ var FechaAudienciaPruebas = React.createClass({
             return;
         }
 
-        return (<button type='button' onClick={this.addDate}>Agregar nueva fecha</button>);
+        return (<button type='button' className='add' onClick={this.addDate}>Agregar nueva fecha</button>);
     },
-    renderFecha: function (fechaKey, horaKey, num) {
-        if (!this.state.respuestas[fechaKey]) {
+    renderFecha: function (num) {
+        if (!this.state.respuestas['fecha' + num]) {
             return;
         }
 
@@ -108,11 +107,11 @@ var FechaAudienciaPruebas = React.createClass({
             <div>
                 <div className='element-wrapper'>
                     <h5>{'Fecha ' + num}</h5>
-                    <DateSelect date={this.state.respuestas[fechaKey]} onChange={this.handleFechaChange.bind(this, fechaKey)} />
+                    <DateSelect date={this.state.respuestas['fecha' + num]} onChange={this.handleFechaChange.bind(this, 'fecha' + num)} />
                 </div>
                 <div className='element-wrapper'>
                     <h5 className='text-label'>{'Hora ' + num}</h5>
-                    <TimeSelect time={this.state.respuestas[horaKey]} onChange={this.handleHoraChange.bind(this, horaKey)} />
+                    <TimeSelect time={this.state.respuestas['hora' + num]} onChange={this.handleHoraChange.bind(this, 'hora' + num)} />
                 </div>
             </div>
         );
