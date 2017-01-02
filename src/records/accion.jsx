@@ -15,10 +15,6 @@ var ContratoRecord = require('./contrato');
 // AccionRecord
 // -----------------------------------------------------------------------------------------------
 
-// 1 - 12 acciones normales
-// 13 - 18 acciones para juicio oral
-// 16 acciones para juicio ejecutiva
-
 var ACCIONES_TYPES = {
     1: 'Visita',
     2: 'Alta de documentos',
@@ -135,6 +131,17 @@ class Accion extends AccionRecord {
                 numeroContrato: contrato.numeroContrato,
                 contratoId: contrato.id,
                 cita: accion.respuestas.cita
+            };
+        }
+
+        // Notification for
+        if (accion.tipo === 13 || accion.tipo === 14 || accion.tipo === 16 || accion.tipo === 17 || accion.tipo === 20 || accion.tipo === 21) {
+            contrato.notificacion = {
+                tipo: 5,
+                numeroContrato: contrato.numeroContrato,
+                contratoId: contrato.id,
+                fecha: accion.respuestas.fecha,
+                hora: accion.respuestas.hora
             };
         }
 
