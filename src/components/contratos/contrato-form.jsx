@@ -38,9 +38,20 @@ var ContratoForm = React.createClass({
 
         // Success
         if (this.state.saving && !saving && !saveError) {
+
+            // Remove 'invalid' class from inputs
+            for (var ref in this.refs) {
+                if (!this.refs.hasOwnProperty(ref)) {
+                    continue;
+                }
+
+                this.refs[ref].className = '';
+            }
+
             this.setState({
                 feedbackText: 'El contrato se ha guardado exitosamente',
                 contrato: new ContratoRecord().toEditable(),
+                attemptedToSave: false,
                 saving: false,
                 saveError: false
             });
@@ -52,6 +63,7 @@ var ContratoForm = React.createClass({
         if (this.state.saving && !saving && saveError) {
             this.setState({
                 feedbackText: 'Error al guardar el contrato',
+                attemptedToSave: false,
                 saving: false,
                 saveError: true
             });
@@ -569,6 +581,7 @@ var ContratoForm = React.createClass({
     handleChange: function (key, event) {
         var state = {contrato: this.state.contrato, invalidFields: this.state.invalidFields};
         state.contrato[key] = event.target.value;
+        state.attemptedToSave = false;
 
         if (key === 'numeroContrato' && this.state.invalidFields && this.state.invalidFields.numeroContrato) {
             state.invalidFields.numeroContrato = false;
@@ -661,8 +674,8 @@ var ContratoForm = React.createClass({
             invalidFields = true;
         }
 
-        if (this.invalidInputs()) {
-            return;
+        if (!this.state.attemptedToSave && !this.validateInputs()) {
+            this.setState({attemptedToSave: true});
         }
 
         if (invalidFields) {
@@ -670,10 +683,12 @@ var ContratoForm = React.createClass({
             return;
         }
 
-        ContratosActions.saveContrato(contrato);
+        if (this.state.attemptedToSave) {
+            ContratosActions.saveContrato(contrato);
+        }
     },
-    invalidInputs: function () {
-        var invalid = false;
+    validateInputs: function () {
+        var valid = true;
         for (var ref in this.refs) {
             if (!this.refs.hasOwnProperty(ref)) {
                 continue;
@@ -681,12 +696,12 @@ var ContratoForm = React.createClass({
 
             var input = this.refs[ref];
             if (!input.value || !input.value.trim()) {
-                invalid = true;
+                valid = false;
                 input.className += ' invalid';
             }
         }
 
-        return invalid;
+        return valid;
     },
     restrictNumericInput: function (isFloat, event) {
         if (!event.metaKey && event.charCode !== 13 && (event.charCode < 48 || event.charCode > 57)) {
