@@ -35,29 +35,27 @@ var FechaAudienciaPruebas = React.createClass({
                     <span className='bold'>Citación a Sentencia: </span>
                     <span>{RespuestasUtils.formatBooleanRespuesta(this.props.accion.respuestas.citacion)}</span>
                 </div>
+                {this.renderFecha(1)}
+                {this.renderFecha(2)}
+                {this.renderFecha(3)}
+            </div>
+        );
+    },
+    renderFecha: function (num) {
+        var respuestas = this.props.accion.respuestas;
+        if (!respuestas['fecha' + num]) {
+            return;
+        }
+
+        return (
+            <div>
                 <div>
-                    <span className='bold'>Fecha 1: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fecha1)}</span>
+                    <span className='bold'>{'Fecha ' + num + ': '}</span>
+                    <span>{DateUtils.formatFechaRespuesta(respuestas['fecha' + num])}</span>
                 </div>
                 <div>
-                    <span className='bold'>Hora 1: </span>
-                    <span>{respuestas.hora1}</span>
-                </div>
-                <div>
-                    <span className='bold'>Fecha 2: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fecha2)}</span>
-                </div>
-                <div>
-                    <span className='bold'>Hora 2: </span>
-                    <span>{respuestas.hora2}</span>
-                </div>
-                <div>
-                    <span className='bold'>Fecha 3: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fecha3)}</span>
-                </div>
-                <div>
-                    <span className='bold'>Hora 3: </span>
-                    <span>{respuestas.hora3}</span>
+                    <span className='bold'>{'Hora ' + num + ': '}</span>
+                    <span>{respuestas['hora' + num]}</span>
                 </div>
             </div>
         );
