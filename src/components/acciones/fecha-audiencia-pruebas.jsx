@@ -27,13 +27,7 @@ var FechaAudienciaPruebas = React.createClass({
             respuestas: {
                 fecha: moment(),
                 hora: '8:00 am',
-                citacion: false,
-                fecha1: moment(),
-                hora1: '8:00 am',
-                fecha2: moment(),
-                hora2: '8:00 am',
-                fecha3: moment(),
-                hora3: '8:00 am'
+                citacion: false
             },
             disabled: false
         };
@@ -45,6 +39,7 @@ var FechaAudienciaPruebas = React.createClass({
         this.setState({disabled: props.disabled});
     },
     render: function () {
+        console.log(this.state.respuestas.fecha1)
         return (
             <div className='fecha-audiencia-pruebas accion-form'>
                 <div className='element-wrapper'>
@@ -87,34 +82,57 @@ var FechaAudienciaPruebas = React.createClass({
                     </div>
                 </div>
                 <h5>Continuación de Audiencia</h5>
-                <div className='element-wrapper'>
-                    <h5>Fecha 1</h5>
-                    <DateSelect date={this.state.respuestas.fecha1} onChange={this.handleFechaChange.bind(this, 'fecha1')} />
-                </div>
-                <div className='element-wrapper'>
-                    <h5 className='text-label'>Hora 1</h5>
-                    <TimeSelect time={this.state.respuestas.hora1} onChange={this.handleHoraChange.bind(this, 'hora1')} />
-                </div>
-                <div className='element-wrapper'>
-                    <h5>Fecha 2</h5>
-                    <DateSelect date={this.state.respuestas.fecha2} onChange={this.handleFechaChange.bind(this, 'fecha2')} />
-                </div>
-                <div className='element-wrapper'>
-                    <h5 className='text-label'>Hora 2</h5>
-                    <TimeSelect time={this.state.respuestas.hora2} onChange={this.handleHoraChange.bind(this, 'hora2')} />
-                </div>
-                <div className='element-wrapper'>
-                    <h5>Fecha 3</h5>
-                    <DateSelect date={this.state.respuestas.fecha3} onChange={this.handleFechaChange.bind(this, 'fecha3')} />
-                </div>
-                <div className='element-wrapper'>
-                    <h5 className='text-label'>Hora 3</h5>
-                    <TimeSelect time={this.state.respuestas.hora3} onChange={this.handleHoraChange.bind(this, 'hora3')} />
-                </div>
+                {this.renderFecha('fecha1', 'hora1', 1)}
+                {this.renderFecha('fecha2', 'hora2', 2)}
+                {this.renderFecha('fecha3', 'hora3', 3)}
+                {this.renderAddDateButton()}
+
                 {this.renderComentarios()}
                 {this.renderButton()}
             </div>
         );
+    },
+    renderAddDateButton: function () {
+        if (this.state.respuestas.fecha1 && this.state.respuestas.fecha2 && this.state.respuestas.fecha3) {
+            return;
+        }
+
+        return (<button type='button' onClick={this.addDate}>Agregar nueva fecha</button>);
+    },
+    renderFecha: function (fechaKey, horaKey, num) {
+        if (!this.state.respuestas[fechaKey]) {
+            return;
+        }
+
+        return (
+            <div>
+                <div className='element-wrapper'>
+                    <h5>{'Fecha ' + num}</h5>
+                    <DateSelect date={this.state.respuestas[fechaKey]} onChange={this.handleFechaChange.bind(this, fechaKey)} />
+                </div>
+                <div className='element-wrapper'>
+                    <h5 className='text-label'>{'Hora ' + num}</h5>
+                    <TimeSelect time={this.state.respuestas[horaKey]} onChange={this.handleHoraChange.bind(this, horaKey)} />
+                </div>
+            </div>
+        );
+    },
+    addDate: function () {
+        var respuestas = this.state.respuestas;
+
+        if (!respuestas.fecha1) {
+            respuestas.fecha1 = moment();
+            respuestas.hora1 = '8:00 am';
+            this.setState({respuestas: respuestas});
+        } else if (!respuestas.fecha2) {
+            respuestas.fecha2 = moment();
+            respuestas.hora2 = '8:00 am';
+            this.setState({respuestas: respuestas});
+        } else if (!respuestas.fecha3) {
+            respuestas.fecha3 = moment();
+            respuestas.hora3 = '8:00 am';
+            this.setState({respuestas: respuestas});
+        }
     },
     handleChange: function (key, event) {
         var respuestas = this.state.respuestas;
