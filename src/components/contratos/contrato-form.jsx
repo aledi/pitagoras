@@ -674,18 +674,24 @@ var ContratoForm = React.createClass({
             invalidFields = true;
         }
 
-        if (!this.state.attemptedToSave && !this.validateInputs()) {
-            this.setState({attemptedToSave: true});
-        }
-
         if (invalidFields) {
             this.setState(state);
             return;
         }
 
-        if (this.state.attemptedToSave) {
-            ContratosActions.saveContrato(contrato);
+        if (!this.validateInputs()) {
+            this.setState({attemptedToSave: true});
+
+            var dialog = confirm('Hay algunos campos vacíos. ¿Está seguro que desea guardar el contrato?');
+            if (dialog === true) {
+                ContratosActions.saveContrato(contrato);
+                return;
+            } else {
+                return;
+            }
         }
+
+        ContratosActions.saveContrato(contrato);
     },
     validateInputs: function () {
         var valid = true;
