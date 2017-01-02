@@ -22,6 +22,7 @@ var ContratoForm = React.createClass({
     getInitialState: function () {
         return {
             contrato: this.props.contrato ? this.props.contrato.toEditable() : new ContratoRecord().toEditable(),
+            attemptedToSave: false,
             invalidFields: {}
         };
     },
@@ -35,6 +36,7 @@ var ContratoForm = React.createClass({
         var saving = ContratosStore.get('saving');
         var saveError = ContratosStore.get('saveError');
 
+        // Success
         if (this.state.saving && !saving && !saveError) {
             this.setState({
                 feedbackText: 'El contrato se ha guardado exitosamente',
@@ -46,6 +48,7 @@ var ContratoForm = React.createClass({
             return;
         }
 
+        // Error
         if (this.state.saving && !saving && saveError) {
             this.setState({
                 feedbackText: 'Error al guardar el contrato',
@@ -68,6 +71,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Número de Contrato</label>
                         <input
+                            ref='numeroContrato'
                             type='text'
                             value={contrato.numeroContrato || ''}
                             className={classNames({invalid: this.state.invalidFields.numeroContrato})}
@@ -111,6 +115,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Plazo</label>
                         <input
+                            ref='plazo'
                             type='text'
                             value={contrato.plazo}
                             disabled={this.state.saving}
@@ -120,6 +125,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Monto</label>
                         <input
+                            ref='monto'
                             type='text'
                             value={contrato.monto}
                             disabled={this.state.saving}
@@ -129,6 +135,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Tasa</label>
                         <input
+                            ref='tasa'
                             type='text'
                             value={contrato.tasa}
                             disabled={this.state.saving}
@@ -167,6 +174,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Modelo</label>
                         <input
+                            ref='modelo'
                             type='text'
                             value={contrato.vehiculo.modelo}
                             disabled={this.state.saving}
@@ -175,6 +183,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Marca</label>
                         <input
+                            ref='marca'
                             type='text'
                             value={contrato.vehiculo.marca}
                             disabled={this.state.saving}
@@ -183,6 +192,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Clase</label>
                         <input
+                            ref='clase'
                             type='text'
                             value={contrato.vehiculo.clase}
                             disabled={this.state.saving}
@@ -191,6 +201,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Distribuidor</label>
                         <input
+                            ref='distribuidor'
                             type='text'
                             value={contrato.vehiculo.distribuidor}
                             disabled={this.state.saving}
@@ -199,6 +210,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Año</label>
                         <input
+                            ref='anio'
                             type='text'
                             value={contrato.vehiculo.anio}
                             disabled={this.state.saving}
@@ -207,6 +219,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Serie</label>
                         <input
+                            ref='serie'
                             type='text'
                             value={contrato.vehiculo.serie}
                             disabled={this.state.saving}
@@ -217,6 +230,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Nombre</label>
                         <input
+                            ref='nombre'
                             type='text'
                             value={contrato.cliente.nombre}
                             className={classNames({invalid: this.state.invalidFields.nombre})}
@@ -226,6 +240,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Apellido Paterno</label>
                         <input
+                            ref='apellidoPaterno'
                             type='text'
                             value={this.state.contrato.cliente.apellidoPaterno}
                             className={classNames({invalid: this.state.invalidFields.apellidoPaterno})}
@@ -235,6 +250,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Apellido Materno</label>
                         <input
+                            ref='apellidoMaterno'
                             type='text'
                             value={contrato.cliente.apellidoMaterno}
                             disabled={this.state.saving}
@@ -243,6 +259,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Calle</label>
                         <input
+                            ref='calle'
                             type='text'
                             value={contrato.cliente.domicilio.calle || ''}
                             disabled={this.state.saving}
@@ -251,6 +268,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Número Exterior</label>
                         <input
+                            ref='exterior'
                             type='text'
                             value={contrato.cliente.domicilio.exterior || ''}
                             disabled={this.state.saving}
@@ -259,6 +277,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Número Interior</label>
                         <input
+                            ref='interior'
                             type='text'
                             value={contrato.cliente.domicilio.interior || ''}
                             disabled={this.state.saving}
@@ -267,6 +286,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Colonia</label>
                         <input
+                            ref='colonia'
                             type='text'
                             value={contrato.cliente.domicilio.colonia || ''}
                             disabled={this.state.saving}
@@ -275,6 +295,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Código Postal</label>
                         <input
+                            ref='codigoPostal'
                             type='text'
                             value={contrato.cliente.domicilio.codigoPostal || ''}
                             disabled={this.state.saving}
@@ -283,6 +304,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Municipio / Delegación</label>
                         <input
+                            ref='municipio'
                             type='text'
                             value={contrato.cliente.domicilio.municipio || ''}
                             disabled={this.state.saving}
@@ -291,6 +313,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Estado</label>
                         <input
+                            ref='estado'
                             type='text'
                             value={contrato.cliente.domicilio.estado || ''}
                             disabled={this.state.saving}
@@ -339,6 +362,7 @@ var ContratoForm = React.createClass({
                 <div className='input-wrapper'>
                     <label>Teléfono 1</label>
                     <input
+                        ref='telefonos0'
                         type='text'
                         value={this.state.contrato.cliente.telefonos[0]}
                         disabled={this.state.saving}
@@ -353,6 +377,7 @@ var ContratoForm = React.createClass({
                 <div key={'telefono-' + index} className='input-wrapper'>
                     <label>{'Teléfono ' + (index + 1)}</label>
                     <input
+                        ref={'telefonos' + index}
                         type='text'
                         value={self.state.contrato.cliente.telefonos[index]}
                         disabled={self.state.saving}
@@ -389,6 +414,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Nombre</label>
                         <input
+                            ref={'nombre' + index}
                             type='text'
                             value={referencia.nombre}
                             disabled={self.state.saving}
@@ -397,6 +423,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Apellido Paterno</label>
                         <input
+                            ref={'apellidoPaterno' + index}
                             type='text'
                             value={referencia.apellidoPaterno}
                             disabled={self.state.saving}
@@ -405,6 +432,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Apellido Materno</label>
                         <input
+                            ref={'apellidoMaterno' + index}
                             type='text'
                             value={referencia.apellidoMaterno}
                             disabled={self.state.saving}
@@ -413,6 +441,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Calle</label>
                         <input
+                            ref={'calle' + index}
                             type='text'
                             value={referencia.domicilio.calle}
                             disabled={self.state.saving}
@@ -421,6 +450,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Número Exterior</label>
                         <input
+                            ref={'exterior' + index}
                             type='text'
                             value={referencia.domicilio.exterior}
                             disabled={self.state.saving}
@@ -429,6 +459,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Número Interior</label>
                         <input
+                            ref={'interior' + index}
                             type='text'
                             value={referencia.domicilio.interior}
                             disabled={self.state.saving}
@@ -437,6 +468,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Colonia</label>
                         <input
+                            ref={'colonia' + index}
                             type='text'
                             value={referencia.domicilio.colonia}
                             disabled={self.state.saving}
@@ -445,6 +477,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Código Postal</label>
                         <input
+                            ref={'codigoPostal' + index}
                             type='text'
                             value={referencia.domicilio.codigoPostal}
                             disabled={self.state.saving}
@@ -453,6 +486,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Municipio / Delegación</label>
                         <input
+                            ref={'municipio' + index}
                             type='text'
                             value={referencia.domicilio.municipio}
                             disabled={self.state.saving}
@@ -461,6 +495,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Estado</label>
                         <input
+                            ref={'estado' + index}
                             type='text'
                             value={referencia.domicilio.estado}
                             disabled={self.state.saving}
@@ -469,6 +504,7 @@ var ContratoForm = React.createClass({
                     <div className='input-wrapper'>
                         <label>Teléfono</label>
                         <input
+                            ref={'telefono' + index}
                             type='text'
                             value={referencia.telefono}
                             disabled={self.state.saving}
@@ -625,12 +661,32 @@ var ContratoForm = React.createClass({
             invalidFields = true;
         }
 
+        if (this.invalidInputs()) {
+            return;
+        }
+
         if (invalidFields) {
             this.setState(state);
             return;
         }
 
         ContratosActions.saveContrato(contrato);
+    },
+    invalidInputs: function () {
+        var invalid = false;
+        for (var ref in this.refs) {
+            if (!this.refs.hasOwnProperty(ref)) {
+                continue;
+            }
+
+            var input = this.refs[ref];
+            if (!input.value || !input.value.trim()) {
+                invalid = true;
+                input.className += ' invalid';
+            }
+        }
+
+        return invalid;
     },
     restrictNumericInput: function (isFloat, event) {
         if (!event.metaKey && event.charCode !== 13 && (event.charCode < 48 || event.charCode > 57)) {
