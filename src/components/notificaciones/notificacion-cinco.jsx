@@ -6,6 +6,8 @@
 
 var React = require('react');
 
+var AccionRecord = require('src/records/accion');
+
 // -----------------------------------------------------------------------------------------------
 // Notificacion Cinco
 // -----------------------------------------------------------------------------------------------
@@ -17,9 +19,9 @@ var NotificacionCinco = React.createClass({
         return (
             <div>
                 <span>La fecha de </span>
-                <span className='bold'>{notificacion.formattedValues.cita.fecha}</span>
+                <span className='bold'>{AccionRecord.ACCIONES_TYPES[notificacion.tipoAccion]}</span>
                 <span> es el </span>
-                <span className='bold'>{notificacion.cita.lugar}</span>
+                <span className='bold'>{notificacion.formattedValues.fecha}</span>
                 {this.renderHora()}
             </div>
         );
@@ -30,8 +32,10 @@ var NotificacionCinco = React.createClass({
         }
 
         return (
-            <span> a las </span>
-            <span className='bold'>{notificacion.cita.nombreActuario}</span>
+            <span>
+                <span> a las </span>
+                <span className='bold'>{this.props.notificacion.hora}</span>
+            </span>
         );
     }
 });
