@@ -83,7 +83,7 @@ var ContratosTabla = React.createClass({
             return;
         }
 
-        return (<Search />);
+        return (<Search onClose={this.toggleBusqueda} />);
     },
     renderTableBodyWrapper: function () {
         return (

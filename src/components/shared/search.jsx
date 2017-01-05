@@ -7,7 +7,6 @@ require('./search.scss');
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
-var classNames = require('classnames');
 var fuzzy = require('fuzzy');
 
 var ContratosStore = require('src/stores/contratos-store');
@@ -51,8 +50,9 @@ var Search = React.createClass({
             <div className='backdrop' id='backdrop'>
                 <div className='modal-wrapper'>
                     <div className='modal'>
-                        <button type='button'>Cerrar</button>
-                        <input type='text' value={this.state.searchValue} onChange={this.handleChange} />
+                        <button type='button' onClick={this.props.onClose}>Cerrar</button>
+                        <p>Introduzca el número de contrato o nombre de cliente</p>
+                        <input type='text' value={this.state.searchValue} onChange={this.handleChange} placeholder='Buscar' />
                         {this.renderResultsContent()}
                     </div>
                 </div>
@@ -66,7 +66,7 @@ var Search = React.createClass({
         }
 
         return (
-            <div className='categories'>
+            <div className='results-content'>
                 {this.renderResults()}
             </div>
         );
@@ -77,20 +77,19 @@ var Search = React.createClass({
         }
 
         return (
-            <div className='category-search-result'>
+            <div className='results-items'>
                 {this.getResultsItems()}
             </div>
         );
     },
     getResultsItems: function () {
         var self = this;
-        console.log(this.state.contratosResults)
 
         return this.state.contratosResults.map(function (result) {
             var option = self.state.contratos[result.index];
             return (
                 <div className='result-wrapper' key={option.id}>
-                    <div className='result-details' onClick={self.redirectToResult.bind(self, 'contratos', option.id)}>
+                    <div className='result-details' onClick={self.redirectToResult.bind(self, option.id)}>
                         <span className='result-title'>{option.title}</span>
                     </div>
                 </div>
@@ -105,8 +104,8 @@ var Search = React.createClass({
             contratosResults: value ? fuzzy.filter(value, this.state.contratosFuzzyValues) : null
         });
     },
-    redirectToResult: function (route, id) {
-        this.context.router.push('/' + route + '/' + id);
+    redirectToResult: function (id) {
+        this.context.router.push('/contratos/' + id);
     }
 });
 
