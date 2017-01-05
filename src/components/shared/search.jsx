@@ -62,7 +62,7 @@ var Search = React.createClass({
     renderResultsContent: function () {
         var state = this.state;
         if (state.contratosResults && !state.contratosResults.length) {
-            return (<span>No se encontraron resultados.</span>);
+            return (<p className='no-results'>No se encontraron resultados.</p>);
         }
 
         return (
