@@ -10,6 +10,8 @@ var React = require('react');
 
 var ContratosActions = require('src/actions/contratos-actions');
 
+var Search = require('src/components/shared/search');
+
 // -----------------------------------------------------------------------------------------------
 // ContratosTabla
 // -----------------------------------------------------------------------------------------------
@@ -18,8 +20,7 @@ var ContratosTabla = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
     getInitialState: function () {
         return {
-            showingBusqueda: false,
-            busquedaInput: ''
+            showingBusqueda: false
         };
     },
     componentDidMount: function () {
@@ -82,16 +83,7 @@ var ContratosTabla = React.createClass({
             return;
         }
 
-        return (
-            <div className='backdrop' id='backdrop'>
-                <div className='modal-wrapper'>
-                    <div className='modal'>
-                        <button type='button' onClick={this.toggleBusqueda}>Cerrar</button>
-                        <input type='text' value={this.state.busquedaInput} onChange={this.handleInputChange} />
-                    </div>
-                </div>
-            </div>
-        );
+        return (<Search />);
     },
     renderTableBodyWrapper: function () {
         return (
