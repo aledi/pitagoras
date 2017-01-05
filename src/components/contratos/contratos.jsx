@@ -62,9 +62,10 @@ class Contratos extends React.Component {
 
     handleClick (event) {
         var tableWrapper = document.getElementById('table-wrapper-contratos');
+        var backdrop = document.getElementById('backdrop');
 
         // Keep table focused
-        if (tableWrapper) {
+        if (tableWrapper && !backdrop) {
             tableWrapper.focus();
         }
     }
