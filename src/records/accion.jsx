@@ -15,10 +15,6 @@ var ContratoRecord = require('./contrato');
 // AccionRecord
 // -----------------------------------------------------------------------------------------------
 
-// 1 - 12 acciones normales
-// 13 - 18 acciones para juicio oral
-// 16 acciones para juicio ejecutiva
-
 var ACCIONES_TYPES = {
     1: 'Visita',
     2: 'Alta de documentos',
@@ -111,6 +107,7 @@ class Accion extends AccionRecord {
         if ((accion.tipo === 6 && accion.respuestas.regresaDocumentos) || (accion.tipo === 7 && !accion.respuestas.recogeDocumentos)) {
             contrato.notificacion = {
                 tipo: 1,
+                tipoAccion: accion.tipo,
                 numeroContrato: contrato.numeroContrato,
                 contratoId: contrato.id,
                 fecha: accion.respuestas.fecha,
@@ -122,6 +119,7 @@ class Accion extends AccionRecord {
         if (accion.tipo === 8 && accion.respuestas.desahogar) {
             contrato.notificacion = {
                 tipo: 2,
+                tipoAccion: accion.tipo,
                 numeroContrato: contrato.numeroContrato,
                 contratoId: contrato.id,
                 fecha: accion.respuestas.fecha
@@ -132,9 +130,22 @@ class Accion extends AccionRecord {
         if ((accion.tipo === 10 && accion.respuestas.tipoJuicio === 'Ejecutiva Mercantil') || (accion.tipo === 11 && accion.respuestas.resultado === 'Se dejó citatorio')) {
             contrato.notificacion = {
                 tipo: 3,
+                tipoAccion: accion.tipo,
                 numeroContrato: contrato.numeroContrato,
                 contratoId: contrato.id,
                 cita: accion.respuestas.cita
+            };
+        }
+
+        // Notification for 13, 14, 15, 17, 20, 21
+        if (accion.tipo === 13 || accion.tipo === 14 || accion.tipo === 15 || (accion.tipo === 17 && contrato.tipoJuicio === ContratoRecord.JUICIO_TYPES.EJECUTIVA) || accion.tipo === 20 || accion.tipo === 21) {
+            contrato.notificacion = {
+                tipo: 5,
+                tipoAccion: accion.tipo,
+                numeroContrato: contrato.numeroContrato,
+                contratoId: contrato.id,
+                fecha: accion.respuestas.fecha,
+                hora: accion.respuestas.hora
             };
         }
 

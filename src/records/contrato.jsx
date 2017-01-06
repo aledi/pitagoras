@@ -242,6 +242,7 @@ function cleanNotification (contrato) {
     var notificacion = contrato.notificacion;
     var cleanedNotificacion = {
         tipo: notificacion.tipo,
+        tipoAccion: notificacion.tipoAccion,
         numeroContrato: contrato.numeroContrato,
         contratoId: contrato.id
     };
@@ -258,6 +259,11 @@ function cleanNotification (contrato) {
             return cleanedNotificacion;
         case 3:
             cleanedNotificacion.cita = notificacion.cita;
+
+            return cleanedNotificacion;
+        case 5:
+            cleanedNotificacion.fecha = moment(notificacion.fecha).toDate();
+            cleanedNotificacion.hora = notificacion.hora;
 
             return cleanedNotificacion;
         default:
