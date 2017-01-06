@@ -10,62 +10,80 @@ var React = require('react');
 
 var ContratosActions = require('src/actions/contratos-actions');
 
+var Search = require('src/components/shared/search');
+
 // -----------------------------------------------------------------------------------------------
 // ContratosTabla
 // -----------------------------------------------------------------------------------------------
 
 var ContratosTabla = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
+    getInitialState: function () {
+        return {
+            showingBusqueda: false
+        };
+    },
     componentDidMount: function () {
         document.getElementById('table-wrapper-contratos').focus();
     },
     render: function () {
         return (
-            <div id='table-wrapper-contratos' className='contratos-table table-wrapper' tabIndex='0' onKeyUp={this.handleKeyUp}>
-                <div className='table-header-wrapper' style={{minWidth: '2050px'}}>
-                    <table>
-                        <thead>
-                            <tr className='header'>
-                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
-                                    <span className='ellipsis-text'>Número de Contrato</span>
-                                </th>
-                                <th style={{width: '350px'}} onClick={ContratosActions.sortContratos.bind(this, 'cliente')}>
-                                    <span className='ellipsis-text'>Nombre de Cliente</span>
-                                </th>
-                                <th style={{width: '200px'}} onClick={ContratosActions.sortContratos.bind(this, 'modelo')}>
-                                    <span className='ellipsis-text'>Modelo Vehículo</span>
-                                </th>
-                                <th style={{width: '200px'}} onClick={ContratosActions.sortContratos.bind(this, 'marca')}>
-                                    <span className='ellipsis-text'>Marca</span>
-                                </th>
-                                <th style={{width: '100px'}} onClick={ContratosActions.sortContratos.bind(this, 'anio')}>
-                                    <span className='ellipsis-text'>Año</span>
-                                </th>
-                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'distribuidor')}>
-                                    <span className='ellipsis-text'>Distribuidor</span>
-                                </th>
-                                <th style={{width: '150px'}} onClick={ContratosActions.sortContratos.bind(this, 'monto')}>
-                                    <span className='ellipsis-text'>Monto</span>
-                                </th>
-                                <th style={{width: '100px'}} onClick={ContratosActions.sortContratos.bind(this, 'plazo')}>
-                                    <span className='ellipsis-text'>Plazo</span>
-                                </th>
-                                <th style={{width: '100px'}} onClick={ContratosActions.sortContratos.bind(this, 'tasa')}>
-                                    <span className='ellipsis-text'>Tasa</span>
-                                </th>
-                                <th style={{width: '100px'}} onClick={ContratosActions.sortContratos.bind(this, 'especial')}>
-                                    <span className='ellipsis-text'>Especial</span>
-                                </th>
-                                <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'juzgado')}>
-                                    <span className='ellipsis-text'>Juzgado</span>
-                                </th>
-                            </tr>
-                        </thead>
-                    </table>
+            <div>
+                <button type='button' className='search-button' onClick={this.toggleBusqueda}>Buscar contrato</button>
+                <div id='table-wrapper-contratos' className='contratos-table table-wrapper' tabIndex='0' onKeyUp={this.handleKeyUp}>
+                    <div className='table-header-wrapper' style={{minWidth: '2050px'}}>
+                        <table>
+                            <thead>
+                                <tr className='header'>
+                                    <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'numeroContrato')}>
+                                        <span className='ellipsis-text'>Número de Contrato</span>
+                                    </th>
+                                    <th style={{width: '350px'}} onClick={ContratosActions.sortContratos.bind(this, 'cliente')}>
+                                        <span className='ellipsis-text'>Nombre de Cliente</span>
+                                    </th>
+                                    <th style={{width: '200px'}} onClick={ContratosActions.sortContratos.bind(this, 'modelo')}>
+                                        <span className='ellipsis-text'>Modelo Vehículo</span>
+                                    </th>
+                                    <th style={{width: '200px'}} onClick={ContratosActions.sortContratos.bind(this, 'marca')}>
+                                        <span className='ellipsis-text'>Marca</span>
+                                    </th>
+                                    <th style={{width: '100px'}} onClick={ContratosActions.sortContratos.bind(this, 'anio')}>
+                                        <span className='ellipsis-text'>Año</span>
+                                    </th>
+                                    <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'distribuidor')}>
+                                        <span className='ellipsis-text'>Distribuidor</span>
+                                    </th>
+                                    <th style={{width: '150px'}} onClick={ContratosActions.sortContratos.bind(this, 'monto')}>
+                                        <span className='ellipsis-text'>Monto</span>
+                                    </th>
+                                    <th style={{width: '100px'}} onClick={ContratosActions.sortContratos.bind(this, 'plazo')}>
+                                        <span className='ellipsis-text'>Plazo</span>
+                                    </th>
+                                    <th style={{width: '100px'}} onClick={ContratosActions.sortContratos.bind(this, 'tasa')}>
+                                        <span className='ellipsis-text'>Tasa</span>
+                                    </th>
+                                    <th style={{width: '100px'}} onClick={ContratosActions.sortContratos.bind(this, 'especial')}>
+                                        <span className='ellipsis-text'>Especial</span>
+                                    </th>
+                                    <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'juzgado')}>
+                                        <span className='ellipsis-text'>Juzgado</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    {this.renderTableBodyWrapper()}
                 </div>
-                {this.renderTableBodyWrapper()}
+                {this.renderBusqueda()}
             </div>
         );
+    },
+    renderBusqueda: function () {
+        if (!this.state.showingBusqueda) {
+            return;
+        }
+
+        return (<Search onClose={this.toggleBusqueda} />);
     },
     renderTableBodyWrapper: function () {
         return (
@@ -110,6 +128,12 @@ var ContratosTabla = React.createClass({
         });
 
         return contratos;
+    },
+    handleInputChange: function (event) {
+        this.setState({busquedaInput: event.target.value});
+    },
+    toggleBusqueda: function () {
+        this.setState({showingBusqueda: !this.state.showingBusqueda});
     },
     goToContrato: function (id) {
         this.context.router.push('/contratos/' + id);

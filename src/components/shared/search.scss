@@ -1,0 +1,78 @@
+@import '~src/styles/pitagoras.scss';
+
+.backdrop {
+    position: fixed;
+    top: 0; right: 0; bottom: 0; left: 0;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.5);
+
+    .modal-wrapper {
+        height: 90%;
+        max-height: 800px;
+        width: 700px;
+        display: block;
+        margin: auto;
+        box-sizing: border-box;
+        overflow: hidden;
+        background: white;
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+        border-radius: 5px;
+
+        .modal {
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background-color: white;
+            border-radius: 5px;
+            padding: 30px;
+            overflow-y: auto;
+
+            p {
+                color: $nightfall;
+
+                &.no-results {
+                    text-align: center;
+                    margin-top: 20px;
+                }
+            }
+
+            button {
+                padding: 0;
+                margin: 0;
+                margin-bottom: 20px;
+                background-color: transparent;
+                color: $blue-gray;
+                text-transform: uppercase;
+
+                &:hover {
+                    color: $denim;
+                }
+            }
+
+            input[type='text'] {
+                height: 40px;
+                width: 100%;
+                padding: 0 10px;
+                border-radius: 2px;
+            }
+
+            .results-items {
+                padding-top: 30px;
+
+                .result-wrapper {
+                    margin-bottom: 10px;
+
+                    .result-details {
+                        display: inline-block;
+                        color: $french-blue;
+                        cursor: pointer;
+
+                        &:hover {
+                            color: $denim;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
