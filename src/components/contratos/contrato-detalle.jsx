@@ -141,12 +141,12 @@ var ContratoDetalle = React.createClass({
             if (props.contrato.tipoJuicio === ContratoRecord.JUICIO_TYPES.EJECUTIVA) {
                 accionesComponents.push(
                     {
-                        id: 16,
-                        component: <Sentencia contrato={props.contrato} disabled={props.savingAccion} key='sentencia' />
+                        id: 21,
+                        component: <FechaAudienciaPruebas contrato={props.contrato} disabled={props.savingAccion} key='fechaAudienciaPruebas' />
                     },
                     {
-                        id: 17,
-                        component: <AmparoSentencia contrato={props.contrato} disabled={props.savingAccion} key='amparoSentencia' />
+                        id: 16,
+                        component: <Sentencia contrato={props.contrato} disabled={props.savingAccion} key='sentencia' />
                     },
                     {
                         id: 19,
@@ -154,11 +154,11 @@ var ContratoDetalle = React.createClass({
                     },
                     {
                         id: 20,
-                        component: <SentenciaApelacion contrato={props.contrato} disabled={props.savingAccion} key='apelacion' />
+                        component: <SentenciaApelacion contrato={props.contrato} disabled={props.savingAccion} key='sentenciaApelacion' />
                     },
                     {
-                        id: 21,
-                        component: <FechaAudienciaPruebas contrato={props.contrato} disabled={props.savingAccion} key='fechaAudienciaPruebas' />
+                        id: 17,
+                        component: <AmparoSentencia contrato={props.contrato} disabled={props.savingAccion} key='amparoSentencia' />
                     }
                 );
             }
