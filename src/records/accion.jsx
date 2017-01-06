@@ -137,8 +137,8 @@ class Accion extends AccionRecord {
             };
         }
 
-        // Notification for 13, 14, 16, 17, 20, 21
-        if (accion.tipo === 13 || accion.tipo === 14 || accion.tipo === 16 || accion.tipo === 17 || accion.tipo === 20 || accion.tipo === 21) {
+        // Notification for 13, 14, 15, 17, 20, 21
+        if (accion.tipo === 13 || accion.tipo === 14 || accion.tipo === 15 || (accion.tipo === 17 && contrato.tipoJuicio === ContratoRecord.JUICIO_TYPES.EJECUTIVA) || accion.tipo === 20 || accion.tipo === 21) {
             contrato.notificacion = {
                 tipo: 5,
                 tipoAccion: accion.tipo,
