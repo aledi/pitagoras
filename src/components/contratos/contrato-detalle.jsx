@@ -253,14 +253,22 @@ var ContratoDetalle = React.createClass({
 
         var self = this;
         return (this.state.accionesComponents.map(function (accionComponent) {
-            return (
+            return [
+                self.renderDivider(accionComponent),
                 <li key={accionComponent.id}
                     className={classNames({selected: self.state.selectedAccion === accionComponent.id})}
                     onClick={self.showAccion.bind(self, accionComponent.id)}>
                         {AccionRecord.ACCIONES_TYPES[accionComponent.id]}
                 </li>
-            );
+            ];
         }));
+    },
+    renderDivider: function (accionComponent) {
+        if (accionComponent.id !== 13 && accionComponent.id !== 21) {
+            return;
+        }
+
+        return (<hr />);
     },
     handleContratoEdit: function () {
         this.setState({editingContrato: !this.state.editingContrato});
