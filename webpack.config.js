@@ -16,7 +16,7 @@ var plugins = [
 ];
 
 // Create feature flags for all of our environments.
-['localhost', 'development', 'beta', 'production'].forEach(function (environment) {
+['localhost', 'development', 'production'].forEach(function (environment) {
     defines[environment.toUpperCase()] = env === environment;
 });
 
