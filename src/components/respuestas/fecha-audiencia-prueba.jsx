@@ -19,8 +19,8 @@ var FechaAudienciaPrueba = React.createClass({
         return (
             <div className='respuestas-wrapper'>
                 <div>
-                    <span className='bold'>Atraído por: </span>
-                    <span>{respuestas.atraido}</span>
+                    <span className='bold'>Atendido por: </span>
+                    <span>{respuestas.atendido}</span>
                 </div>
                 <div>
                     <span className='bold'>Fecha: </span>

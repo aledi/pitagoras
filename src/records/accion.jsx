@@ -29,14 +29,14 @@ var ACCIONES_TYPES = {
     11: 'Diligencia de embargo',
     12: 'Extrajudicial',
     13: 'Fecha Audiencia Previa',
-    14: 'Fecha Audiencia Prueba',
+    14: 'Fecha Audiencia Pruebas', // Oral
     15: 'Fecha Sentencia',
     16: 'Sentencia',
     17: 'Amparo vs Sentencia',
     18: 'Resolución Amparo vs Sentencia',
     19: 'Apelación',
     20: 'Sentencia de Apelación',
-    21: 'Fecha Audiencia Pruebas'
+    21: 'Fecha Audiencia Pruebas' // Ejecutiva
 };
 
 var AccionRecord = Immutable.Record({

@@ -84,6 +84,16 @@ var Amparo = React.createClass({
                             disabled={this.state.disabled} />
                         <label htmlFor='confirma' disabled={this.state.disabled}>Confirma</label>
                     </div>
+                    <div>
+                        <input
+                            type='radio'
+                            id='pendiente'
+                            value='Pendiente'
+                            checked={respuestas.resolucion === 'Pendiente'}
+                            onChange={this.handleRadioChange}
+                            disabled={this.state.disabled} />
+                        <label htmlFor='pendiente' disabled={this.state.disabled}>Pendiente</label>
+                    </div>
                 </div>
                 <div className='element-wrapper'>
                     <h5>Fecha de resolución</h5>

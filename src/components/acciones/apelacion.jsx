@@ -61,6 +61,22 @@ var Apelacion = React.createClass({
                         <label htmlFor='demandado' disabled={this.state.disabled}>Demandado</label>
                     </div>
                 </div>
+                <div className='element-wrapper'>
+                    <h5>Juzgado</h5>
+                    <input
+                        type='text'
+                        value={this.state.respuestas.juzgado}
+                        onChange={this.handleChange.bind(this, 'juzgado')}
+                        disabled={this.state.disabled} />
+                </div>
+                <div className='element-wrapper'>
+                    <h5>Expediente</h5>
+                    <input
+                        type='text'
+                        value={this.state.respuestas.expediente}
+                        onChange={this.handleChange.bind(this, 'expediente')}
+                        disabled={this.state.disabled} />
+                </div>
                 {this.renderComentarios()}
                 {this.renderButton()}
             </div>
@@ -70,6 +86,11 @@ var Apelacion = React.createClass({
         var respuestas = this.state.respuestas;
         respuestas.interpuesta = event.target.value;
 
+        this.setState({respuestas: respuestas});
+    },
+    handleChange: function (key, event) {
+        var respuestas = this.state.respuestas;
+        respuestas[key] = event.target.value;
         this.setState({respuestas: respuestas});
     }
 });
