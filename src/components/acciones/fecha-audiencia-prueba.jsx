@@ -41,11 +41,11 @@ var FechaAudienciaPrueba = React.createClass({
         return (
             <div className='fecha-audiencia-prueba accion-form'>
                 <div className='element-wrapper'>
-                    <h5>Atraído por</h5>
+                    <h5>Atendido por</h5>
                     <input
                         type='text'
-                        value={this.state.respuestas.atraido}
-                        onChange={this.handleChange.bind(this, 'atraido')}
+                        value={this.state.respuestas.atendido}
+                        onChange={this.handleChange.bind(this, 'atendido')}
                         disabled={this.state.disabled} />
                 </div>
                 <div className='element-wrapper'>
