@@ -11,6 +11,7 @@ var Parse = require('parse');
 var classNames = require('classnames');
 
 var AccionRecord = require('src/records/accion');
+var ContratoRecord = require('src/records/contrato');
 
 var AccionesHistorial = require('src/components/acciones/acciones-historial');
 var ContratoForm = require('src/components/contratos/contrato-form');
@@ -27,6 +28,15 @@ var Desahogo = require('src/components/acciones/desahogo'); // 9
 var DemandaAdmitida = require('src/components/acciones/demanda-admitida'); // 10
 var DiligenciaEmbargo = require('src/components/acciones/diligencia-embargo'); // 11
 var Extrajudicial = require('src/components/acciones/extrajudicial'); // 12
+var FechaAudienciaPrevia = require('src/components/acciones/fecha-audiencia-previa'); // 13
+var FechaAudienciaPrueba = require('src/components/acciones/fecha-audiencia-prueba'); // 14
+var FechaSentencia = require('src/components/acciones/fecha-sentencia'); // 15
+var Sentencia = require('src/components/acciones/sentencia'); // 16
+var AmparoSentencia = require('src/components/acciones/amparo-sentencia'); // 17
+var ResolucionAmparoSentencia = require('src/components/acciones/resolucion-amparo-sentencia'); // 18
+var Apelacion = require('src/components/acciones/apelacion'); // 19
+var SentenciaApelacion = require('src/components/acciones/sentencia-apelacion'); // 20
+var FechaAudienciaPruebas = require('src/components/acciones/fecha-audiencia-pruebas'); // 21
 
 // -----------------------------------------------------------------------------------------------
 // Contrato
@@ -36,7 +46,7 @@ var ContratoDetalle = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
     getInitialState: function () {
         var state = this.getState(this.props);
-        state.selectedAccionIndex = null;
+        state.selectedAccion = null;
 
         return state;
     },
@@ -49,19 +59,109 @@ var ContratoDetalle = React.createClass({
 
         if (props.contrato) {
             accionesComponents = [
-                <Visita contrato={props.contrato} disabled={props.savingAccion} key='visita' />,
-                <AltaDocumentos contrato={props.contrato} disabled={props.savingAccion} key='altaDocumentos' />,
-                <PresentacionDemanda contrato={props.contrato} disabled={props.savingAccion} key='presentacionDemanda' />,
-                <AcuerdoDemanda contrato={props.contrato} disabled={props.savingAccion} key='acuerdoDemanda' />,
-                <Amparo contrato={props.contrato} disabled={props.savingAccion} key='amparo' />,
-                <DemandaDesechada contrato={props.contrato} disabled={props.savingAccion} key='demandaDesechada' />,
-                <RecoleccionDocumentos contrato={props.contrato} disabled={props.savingAccion} key='recoleccionDocumentos' />,
-                <DemandaPrevenida contrato={props.contrato} disabled={props.savingAccion} key='demandaPrevenida' />,
-                <Desahogo contrato={props.contrato} disabled={props.savingAccion} key='desahogo' />,
-                <DemandaAdmitida contrato={props.contrato} disabled={props.savingAccion} key='demandaAdmitida' />,
-                <DiligenciaEmbargo contrato={props.contrato} disabled={props.savingAccion} key='diligenciaEmbargo' />,
-                <Extrajudicial contrato={props.contrato} disabled={props.savingAccion} key='extrajudicial' />
+                {
+                    id: 1,
+                    component: <Visita contrato={props.contrato} disabled={props.savingAccion} key='visita' />
+                },
+                {
+                    id: 2,
+                    component: <AltaDocumentos contrato={props.contrato} disabled={props.savingAccion} key='altaDocumentos' />
+                },
+                {
+                    id: 3,
+                    component: <PresentacionDemanda contrato={props.contrato} disabled={props.savingAccion} key='presentacionDemanda' />
+                },
+                {
+                    id: 4,
+                    component: <AcuerdoDemanda contrato={props.contrato} disabled={props.savingAccion} key='acuerdoDemanda' />
+                },
+                {
+                    id: 5,
+                    component: <Amparo contrato={props.contrato} disabled={props.savingAccion} key='amparo' />
+                },
+                {
+                    id: 6,
+                    component: <DemandaDesechada contrato={props.contrato} disabled={props.savingAccion} key='demandaDesechada' />
+                },
+                {
+                    id: 7,
+                    component: <RecoleccionDocumentos contrato={props.contrato} disabled={props.savingAccion} key='recoleccionDocumentos' />
+                },
+                {
+                    id: 8,
+                    component: <DemandaPrevenida contrato={props.contrato} disabled={props.savingAccion} key='demandaPrevenida' />
+                },
+                {
+                    id: 9,
+                    component: <Desahogo contrato={props.contrato} disabled={props.savingAccion} key='desahogo' />
+                },
+                {
+                    id: 10,
+                    component: <DemandaAdmitida contrato={props.contrato} disabled={props.savingAccion} key='demandaAdmitida' />
+                },
+                {
+                    id: 11,
+                    component: <DiligenciaEmbargo contrato={props.contrato} disabled={props.savingAccion} key='diligenciaEmbargo' />
+                },
+                {
+                    id: 12,
+                    component: <Extrajudicial contrato={props.contrato} disabled={props.savingAccion} key='extrajudicial' />
+                }
             ];
+
+            if (props.contrato.tipoJuicio === ContratoRecord.JUICIO_TYPES.ORAL) {
+                accionesComponents.push(
+                    {
+                        id: 13,
+                        component: <FechaAudienciaPrevia contrato={props.contrato} disabled={props.savingAccion} key='fechaAudienciaPrevia' />
+                    },
+                    {
+                        id: 14,
+                        component: <FechaAudienciaPrueba contrato={props.contrato} disabled={props.savingAccion} key='fechaAudienciaPrueba' />
+                    },
+                    {
+                        id: 15,
+                        component: <FechaSentencia contrato={props.contrato} disabled={props.savingAccion} key='fechaSentencia' />
+                    },
+                    {
+                        id: 16,
+                        component: <Sentencia contrato={props.contrato} disabled={props.savingAccion} key='sentencia' />
+                    },
+                    {
+                        id: 17,
+                        component: <AmparoSentencia contrato={props.contrato} disabled={props.savingAccion} key='amparoSentencia' />
+                    },
+                    {
+                        id: 18,
+                        component: <ResolucionAmparoSentencia contrato={props.contrato} disabled={props.savingAccion} key='resolucionAmparoSentencia' />
+                    }
+                );
+            }
+
+            if (props.contrato.tipoJuicio === ContratoRecord.JUICIO_TYPES.EJECUTIVA) {
+                accionesComponents.push(
+                    {
+                        id: 21,
+                        component: <FechaAudienciaPruebas contrato={props.contrato} disabled={props.savingAccion} key='fechaAudienciaPruebas' />
+                    },
+                    {
+                        id: 16,
+                        component: <Sentencia contrato={props.contrato} disabled={props.savingAccion} key='sentencia' />
+                    },
+                    {
+                        id: 19,
+                        component: <Apelacion contrato={props.contrato} disabled={props.savingAccion} key='apelacion' />
+                    },
+                    {
+                        id: 20,
+                        component: <SentenciaApelacion contrato={props.contrato} disabled={props.savingAccion} key='sentenciaApelacion' />
+                    },
+                    {
+                        id: 17,
+                        component: <AmparoSentencia contrato={props.contrato} disabled={props.savingAccion} key='amparoSentencia' />
+                    }
+                );
+            }
         }
 
         var state = {
@@ -72,7 +172,7 @@ var ContratoDetalle = React.createClass({
         };
 
         if (successfulAccionSave) {
-            state.selectedAccionIndex = null;
+            state.selectedAccion = null;
         }
 
         return state;
@@ -140,7 +240,7 @@ var ContratoDetalle = React.createClass({
         return (<button type='button' className='top-right editar-button' onClick={this.handleContratoEdit}>Editar Contrato</button>);
     },
     renderHistorialTitle: function () {
-        if (this.state.selectedAccionIndex == null) {
+        if (this.state.selectedAccion == null) {
             return;
         }
 
@@ -152,36 +252,54 @@ var ContratoDetalle = React.createClass({
         }
 
         var self = this;
-        return (this.state.accionesComponents.map(function (accionComponent, index) {
-            return (
-                <li key={index}
-                    className={classNames({selected: self.state.selectedAccionIndex === index})}
-                    onClick={self.showAccion.bind(self, index)}>
-                        {AccionRecord.ACCIONES_TYPES[index + 1]}
+        return (this.state.accionesComponents.map(function (accionComponent) {
+            return [
+                self.renderDivider(accionComponent),
+                <li key={accionComponent.id}
+                    className={classNames({selected: self.state.selectedAccion === accionComponent.id})}
+                    onClick={self.showAccion.bind(self, accionComponent.id)}>
+                        {AccionRecord.ACCIONES_TYPES[accionComponent.id]}
                 </li>
-            );
+            ];
         }));
+    },
+    renderDivider: function (accionComponent) {
+        if (accionComponent.id !== 13 && accionComponent.id !== 21) {
+            return;
+        }
+
+        return (<hr />);
     },
     handleContratoEdit: function () {
         this.setState({editingContrato: !this.state.editingContrato});
     },
     renderAccion: function () {
-        if (this.state.selectedAccionIndex == null) {
+        if (this.state.selectedAccion == null) {
             return;
+        }
+
+        var component;
+        for (var i = 0; i < this.state.accionesComponents.length; i++) {
+            var accionComponent = this.state.accionesComponents[i];
+
+            if (accionComponent.id === this.state.selectedAccion) {
+                component = accionComponent.component;
+                break;
+            }
         }
 
         return (
             <div>
                 <button type='button' className='top-right' onClick={this.closeAccion}>Cancelar</button>
-                {this.state.accionesComponents[this.state.selectedAccionIndex]}
+                {component}
             </div>
         );
     },
-    showAccion: function (accionIndex) {
-        this.setState({selectedAccionIndex: accionIndex});
+    showAccion: function (accionId) {
+        this.setState({selectedAccion: accionId});
     },
     closeAccion: function () {
-        this.setState({selectedAccionIndex: null});
+        this.setState({selectedAccion: null});
     },
     renderFullContratoDetails: function () {
         if (!this.state.showingFullDetails) {

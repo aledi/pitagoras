@@ -13,6 +13,7 @@ var moment = require('moment');
 
 var NotificacionRecord = Immutable.Record({
     tipo: null,
+    tipoAccion: null,
     contratoId: null,
     numeroContrato: null,
     fecha: null,
@@ -30,6 +31,9 @@ class Notificacion extends NotificacionRecord {
 
         // Tipo
         definition.tipo = definition.tipo;
+
+        // Tipo
+        definition.tipoAccion = definition.tipoAccion;
 
         // Contrato ID
         definition.contratoId = definition.contratoId;

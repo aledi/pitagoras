@@ -23,6 +23,22 @@ class ContratosStore extends Flux.MapStore {
         });
     }
 
+    getContratosForSearch () {
+        var contratos = this.get('contratos').toArray();
+        var contratosForSearch = [];
+        for (var i = 0; i < contratos.length; i++) {
+            var contrato = contratos[i];
+
+            contratosForSearch.push({
+                id: contrato.id,
+                value: contrato.numeroContrato + ' - ' + contrato.cliente.formattedValues.nombre,
+                title: contrato.numeroContrato + ' - ' + contrato.cliente.formattedValues.nombre
+            });
+        }
+
+        return contratosForSearch;
+    }
+
     reduce (state, action) {
         switch (action.type) {
 

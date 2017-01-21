@@ -11,6 +11,7 @@ var NotificacionUno = require('src/components/notificaciones/notificacion-uno');
 var NotificacionDos = require('src/components/notificaciones/notificacion-dos');
 var NotificacionTres = require('src/components/notificaciones/notificacion-tres');
 var NotificacionCuatro = require('src/components/notificaciones/notificacion-cuatro');
+var NotificacionCinco = require('src/components/notificaciones/notificacion-cinco');
 
 // -----------------------------------------------------------------------------------------------
 // Notificaciones
@@ -76,6 +77,7 @@ var Notificaciones = React.createClass({
                 case 1:
                 case 2:
                 case 3:
+                case 5:
                     notificaciones.push(item);
                     break;
                 case 4:
@@ -98,6 +100,8 @@ var Notificaciones = React.createClass({
                 return (<NotificacionTres notificacion={notificacion} />);
             case 4:
                 return (<NotificacionCuatro notificacion={notificacion} />);
+            case 5:
+                return (<NotificacionCinco notificacion={notificacion} />);
             default:
                 break;
         }

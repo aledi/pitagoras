@@ -11,6 +11,7 @@ var moment = require('moment');
 var AccionesMixin = require('./acciones-mixin');
 
 var DateSelect = require('src/components/shared/date-select');
+var TimeSelect = require('src/components/shared/time-select');
 
 // -----------------------------------------------------------------------------------------------
 // DemandaAdmitida
@@ -19,7 +20,10 @@ var DateSelect = require('src/components/shared/date-select');
 var options = [
     'No vive en el domicilio',
     'Se niega a recibir demanda',
-    'Se realizó exitosamente'
+    'Se realizó exitosamente',
+    'Oficios de búsqueda',
+    'Exhorto',
+    'Domicilio ilocalizable'
 ];
 
 var DemandaAdmitida = React.createClass({
@@ -121,6 +125,10 @@ var DemandaAdmitida = React.createClass({
                     <DateSelect date={this.state.respuestas.cita.fecha} onChange={this.handleCitaFechaChange} />
                 </div>
                 <div className='element-wrapper'>
+                    <h5 className='text-label'>Hora de cita</h5>
+                    <TimeSelect time={this.state.respuestas.cita.hora} onChange={this.handleCitaHoraChange} />
+                </div>
+                <div className='element-wrapper'>
                     <h5 className='text-label'>Lugar</h5>
                     <input
                         type='text'
@@ -177,15 +185,15 @@ var DemandaAdmitida = React.createClass({
 
         this.setState(state);
     },
-    handleHoraChange: function (time) {
-        var state = {respuestas: this.state.respuestas};
-        state.respuestas.hora = time;
-
-        this.setState(state);
-    },
     handleCitaFechaChange: function (date) {
         var state = {respuestas: this.state.respuestas};
         state.respuestas.cita.fecha = date.clone();
+
+        this.setState(state);
+    },
+    handleCitaHoraChange: function (time) {
+        var state = {respuestas: this.state.respuestas};
+        state.respuestas.cita.hora = time;
 
         this.setState(state);
     },

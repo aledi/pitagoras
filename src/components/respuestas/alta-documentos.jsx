@@ -6,21 +6,29 @@
 
 var React = require('react');
 
-var RespuestasUtils = require('src/components/respuestas/respuestas-utils');
+var DateUtils = require('src/utils/date-utils');
 
 // -----------------------------------------------------------------------------------------------
-// Desahogo Respuestas
+// Alta Documentos Respuestas
 // -----------------------------------------------------------------------------------------------
 
-var DesahogoRsp = React.createClass({
+var AltaDocumentos = React.createClass({
     render: function () {
+        var respuestas = this.props.accion.respuestas;
+
         return (
             <div className='respuestas-wrapper'>
-                <span className='bold'>¿Desahogar?: </span>
-                <span>{RespuestasUtils.formatBooleanRespuesta(this.props.accion.respuestas.desahogar)}</span>
+                <div>
+                    <span className='bold'>Número interno: </span>
+                    <span>{respuestas.numeroInterno}</span>
+                </div>
+                <div>
+                    <span className='bold'>Fecha de recepción: </span>
+                    <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
+                </div>
             </div>
         );
     }
 });
 
-module.exports = DesahogoRsp;
+module.exports = AltaDocumentos;

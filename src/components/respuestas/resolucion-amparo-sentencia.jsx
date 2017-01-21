@@ -6,33 +6,29 @@
 
 var React = require('react');
 
-var RespuestasUtils = require('src/components/respuestas/respuestas-utils');
+var DateUtils = require('src/utils/date-utils');
 
 // -----------------------------------------------------------------------------------------------
-// Visita Respuestas
+// Resolución Amparo vs Sentencia
 // -----------------------------------------------------------------------------------------------
 
-var VisitaRsp = React.createClass({
+var ResolucionAmparoSentencia = React.createClass({
     render: function () {
         var respuestas = this.props.accion.respuestas;
 
         return (
             <div className='respuestas-wrapper'>
                 <div>
-                    <span className='bold'>¿Encontró el domicilio?: </span>
-                    <span>{RespuestasUtils.formatBooleanRespuesta(respuestas.domicilioUbicado)}</span>
+                    <span className='bold'>Fecha: </span>
+                    <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
                 </div>
                 <div>
-                    <span className='bold'>¿Ubicó al cliente?: </span>
-                    <span>{RespuestasUtils.formatBooleanRespuesta(respuestas.clienteUbicado)}</span>
-                </div>
-                <div>
-                    <span className='bold'>Datos de contacto: </span>
-                    <span>{respuestas.datosDeContacto}</span>
+                    <span className='bold'>Favorable a: </span>
+                    <span>{respuestas.favorable}</span>
                 </div>
             </div>
         );
     }
 });
 
-module.exports = VisitaRsp;
+module.exports = ResolucionAmparoSentencia;

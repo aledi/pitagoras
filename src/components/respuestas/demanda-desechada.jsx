@@ -13,7 +13,7 @@ var DateUtils = require('src/utils/date-utils');
 // Demanda Desechada Respuestas
 // -----------------------------------------------------------------------------------------------
 
-var DemandaDesechadaRsp = React.createClass({
+var DemandaDesechada = React.createClass({
     render: function () {
         var respuestas = this.props.accion.respuestas;
 
@@ -50,4 +50,4 @@ var DemandaDesechadaRsp = React.createClass({
     }
 });
 
-module.exports = DemandaDesechadaRsp;
+module.exports = DemandaDesechada;

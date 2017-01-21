@@ -12,6 +12,10 @@
         margin-bottom: 20px;
     }
 
+    .invalid {
+        border-color: $invalid;
+    }
+
     h5 {
         display: block;
         text-transform: uppercase;
@@ -33,6 +37,11 @@
     button {
         margin: 20px 0;
         margin-bottom: 0;
+
+        &.add {
+            padding: 0;
+            margin: 20px 0px;
+        }
 
         &:disabled {
             background-color: $disabled-button-background;

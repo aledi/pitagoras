@@ -27,7 +27,16 @@ var ACCIONES_TYPES = {
     9: 'Desahogo / Cierre',
     10: 'Demanda admitida',
     11: 'Diligencia de embargo',
-    12: 'Extrajudicial'
+    12: 'Extrajudicial',
+    13: 'Fecha Audiencia Previa',
+    14: 'Fecha Audiencia Pruebas', // Oral
+    15: 'Fecha Sentencia',
+    16: 'Sentencia',
+    17: 'Amparo vs Sentencia',
+    18: 'Resolución Amparo vs Sentencia',
+    19: 'Apelación',
+    20: 'Sentencia de Apelación',
+    21: 'Fecha Audiencia Pruebas' // Ejecutiva
 };
 
 var AccionRecord = Immutable.Record({
@@ -50,9 +59,22 @@ class Accion extends AccionRecord {
 
     static prepareForParse (accion) {
         delete accion.disabled;
+        delete accion.invalidFields;
 
         if (accion.respuestas.fecha) {
             accion.respuestas.fecha = accion.respuestas.fecha.toDate();
+        }
+
+        if (accion.respuestas.fecha1) {
+            accion.respuestas.fecha1 = accion.respuestas.fecha1.toDate();
+        }
+
+        if (accion.respuestas.fecha2) {
+            accion.respuestas.fecha2 = accion.respuestas.fecha2.toDate();
+        }
+
+        if (accion.respuestas.fecha3) {
+            accion.respuestas.fecha3 = accion.respuestas.fecha3.toDate();
         }
 
         if (accion.respuestas.cita && accion.respuestas.cita.fecha) {
@@ -85,6 +107,7 @@ class Accion extends AccionRecord {
         if ((accion.tipo === 6 && accion.respuestas.regresaDocumentos) || (accion.tipo === 7 && !accion.respuestas.recogeDocumentos)) {
             contrato.notificacion = {
                 tipo: 1,
+                tipoAccion: accion.tipo,
                 numeroContrato: contrato.numeroContrato,
                 contratoId: contrato.id,
                 fecha: accion.respuestas.fecha,
@@ -96,6 +119,7 @@ class Accion extends AccionRecord {
         if (accion.tipo === 8 && accion.respuestas.desahogar) {
             contrato.notificacion = {
                 tipo: 2,
+                tipoAccion: accion.tipo,
                 numeroContrato: contrato.numeroContrato,
                 contratoId: contrato.id,
                 fecha: accion.respuestas.fecha
@@ -106,9 +130,22 @@ class Accion extends AccionRecord {
         if ((accion.tipo === 10 && accion.respuestas.tipoJuicio === 'Ejecutiva Mercantil') || (accion.tipo === 11 && accion.respuestas.resultado === 'Se dejó citatorio')) {
             contrato.notificacion = {
                 tipo: 3,
+                tipoAccion: accion.tipo,
                 numeroContrato: contrato.numeroContrato,
                 contratoId: contrato.id,
                 cita: accion.respuestas.cita
+            };
+        }
+
+        // Notification for 13, 14, 15, 17, 20, 21
+        if (accion.tipo === 13 || accion.tipo === 14 || accion.tipo === 15 || (accion.tipo === 17 && contrato.tipoJuicio === ContratoRecord.JUICIO_TYPES.EJECUTIVA) || accion.tipo === 20 || accion.tipo === 21) {
+            contrato.notificacion = {
+                tipo: 5,
+                tipoAccion: accion.tipo,
+                numeroContrato: contrato.numeroContrato,
+                contratoId: contrato.id,
+                fecha: accion.respuestas.fecha,
+                hora: accion.respuestas.hora
             };
         }
 
@@ -133,6 +170,7 @@ class Accion extends AccionRecord {
             contrato.reporte.expediente = accion.respuestas.expedienteJudicial;
             contrato.reporte.juzgado = accion.respuestas.juzgado;
             contrato.reporte.tipoJuicio = accion.respuestas.tipoJuicio;
+            contrato.tipoJuicio = accion.respuestas.tipoJuicio;
             contrato.juzgado = accion.respuestas.juzgado;
 
             if (accion.respuestas.pendiente) {
@@ -174,6 +212,58 @@ class Accion extends AccionRecord {
                 comentarios: accion.comentarios,
                 fecha: moment().toDate()
             });
+        }
+
+        if (accion.tipo === 13) {
+            contrato.reporte.fechaAudienciaPrevia = accion.respuestas.fecha;
+        }
+
+        if (accion.tipo === 14) {
+            contrato.reporte.fechaAudienciaPrueba = accion.respuestas.fecha;
+        }
+
+        if (accion.tipo === 15) {
+            contrato.reporte.fechaSentencia = accion.respuestas.fecha;
+        }
+
+        if (accion.tipo === 16) {
+            if (accion.respuestas.favorable === 'Tercero') {
+                accion.respuestas.favorable = accion.respuestas.tercero;
+                delete accion.respuestas.tercero;
+            }
+
+            if (contrato.tipoJuicio === ContratoRecord.JUICIO_TYPES.ORAL) {
+                delete accion.respuestas.fecha;
+            } else if (contrato.tipoJuicio === ContratoRecord.JUICIO_TYPES.EJECUTIVA) {
+                contrato.reporte.sentencia = accion.respuestas.fecha;
+            }
+        }
+
+        if (accion.tipo === 17) {
+            var juicioEjecutiva = contrato.tipoJuicio === ContratoRecord.JUICIO_TYPES.EJECUTIVA;
+            var key = juicioEjecutiva ? 'favorable' : 'promovido';
+
+            if (juicioEjecutiva) {
+                accion.respuestas.favorable = accion.respuestas.promovido;
+                delete accion.respuestas.promovido;
+            }
+
+            if (accion.respuestas[key] === 'Tercero') {
+                accion.respuestas[key] = accion.respuestas.tercero;
+                delete accion.respuestas.tercero;
+            }
+        }
+
+        if (accion.tipo === 18) {
+            contrato.reporte.fechaResolucionAmparoSentencia = accion.respuestas.fecha;
+        }
+
+        if (accion.tipo === 20) {
+            contrato.reporte.fechaSentenciaApelacion = accion.respuestas.fecha;
+        }
+
+        if (accion.tipo === 21) {
+            contrato.reporte.fechaAudienciaPruebas = accion.respuestas.fecha;
         }
 
         contrato.reporte.etapaActual = accion.tipo;

@@ -1,8 +1,15 @@
 @import '~src/styles/pitagoras.scss';
 
+.search-button {
+    height: 30px;
+    float: right;
+    margin: 0;
+    font-size: 14px;
+}
+
 .contratos-table {
     position: absolute;
-    top: 20px;
+    top: 90px;
     left: 0;
     right: 0;
     bottom: 0;

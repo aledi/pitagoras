@@ -12,13 +12,16 @@ var AccionRecord = require('src/records/accion');
 // ReportesTabla
 // -----------------------------------------------------------------------------------------------
 
-var tableMinWidth = '5600px';
+var tableMinWidth = '7400px';
 
 var ReportesTabla = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
+    componentDidMount: function () {
+        document.getElementById('table-wrapper-reportes').focus();
+    },
     render: function () {
         return (
-            <div className='reportes-table table-wrapper'>
+            <div id='table-wrapper-reportes' className='reportes-table table-wrapper' tabIndex='0' onKeyUp={this.handleKeyUp}>
                 <div className='table-header-wrapper' style={{minWidth: tableMinWidth}}>
                     <table>
                         {this.renderHeader()}
@@ -31,7 +34,7 @@ var ReportesTabla = React.createClass({
     },
     renderTableBodyWrapper: function () {
         return (
-            <div className='table-body-wrapper' style={{minWidth: tableMinWidth}}>
+            <div id='table-body-wrapper-reportes' className='table-body-wrapper' style={{minWidth: tableMinWidth}} tabIndex='1'>
                 {this.renderTableBody()}
             </div>
         );
@@ -120,6 +123,27 @@ var ReportesTabla = React.createClass({
                         <span>Fecha de Admisión</span>
                     </th>
                     <th style={{width: '250px'}}>
+                        <span>Fecha de Audiencia Previa</span>
+                    </th>
+                    <th style={{width: '250px'}}>
+                        <span>Fecha de Audiencia Prueba</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Fecha de Sentencia</span>
+                    </th>
+                    <th style={{width: '350px'}}>
+                        <span>Fecha de Resolución Amparo vs Sentencia</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Sentencia</span>
+                    </th>
+                    <th style={{width: '300px'}}>
+                        <span>Fecha de Sentencia de Apelación</span>
+                    </th>
+                    <th style={{width: '250px'}}>
+                        <span>Fecha de Audiencia Pruebas</span>
+                    </th>
+                    <th style={{width: '250px'}}>
                         <span>Resultado de Emplazamiento</span>
                     </th>
                     <th style={{width: '250px'}}>
@@ -162,6 +186,13 @@ var ReportesTabla = React.createClass({
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaResolucionAmparo}</span></td>
                     <td style={{width: '350px', textAlign: 'left'}}><span>{reporte.formattedValues.horariosJuzgado}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAdmision}</span></td>
+                    <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAudienciaPrevia}</span></td>
+                    <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAudienciaPrueba}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaSentencia}</span></td>
+                    <td style={{width: '350px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaResolucionAmparoSentencia}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.sentencia}</span></td>
+                    <td style={{width: '300px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaSentenciaApelacion}</span></td>
+                    <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAudienciaPruebas}</span></td>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.resultadoEmplazamiento}</span></td>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.etapaActual ? AccionRecord.ACCIONES_TYPES[reporte.etapaActual] : ''}</span></td>
                 </tr>
@@ -169,6 +200,29 @@ var ReportesTabla = React.createClass({
         });
 
         return reportes;
+    },
+    handleKeyUp: function (event) {
+        event.persist();
+
+        // Left arrow
+        if (event.keyCode === 37) {
+            document.getElementById('table-wrapper-reportes').focus();
+        }
+
+        // Up arrow
+        if (event.keyCode === 38) {
+            document.getElementById('table-body-wrapper-reportes').focus();
+        }
+
+        // Right arrow
+        if (event.keyCode === 39) {
+            document.getElementById('table-wrapper-reportes').focus();
+        }
+
+        // Down arrow
+        if (event.keyCode === 40) {
+            document.getElementById('table-body-wrapper-reportes').focus();
+        }
     }
 });
 

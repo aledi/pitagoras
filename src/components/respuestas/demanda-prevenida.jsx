@@ -13,7 +13,7 @@ var DateUtils = require('src/utils/date-utils');
 // Demanda Prevenida Respuestas
 // -----------------------------------------------------------------------------------------------
 
-var DemandaPrevenidaRsp = React.createClass({
+var DemandaPrevenida = React.createClass({
     render: function () {
         return (
             <div className='respuestas-wrapper'>
@@ -39,4 +39,4 @@ var DemandaPrevenidaRsp = React.createClass({
     }
 });
 
-module.exports = DemandaPrevenidaRsp;
+module.exports = DemandaPrevenida;

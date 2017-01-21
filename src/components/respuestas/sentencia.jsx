@@ -9,26 +9,34 @@ var React = require('react');
 var DateUtils = require('src/utils/date-utils');
 
 // -----------------------------------------------------------------------------------------------
-// Alta Documentos Respuestas
+// Sentencia
 // -----------------------------------------------------------------------------------------------
 
-var AltaDocumentosRsp = React.createClass({
+var Sentencia = React.createClass({
     render: function () {
-        var respuestas = this.props.accion.respuestas;
-
         return (
             <div className='respuestas-wrapper'>
                 <div>
-                    <span className='bold'>Número interno: </span>
-                    <span>{respuestas.numeroInterno}</span>
+                    <span className='bold'>Favorable a: </span>
+                    <span>{this.props.accion.respuestas.favorable}</span>
                 </div>
-                <div>
-                    <span className='bold'>Fecha de recepción: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
-                </div>
+                {this.renderDate()}
+            </div>
+        );
+    },
+    renderDate: function () {
+        var respuestas = this.props.accion.respuestas;
+        if (!respuestas.fecha) {
+            return;
+        }
+
+        return (
+            <div>
+                <span className='bold'>Fecha: </span>
+                <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
             </div>
         );
     }
 });
 
-module.exports = AltaDocumentosRsp;
+module.exports = Sentencia;

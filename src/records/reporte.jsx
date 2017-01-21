@@ -34,6 +34,13 @@ var ReporteRecord = Immutable.Record({
     fechaResolucionAmparo: null,
     horariosJuzgado: null,
     fechaAdmision: null,
+    fechaAudienciaPrevia: null,
+    fechaAudienciaPrueba: null,
+    fechaSentencia: null,
+    fechaResolucionAmparoSentencia: null,
+    sentencia: null,
+    fechaSentenciaApelacion: null,
+    fechaAudienciaPruebas: null,
     resultadoEmplazamiento: null,
     etapaActual: null,
     extrajudicial: null,
@@ -120,12 +127,40 @@ class Reporte extends ReporteRecord {
         definition.fechaPresentacionAmparo = definition.fechaPresentacionAmparo;
         formattedValues.fechaPresentacionAmparo = definition.fechaPresentacionAmparo ? moment(definition.fechaPresentacionAmparo.iso).format('D MMMM, YYYY') : null;
 
+        // Fecha de Audiencia Previa
+        definition.fechaAudienciaPrevia = definition.fechaAudienciaPrevia;
+        formattedValues.fechaAudienciaPrevia = definition.fechaAudienciaPrevia ? moment(definition.fechaAudienciaPrevia.iso).format('D MMMM, YYYY') : null;
+
+        // Fecha de Audiencia Prueba
+        definition.fechaAudienciaPrueba = definition.fechaAudienciaPrueba;
+        formattedValues.fechaAudienciaPrueba = definition.fechaAudienciaPrueba ? moment(definition.fechaAudienciaPrueba.iso).format('D MMMM, YYYY') : null;
+
+        // Fecha de Sentencia
+        definition.fechaSentencia = definition.fechaSentencia;
+        formattedValues.fechaSentencia = definition.fechaSentencia ? moment(definition.fechaSentencia.iso).format('D MMMM, YYYY') : null;
+
+        // Fecha de Resolución Amparo vs Sentencia
+        definition.fechaResolucionAmparoSentencia = definition.fechaResolucionAmparoSentencia;
+        formattedValues.fechaResolucionAmparoSentencia = definition.fechaResolucionAmparoSentencia ? moment(definition.fechaResolucionAmparoSentencia.iso).format('D MMMM, YYYY') : null;
+
+        // Sentencia
+        definition.sentencia = definition.sentencia;
+        formattedValues.sentencia = definition.sentencia ? moment(definition.sentencia.iso).format('D MMMM, YYYY') : null;
+
+        // Fecha Sentencia de Apelación
+        definition.fechaSentenciaApelacion = definition.fechaSentenciaApelacion;
+        formattedValues.fechaSentenciaApelacion = definition.fechaSentenciaApelacion ? moment(definition.fechaSentenciaApelacion.iso).format('D MMMM, YYYY') : null;
+
         // Resolución de Amparo
         definition.resolucionAmparo = definition.resolucionAmparo;
 
         // Fecha de Resolución Amparo
         definition.fechaResolucionAmparo = definition.fechaResolucionAmparo;
         formattedValues.fechaResolucionAmparo = definition.fechaResolucionAmparo ? moment(definition.fechaResolucionAmparo.iso).format('D MMMM, YYYY') : null;
+
+        // Fecha de Audiencia Pruebas
+        definition.fechaAudienciaPruebas = definition.fechaAudienciaPruebas;
+        formattedValues.fechaAudienciaPruebas = definition.fechaAudienciaPruebas ? moment(definition.fechaAudienciaPruebas.iso).format('D MMMM, YYYY') : null;
 
         // Horarios de Juzgado
         definition.horariosJuzgado = definition.horariosJuzgado;

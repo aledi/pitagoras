@@ -37,7 +37,7 @@ class Reportes extends React.Component {
 
     render () {
         return (
-            <main className='reportes'>
+            <main className='reportes' onClick={this.handleClick}>
                 {this.renderContent()}
             </main>
         );
@@ -50,6 +50,15 @@ class Reportes extends React.Component {
             return (<div className='error'>Hubo un error. Favor de intentar de nuevo.</div>);
         } else {
             return (<ReportesContent reportes={this.state.reportes} />);
+        }
+    }
+
+    handleClick (event) {
+        var tableWrapper = document.getElementById('table-wrapper-reportes');
+
+        // Keep table focused
+        if (tableWrapper) {
+            tableWrapper.focus();
         }
     }
 }
