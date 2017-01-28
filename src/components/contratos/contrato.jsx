@@ -23,7 +23,7 @@ class Contrato extends React.Component {
     static calculateState (prevState, props) {
         return {
             contrato: props.contrato,
-            acciones: AccionesStore.get(props.id),
+            accionesForContrato: AccionesStore.get(props.id),
             savingAccion: AccionesStore.get('saving'),
             saveError: AccionesStore.get('saveError')
         };
@@ -37,7 +37,7 @@ class Contrato extends React.Component {
         return (
             <ContratoDetalle
                 contrato={this.state.contrato}
-                acciones={this.state.acciones}
+                accionesForContrato={this.state.accionesForContrato}
                 savingAccion={this.state.savingAccion}
                 saveError={this.state.saveError} />
         );
