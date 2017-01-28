@@ -13,20 +13,23 @@ var DateSelect = require('src/components/shared/date-select');
 var TimeSelect = require('src/components/shared/time-select');
 
 // -----------------------------------------------------------------------------------------------
-// FechaAudienciaPrevia
+// Fecha de Audiencia Previa
 // -----------------------------------------------------------------------------------------------
 
 var FechaAudienciaPrevia = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
+        var lastAccion = this.props.lastAccion;
+
         return {
             tipo: 13,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                fecha: moment(),
-                hora: '8:00 am'
+                atendido: lastAccion ? lastAccion.respuestas.atendido : '',
+                fecha: lastAccion ? moment(lastAccion.respuestas.fecha.iso) : moment(),
+                hora: lastAccion ? lastAccion.respuestas.hora : '8:00 am'
             },
             disabled: false
         };
