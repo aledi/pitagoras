@@ -45,7 +45,13 @@ var AmparoSentencia = React.createClass({
         }
 
         if (juicioEjecutiva) {
-            state.respuestas.fecha = lastAccion ? moment(lastAccion.respuestas.fecha.iso) : moment();
+            state.respuestas.promovido = lastAccion ? lastAccion.respuestas.favorable : 'GMF';
+            state.respuestas.fecha = lastAccion && lastAccion.respuestas.fecha ? moment(lastAccion.respuestas.fecha.iso) : moment();
+
+            if (lastAccion && lastAccion.respuestas.favorable !== 'GMF' && lastAccion.respuestas.favorable !== 'Demandado') {
+                state.respuestas.promovido = 'Tercero';
+                state.respuestas.tercero = lastAccion.respuestas.favorable;
+            }
         }
 
         return state;
