@@ -16,13 +16,17 @@ var AccionesMixin = require('./acciones-mixin');
 var Apelacion = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
+        var lastAccion = this.props.lastAccion;
+
         return {
             tipo: 19,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                interpuesta: 'GMF'
+                interpuesta: lastAccion ? lastAccion.respuestas.interpuesta : 'GMF',
+                juzgado: lastAccion ? lastAccion.respuestas.juzgado : '',
+                expediente: lastAccion ? lastAccion.respuestas.expediente : ''
             },
             disabled: false
         };
