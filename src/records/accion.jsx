@@ -255,6 +255,11 @@ class Accion extends AccionRecord {
         }
 
         if (accion.tipo === 18) {
+            if (accion.respuestas.favorable === 'Tercero') {
+                accion.respuestas.favorable = accion.respuestas.tercero;
+                delete accion.respuestas.tercero;
+            }
+
             contrato.reporte.fechaResolucionAmparoSentencia = accion.respuestas.fecha;
         }
 

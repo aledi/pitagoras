@@ -19,21 +19,29 @@ var DateSelect = require('src/components/shared/date-select');
 var ResolucionAmparoSentencia = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
-        return {
+        var lastAccion = this.props.lastAccion;
+        var state = {
             tipo: 18,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                fecha: moment(),
-                favorable: 'GMF',
-                tercero: ''
+                fecha: lastAccion ? moment(lastAccion.respuestas.fecha.iso) : moment(),
+                favorable: lastAccion ? lastAccion.respuestas.favorable : 'GMF',
+                tercero: lastAccion ? lastAccion.respuestas.tercero : ''
             },
             invalidFields: {
                 tercero: false
             },
             disabled: false
         };
+
+        if (lastAccion && lastAccion.respuestas.favorable !== 'GMF' && lastAccion.respuestas.favorable !== 'Demandado') {
+            state.respuestas.favorable = 'Tercero';
+            state.respuestas.tercero = lastAccion.respuestas.favorable;
+        }
+
+        return state;
     },
     componentWillReceiveProps: function (nextProps) {
         this.getState(nextProps);
