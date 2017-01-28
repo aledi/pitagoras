@@ -22,7 +22,7 @@ var PresentacionDemanda = React.createClass({
 
         return {
             tipo: 3,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
