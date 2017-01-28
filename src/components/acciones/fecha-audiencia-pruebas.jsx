@@ -13,21 +13,24 @@ var DateSelect = require('src/components/shared/date-select');
 var TimeSelect = require('src/components/shared/time-select');
 
 // -----------------------------------------------------------------------------------------------
-// FechaAudienciaPruebas
+// Fecha Audiencia Pruebas (Ejecutiva)
 // -----------------------------------------------------------------------------------------------
 
 var FechaAudienciaPruebas = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
+        var lastAccion = this.props.lastAccion;
+
         return {
             tipo: 21,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                fecha: moment(),
-                hora: '8:00 am',
-                citacion: false
+                atendido: lastAccion ? lastAccion.respuestas.atendido : '',
+                fecha: lastAccion ? moment(lastAccion.respuestas.fecha.iso) : moment(),
+                hora: lastAccion ? lastAccion.respuestas.hora : '8:00 am',
+                citacion: lastAccion ? lastAccion.respuestas.citacion : false
             },
             disabled: false
         };

@@ -13,7 +13,7 @@ var DateSelect = require('src/components/shared/date-select');
 var TimeSelect = require('src/components/shared/time-select');
 
 // -----------------------------------------------------------------------------------------------
-// FechaAudienciaPrueba
+// Fecha Audiencia Prueba (Oral)
 // -----------------------------------------------------------------------------------------------
 
 var FechaAudienciaPrueba = React.createClass({
