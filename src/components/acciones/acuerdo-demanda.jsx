@@ -27,8 +27,8 @@ var AcuerdoDemanda = React.createClass({
             contrato: this.props.contrato,
             respuestas: {
                 resultadoAcuerdo: lastAccion ? lastAccion.respuestas.resultadoAcuerdo : 'Desecha',
-                fechaAcuerdo: lastAccion ? moment(lastAccion.respuestas.fechaAcuerdo.iso) : moment(),
-                fechaPublicacion: lastAccion ? moment(lastAccion.respuestas.fechaPublicacion.iso) : moment()
+                fechaAcuerdo: moment(),
+                fechaPublicacion: moment()
             },
             disabled: false
         };

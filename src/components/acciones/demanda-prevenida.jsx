@@ -22,7 +22,7 @@ var DemandaPrevenida = React.createClass({
 
         return {
             tipo: 8,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {

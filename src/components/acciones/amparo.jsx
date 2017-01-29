@@ -29,8 +29,8 @@ var Amparo = React.createClass({
                 expediente: lastAccion ? lastAccion.respuestas.expediente : '',
                 juzgado: lastAccion ? lastAccion.respuestas.juzgado : '',
                 resolucion: lastAccion ? lastAccion.respuestas.resolucion : 'Admite',
-                fechaPresentacion: lastAccion ? moment(lastAccion.respuestas.fechaPresentacion.iso) : moment(),
-                fechaResolucion: lastAccion ? moment(lastAccion.respuestas.fechaResolucion.iso) : moment()
+                fechaPresentacion: moment(),
+                fechaResolucion: moment()
             },
             disabled: false
         };

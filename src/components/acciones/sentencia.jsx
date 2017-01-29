@@ -30,7 +30,7 @@ var Sentencia = React.createClass({
             respuestas: {
                 favorable: lastAccion ? lastAccion.respuestas.favorable : 'GMF',
                 tercero: lastAccion ? lastAccion.respuestas.tercero : '',
-                fecha: lastAccion && lastAccion.respuestas.fecha ? moment(lastAccion.respuestas.fecha.iso) : moment()
+                fecha: moment()
             },
             invalidFields: {
                 tercero: false

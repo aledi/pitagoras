@@ -30,7 +30,7 @@ var PresentacionDemanda = React.createClass({
                 numeroRegistro: lastAccion ? lastAccion.respuestas.numeroRegistro : '',
                 juzgado: lastAccion ? lastAccion.respuestas.juzgado : '',
                 expedienteJudicial: lastAccion ? lastAccion.respuestas.expedienteJudicial : '',
-                fecha: lastAccion ? moment(lastAccion.respuestas.fecha.iso) : moment(),
+                fecha: moment(),
                 pendiente: lastAccion ? lastAccion.respuestas.pendiente : false,
                 comentarioAcuerdoPendiente: lastAccion ? lastAccion.respuestas.comentarioAcuerdoPendiente : ''
             },
