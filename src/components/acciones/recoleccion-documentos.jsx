@@ -19,16 +19,33 @@ var TimeSelect = require('src/components/shared/time-select');
 var RecoleccionDocumentos = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
-        return {
+        var lastAccion = this.props.lastAccion;
+
+        var state = {
             tipo: 7,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                recogeDocumentos: true
+                recogeDocumentos: lastAccion ? lastAccion.respuestas.recogeDocumentos : true
             },
             disabled: false
         };
+
+        if (lastAccion && lastAccion.respuestas.recogeDocumentos) {
+            state.respuestas.personaRecoge = lastAccion.respuestas.personaRecoge;
+            state.respuestas.documentosRecogidos = lastAccion.respuestas.documentosRecogidos;
+        }
+
+        if (lastAccion && !lastAccion.respuestas.recogeDocumentos) {
+            state.respuestas.fecha = moment();
+            state.respuestas.horario = {
+                start: '8:00 am',
+                end: '9:00 am'
+            };
+        }
+
+        return state;
     },
     componentWillReceiveProps: function (nextProps) {
         this.getState(nextProps);
