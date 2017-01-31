@@ -21,14 +21,15 @@ var DateSelect = require('src/components/shared/date-select');
 var Sentencia = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
-        return {
+        var lastAccion = this.props.lastAccion;
+        var state = {
             tipo: 16,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                favorable: 'GMF',
-                tercero: '',
+                favorable: lastAccion ? lastAccion.respuestas.favorable : 'GMF',
+                tercero: lastAccion ? lastAccion.respuestas.tercero : '',
                 fecha: moment()
             },
             invalidFields: {
@@ -36,6 +37,13 @@ var Sentencia = React.createClass({
             },
             disabled: false
         };
+
+        if (lastAccion && lastAccion.respuestas.favorable !== 'GMF' && lastAccion.respuestas.favorable !== 'Demandado') {
+            state.respuestas.favorable = 'Tercero';
+            state.respuestas.tercero = lastAccion.respuestas.favorable;
+        }
+
+        return state;
     },
     componentWillReceiveProps: function (nextProps) {
         this.getState(nextProps);

@@ -22,15 +22,16 @@ var AmparoSentencia = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
         var juicioEjecutiva = this.props.contrato.tipoJuicio === ContratoRecord.JUICIO_TYPES.EJECUTIVA;
+        var lastAccion = this.props.lastAccion;
 
         var state = {
             tipo: 17,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                promovido: 'GMF',
-                tercero: ''
+                promovido: lastAccion ? lastAccion.respuestas.promovido : 'GMF',
+                tercero: lastAccion ? lastAccion.respuestas.tercero : ''
             },
             invalidFields: {
                 tercero: false
@@ -38,8 +39,19 @@ var AmparoSentencia = React.createClass({
             disabled: false
         };
 
+        if (lastAccion && lastAccion.respuestas.promovido !== 'GMF' && lastAccion.respuestas.promovido !== 'Demandado') {
+            state.respuestas.promovido = 'Tercero';
+            state.respuestas.tercero = lastAccion.respuestas.promovido;
+        }
+
         if (juicioEjecutiva) {
+            state.respuestas.promovido = lastAccion ? lastAccion.respuestas.favorable : 'GMF';
             state.respuestas.fecha = moment();
+
+            if (lastAccion && lastAccion.respuestas.favorable !== 'GMF' && lastAccion.respuestas.favorable !== 'Demandado') {
+                state.respuestas.promovido = 'Tercero';
+                state.respuestas.tercero = lastAccion.respuestas.favorable;
+            }
         }
 
         return state;

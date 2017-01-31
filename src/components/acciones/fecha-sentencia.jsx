@@ -19,12 +19,15 @@ var TimeSelect = require('src/components/shared/time-select');
 var FechaSentencia = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
+        var lastAccion = this.props.lastAccion;
+
         return {
             tipo: 15,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
+                atendido: lastAccion ? lastAccion.respuestas.atendido : '',
                 fecha: moment(),
                 hora: '8:00 am'
             },

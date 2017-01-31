@@ -18,13 +18,17 @@ var DateSelect = require('src/components/shared/date-select');
 var Amparo = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
+        var lastAccion = this.props.lastAccion;
+
         return {
             tipo: 5,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                resolucion: 'Admite',
+                expediente: lastAccion ? lastAccion.respuestas.expediente : '',
+                juzgado: lastAccion ? lastAccion.respuestas.juzgado : '',
+                resolucion: lastAccion ? lastAccion.respuestas.resolucion : 'Admite',
                 fechaPresentacion: moment(),
                 fechaResolucion: moment()
             },

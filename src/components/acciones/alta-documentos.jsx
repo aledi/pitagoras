@@ -18,12 +18,17 @@ var DateSelect = require('src/components/shared/date-select');
 var AltaDocumentos = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
+        var lastAccion = this.props.lastAccion;
+
         return {
             tipo: 2,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {fecha: moment()},
+            respuestas: {
+                numeroInterno: lastAccion ? lastAccion.respuestas.numeroInterno : '',
+                fecha: moment()
+            },
             disabled: false
         };
     },

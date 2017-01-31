@@ -226,7 +226,7 @@ var ContratoDetalle = React.createClass({
                     <div className='accion-forma-historial'>
                         {this.renderAccion()}
                         {this.renderHistorialTitle()}
-                        <AccionesHistorial acciones={this.props.acciones} />
+                        <AccionesHistorial acciones={this.props.accionesForContrato} />
                     </div>
                 </div>
             </div>
@@ -278,6 +278,16 @@ var ContratoDetalle = React.createClass({
             return;
         }
 
+        var self = this;
+        var accionesForTipo = [];
+        this.props.accionesForContrato.forEach(function (accion, index) {
+            if (accion.tipo === self.state.selectedAccion) {
+                accionesForTipo.push(accion);
+            }
+        });
+
+        var lastAccion = accionesForTipo[0];
+
         var component;
         for (var i = 0; i < this.state.accionesComponents.length; i++) {
             var accionComponent = this.state.accionesComponents[i];
@@ -287,6 +297,8 @@ var ContratoDetalle = React.createClass({
                 break;
             }
         }
+
+        component = React.cloneElement(component, {lastAccion: lastAccion});
 
         return (
             <div>

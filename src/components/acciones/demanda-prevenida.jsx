@@ -18,13 +18,15 @@ var DateSelect = require('src/components/shared/date-select');
 var DemandaPrevenida = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
+        var lastAccion = this.props.lastAccion;
+
         return {
             tipo: 8,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                desahogar: false
+                desahogar: lastAccion ? lastAccion.respuestas.desahogar : false
             },
             disabled: false
         };

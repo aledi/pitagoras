@@ -18,13 +18,15 @@ var DateSelect = require('src/components/shared/date-select');
 var AcuerdoDemanda = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
+        var lastAccion = this.props.lastAccion;
+
         return {
             tipo: 4,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                resultadoAcuerdo: 'Desecha',
+                resultadoAcuerdo: lastAccion ? lastAccion.respuestas.resultadoAcuerdo : 'Desecha',
                 fechaAcuerdo: moment(),
                 fechaPublicacion: moment()
             },

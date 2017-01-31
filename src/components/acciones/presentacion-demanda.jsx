@@ -18,15 +18,21 @@ var DateSelect = require('src/components/shared/date-select');
 var PresentacionDemanda = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
+        var lastAccion = this.props.lastAccion;
+
         return {
             tipo: 3,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                tipoJuicio: 'Oral Mercantil',
+                tipoJuicio: lastAccion ? lastAccion.respuestas.tipoJuicio : 'Oral Mercantil',
+                numeroRegistro: lastAccion ? lastAccion.respuestas.numeroRegistro : '',
+                juzgado: lastAccion ? lastAccion.respuestas.juzgado : '',
+                expedienteJudicial: lastAccion ? lastAccion.respuestas.expedienteJudicial : '',
                 fecha: moment(),
-                pendiente: false
+                pendiente: lastAccion ? lastAccion.respuestas.pendiente : false,
+                comentarioAcuerdoPendiente: lastAccion ? lastAccion.respuestas.comentarioAcuerdoPendiente : ''
             },
             disabled: false
         };

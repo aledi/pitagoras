@@ -13,7 +13,7 @@ var DateSelect = require('src/components/shared/date-select');
 var TimeSelect = require('src/components/shared/time-select');
 
 // -----------------------------------------------------------------------------------------------
-// DiligenciaEmbargo
+// Diligencia de Embargo
 // -----------------------------------------------------------------------------------------------
 
 var options = [
@@ -29,16 +29,30 @@ var options = [
 var DiligenciaEmbargo = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
-        return {
+        var lastAccion = this.props.lastAccion;
+
+        var state = {
             tipo: 11,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                resultado: 'No encontró el domicilio'
+                resultado: lastAccion ? lastAccion.respuestas.resultado : 'No encontró el domicilio'
             },
             disabled: false
         };
+
+        if (lastAccion && lastAccion.respuestas.cita) {
+            state.respuestas.cita = {
+                fecha: moment(),
+                hora: '8:00 am',
+                lugar: lastAccion.respuestas.cita.lugar,
+                nombreActuario: lastAccion.respuestas.cita.nombreActuario,
+                telefonoActuario: lastAccion.respuestas.cita.telefonoActuario
+            };
+        }
+
+        return state;
     },
     componentWillReceiveProps: function (nextProps) {
         this.getState(nextProps);
