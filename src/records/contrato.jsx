@@ -25,6 +25,12 @@ var CONTRATO_TYPES = {
     PERDIDA_POSIBLE: 'Pérdida Posible'
 };
 
+var DEPURACION_TYPES = {
+    JUDICIAL: 1,
+    EXTRAJUDICIAL: 2,
+    JUDICIAL_EXTRAJUDICIAL: 3
+};
+
 var ASIGNACION_TYPES = {
     NORMAL: 'Normal',
     ESPECIAL: 'Especial',
@@ -44,6 +50,7 @@ var ContratoRecord = Immutable.Record({
     tipoAsignacion: null,
     tipoContrato: null,
     tipoJuicio: null,
+    depuracion: null,
     cliente: null,
     fechaContrato: null,
     juzgado: null,
@@ -75,6 +82,10 @@ class Contrato extends ContratoRecord {
 
     static get JUICIO_TYPES () {
         return JUICIO_TYPES;
+    }
+
+    static get DEPURACION_TYPES () {
+        return DEPURACION_TYPES;
     }
 
     static prepareForParse (contrato) {
@@ -129,6 +140,10 @@ class Contrato extends ContratoRecord {
 
         // Tipo Juicio
         definition.tipoJuicio = definition.tipoJuicio;
+
+        // Depuración
+        definition.depuracion = definition.depuracion;
+        formattedValues.depuracion = definition.depuracion ? DEPURACION_TYPES[definition.depuracion] : null;
 
         // Número de Contrato
         definition.numeroContrato = definition.numeroContrato || '';
@@ -220,6 +235,7 @@ class Contrato extends ContratoRecord {
             tipoAsignacion: this.tipoAsignacion || ASIGNACION_TYPES.NORMAL,
             tipoContrato: this.tipoContrato || CONTRATO_TYPES.PERDIDA,
             tipoJuicio: this.tipoJuicio,
+            depuracion: this.depuracion,
             cliente: this.cliente.toEditable(),
             fechaContrato: this.fechaContrato ? this.fechaContrato : moment(),
             monto: this.monto,

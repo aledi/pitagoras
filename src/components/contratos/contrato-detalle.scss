@@ -2,6 +2,20 @@
 @import '~src/components/acciones/accion-form.scss';
 
 .contrato {
+    .depuracion-checkboxes {
+        margin-bottom: 20px;
+
+        p {
+            margin: 0;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type='checkbox'] + label {
+            margin: 0 10px 0 5px;
+        }
+    }
+
     h4 {
         text-transform: uppercase;
         letter-spacing: 1px;
