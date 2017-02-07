@@ -9,6 +9,7 @@ require('./contrato-detalle.scss');
 var React = require('react');
 var Parse = require('parse');
 var classNames = require('classnames');
+var moment = require('moment');
 
 var AccionRecord = require('src/records/accion');
 var ContratosActions = require('src/actions/contratos-actions');
@@ -216,23 +217,26 @@ var ContratoDetalle = React.createClass({
                             onChange={this.handleDepuracionExtrajudicialChange} />
                         <label htmlFor='extrajudicial'>Extrajudicial</label>
                     </div>
-                    <div className='contrato-detalles-column'>
-                        <h4>Detalles del Contrato</h4>
-                        <div className='detalle-wrapper'>
-                            <span className='title'>Número de Contrato:</span>
-                            <span className='value'>{contrato.numeroContrato}</span>
+                    {this.renderDepuracionInfo()}
+                    <div>
+                        <div className='contrato-detalles-column'>
+                            <h4>Detalles del Contrato</h4>
+                            <div className='detalle-wrapper'>
+                                <span className='title'>Número de Contrato:</span>
+                                <span className='value'>{contrato.numeroContrato}</span>
+                            </div>
+                            {this.renderFullContratoDetails()}
                         </div>
-                        {this.renderFullContratoDetails()}
-                    </div>
-                    <div className='contrato-detalles-column'>
-                        <h4>Cliente</h4>
-                        <div className='detalle-wrapper'>
-                            <span className='title'>Nombre:</span>
-                            <span className='value'>{contrato.cliente.formattedValues.nombre}</span>
+                        <div className='contrato-detalles-column'>
+                            <h4>Cliente</h4>
+                            <div className='detalle-wrapper'>
+                                <span className='title'>Nombre:</span>
+                                <span className='value'>{contrato.cliente.formattedValues.nombre}</span>
+                            </div>
+                            {this.renderFullClienteDetails()}
                         </div>
-                        {this.renderFullClienteDetails()}
+                        {this.renderVehiculoDetails()}
                     </div>
-                    {this.renderVehiculoDetails()}
                 </div>
 
                 <h2>Acciones</h2>
@@ -246,6 +250,19 @@ var ContratoDetalle = React.createClass({
                         <AccionesHistorial acciones={this.props.accionesForContrato} />
                     </div>
                 </div>
+            </div>
+        );
+    },
+    renderDepuracionInfo: function () {
+        var contrato = this.state.contrato;
+        if (!contrato.depuracionFecha) {
+            return;
+        }
+
+        return (
+            <div className='depuracion-info'>
+                <p>Último cambio a las: {moment(contrato.depuracionFecha.iso).format('D/MMM/YYYY HH:mm')}</p>
+                <p>Último cambio por: {contrato.depuracionEditor.nombre + ' ' + contrato.depuracionEditor.apellido}</p>
             </div>
         );
     },
@@ -499,7 +516,11 @@ var ContratoDetalle = React.createClass({
             contrato.depuracion = ContratoRecord.DEPURACION_TYPES.EXTRAJUDICIAL;
         }
 
+        contrato.depuracionFecha = moment();
+        contrato.depuracionEditor = Parse.User.current();
+
         this.setState({contrato: contrato});
+
         ContratosActions.saveContrato(contrato);
     },
     handleDepuracionExtrajudicialChange: function (event) {
@@ -517,7 +538,11 @@ var ContratoDetalle = React.createClass({
             contrato.depuracion = ContratoRecord.DEPURACION_TYPES.JUDICIAL;
         }
 
+        contrato.depuracionFecha = moment();
+        contrato.depuracionEditor = Parse.User.current();
+
         this.setState({contrato: contrato});
+
         ContratosActions.saveContrato(contrato);
     }
 });

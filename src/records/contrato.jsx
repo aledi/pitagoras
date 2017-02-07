@@ -51,6 +51,8 @@ var ContratoRecord = Immutable.Record({
     tipoContrato: null,
     tipoJuicio: null,
     depuracion: null,
+    depuracionFecha: null,
+    depuracionEditor: null,
     cliente: null,
     fechaContrato: null,
     juzgado: null,
@@ -98,7 +100,7 @@ class Contrato extends ContratoRecord {
         }
 
         contrato.fechaContrato = contrato.fechaContrato.toDate();
-
+        contrato.depuracionFecha = contrato.depuracionFecha ? contrato.depuracionFecha.toDate() : null;
         contrato.lastAccionAt = contrato.lastAccionAt.toDate();
 
         contrato.reporte.nombre = contrato.cliente.nombre + ' ' + contrato.cliente.apellidoPaterno + (contrato.cliente.apellidoMaterno ? ' ' + contrato.cliente.apellidoMaterno : '');
@@ -144,6 +146,12 @@ class Contrato extends ContratoRecord {
 
         // Depuración
         definition.depuracion = definition.depuracion;
+
+        // Depuración Fecha
+        definition.depuracionFecha = definition.depuracionFecha;
+
+        // Depuración Editor
+        definition.depuracionEditor = definition.depuracionEditor;
 
         // Número de Contrato
         definition.numeroContrato = definition.numeroContrato || '';
@@ -211,14 +219,12 @@ class Contrato extends ContratoRecord {
 
         // Creador
         definition.creador = definition.creador;
-
         if (definition.creador) {
             formattedValues.creador = definition.creador.nombre + ' ' + definition.creador.apellido;
         }
 
         // Ultimo Editor
         definition.ultimoEditor = definition.ultimoEditor;
-
         if (definition.ultimoEditor) {
             formattedValues.ultimoEditor = definition.ultimoEditor.nombre + ' ' + definition.ultimoEditor.apellido;
         }
@@ -236,6 +242,8 @@ class Contrato extends ContratoRecord {
             tipoContrato: this.tipoContrato || CONTRATO_TYPES.PERDIDA,
             tipoJuicio: this.tipoJuicio,
             depuracion: this.depuracion,
+            depuracionFecha: this.depuracionFecha,
+            depuracionEditor: this.depuracionEditor,
             cliente: this.cliente.toEditable(),
             fechaContrato: this.fechaContrato ? this.fechaContrato : moment(),
             monto: this.monto,

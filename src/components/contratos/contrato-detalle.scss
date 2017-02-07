@@ -3,6 +3,7 @@
 
 .contrato {
     .depuracion-checkboxes {
+        display: inline-block;
         margin-bottom: 20px;
 
         p {
@@ -13,6 +14,16 @@
 
         input[type='checkbox'] + label {
             margin: 0 10px 0 5px;
+        }
+    }
+
+    .depuracion-info {
+        display: inline-block;
+        margin-left: 10px;
+
+        p {
+            margin: 0;
+            font-size: 12px;
         }
     }
 
