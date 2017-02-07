@@ -7,12 +7,13 @@
 var React = require('react');
 
 var AccionRecord = require('src/records/accion');
+var ContratoRecord = require('src/records/contrato');
 
 // -----------------------------------------------------------------------------------------------
 // ReportesTabla
 // -----------------------------------------------------------------------------------------------
 
-var tableMinWidth = '7400px';
+var tableMinWidth = '7600px';
 
 var ReportesTabla = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
@@ -67,6 +68,9 @@ var ReportesTabla = React.createClass({
                     </th>
                     <th style={{width: '200px'}}>
                         <span>Tipo de Contrato</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Depuración</span>
                     </th>
                     <th style={{width: '100px'}}>
                         <span>Paquete Legal</span>
@@ -168,6 +172,7 @@ var ReportesTabla = React.createClass({
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAsignacion}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.tipoAsignacion}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.tipoContrato}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{ContratoRecord.getFormattedDepuracion(reporte.depuracion)}</span></td>
                     <td style={{width: '100px', textAlign: 'center'}}><span>{reporte.formattedValues.paqueteLegal}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaPaqueteLegal}</span></td>
                     <td style={{width: '150px', textAlign: 'center'}}><span>{reporte.formattedValues.certificacionContable}</span></td>

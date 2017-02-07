@@ -105,6 +105,7 @@ class Contrato extends ContratoRecord {
         contrato.reporte.numeroContrato = contrato.numeroContrato;
         contrato.reporte.fechaAsignacion = contrato.fechaContrato;
         contrato.reporte.tipoContrato = contrato.tipoContrato;
+        contrato.reporte.depuracion = contrato.depuracion;
         contrato.reporte.tipoAsignacion = contrato.tipoAsignacion;
         contrato.reporte.certificacionContable = contrato.certificacionContable;
         contrato.reporte = new ReporteObject(ReporteRecord.prepareForParse(contrato.reporte));
@@ -143,7 +144,6 @@ class Contrato extends ContratoRecord {
 
         // Depuración
         definition.depuracion = definition.depuracion;
-        formattedValues.depuracion = definition.depuracion ? DEPURACION_TYPES[definition.depuracion] : null;
 
         // Número de Contrato
         definition.numeroContrato = definition.numeroContrato || '';
@@ -286,5 +286,20 @@ function cleanNotification (contrato) {
             return cleanedNotificacion;
     }
 }
+
+function getFormattedDepuracion (depuracion) {
+    switch (depuracion) {
+        case 1:
+            return 'Judicial';
+        case 2:
+            return 'Extrajudicial';
+        case 3:
+            return 'Judicial y Extrajudicial';
+        default:
+            return null;
+    }
+}
+
+Contrato.getFormattedDepuracion = getFormattedDepuracion;
 
 module.exports = Contrato;
