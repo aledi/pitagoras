@@ -536,7 +536,6 @@ var ContratoDetalle = React.createClass({
         this.saveContrato(contrato);
     },
     handleDepuracionChange: function (tipo, event) {
-        debugger
         /* eslint-disable no-alert */
 
         var dialog = confirm('¿Está seguro que desea modificar la depuración del contrato?');
