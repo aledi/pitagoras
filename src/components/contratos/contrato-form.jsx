@@ -682,6 +682,8 @@ var ContratoForm = React.createClass({
         if (!this.validateInputs()) {
             this.setState({attemptedToSave: true});
 
+            /* eslint-disable no-alert */
+
             var dialog = confirm('Hay algunos campos vacíos. ¿Está seguro que desea guardar el contrato?');
             if (dialog === true) {
                 ContratosActions.saveContrato(contrato);
@@ -689,6 +691,8 @@ var ContratoForm = React.createClass({
             } else {
                 return;
             }
+
+            /* eslint-enable no-alert */
         }
 
         ContratosActions.saveContrato(contrato);

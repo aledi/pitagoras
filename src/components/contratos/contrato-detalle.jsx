@@ -208,13 +208,13 @@ var ContratoDetalle = React.createClass({
                             id='judicial'
                             type='checkbox'
                             checked={this.state.contrato.depuracion === ContratoRecord.DEPURACION_TYPES.JUDICIAL || this.state.contrato.depuracion === ContratoRecord.DEPURACION_TYPES.JUDICIAL_EXTRAJUDICIAL}
-                            onChange={this.handleDepuracionJudicialChange} />
+                            onChange={this.handleDepuracionChange.bind(this, 'judicial')} />
                         <label htmlFor='judicial'>Judicial</label>
                         <input
                             id='extrajudicial'
                             type='checkbox'
                             checked={this.state.contrato.depuracion === ContratoRecord.DEPURACION_TYPES.EXTRAJUDICIAL || this.state.contrato.depuracion === ContratoRecord.DEPURACION_TYPES.JUDICIAL_EXTRAJUDICIAL}
-                            onChange={this.handleDepuracionExtrajudicialChange} />
+                            onChange={this.handleDepuracionChange.bind(this, 'extrajudicial')} />
                         <label htmlFor='extrajudicial'>Extrajudicial</label>
                     </div>
                     {this.renderDepuracionInfo()}
@@ -516,12 +516,7 @@ var ContratoDetalle = React.createClass({
             contrato.depuracion = ContratoRecord.DEPURACION_TYPES.EXTRAJUDICIAL;
         }
 
-        contrato.depuracionFecha = moment();
-        contrato.depuracionEditor = Parse.User.current();
-
-        this.setState({contrato: contrato});
-
-        ContratosActions.saveContrato(contrato);
+        this.saveContrato(contrato);
     },
     handleDepuracionExtrajudicialChange: function (event) {
         var contrato = this.state.contrato;
@@ -538,6 +533,27 @@ var ContratoDetalle = React.createClass({
             contrato.depuracion = ContratoRecord.DEPURACION_TYPES.JUDICIAL;
         }
 
+        this.saveContrato(contrato);
+    },
+    handleDepuracionChange: function (tipo, event) {
+        debugger
+        /* eslint-disable no-alert */
+
+        var dialog = confirm('¿Está seguro que desea modificar la depuración del contrato?');
+        if (dialog === true) {
+            if (tipo === 'judicial') {
+                this.handleDepuracionJudicialChange(event);
+                return;
+            } else {
+                this.handleDepuracionExtrajudicialChange(event);
+            }
+        } else {
+            return;
+        }
+
+        /* eslint-enable no-alert */
+    },
+    saveContrato: function (contrato) {
         contrato.depuracionFecha = moment();
         contrato.depuracionEditor = Parse.User.current();
 
