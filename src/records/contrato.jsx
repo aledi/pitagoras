@@ -25,6 +25,12 @@ var CONTRATO_TYPES = {
     PERDIDA_POSIBLE: 'Pérdida Posible'
 };
 
+var DEPURACION_TYPES = {
+    JUDICIAL: 1,
+    EXTRAJUDICIAL: 2,
+    JUDICIAL_EXTRAJUDICIAL: 3
+};
+
 var ASIGNACION_TYPES = {
     NORMAL: 'Normal',
     ESPECIAL: 'Especial',
@@ -44,6 +50,9 @@ var ContratoRecord = Immutable.Record({
     tipoAsignacion: null,
     tipoContrato: null,
     tipoJuicio: null,
+    depuracion: null,
+    depuracionFecha: null,
+    depuracionEditor: null,
     cliente: null,
     fechaContrato: null,
     juzgado: null,
@@ -77,6 +86,10 @@ class Contrato extends ContratoRecord {
         return JUICIO_TYPES;
     }
 
+    static get DEPURACION_TYPES () {
+        return DEPURACION_TYPES;
+    }
+
     static prepareForParse (contrato) {
         contrato.monto = (typeof contrato.monto === 'string') ? parseFloat(contrato.monto.replace(/,/g, '')) : contrato.monto;
         contrato.plazo = (typeof contrato.plazo === 'string') ? parseFloat(contrato.plazo) : contrato.plazo;
@@ -87,13 +100,14 @@ class Contrato extends ContratoRecord {
         }
 
         contrato.fechaContrato = contrato.fechaContrato.toDate();
-
+        contrato.depuracionFecha = contrato.depuracionFecha ? contrato.depuracionFecha.toDate() : null;
         contrato.lastAccionAt = contrato.lastAccionAt.toDate();
 
         contrato.reporte.nombre = contrato.cliente.nombre + ' ' + contrato.cliente.apellidoPaterno + (contrato.cliente.apellidoMaterno ? ' ' + contrato.cliente.apellidoMaterno : '');
         contrato.reporte.numeroContrato = contrato.numeroContrato;
         contrato.reporte.fechaAsignacion = contrato.fechaContrato;
         contrato.reporte.tipoContrato = contrato.tipoContrato;
+        contrato.reporte.depuracion = contrato.depuracion;
         contrato.reporte.tipoAsignacion = contrato.tipoAsignacion;
         contrato.reporte.certificacionContable = contrato.certificacionContable;
         contrato.reporte = new ReporteObject(ReporteRecord.prepareForParse(contrato.reporte));
@@ -129,6 +143,15 @@ class Contrato extends ContratoRecord {
 
         // Tipo Juicio
         definition.tipoJuicio = definition.tipoJuicio;
+
+        // Depuración
+        definition.depuracion = definition.depuracion;
+
+        // Depuración Fecha
+        definition.depuracionFecha = definition.depuracionFecha;
+
+        // Depuración Editor
+        definition.depuracionEditor = definition.depuracionEditor;
 
         // Número de Contrato
         definition.numeroContrato = definition.numeroContrato || '';
@@ -196,14 +219,12 @@ class Contrato extends ContratoRecord {
 
         // Creador
         definition.creador = definition.creador;
-
         if (definition.creador) {
             formattedValues.creador = definition.creador.nombre + ' ' + definition.creador.apellido;
         }
 
         // Ultimo Editor
         definition.ultimoEditor = definition.ultimoEditor;
-
         if (definition.ultimoEditor) {
             formattedValues.ultimoEditor = definition.ultimoEditor.nombre + ' ' + definition.ultimoEditor.apellido;
         }
@@ -220,6 +241,9 @@ class Contrato extends ContratoRecord {
             tipoAsignacion: this.tipoAsignacion || ASIGNACION_TYPES.NORMAL,
             tipoContrato: this.tipoContrato || CONTRATO_TYPES.PERDIDA,
             tipoJuicio: this.tipoJuicio,
+            depuracion: this.depuracion,
+            depuracionFecha: this.depuracionFecha,
+            depuracionEditor: this.depuracionEditor,
             cliente: this.cliente.toEditable(),
             fechaContrato: this.fechaContrato ? this.fechaContrato : moment(),
             monto: this.monto,
@@ -270,5 +294,20 @@ function cleanNotification (contrato) {
             return cleanedNotificacion;
     }
 }
+
+function getFormattedDepuracion (depuracion) {
+    switch (depuracion) {
+        case 1:
+            return 'Judicial';
+        case 2:
+            return 'Extrajudicial';
+        case 3:
+            return 'Judicial y Extrajudicial';
+        default:
+            return null;
+    }
+}
+
+Contrato.getFormattedDepuracion = getFormattedDepuracion;
 
 module.exports = Contrato;
