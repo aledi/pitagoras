@@ -241,7 +241,7 @@ var ContratoDetalle = React.createClass({
 
                 <h2>Acciones</h2>
                 <div className='acciones-wrapper'>
-                    <ul className='acciones-list'>
+                    <ul className={classNames('acciones-list', {orange: this.props.contrato.depuracion === ContratoRecord.DEPURACION_TYPES.JUDICIAL || this.props.contrato.depuracion === ContratoRecord.DEPURACION_TYPES.EXTRAJUDICIAL}, {red: this.props.contrato.depuracion === ContratoRecord.DEPURACION_TYPES.JUDICIAL_EXTRAJUDICIAL})}>
                         {this.getAcciones()}
                     </ul>
                     <div className='accion-forma-historial'>

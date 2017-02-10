@@ -95,6 +95,14 @@
             margin: 0;
             list-style: none;
 
+            &.red {
+                color: $invalid;
+            }
+
+            &.orange {
+                color: #FF9F00;
+            }
+
             li {
                 padding: 0px 5px;
                 cursor: pointer;
