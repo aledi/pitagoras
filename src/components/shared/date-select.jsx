@@ -138,10 +138,8 @@ var DateSelect = React.createClass({
         }
 
         var state = this.state;
-        if (!this.state.day || !this.state.month || !this.state.year) {
-            state[key] = event.target.value;
-            this.setState(state);
-        }
+        state[key] = event.target.value;
+        this.setState(state);
 
         if (state.day && state.month && state.year) {
             state.date = moment({years: state.year, months: state.month, date: state.day});
