@@ -154,10 +154,7 @@ var ContratoForm = React.createClass({
                             onChange={this.handleChange.bind(this, 'tasa')}
                             onKeyPress={this.restrictNumericInput.bind(this, true)} />
                     </div>
-                    <DateSelect
-                        date={contrato.fechaContrato}
-                        disabled={this.state.saving}
-                        onChange={this.handleFechaChange} />
+                    <DateSelect date={contrato.fechaContrato} disabled={this.state.saving} onChange={this.handleFechaChange} />
                     <div className='input-wrapper full-width'>
                         <label>¿Recibe Certificación Contable correcta y completa?</label>
                             <div>

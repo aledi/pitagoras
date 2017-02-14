@@ -158,8 +158,8 @@ class Contrato extends ContratoRecord {
         sortValues.numeroContrato = definition.numeroContrato;
 
         // Fecha Contrato
-        definition.fechaContrato = definition.fechaContrato ? moment(definition.fechaContrato.iso) : moment();
-        formattedValues.fechaContrato = definition.fechaContrato.format('D/MMM/YYYY');
+        definition.fechaContrato = definition.fechaContrato;
+        formattedValues.fechaContrato = definition.fechaContrato ? moment(definition.fechaContrato).format('D/MMM/YYYY') : null;
 
         // Last Accion At
         definition.lastAccionAt = definition.lastAccionAt ? moment(definition.lastAccionAt.iso) : moment();
@@ -245,7 +245,7 @@ class Contrato extends ContratoRecord {
             depuracionFecha: this.depuracionFecha,
             depuracionEditor: this.depuracionEditor,
             cliente: this.cliente.toEditable(),
-            fechaContrato: this.fechaContrato ? this.fechaContrato : moment(),
+            fechaContrato: this.fechaContrato,
             monto: this.monto,
             numeroContrato: this.numeroContrato,
             plazo: this.plazo,
