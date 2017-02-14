@@ -68,8 +68,8 @@ class Reporte extends ReporteRecord {
         definition.nombre = definition.nombre;
 
         // Fecha de Asignación
-        definition.fechaAsignacion = definition.fechaAsignacion ? definition.fechaAsignacion.iso : moment();
-        formattedValues.fechaAsignacion = moment(definition.fechaAsignacion).format('D MMMM, YYYY');
+        definition.fechaAsignacion = definition.fechaAsignacion;
+        formattedValues.fechaAsignacion = definition.fechaAsignacion ? moment(definition.fechaAsignacion.iso).format('D MMMM, YYYY') : null;
 
         // Tipo Asignación
         definition.tipoAsignacion = definition.tipoAsignacion;
