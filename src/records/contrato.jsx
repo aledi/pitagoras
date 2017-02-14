@@ -99,7 +99,7 @@ class Contrato extends ContratoRecord {
             contrato.notificacion = cleanNotification(contrato);
         }
 
-        contrato.fechaContrato = contrato.fechaContrato.toDate();
+        contrato.fechaContrato = contrato.fechaContrato ? contrato.fechaContrato.toDate() : null;
         contrato.depuracionFecha = contrato.depuracionFecha ? contrato.depuracionFecha.toDate() : null;
         contrato.lastAccionAt = contrato.lastAccionAt.toDate();
 
@@ -159,7 +159,7 @@ class Contrato extends ContratoRecord {
 
         // Fecha Contrato
         definition.fechaContrato = definition.fechaContrato;
-        formattedValues.fechaContrato = definition.fechaContrato ? moment(definition.fechaContrato).format('D/MMM/YYYY') : null;
+        formattedValues.fechaContrato = definition.fechaContrato ? moment(definition.fechaContrato.iso).format('D/MMM/YYYY') : null;
 
         // Last Accion At
         definition.lastAccionAt = definition.lastAccionAt ? moment(definition.lastAccionAt.iso) : moment();

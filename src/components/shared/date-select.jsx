@@ -21,8 +21,7 @@ var DateSelect = React.createClass({
         this.setState(this.getState(nextProps));
     },
     getState: function (props) {
-        var date = props.date ? moment(props.date).clone() : null;
-
+        var date = props.date ? moment(props.date.iso ? props.date.iso : props.date).clone() : null;
         return {
             date: date,
             day: date ? date.get('date') : null,
@@ -32,13 +31,12 @@ var DateSelect = React.createClass({
         };
     },
     render: function () {
-        console.log(this.state.date)
         return (
             <div className='date-select'>
                 <div className='select-wrapper'>
                     <label>Día</label>
                     <select
-                        value={this.state.day || '-'}
+                        value={this.state.day == null ? '-' : this.state.day}
                         disabled={this.state.disabled}
                         onChange={this.handleChange.bind(this, 'day')}>
                         {this.renderDias()}
@@ -47,7 +45,7 @@ var DateSelect = React.createClass({
                 <div className='select-wrapper'>
                     <label>Mes</label>
                     <select
-                        value={this.state.month || '-'}
+                        value={this.state.month == null ? '-' : this.state.month}
                         disabled={this.state.disabled}
                         onChange={this.handleChange.bind(this, 'month')}>
                         {this.renderMeses()}
@@ -56,7 +54,7 @@ var DateSelect = React.createClass({
                 <div className='select-wrapper'>
                     <label>Año</label>
                     <select
-                        value={this.state.year || '-'}
+                        value={this.state.year == null ? '-' : this.state.year}
                         disabled={this.state.disabled}
                         onChange={this.handleChange.bind(this, 'year')}>
                         {this.renderAnios()}
