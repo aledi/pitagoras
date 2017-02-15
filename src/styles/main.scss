@@ -23,13 +23,13 @@
             a, .signout-option {
                 text-decoration: none;
                 text-transform: uppercase;
-                letter-spacing: 0.5px;
+                letter-spacing: 1px;
                 font-size: 13px;
                 color: white;
+                font-weight: bold;
 
                 &.active {
                     background-color: $nightfall;
-                    font-weight: bold;
                 }
             }
         }
