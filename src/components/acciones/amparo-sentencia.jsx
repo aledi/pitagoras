@@ -7,7 +7,6 @@
 var React = require('react');
 var Parse = require('parse');
 var classNames = require('classnames');
-var moment = require('moment');
 
 var ContratoRecord = require('../../records/contrato');
 
@@ -46,7 +45,7 @@ var AmparoSentencia = React.createClass({
 
         if (juicioEjecutiva) {
             state.respuestas.promovido = lastAccion ? lastAccion.respuestas.favorable : 'GMF';
-            state.respuestas.fecha = moment();
+            state.respuestas.fecha = null;
 
             if (lastAccion && lastAccion.respuestas.favorable !== 'GMF' && lastAccion.respuestas.favorable !== 'Demandado') {
                 state.respuestas.promovido = 'Tercero';

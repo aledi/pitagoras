@@ -38,8 +38,8 @@ var DemandaAdmitida = React.createClass({
             contrato: this.props.contrato,
             respuestas: {
                 tipoJuicio: lastAccion ? lastAccion.respuestas.tipoJuicio : 'Oral Mercantil',
-                fechaAcuerdo: moment(),
-                fechaPublicacion: moment(),
+                fechaAcuerdo: null,
+                fechaPublicacion: null,
                 resultado: lastAccion ? lastAccion.respuestas.resultado : 'No vive en el domicilio'
             },
             disabled: false
@@ -47,7 +47,7 @@ var DemandaAdmitida = React.createClass({
 
         if (lastAccion && lastAccion.respuestas.cita) {
             state.respuestas.cita = {
-                fecha: moment(),
+                fecha: null,
                 hora: '8:00 am',
                 lugar: lastAccion.respuestas.cita.lugar,
                 nombreActuario: lastAccion.respuestas.cita.nombreActuario,
@@ -176,7 +176,7 @@ var DemandaAdmitida = React.createClass({
 
         if (tipoJuicio === 'Ejecutiva Mercantil') {
             respuestas.cita = {
-                fecha: moment(),
+                fecha: null,
                 hora: '8:00 am'
             };
         } else if (respuestas.cita) {

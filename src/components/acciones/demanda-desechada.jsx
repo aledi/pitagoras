@@ -47,7 +47,7 @@ var DemandaDesechada = React.createClass({
         }
 
         if (lastAccion && lastAccion.respuestas.regresaDocumentos) {
-            state.respuestas.fecha = moment();
+            state.respuestas.fecha = null;
             state.respuestas.horario = {
                 start: '8:00 am',
                 end: '9:00 am'
@@ -160,7 +160,7 @@ var DemandaDesechada = React.createClass({
         respuestas.regresaDocumentos = regresaDocumentos;
 
         if (regresaDocumentos) {
-            respuestas.fecha = moment();
+            respuestas.fecha = null;
             respuestas.horario = {
                 start: '8:00 am',
                 end: '9:00 am'

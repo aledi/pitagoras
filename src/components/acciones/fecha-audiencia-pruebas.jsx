@@ -6,7 +6,6 @@
 
 var React = require('react');
 var Parse = require('parse');
-var moment = require('moment');
 
 var AccionesMixin = require('./acciones-mixin');
 var DateSelect = require('src/components/shared/date-select');
@@ -28,7 +27,7 @@ var FechaAudienciaPruebas = React.createClass({
             contrato: this.props.contrato,
             respuestas: {
                 atendido: lastAccion ? lastAccion.respuestas.atendido : '',
-                fecha: moment(),
+                fecha: null,
                 hora: '8:00 am',
                 citacion: lastAccion ? lastAccion.respuestas.citacion : false
             },
@@ -102,7 +101,7 @@ var FechaAudienciaPruebas = React.createClass({
         return (<button type='button' className='add' onClick={this.addDate}>Agregar nueva fecha</button>);
     },
     renderFecha: function (num) {
-        if (!this.state.respuestas['fecha' + num]) {
+        if (!this.state.respuestas['fecha' + num] && this.state.respuestas['fecha' + num] !== null) {
             return;
         }
 
@@ -123,15 +122,15 @@ var FechaAudienciaPruebas = React.createClass({
         var respuestas = this.state.respuestas;
 
         if (!respuestas.fecha1) {
-            respuestas.fecha1 = moment();
+            respuestas.fecha1 = null;
             respuestas.hora1 = '8:00 am';
             this.setState({respuestas: respuestas});
         } else if (!respuestas.fecha2) {
-            respuestas.fecha2 = moment();
+            respuestas.fecha2 = null;
             respuestas.hora2 = '8:00 am';
             this.setState({respuestas: respuestas});
         } else if (!respuestas.fecha3) {
-            respuestas.fecha3 = moment();
+            respuestas.fecha3 = null;
             respuestas.hora3 = '8:00 am';
             this.setState({respuestas: respuestas});
         }

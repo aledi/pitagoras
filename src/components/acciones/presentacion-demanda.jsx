@@ -6,7 +6,6 @@
 
 var React = require('react');
 var Parse = require('parse');
-var moment = require('moment');
 
 var AccionesMixin = require('./acciones-mixin');
 var DateSelect = require('src/components/shared/date-select');
@@ -30,7 +29,7 @@ var PresentacionDemanda = React.createClass({
                 numeroRegistro: lastAccion ? lastAccion.respuestas.numeroRegistro : '',
                 juzgado: lastAccion ? lastAccion.respuestas.juzgado : '',
                 expedienteJudicial: lastAccion ? lastAccion.respuestas.expedienteJudicial : '',
-                fecha: moment(),
+                fecha: null,
                 pendiente: lastAccion ? lastAccion.respuestas.pendiente : false,
                 comentarioAcuerdoPendiente: lastAccion ? lastAccion.respuestas.comentarioAcuerdoPendiente : ''
             },

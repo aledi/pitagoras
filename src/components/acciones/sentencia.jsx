@@ -7,7 +7,6 @@
 var React = require('react');
 var Parse = require('parse');
 var classNames = require('classnames');
-var moment = require('moment');
 
 var ContratoRecord = require('../../records/contrato');
 
@@ -30,7 +29,7 @@ var Sentencia = React.createClass({
             respuestas: {
                 favorable: lastAccion ? lastAccion.respuestas.favorable : 'GMF',
                 tercero: lastAccion ? lastAccion.respuestas.tercero : '',
-                fecha: moment()
+                fecha: null
             },
             invalidFields: {
                 tercero: false

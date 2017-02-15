@@ -27,7 +27,7 @@ var AltaDocumentos = React.createClass({
             contrato: this.props.contrato,
             respuestas: {
                 numeroInterno: lastAccion ? lastAccion.respuestas.numeroInterno : '',
-                fecha: moment()
+                fecha: null
             },
             disabled: false
         };

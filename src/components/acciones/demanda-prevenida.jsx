@@ -88,7 +88,7 @@ var DemandaPrevenida = React.createClass({
         respuestas.desahogar = desahogar;
 
         if (desahogar) {
-            respuestas.fecha = moment();
+            respuestas.fecha = null;
         } else if (respuestas.fecha) {
             delete respuestas.fecha;
         }

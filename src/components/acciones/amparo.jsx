@@ -6,7 +6,6 @@
 
 var React = require('react');
 var Parse = require('parse');
-var moment = require('moment');
 
 var AccionesMixin = require('./acciones-mixin');
 var DateSelect = require('src/components/shared/date-select');
@@ -29,8 +28,8 @@ var Amparo = React.createClass({
                 expediente: lastAccion ? lastAccion.respuestas.expediente : '',
                 juzgado: lastAccion ? lastAccion.respuestas.juzgado : '',
                 resolucion: lastAccion ? lastAccion.respuestas.resolucion : 'Admite',
-                fechaPresentacion: moment(),
-                fechaResolucion: moment()
+                fechaPresentacion: null,
+                fechaResolucion: null
             },
             disabled: false
         };
