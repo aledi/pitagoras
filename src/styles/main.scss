@@ -75,10 +75,6 @@
                     display: inline-block;
                     line-height: $header-height;
 
-                    &.admin {
-                        width: 20%;
-                    }
-
                     &:hover {
                         background-color: rgba($nightfall, 0.5);
                     }
@@ -86,6 +82,12 @@
 
                 .signout-option {
                     display: none;
+                }
+
+                &.admin {
+                    a {
+                        width: 20%;
+                    }
                 }
             }
 

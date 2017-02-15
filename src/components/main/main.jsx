@@ -75,11 +75,11 @@ var Main = React.createClass({
 
         return (
             <header>
-                <div className={classNames('links-wrapper', {hidden: !this.state.showingMobileHeader})}>
-                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={links.inicio}>Inicio</Link>
-                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={this.state.links.agregarContrato}>Agregar contrato</Link>
-                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={links.contratos}>Ver contratos</Link>
-                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={links.reportes}>Reportes</Link>
+                <div className={classNames('links-wrapper', {hidden: !this.state.showingMobileHeader}, {admin: isAdmin})}>
+                    <Link activeClassName='active' to={links.inicio}>Inicio</Link>
+                    <Link activeClassName='active' to={this.state.links.agregarContrato}>Agregar contrato</Link>
+                    <Link activeClassName='active' to={links.contratos}>Ver contratos</Link>
+                    <Link activeClassName='active' to={links.reportes}>Reportes</Link>
                     {this.renderAgregarUsuarioItem(isAdmin)}
                     <div className='signout-option' onClick={this.signOut}>Cerrar sesión</div>
                 </div>
@@ -100,7 +100,7 @@ var Main = React.createClass({
             return;
         }
 
-        return (<Link activeClassName='active' className='admin' to={this.state.links.usuarios}>Usuarios</Link>);
+        return (<Link activeClassName='active' to={this.state.links.usuarios}>Usuarios</Link>);
     },
     toggleMobileHeader: function () {
         this.setState({showingMobileHeader: !this.state.showingMobileHeader});
