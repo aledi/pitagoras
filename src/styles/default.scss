@@ -49,17 +49,22 @@ input[type='radio'] + label {
     margin-left: 5px;
 }
 
-span.side-button {
+.side-button {
     display: inline-block;
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: 1px;
     font-size: 13px;
+    background-color: transparent;
     color: $taupe;
     cursor: pointer;
 
     &.right {
         float: right;
+    }
+
+    &:hover {
+        background-color: transparent;
     }
 }
 

@@ -8,7 +8,7 @@ var Dispatcher = require('src/dispatcher');
 var moment = require('moment');
 
 var ContratoRecord = require('src/records/contrato');
-var NotificacionRecord = require('src/records/notificacion');
+var NotificationRecord = require('src/records/notification');
 var ContratoObject = Parse.Object.extend('Contrato');
 
 module.exports = {
@@ -26,17 +26,17 @@ module.exports = {
         query.limit(1000);
         query.find().then(function (contratos) {
             var contratosByKey = {};
-            var notificacionesByContratoId = {};
+            var notificationsByContratoId = {};
 
             for (var i = 0; i < contratos.length; i++) {
                 var contrato = createContratoRecord(contratos[i]);
 
                 if (contrato.notificacion) {
-                    notificacionesByContratoId[contrato.id] = createNotificacionRecord(contrato.notificacion);
+                    notificationsByContratoId[contrato.id] = createNotificationRecord(contrato.notificacion);
                 } else {
                     var today = moment();
                     if (today.diff(contrato.lastAccionAt, 'days') > 7) {
-                        notificacionesByContratoId[contrato.id] = createNotificacionRecord({
+                        notificationsByContratoId[contrato.id] = createNotificationRecord({
                             tipo: 4,
                             numeroContrato: contrato.numeroContrato,
                             contratoId: contrato.id,
@@ -51,7 +51,7 @@ module.exports = {
             Dispatcher.dispatch({
                 type: 'CONTRATOS_FETCH_SUCCESS',
                 contratos: new Immutable.Map(contratosByKey),
-                notificaciones: new Immutable.Map(notificacionesByContratoId)
+                notifications: new Immutable.Map(notificationsByContratoId)
             });
         }).catch(function (error) {
             Dispatcher.dispatch({
@@ -92,6 +92,6 @@ function createContratoRecord (contrato) {
     return new ContratoRecord(contrato.toJSON());
 }
 
-function createNotificacionRecord (notificacion, numeroContrato) {
-    return new NotificacionRecord(notificacion, numeroContrato);
+function createNotificationRecord (notification, numeroContrato) {
+    return new NotificationRecord(notification, numeroContrato);
 }

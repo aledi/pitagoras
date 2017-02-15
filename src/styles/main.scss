@@ -6,15 +6,19 @@
 
 #pitagoras {
     header {
-        height: 80px;
+        height: $header-height;
         position: absolute;
-        top: 0; right: 0; left: 0;
+        top: 0;
+        right: 0;
+        left: 0;
         background-color: $denim;
 
         div.links-wrapper {
             height: 100%;
             position: absolute;
-            top: 0; right: 80px; left: 0;
+            top: 0;
+            right: 80px;
+            left: 0;
             padding: 0;
             margin: 0;
             text-align: center;
@@ -22,13 +26,12 @@
             a {
                 width: 25%;
                 display: inline-block;
-                line-height: 80px;
+                line-height: $header-height;
                 text-decoration: none;
                 text-transform: uppercase;
-                letter-spacing: 1px;
+                letter-spacing: 0.5px;
                 font-size: 13px;
                 color: white;
-                cursor: pointer;
 
                 &:hover {
                     background-color: rgba($nightfall, 0.5);
@@ -55,10 +58,12 @@
             cursor: pointer;
 
             img {
-                height: 80%;
-                width: 60px;
-                top: 12px; left: 10px;
+                height: 70%;
+                width: 35px;
                 position: relative;
+                top: 12px;
+                display: block;
+                margin: 0 auto;
             }
 
             &:hover {
@@ -69,7 +74,7 @@
 
     main {
         position: absolute;
-        top: 80px;
+        top: $header-height;
         left: 0;
         right: 0;
         bottom: 0;

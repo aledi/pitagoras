@@ -7,8 +7,8 @@
         color: $invalid;
     }
 
-    .notificaciones {
-        .no-notificaciones {
+    .notifications {
+        .no-notifications {
             padding: 40px 0;
             text-align: center;
             text-transform: uppercase;
@@ -16,14 +16,27 @@
             color: $denim;
         }
 
-        .notificaciones-list {
+        .notifications-wrapper {
             width: 600px;
-            padding: 0;
             margin: 0 auto;
+
+            h4 {
+                text-transform: uppercase;
+                text-align: left;
+                letter-spacing: 1.5px;
+                font-weight: bold;
+                color: $denim;
+            }
+        }
+
+        .notifications-list {
+            width: 100%;
+            padding: 0;
             list-style: none;
             border: 1px solid $frost;
+            border-radius: 2px;
 
-            .notificaciones-list-item {
+            .notifications-list-item {
                 padding: 20px;
                 border-bottom: 1px solid $frost;
 
@@ -31,18 +44,20 @@
                     border-bottom: none;
                 }
 
-                h3 {
+                a {
                     display: inline-block;
-                    margin-bottom: 10px;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
+                    text-decoration: none;
+                    letter-spacing: 0.5px;
                     font-weight: bold;
                     color: $denim;
-                    cursor: pointer;
 
                     &:hover {
                         color: $nightfall;
                     }
+                }
+
+                p {
+                    margin: 0;
                 }
             }
         }

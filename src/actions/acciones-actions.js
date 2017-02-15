@@ -7,7 +7,7 @@ var Dispatcher = require('src/dispatcher');
 var AccionRecord = require('src/records/accion');
 var AccionObject = Parse.Object.extend('Accion');
 
-var NotificacionRecord = require('src/records/notificacion');
+var NotificationRecord = require('src/records/notification');
 
 module.exports = {
     fetchAcciones: function (contratoId) {
@@ -54,8 +54,8 @@ module.exports = {
 
             if (updatedAccion.contrato.notificacion) {
                 Dispatcher.dispatch({
-                    type: 'NOTIFICACIONES_UPDATE',
-                    notificacion: createNotificacionRecord(updatedAccion.contrato.notificacion),
+                    type: 'NOTIFICATIONS_UPDATE',
+                    notification: createNotificationRecord(updatedAccion.contrato.notificacion),
                     contratoId: contratoId
                 });
             }
@@ -72,6 +72,6 @@ function createAccionRecord (accion) {
     return new AccionRecord(accion.toJSON());
 }
 
-function createNotificacionRecord (notificacion, numeroContrato) {
-    return new NotificacionRecord(notificacion, numeroContrato);
+function createNotificationRecord (notification, numeroContrato) {
+    return new NotificationRecord(notification, numeroContrato);
 }

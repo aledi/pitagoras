@@ -263,35 +263,35 @@ class Contrato extends ContratoRecord {
 }
 
 function cleanNotification (contrato) {
-    var notificacion = contrato.notificacion;
-    var cleanedNotificacion = {
-        tipo: notificacion.tipo,
-        tipoAccion: notificacion.tipoAccion,
+    var notification = contrato.notificacion;
+    var cleanedNotification = {
+        tipo: notification.tipo,
+        tipoAccion: notification.tipoAccion,
         numeroContrato: contrato.numeroContrato,
         contratoId: contrato.id
     };
 
-    switch (notificacion.tipo) {
+    switch (notification.tipo) {
         case 1:
-            cleanedNotificacion.fecha = moment(notificacion.fecha).toDate();
-            cleanedNotificacion.horario = notificacion.horario;
+            cleanedNotification.fecha = moment(notification.fecha).toDate();
+            cleanedNotification.horario = notification.horario;
 
-            return cleanedNotificacion;
+            return cleanedNotification;
         case 2:
-            cleanedNotificacion.fecha = moment(notificacion.fecha).toDate();
+            cleanedNotification.fecha = moment(notification.fecha).toDate();
 
-            return cleanedNotificacion;
+            return cleanedNotification;
         case 3:
-            cleanedNotificacion.cita = notificacion.cita;
+            cleanedNotification.cita = notification.cita;
 
-            return cleanedNotificacion;
+            return cleanedNotification;
         case 5:
-            cleanedNotificacion.fecha = moment(notificacion.fecha).toDate();
-            cleanedNotificacion.hora = notificacion.hora;
+            cleanedNotification.fecha = moment(notification.fecha).toDate();
+            cleanedNotification.hora = notification.hora;
 
-            return cleanedNotificacion;
+            return cleanedNotification;
         default:
-            return cleanedNotificacion;
+            return cleanedNotification;
     }
 }
 

@@ -100,7 +100,7 @@ class Accion extends AccionRecord {
         var contrato = accion.contrato.toEditable();
 
         // -----------------------------------------------------------------------------------------------
-        // Notificaciones
+        // Notifications
         // -----------------------------------------------------------------------------------------------
 
         // Notification for Demanda Desechada & Recolección de documentos

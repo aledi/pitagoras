@@ -4,13 +4,13 @@ var Flux = require('flux/utils');
 var Immutable = require('immutable');
 var Dispatcher = require('src/dispatcher');
 
-var NotificacionRecord = require('src/records/notificacion');
+var NotificationRecord = require('src/records/notification');
 
 class ContratosStore extends Flux.MapStore {
     getInitialState () {
         return new Immutable.Map({
             contratos: new Immutable.Map(),
-            notificaciones: new Immutable.Map(),
+            notifications: new Immutable.Map(),
 
             fetching: false,
             fetchError: null,
@@ -49,7 +49,7 @@ class ContratosStore extends Flux.MapStore {
             case 'CONTRATOS_FETCH':
                 return state.merge({fetching: true, fetchError: null});
             case 'CONTRATOS_FETCH_SUCCESS':
-                return state.merge({fetching: false, contratos: action.contratos, notificaciones: sortNotificaciones(action.notificaciones)});
+                return state.merge({fetching: false, contratos: action.contratos, notifications: sortNotifications(action.notifications)});
             case 'CONTRATOS_FETCH_ERROR':
                 return state.merge({fetching: false, fetchError: action.error});
 
@@ -66,7 +66,7 @@ class ContratosStore extends Flux.MapStore {
                 };
 
                 if (action.contrato.notificacion) {
-                    newState.notificaciones = sortNotificaciones(state.get('notificaciones').set(action.contrato.id, createNotificacionRecord(action.contrato.notificacion)));
+                    newState.notifications = sortNotifications(state.get('notifications').set(action.contrato.id, createNotificationRecord(action.contrato.notificacion)));
                 }
 
                 return state.merge(newState);
@@ -77,8 +77,8 @@ class ContratosStore extends Flux.MapStore {
             // Sort
             // -----------------------------------------------------------------------------------------------
 
-            case 'NOTIFICACIONES_UPDATE':
-                return state.merge({notificaciones: sortNotificaciones(state.get('notificaciones').set(action.contratoId, action.notificacion))});
+            case 'NOTIFICATIONS_UPDATE':
+                return state.merge({notifications: sortNotifications(state.get('notifications').set(action.contratoId, action.notification))});
 
             // -----------------------------------------------------------------------------------------------
             // Sort
@@ -127,8 +127,8 @@ function sortContratos (contratos, sortColumn, ascending) {
     });
 }
 
-function sortNotificaciones (notificaciones) {
-    return notificaciones.sort(function (a, b) {
+function sortNotifications (notifications) {
+    return notifications.sort(function (a, b) {
         a = a.fecha.clone().toDate();
         b = b.fecha.clone().toDate();
 
@@ -142,8 +142,8 @@ function sortNotificaciones (notificaciones) {
     });
 }
 
-function createNotificacionRecord (notificacion, numeroContrato) {
-    return new NotificacionRecord(notificacion, numeroContrato);
+function createNotificationRecord (notification, numeroContrato) {
+    return new NotificationRecord(notification, numeroContrato);
 }
 
 module.exports = new ContratosStore(Dispatcher);

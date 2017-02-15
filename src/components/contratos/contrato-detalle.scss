@@ -103,6 +103,12 @@
                 color: #FF9F00;
             }
 
+            hr {
+                margin: 10px 0;
+                border: none;
+                border-bottom: 1px solid $denim;
+            }
+
             li {
                 padding: 0px 5px;
                 cursor: pointer;

@@ -10,7 +10,7 @@ var React = require('react');
 var Flux = require('flux/utils');
 
 var ContratosStore = require('src/stores/contratos-store');
-var Notificaciones = require('src/components/notificaciones/notificaciones');
+var Notifications = require('src/components/notifications/notifications');
 
 // -----------------------------------------------------------------------------------------------
 // Inicio
@@ -22,12 +22,12 @@ class Inicio extends React.Component {
     }
 
     static calculateState (prevState, props) {
-        var notificaciones = ContratosStore.get('notificaciones');
+        var notifications = ContratosStore.get('notifications');
 
         return {
-            loading: notificaciones.size === 0 && ContratosStore.get('fetching'),
-            error: notificaciones.size === 0 ? ContratosStore.get('fetchError') : null,
-            notificaciones: notificaciones,
+            loading: notifications.size === 0 && ContratosStore.get('fetching'),
+            error: notifications.size === 0 ? ContratosStore.get('fetchError') : null,
+            notifications: notifications,
             newUser: props.location.state ? props.location.state.newUser : false
         };
     }
@@ -46,7 +46,7 @@ class Inicio extends React.Component {
         } else if (this.state.error) {
             return (<div className='error'>Hubo un error. Favor de intentar de nuevo.</div>);
         } else {
-            return (<Notificaciones notificaciones={this.state.notificaciones} newUser={this.state.newUser} />);
+            return (<Notifications notifications={this.state.notifications} newUser={this.state.newUser} />);
         }
     }
 }
