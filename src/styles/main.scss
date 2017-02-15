@@ -20,7 +20,7 @@
             margin: 0;
             text-align: center;
 
-            a {
+            a, .signout-option {
                 text-decoration: none;
                 text-transform: uppercase;
                 letter-spacing: 0.5px;
@@ -84,6 +84,10 @@
                         background-color: rgba($nightfall, 0.5);
                     }
                 }
+
+                .signout-option {
+                    display: none;
+                }
             }
 
             .signout-menu-wrapper {
@@ -129,7 +133,7 @@
                 background-color: $denim;
                 border-top: 1px solid $blue-gray;
 
-                a {
+                a, .signout-option {
                     width: 100%;
                     display: block;
                     line-height: $header-height-mobile;

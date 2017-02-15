@@ -81,6 +81,7 @@ var Main = React.createClass({
                     <Link activeClassName='active' className={classNames({admin: isAdmin})} to={links.contratos}>Ver contratos</Link>
                     <Link activeClassName='active' className={classNames({admin: isAdmin})} to={links.reportes}>Reportes</Link>
                     {this.renderAgregarUsuarioItem(isAdmin)}
+                    <div className='signout-option' onClick={this.signOut}>Cerrar sesión</div>
                 </div>
                 <div className='signout-menu-wrapper'>
                     <div className='signout-wrapper' onClick={this.signOut} title='Cerrar sesión'>
