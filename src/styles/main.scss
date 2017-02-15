@@ -6,49 +6,35 @@
 
 #pitagoras {
     header {
-        height: $header-height;
         position: absolute;
         top: 0;
         right: 0;
         left: 0;
         background-color: $denim;
 
-        div.links-wrapper {
-            height: 100%;
+        .links-wrapper {
             position: absolute;
             top: 0;
-            right: 80px;
             left: 0;
             padding: 0;
             margin: 0;
             text-align: center;
 
             a {
-                width: 25%;
-                display: inline-block;
-                line-height: $header-height;
                 text-decoration: none;
                 text-transform: uppercase;
                 letter-spacing: 0.5px;
                 font-size: 13px;
                 color: white;
 
-                &:hover {
-                    background-color: rgba($nightfall, 0.5);
-                }
-
                 &.active {
                     background-color: $nightfall;
                     font-weight: bold;
                 }
-
-                &.admin {
-                    width: 20%;
-                }
             }
         }
 
-        div.signout {
+        .signout-menu-wrapper {
             height: 100%;
             width: 80px;
             position: absolute;
@@ -56,19 +42,6 @@
             right: 0;
             border-left: 1px solid $blue-gray;
             cursor: pointer;
-
-            img {
-                height: 70%;
-                width: 35px;
-                position: relative;
-                top: 12px;
-                display: block;
-                margin: 0 auto;
-            }
-
-            &:hover {
-                background-color: rgba($nightfall, 0.5);
-            }
         }
     }
 
@@ -82,5 +55,102 @@
         overflow: hidden;
         overflow-y: auto;
         background-color: white;
+    }
+}
+
+// -----------------------------------------------------------------------------------------------
+// Desktop
+// -----------------------------------------------------------------------------------------------
+
+@media only screen and (min-width: 801px) {
+    #pitagoras {
+        header {
+            height: $header-height;
+
+            .links-wrapper {
+                height: 100%;
+                right: 80px;
+
+                a {
+                    width: 25%;
+                    display: inline-block;
+                    line-height: $header-height;
+
+                    &.admin {
+                        width: 20%;
+                    }
+
+                    &:hover {
+                        background-color: rgba($nightfall, 0.5);
+                    }
+                }
+            }
+
+            .signout-menu-wrapper {
+                .signout-wrapper {
+                    height: 100%;
+                    width: 100%;
+
+                    img {
+                        height: 70%;
+                        width: 35px;
+                        position: relative;
+                        top: 12px;
+                        display: block;
+                        margin: 0 auto;
+                    }
+
+                    &:hover {
+                        background-color: rgba($nightfall, 0.5);
+                    }
+                }
+
+                button {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------------------------
+// Mobile
+// -----------------------------------------------------------------------------------------------
+
+@media only screen and (max-width: 800px) {
+    #pitagoras {
+        header {
+            height: $header-height-mobile;
+
+            .links-wrapper {
+                top: $header-height-mobile;
+                right: 0;
+                z-index: 1;
+                background-color: $denim;
+                border-top: 1px solid $blue-gray;
+
+                a {
+                    width: 100%;
+                    display: block;
+                    line-height: $header-height-mobile;
+                }
+
+                &.hidden {
+                    display: none;
+                }
+            }
+
+            .signout-menu-wrapper {
+                .signout-wrapper {
+                    display: none;
+                }
+
+                button {
+                    height: 100%;
+                    width: 100%;
+                    display: block;
+                }
+            }
+        }
     }
 }

@@ -25,7 +25,10 @@ var Main = React.createClass({
         return {user: this.getCurrentUser};
     },
     getInitialState: function () {
-        return this.getState(this.props);
+        var state = this.getState(this.props);
+        state.showingMobileHeader = false;
+
+        return state;
     },
     componentDidMount: function () {
         Pitagoras.fetchContratos();
@@ -72,15 +75,18 @@ var Main = React.createClass({
 
         return (
             <header>
-                <div className='links-wrapper'>
+                <div className={classNames('links-wrapper', {hidden: !this.state.showingMobileHeader})}>
                     <Link activeClassName='active' className={classNames({admin: isAdmin})} to={links.inicio}>Inicio</Link>
                     <Link activeClassName='active' className={classNames({admin: isAdmin})} to={this.state.links.agregarContrato}>Agregar contrato</Link>
                     <Link activeClassName='active' className={classNames({admin: isAdmin})} to={links.contratos}>Ver contratos</Link>
                     <Link activeClassName='active' className={classNames({admin: isAdmin})} to={links.reportes}>Reportes</Link>
                     {this.renderAgregarUsuarioItem(isAdmin)}
                 </div>
-                <div className='signout' onClick={this.signOut} title='Cerrar sesión'>
-                    <img src={require('src/assets/signOut.png')} />
+                <div className='signout-menu-wrapper'>
+                    <div className='signout-wrapper' onClick={this.signOut} title='Cerrar sesión'>
+                        <img src={require('src/assets/signOut.png')} />
+                    </div>
+                    <button onClick={this.toggleMobileHeader}>-</button>
                 </div>
             </header>
         );
@@ -94,6 +100,9 @@ var Main = React.createClass({
         }
 
         return (<Link activeClassName='active' className='admin' to={this.state.links.usuarios}>Usuarios</Link>);
+    },
+    toggleMobileHeader: function () {
+        this.setState({showingMobileHeader: !this.state.showingMobileHeader});
     },
     signOut: function () {
         Parse.User.logOut().then(function () {
