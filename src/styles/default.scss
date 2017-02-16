@@ -44,6 +44,7 @@ h4 {
 }
 
 input[type='text'], input[type='password'], textarea {
+    -webkit-appearance: none;
     border: 1px solid $frost;
 
     &:disabled {
