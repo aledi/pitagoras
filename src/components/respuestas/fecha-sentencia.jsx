@@ -26,10 +26,20 @@ var FechaSentencia = React.createClass({
                     <span className='bold'>Fecha: </span>
                     <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
                 </div>
-                <div>
-                    <span className='bold'>Hora: </span>
-                    <span>{respuestas.hora}</span>
-                </div>
+                {this.renderHour()}
+            </div>
+        );
+    },
+    renderHour: function () {
+        var hora = this.props.accion.respuestas.hora;
+        if (!hora) {
+            return;
+        }
+
+        return (
+            <div>
+                <span className='bold'>Hora: </span>
+                <span>{hora}</span>
             </div>
         );
     }
