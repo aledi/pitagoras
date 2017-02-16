@@ -16,7 +16,7 @@ var ContratosActions = require('src/actions/contratos-actions');
 var ContratoRecord = require('src/records/contrato');
 
 var AccionesHistorial = require('src/components/acciones/acciones-historial');
-var ContratoForm = require('src/components/contratos/contrato-form');
+var ContractForm = require('src/components/contratos/contract-form');
 
 var Visita = require('src/components/acciones/visita'); // 1
 var AltaDocumentos = require('src/components/acciones/alta-documentos'); // 2
@@ -190,7 +190,7 @@ var ContratoDetalle = React.createClass({
             return (
                 <div className='contrato'>
                     <span className='side-button' onClick={this.handleContratoEdit}>Regresar a Detalles</span>
-                    <ContratoForm contrato={contrato} />
+                    <ContractForm contrato={contrato} />
                 </div>
             );
         }

@@ -1,6 +1,6 @@
 'use strict';
 
-require('./contrato-form.scss');
+require('./contract-form.scss');
 
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
@@ -15,14 +15,14 @@ var ContratosStore = require('src/stores/contratos-store.js');
 var DateSelect = require('src/components/shared/date-select');
 
 // -----------------------------------------------------------------------------------------------
-// Contrato Form
+// Contract Form
 // -----------------------------------------------------------------------------------------------
 
-var ContratoForm = React.createClass({
+var ContractForm = React.createClass({
     getInitialState: function () {
         return {
             contrato: this.props.contrato ? this.props.contrato.toEditable() : new ContratoRecord().toEditable(),
-            attemptedToSave: false,
+            triedToSave: false,
             invalidFields: {}
         };
     },
@@ -51,7 +51,7 @@ var ContratoForm = React.createClass({
             this.setState({
                 feedbackText: 'El contrato se ha guardado exitosamente',
                 contrato: new ContratoRecord().toEditable(),
-                attemptedToSave: false,
+                triedToSave: false,
                 saving: false,
                 saveError: false
             });
@@ -63,7 +63,7 @@ var ContratoForm = React.createClass({
         if (this.state.saving && !saving && saveError) {
             this.setState({
                 feedbackText: 'Error al guardar el contrato',
-                attemptedToSave: false,
+                triedToSave: false,
                 saving: false,
                 saveError: true
             });
@@ -74,18 +74,18 @@ var ContratoForm = React.createClass({
         this.setState({saving: saving});
     },
     render: function () {
-        var contrato = this.state.contrato;
+        var contract = this.state.contrato;
 
         return (
-            <main className='contrato-form'>
+            <main className='contract-form'>
                 <form onSubmit={this.handleSubmit}>
-                    <h3 className='section-title'>Contrato</h3>
+                    <h4>Contrato</h4>
                     <div className='input-wrapper'>
                         <label>Número de Contrato</label>
                         <input
                             ref='numeroContrato'
                             type='text'
-                            value={contrato.numeroContrato || ''}
+                            value={contract.numeroContrato || ''}
                             className={classNames({invalid: this.state.invalidFields.numeroContrato})}
                             disabled={this.state.saving}
                             onChange={this.handleChange.bind(this, 'numeroContrato')} />
@@ -129,7 +129,7 @@ var ContratoForm = React.createClass({
                         <input
                             ref='plazo'
                             type='text'
-                            value={contrato.plazo}
+                            value={contract.plazo}
                             disabled={this.state.saving}
                             onChange={this.handleChange.bind(this, 'plazo')}
                             onKeyPress={this.restrictNumericInput.bind(this, false)} />
@@ -139,7 +139,7 @@ var ContratoForm = React.createClass({
                         <input
                             ref='monto'
                             type='text'
-                            value={contrato.monto}
+                            value={contract.monto}
                             disabled={this.state.saving}
                             onChange={this.handleChange.bind(this, 'monto')}
                             onKeyPress={this.restrictNumericInput.bind(this, true)} />
@@ -149,15 +149,15 @@ var ContratoForm = React.createClass({
                         <input
                             ref='tasa'
                             type='text'
-                            value={contrato.tasa}
+                            value={contract.tasa}
                             disabled={this.state.saving}
                             onChange={this.handleChange.bind(this, 'tasa')}
                             onKeyPress={this.restrictNumericInput.bind(this, true)} />
                     </div>
                     <DateSelect
-                        date={contrato.fechaContrato}
+                        date={contract.fechaContrato}
                         disabled={this.state.saving}
-                        onChange={this.handleFechaChange} />
+                        onChange={this.handleDateChange} />
                     <div className='input-wrapper full-width'>
                         <label>¿Recibe Certificación Contable correcta y completa?</label>
                             <div>
@@ -182,72 +182,72 @@ var ContratoForm = React.createClass({
                             </div>
                     </div>
                     <hr />
-                    <h3 className='section-title'>Vehículo</h3>
+                    <h4>Vehículo</h4>
                     <div className='input-wrapper'>
                         <label>Modelo</label>
                         <input
                             ref='modelo'
                             type='text'
-                            value={contrato.vehiculo.modelo}
+                            value={contract.vehiculo.modelo}
                             disabled={this.state.saving}
-                            onChange={this.handleVehiculoChange.bind(this, 'modelo')} />
+                            onChange={this.handleVehicleChange.bind(this, 'modelo')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Marca</label>
                         <input
                             ref='marca'
                             type='text'
-                            value={contrato.vehiculo.marca}
+                            value={contract.vehiculo.marca}
                             disabled={this.state.saving}
-                            onChange={this.handleVehiculoChange.bind(this, 'marca')} />
+                            onChange={this.handleVehicleChange.bind(this, 'marca')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Clase</label>
                         <input
                             ref='clase'
                             type='text'
-                            value={contrato.vehiculo.clase}
+                            value={contract.vehiculo.clase}
                             disabled={this.state.saving}
-                            onChange={this.handleVehiculoChange.bind(this, 'clase')} />
+                            onChange={this.handleVehicleChange.bind(this, 'clase')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Distribuidor</label>
                         <input
                             ref='distribuidor'
                             type='text'
-                            value={contrato.vehiculo.distribuidor}
+                            value={contract.vehiculo.distribuidor}
                             disabled={this.state.saving}
-                            onChange={this.handleVehiculoChange.bind(this, 'distribuidor')} />
+                            onChange={this.handleVehicleChange.bind(this, 'distribuidor')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Año</label>
                         <input
                             ref='anio'
                             type='text'
-                            value={contrato.vehiculo.anio}
+                            value={contract.vehiculo.anio}
                             disabled={this.state.saving}
-                            onChange={this.handleVehiculoChange.bind(this, 'anio')} />
+                            onChange={this.handleVehicleChange.bind(this, 'anio')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Serie</label>
                         <input
                             ref='serie'
                             type='text'
-                            value={contrato.vehiculo.serie}
+                            value={contract.vehiculo.serie}
                             disabled={this.state.saving}
-                            onChange={this.handleVehiculoChange.bind(this, 'serie')} />
+                            onChange={this.handleVehicleChange.bind(this, 'serie')} />
                     </div>
                     <hr />
-                    <h3 className='section-title'>Cliente</h3>
+                    <h4>Cliente</h4>
                     <div className='input-wrapper'>
                         <label>Nombre</label>
                         <input
                             ref='nombre'
                             type='text'
-                            value={contrato.cliente.nombre}
+                            value={contract.cliente.nombre}
                             className={classNames({invalid: this.state.invalidFields.nombre})}
                             disabled={this.state.saving}
-                            onChange={this.handleClienteChange.bind(this, 'nombre')} />
+                            onChange={this.handleClientChange.bind(this, 'nombre')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Apellido Paterno</label>
@@ -257,94 +257,94 @@ var ContratoForm = React.createClass({
                             value={this.state.contrato.cliente.apellidoPaterno}
                             className={classNames({invalid: this.state.invalidFields.apellidoPaterno})}
                             disabled={this.state.saving}
-                            onChange={this.handleClienteChange.bind(this, 'apellidoPaterno')} />
+                            onChange={this.handleClientChange.bind(this, 'apellidoPaterno')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Apellido Materno</label>
                         <input
                             ref='apellidoMaterno'
                             type='text'
-                            value={contrato.cliente.apellidoMaterno}
+                            value={contract.cliente.apellidoMaterno}
                             disabled={this.state.saving}
-                            onChange={this.handleClienteChange.bind(this, 'apellidoMaterno')} />
+                            onChange={this.handleClientChange.bind(this, 'apellidoMaterno')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Calle</label>
                         <input
                             ref='calle'
                             type='text'
-                            value={contrato.cliente.domicilio.calle || ''}
+                            value={contract.cliente.domicilio.calle || ''}
                             disabled={this.state.saving}
-                            onChange={this.handleDomicilioChange.bind(this, 'calle')} />
+                            onChange={this.handleAddressChange.bind(this, 'calle')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Número Exterior</label>
                         <input
                             ref='exterior'
                             type='text'
-                            value={contrato.cliente.domicilio.exterior || ''}
+                            value={contract.cliente.domicilio.exterior || ''}
                             disabled={this.state.saving}
-                            onChange={this.handleDomicilioChange.bind(this, 'exterior')} />
+                            onChange={this.handleAddressChange.bind(this, 'exterior')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Número Interior</label>
                         <input
                             ref='interior'
                             type='text'
-                            value={contrato.cliente.domicilio.interior || ''}
+                            value={contract.cliente.domicilio.interior || ''}
                             disabled={this.state.saving}
-                            onChange={this.handleDomicilioChange.bind(this, 'interior')} />
+                            onChange={this.handleAddressChange.bind(this, 'interior')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Colonia</label>
                         <input
                             ref='colonia'
                             type='text'
-                            value={contrato.cliente.domicilio.colonia || ''}
+                            value={contract.cliente.domicilio.colonia || ''}
                             disabled={this.state.saving}
-                            onChange={this.handleDomicilioChange.bind(this, 'colonia')} />
+                            onChange={this.handleAddressChange.bind(this, 'colonia')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Código Postal</label>
                         <input
                             ref='codigoPostal'
                             type='text'
-                            value={contrato.cliente.domicilio.codigoPostal || ''}
+                            value={contract.cliente.domicilio.codigoPostal || ''}
                             disabled={this.state.saving}
-                            onChange={this.handleDomicilioChange.bind(this, 'codigoPostal')} />
+                            onChange={this.handleAddressChange.bind(this, 'codigoPostal')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Municipio / Delegación</label>
                         <input
                             ref='municipio'
                             type='text'
-                            value={contrato.cliente.domicilio.municipio || ''}
+                            value={contract.cliente.domicilio.municipio || ''}
                             disabled={this.state.saving}
-                            onChange={this.handleDomicilioChange.bind(this, 'municipio')} />
+                            onChange={this.handleAddressChange.bind(this, 'municipio')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Estado</label>
                         <input
                             ref='estado'
                             type='text'
-                            value={contrato.cliente.domicilio.estado || ''}
+                            value={contract.cliente.domicilio.estado || ''}
                             disabled={this.state.saving}
-                            onChange={this.handleDomicilioChange.bind(this, 'estado')} />
+                            onChange={this.handleAddressChange.bind(this, 'estado')} />
                     </div>
-                    {this.renderTelefonos()}
+                    {this.renderPhones()}
                     <button
                         type='button'
                         className='add'
                         disabled={this.state.saving}
-                        onClick={this.addTelefono}>Agregar nuevo teléfono</button>
+                        onClick={this.addPhone}>Agregar nuevo teléfono</button>
                     <hr />
-                    <h3 className='section-title'>Referencias</h3>
-                    {this.renderReferencias()}
+                    <h4>Referencias</h4>
+                    {this.renderReferences()}
                     <button
                         type='button'
                         className='add'
                         disabled={this.state.saving}
-                        onClick={this.addReferencia}>Agregar nueva referencia</button>
+                        onClick={this.addReference}>Agregar nueva referencia</button>
                     <button
                         type='submit'
                         className='submit'
@@ -366,19 +366,19 @@ var ContratoForm = React.createClass({
             </p>
         );
     },
-    renderTelefonos: function () {
+    renderPhones: function () {
         var telefonos = this.state.contrato.cliente.telefonos;
 
         if (telefonos.length === 1) {
             return (
                 <div className='input-wrapper'>
-                    <label>Teléfono 1</label>
+                    <label>Teléfono #1</label>
                     <input
                         ref='telefonos0'
                         type='text'
                         value={this.state.contrato.cliente.telefonos[0]}
                         disabled={this.state.saving}
-                        onChange={this.handleTelefonosChange.bind(this, 'telefonos', 0)} />
+                        onChange={this.handlePhoneChange.bind(this, 'telefonos', 0)} />
                 </div>
             );
         }
@@ -387,13 +387,13 @@ var ContratoForm = React.createClass({
         return telefonos.map(function (telefono, index) {
             return (
                 <div key={'telefono-' + index} className='input-wrapper'>
-                    <label>{'Teléfono ' + (index + 1)}</label>
+                    <label>{'Teléfono #' + (index + 1)}</label>
                     <input
                         ref={'telefonos' + index}
                         type='text'
                         value={self.state.contrato.cliente.telefonos[index]}
                         disabled={self.state.saving}
-                        onChange={self.handleTelefonosChange.bind(self, 'telefonos', index)} />
+                        onChange={self.handlePhoneChange.bind(self, 'telefonos', index)} />
                     {self.renderRemoveButton(index)}
                 </div>
             );
@@ -409,18 +409,18 @@ var ContratoForm = React.createClass({
                 type='button'
                 className='remove remove-input'
                 disabled={this.state.saving}
-                onClick={this.removeTelefono.bind(this, index)}>Borrar teléfono</button>
+                onClick={this.removePhone.bind(this, index)}>Borrar teléfono</button>
         );
     },
-    renderReferencias: function () {
-        var referencias = this.state.contrato.referencias;
+    renderReferences: function () {
+        var references = this.state.contrato.referencias;
 
-        if (!referencias.length) {
+        if (!references.length) {
             return;
         }
 
         var self = this;
-        return referencias.map(function (referencia, index) {
+        return references.map(function (reference, index) {
             return (
                 <div key={'referencia-' + index} className='referencia-wrapper'>
                     <div className='input-wrapper'>
@@ -428,131 +428,131 @@ var ContratoForm = React.createClass({
                         <input
                             ref={'nombre' + index}
                             type='text'
-                            value={referencia.nombre}
+                            value={reference.nombre}
                             disabled={self.state.saving}
-                            onChange={self.handleReferenciaChange.bind(self, 'nombre', index)} />
+                            onChange={self.handleReferenceChange.bind(self, 'nombre', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Apellido Paterno</label>
                         <input
                             ref={'apellidoPaterno' + index}
                             type='text'
-                            value={referencia.apellidoPaterno}
+                            value={reference.apellidoPaterno}
                             disabled={self.state.saving}
-                            onChange={self.handleReferenciaChange.bind(self, 'apellidoPaterno', index)} />
+                            onChange={self.handleReferenceChange.bind(self, 'apellidoPaterno', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Apellido Materno</label>
                         <input
                             ref={'apellidoMaterno' + index}
                             type='text'
-                            value={referencia.apellidoMaterno}
+                            value={reference.apellidoMaterno}
                             disabled={self.state.saving}
-                            onChange={self.handleReferenciaChange.bind(self, 'apellidoMaterno', index)} />
+                            onChange={self.handleReferenceChange.bind(self, 'apellidoMaterno', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Calle</label>
                         <input
                             ref={'calle' + index}
                             type='text'
-                            value={referencia.domicilio.calle}
+                            value={reference.domicilio.calle}
                             disabled={self.state.saving}
-                            onChange={self.handleReferenciaDomicilioChange.bind(self, 'calle', index)} />
+                            onChange={self.handleReferenceAddressChange.bind(self, 'calle', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Número Exterior</label>
                         <input
                             ref={'exterior' + index}
                             type='text'
-                            value={referencia.domicilio.exterior}
+                            value={reference.domicilio.exterior}
                             disabled={self.state.saving}
-                            onChange={self.handleReferenciaDomicilioChange.bind(self, 'exterior', index)} />
+                            onChange={self.handleReferenceAddressChange.bind(self, 'exterior', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Número Interior</label>
                         <input
                             ref={'interior' + index}
                             type='text'
-                            value={referencia.domicilio.interior}
+                            value={reference.domicilio.interior}
                             disabled={self.state.saving}
-                            onChange={self.handleReferenciaDomicilioChange.bind(self, 'interior', index)} />
+                            onChange={self.handleReferenceAddressChange.bind(self, 'interior', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Colonia</label>
                         <input
                             ref={'colonia' + index}
                             type='text'
-                            value={referencia.domicilio.colonia}
+                            value={reference.domicilio.colonia}
                             disabled={self.state.saving}
-                            onChange={self.handleReferenciaDomicilioChange.bind(self, 'colonia', index)} />
+                            onChange={self.handleReferenceAddressChange.bind(self, 'colonia', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Código Postal</label>
                         <input
                             ref={'codigoPostal' + index}
                             type='text'
-                            value={referencia.domicilio.codigoPostal}
+                            value={reference.domicilio.codigoPostal}
                             disabled={self.state.saving}
-                            onChange={self.handleReferenciaDomicilioChange.bind(self, 'codigoPostal', index)} />
+                            onChange={self.handleReferenceAddressChange.bind(self, 'codigoPostal', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Municipio / Delegación</label>
                         <input
                             ref={'municipio' + index}
                             type='text'
-                            value={referencia.domicilio.municipio}
+                            value={reference.domicilio.municipio}
                             disabled={self.state.saving}
-                            onChange={self.handleReferenciaDomicilioChange.bind(self, 'municipio', index)} />
+                            onChange={self.handleReferenceAddressChange.bind(self, 'municipio', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Estado</label>
                         <input
                             ref={'estado' + index}
                             type='text'
-                            value={referencia.domicilio.estado}
+                            value={reference.domicilio.estado}
                             disabled={self.state.saving}
-                            onChange={self.handleReferenciaDomicilioChange.bind(self, 'estado', index)} />
+                            onChange={self.handleReferenceAddressChange.bind(self, 'estado', index)} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Teléfono</label>
                         <input
                             ref={'telefono' + index}
                             type='text'
-                            value={referencia.telefono}
+                            value={reference.telefono}
                             disabled={self.state.saving}
-                            onChange={self.handleReferenciaChange.bind(self, 'telefono', index)} />
+                            onChange={self.handleReferenceChange.bind(self, 'telefono', index)} />
                     </div>
                     <button
                         type='button'
                         className='remove'
                         disabled={self.state.saving}
-                        onClick={self.removeReferencia.bind(self, index)}>Eliminar referencia</button>
+                        onClick={self.removeReference.bind(self, index)}>Eliminar referencia</button>
                 </div>
             );
         });
     },
-    addTelefono: function (event) {
+    addPhone: function (event) {
         event.preventDefault();
 
-        var contrato = this.state.contrato;
-        contrato.cliente.telefonos.push('');
+        var contract = this.state.contrato;
+        contract.cliente.telefonos.push('');
 
-        this.setState({contrato: contrato});
+        this.setState({contrato: contract});
     },
-    removeTelefono: function (index, event) {
+    removePhone: function (index, event) {
         event.preventDefault();
 
-        var contrato = this.state.contrato;
-        contrato.cliente.telefonos.splice(index, 1);
+        var contract = this.state.contrato;
+        contract.cliente.telefonos.splice(index, 1);
 
-        this.setState({contrato: contrato});
+        this.setState({contrato: contract});
     },
-    addReferencia: function (event) {
+    addReference: function (event) {
         event.preventDefault();
 
-        var contrato = this.state.contrato;
+        var contract = this.state.contrato;
 
-        contrato.referencias.push({
+        contract.referencias.push({
             nombre: '',
             apellidoPaterno: '',
             apellidoMaterno: '',
@@ -568,9 +568,9 @@ var ContratoForm = React.createClass({
             telefono: ''
         });
 
-        this.setState({contrato: contrato});
+        this.setState({contrato: contract});
     },
-    removeReferencia: function (index, event) {
+    removeReference: function (index, event) {
         event.preventDefault();
 
         var contrato = this.state.contrato;
@@ -581,7 +581,7 @@ var ContratoForm = React.createClass({
     handleChange: function (key, event) {
         var state = {contrato: this.state.contrato, invalidFields: this.state.invalidFields};
         state.contrato[key] = event.target.value;
-        state.attemptedToSave = false;
+        state.triedToSave = false;
 
         if (key === 'numeroContrato' && this.state.invalidFields && this.state.invalidFields.numeroContrato) {
             state.invalidFields.numeroContrato = false;
@@ -604,19 +604,19 @@ var ContratoForm = React.createClass({
         state.contrato.tipoContrato = event.target.value;
         this.setState(state);
     },
-    handleFechaChange: function (date) {
+    handleDateChange: function (date) {
         var state = {contrato: this.state.contrato};
         state.contrato.fechaContrato = date;
 
         this.setState(state);
     },
-    handleVehiculoChange: function (key, event) {
+    handleVehicleChange: function (key, event) {
         var state = {contrato: this.state.contrato};
         state.contrato.vehiculo[key] = event.target.value;
 
         this.setState(state);
     },
-    handleClienteChange: function (key, event) {
+    handleClientChange: function (key, event) {
         var state = {contrato: this.state.contrato, invalidFields: this.state.invalidFields};
         state.contrato.cliente[key] = event.target.value;
 
@@ -628,25 +628,25 @@ var ContratoForm = React.createClass({
 
         this.setState(state);
     },
-    handleReferenciaChange: function (key, index, event) {
+    handleReferenceChange: function (key, index, event) {
         var state = {contrato: this.state.contrato};
         state.contrato.referencias[index][key] = event.target.value;
 
         this.setState(state);
     },
-    handleTelefonosChange: function (key, index, event) {
+    handlePhoneChange: function (key, index, event) {
         var state = {contrato: this.state.contrato};
         state.contrato.cliente.telefonos[index] = event.target.value;
 
         this.setState(state);
     },
-    handleDomicilioChange: function (key, event) {
+    handleAddressChange: function (key, event) {
         var state = {contrato: this.state.contrato};
         state.contrato.cliente.domicilio[key] = event.target.value;
 
         this.setState(state);
     },
-    handleReferenciaDomicilioChange: function (key, index, event) {
+    handleReferenceAddressChange: function (key, index, event) {
         var state = {contrato: this.state.contrato};
         state.contrato.referencias[index].domicilio[key] = event.target.value;
 
@@ -680,7 +680,7 @@ var ContratoForm = React.createClass({
         }
 
         if (!this.validateInputs()) {
-            this.setState({attemptedToSave: true});
+            this.setState({triedToSave: true});
 
             /* eslint-disable no-alert */
 
@@ -728,4 +728,4 @@ var ContratoForm = React.createClass({
     }
 });
 
-module.exports = ContratoForm;
+module.exports = ContractForm;
