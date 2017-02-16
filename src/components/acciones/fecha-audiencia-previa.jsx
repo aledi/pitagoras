@@ -28,7 +28,7 @@ var FechaAudienciaPrevia = React.createClass({
             respuestas: {
                 atendido: lastAccion ? lastAccion.respuestas.atendido : '',
                 fecha: null,
-                hora: '8:00 am'
+                hora: null
             },
             disabled: false
         };

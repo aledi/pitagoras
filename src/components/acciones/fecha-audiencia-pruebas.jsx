@@ -28,7 +28,7 @@ var FechaAudienciaPruebas = React.createClass({
             respuestas: {
                 atendido: lastAccion ? lastAccion.respuestas.atendido : '',
                 fecha: null,
-                hora: '8:00 am',
+                hora: null,
                 citacion: lastAccion ? lastAccion.respuestas.citacion : false
             },
             disabled: false
@@ -123,15 +123,15 @@ var FechaAudienciaPruebas = React.createClass({
 
         if (!respuestas.fecha1) {
             respuestas.fecha1 = null;
-            respuestas.hora1 = '8:00 am';
+            respuestas.hora1 = null;
             this.setState({respuestas: respuestas});
         } else if (!respuestas.fecha2) {
             respuestas.fecha2 = null;
-            respuestas.hora2 = '8:00 am';
+            respuestas.hora2 = null;
             this.setState({respuestas: respuestas});
         } else if (!respuestas.fecha3) {
             respuestas.fecha3 = null;
-            respuestas.hora3 = '8:00 am';
+            respuestas.hora3 = null;
             this.setState({respuestas: respuestas});
         }
     },

@@ -168,7 +168,7 @@ class Reporte extends ReporteRecord {
 
         // Horarios de Juzgado
         definition.horariosJuzgado = definition.horariosJuzgado;
-        formattedValues.horariosJuzgado = definition.horariosJuzgado ? moment(definition.horariosJuzgado.fecha.iso).format('D MMMM, YYYY') + ' de ' + definition.horariosJuzgado.horario.start + ' a ' + definition.horariosJuzgado.horario.end : null;
+        formattedValues.horariosJuzgado = definition.horariosJuzgado && definition.horariosJuzgado.fecha ? moment(definition.horariosJuzgado.fecha.iso).format('D MMMM, YYYY') + (definition.horariosJuzgado.horario.start != null && definition.horariosJuzgado.horario.end != null ? (' de ' + definition.horariosJuzgado.horario.start + ' a ' + definition.horariosJuzgado.horario.end) : '') : null;
 
         // Fecha de Admisión
         definition.fechaAdmision = definition.fechaAdmision;

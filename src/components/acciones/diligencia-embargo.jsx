@@ -45,7 +45,7 @@ var DiligenciaEmbargo = React.createClass({
         if (lastAccion && lastAccion.respuestas.cita) {
             state.respuestas.cita = {
                 fecha: null,
-                hora: '8:00 am',
+                hora: null,
                 lugar: lastAccion.respuestas.cita.lugar,
                 nombreActuario: lastAccion.respuestas.cita.nombreActuario,
                 telefonoActuario: lastAccion.respuestas.cita.telefonoActuario
@@ -135,7 +135,7 @@ var DiligenciaEmbargo = React.createClass({
         if (resultado === 'Se dejó citatorio') {
             respuestas.cita = {
                 fecha: null,
-                hora: '8:00 am'
+                hora: null
             };
         } else if (respuestas.cita) {
             delete respuestas.cita;

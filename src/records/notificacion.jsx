@@ -51,7 +51,7 @@ class Notificacion extends NotificacionRecord {
         definition.hora = definition.hora;
 
         // Horario
-        if (definition.horario) {
+        if (definition.horario && definition.horario.start != null && definition.horario.end != null) {
             definition.horario = definition.horario;
             formattedValues.horario = definition.horario.start + ' - ' + definition.horario.end;
         }
