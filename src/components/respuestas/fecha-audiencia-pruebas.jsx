@@ -23,25 +23,45 @@ var FechaAudienciaPruebas = React.createClass({
                     <span className='bold'>Atendido por: </span>
                     <span>{respuestas.atendido}</span>
                 </div>
-                <div>
-                    <span className='bold'>Fecha: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
-                </div>
-                <div>
-                    <span className='bold'>Hora: </span>
-                    <span>{respuestas.hora}</span>
-                </div>
+                {this.renderDate()}
+                {this.renderHour()}
                 <div>
                     <span className='bold'>Citación a Sentencia: </span>
                     <span>{RespuestasUtils.formatBooleanRespuesta(this.props.accion.respuestas.citacion)}</span>
                 </div>
-                {this.renderFecha(1)}
-                {this.renderFecha(2)}
-                {this.renderFecha(3)}
+                {this.renderExtraDate(1)}
+                {this.renderExtraDate(2)}
+                {this.renderExtraDate(3)}
             </div>
         );
     },
-    renderFecha: function (num) {
+    renderDate: function () {
+        var fecha = this.props.accion.respuestas.fecha;
+        if (!fecha) {
+            return;
+        }
+
+        return (
+            <div>
+                <span className='bold'>Fecha: </span>
+                <span>{DateUtils.formatFechaRespuesta(fecha)}</span>
+            </div>
+        );
+    },
+    renderHour: function () {
+        var hour = this.props.accion.respuestas.hora;
+        if (!hour) {
+            return;
+        }
+
+        return (
+            <div>
+                <span className='bold'>Hora: </span>
+                <span>{hour}</span>
+            </div>
+        );
+    },
+    renderExtraDate: function (num) {
         var respuestas = this.props.accion.respuestas;
         if (!respuestas['fecha' + num]) {
             return;
