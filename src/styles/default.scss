@@ -95,12 +95,12 @@ button {
     &.add, &.remove {
         height: auto;
         width: auto;
-        background-color: transparent;
-        text-transform: uppercase;
-        color: $blue-gray;
+        padding: 5px 10px;
+        background-color: $blue-gray;
+        color: white;
 
         &:hover {
-            color: $denim;
+            background-color: $denim;
         }
     }
 
@@ -115,6 +115,10 @@ button {
     &.submit {
         padding: 0 80px;
         margin-top: 50px;
+        font-weight: bold;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
 
         &:disabled {
             background-color: $disabled-button-background;
@@ -138,5 +142,17 @@ button {
 
     &.error {
         color: $invalid;
+    }
+}
+
+// -----------------------------------------------------------------------------------------------
+// Mobile
+// -----------------------------------------------------------------------------------------------
+
+@media only screen and (max-width: 800px) {
+    button {
+        &.submit {
+            width: 100%;
+        }
     }
 }

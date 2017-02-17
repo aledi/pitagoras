@@ -45,18 +45,9 @@
         }
 
         button {
-            &.add {
-                padding: 0;
-                margin: 20px 10px;
-            }
-
-            &.remove {
-                line-height: 40px;
-            }
-
             &.remove-input {
-                line-height: normal;
-                padding-bottom: 0;
+                margin-top: 5px;
+                padding: 3px 10px;
             }
 
             &:disabled {
@@ -100,6 +91,12 @@
                     height: 30px;
                 }
             }
+
+            button {
+                &.add {
+                    margin: 20px 10px;
+                }
+            }
         }
     }
 }
@@ -127,8 +124,8 @@
             }
 
             button {
-                &.submit {
-                    width: 100%;
+                &.add {
+                    margin: 20px 0;
                 }
             }
         }
