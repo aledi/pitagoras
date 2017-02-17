@@ -33,16 +33,16 @@ var Signin = React.createClass({
             <div className='signin-wrapper'>
                 <img className='logo' src={require('src/assets/logo.png')} />
                 <form onSubmit={this.handleSignIn}>
-                    <label>Usuario</label>
                     <input
                         type='text'
+                        placeholder='Usuario'
                         className={classNames({required: this.state.emailRequired})}
                         value={this.state.email}
                         disabled={this.state.submitting}
                         onChange={this.handleChange.bind(this, 'email', 'emailRequired')} />
-                    <label>Contraseña</label>
                     <input
                         type='password'
+                        placeholder='••••••••'
                         className={classNames({required: this.state.passwordRequired})}
                         value={this.state.password}
                         disabled={this.state.submitting}

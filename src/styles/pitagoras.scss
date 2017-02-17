@@ -30,14 +30,14 @@ $fog: #C9D1C8;
 
 $invalid: #E05858;
 
-$disabled-text-color: #CCCCCC;
+$disabled-text-color: #CCC;
 $disabled-input-background: #F2F2F2;
 $disabled-input-border: #B9BBBB;
-$disabled-button-background: #999999;
+$disabled-button-background: #999;
 
 // -----------------------------------------------------------------------------------------------
 // Bootstrap Variables and Mixins
 // -----------------------------------------------------------------------------------------------
 
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';

@@ -5,17 +5,12 @@
     width: 100%;
 
     .logo {
-        width: 300px;
         height: 100px;
-        position: absolute;
-        top: 20px; left: 20px;
+        width: 280px;
     }
 
     form {
-        width: 400px;
-        padding: 40px;
         margin: 0 auto;
-        margin-top: 80px;
         background-color: $frost;
         border: 1px solid $creosote;
         border-radius: 3px;
@@ -26,7 +21,7 @@
         }
 
         input {
-            height: 35px;
+            height: 45px;
             width: 100%;
             display: block;
             padding: 0 10px;
@@ -34,6 +29,8 @@
             border: 1px solid $creosote;
             border-radius: 3px;
             outline: none;
+            font-size: 16px;
+            letter-spacing: 1px;
 
             &.required {
                 border-color: $invalid;
@@ -41,9 +38,12 @@
         }
 
         button {
-            padding: 10px 40px;
-            margin-top: 20px;
+            height: 50px;
+            width: 100%;
+            font-weight: bold;
+            font-size: 13px;
             text-transform: uppercase;
+            letter-spacing: 1.5px;
 
             &:disabled {
                 background-color: $disabled-button-background;
@@ -52,13 +52,66 @@
         }
 
         p.error-text {
-            font-size: 13px;
             margin: 0;
+            font-size: 13px;
             color: $invalid;
 
             &.hidden {
                 visibility: hidden;
             }
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------------------------
+// Mobile
+// -----------------------------------------------------------------------------------------------
+
+@media only screen and (min-width: 801px) {
+    .signin-wrapper {
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        form {
+            width: 400px;
+            padding: 40px;
+            margin-top: 80px;
+
+            button {
+                margin-top: 50px;
+            }
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------------------------
+// Mobile
+// -----------------------------------------------------------------------------------------------
+
+@media only screen and (max-width: 800px) {
+    .signin-wrapper {
+        padding: 20px;
+
+        .logo {
+            display: block;
+            margin: auto;
+        }
+
+        form {
+            width: 100%;
+            padding: 40px 20px;
+            margin-top: 40px;
+
+            button {
+                margin-top: 30px;
+            }
+        }
+
+        &.submit {
+            width: 100%;
         }
     }
 }
