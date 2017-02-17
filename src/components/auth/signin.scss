@@ -33,7 +33,7 @@
             letter-spacing: 1px;
 
             &.required {
-                border-color: $invalid;
+                border-color: $red;
             }
         }
 
@@ -54,7 +54,7 @@
         p.error-text {
             margin: 0;
             font-size: 13px;
-            color: $invalid;
+            color: $red;
 
             &.hidden {
                 visibility: hidden;
