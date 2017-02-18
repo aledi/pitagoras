@@ -18,7 +18,7 @@ var Main = require('src/components/main/main');
 var Inicio = require('src/components/inicio/inicio');
 var Signin = require('src/components/auth/signin');
 var ContractForm = require('src/components/contratos/contract-form');
-var Usuarios = require('src/components/usuarios/usuarios');
+var Users = require('src/components/users/users');
 var Contratos = require('src/components/contratos/contratos');
 var Reportes = require('src/components/reportes/reportes');
 var NotFound = require('src/components/not-found/not-found');
@@ -29,7 +29,7 @@ var Routes = (
         <Route path='signin' component={Signin} onEnter={requireNoAuth} />
         <Route path='inicio' component={Inicio} onEnter={requireAuth} />
         <Route path='agregar-contrato' component={ContractForm} onEnter={requireAuth} />
-        <Route path='usuarios' component={Usuarios} onEnter={requireAdminAuth} />
+        <Route path='usuarios' component={Users} onEnter={requireAdminAuth} />
         <Route path='contratos' component={Contratos} onEnter={requireAuth}>
             <Route path=':id' component={Contratos} onEnter={requireAuth} />
         </Route>

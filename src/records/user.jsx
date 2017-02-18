@@ -3,10 +3,10 @@
 var Immutable = require('immutable');
 
 // -----------------------------------------------------------------------------------------------
-// UsuarioRecord
+// UserRecord
 // -----------------------------------------------------------------------------------------------
 
-var UsuarioRecord = Immutable.Record({
+var UserRecord = Immutable.Record({
     id: null,
     nombre: '',
     apellido: '',
@@ -19,7 +19,7 @@ var UsuarioRecord = Immutable.Record({
     formattedValues: {}
 });
 
-class Usuario extends UsuarioRecord {
+class User extends UserRecord {
     constructor (definition) {
         definition = definition || {};
         var formattedValues = {};
@@ -46,4 +46,4 @@ class Usuario extends UsuarioRecord {
     }
 }
 
-module.exports = Usuario;
+module.exports = User;

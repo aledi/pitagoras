@@ -1,6 +1,6 @@
 'use strict';
 
-require('./usuario-edit.scss');
+require('./user-edit.scss');
 
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
@@ -9,45 +9,45 @@ require('./usuario-edit.scss');
 var React = require('react');
 var classNames = require('classnames');
 
-var UsuariosActions = require('src/actions/usuarios-actions');
-var UsuariosStore = require('src/stores/usuarios-store');
+var UsersActions = require('src/actions/users-actions');
+var UsersStore = require('src/stores/users-store');
 
 // -----------------------------------------------------------------------------------------------
-// UsuarioEdit
+// UserEdit
 // -----------------------------------------------------------------------------------------------
 
-var UsuarioEdit = React.createClass({
+var UserEdit = React.createClass({
     getInitialState: function () {
-        var usuario = this.props.usuario || {};
+        var user = this.props.user || {};
 
         return {
-            nombre: usuario.nombre || '',
-            apellido: usuario.apellido || '',
-            email: usuario.email || '',
-            tipo: usuario.tipo || 1,
-            username: usuario.username || '',
+            name: user.nombre || '',
+            lastName: user.apellido || '',
+            email: user.email || '',
+            type: user.tipo || 1,
+            username: user.username || '',
             password: '',
-            usuarioNuevo: this.props.usuario ? usuario.usuarioNuevo : true,
+            newUser: this.props.user ? user.usuarioNuevo : true,
             invalidFields: {}
         };
     },
     componentDidMount: function () {
-        this.storeListener = UsuariosStore.addListener(this.onChange);
+        this.storeListener = UsersStore.addListener(this.onChange);
     },
     componentWillUnmount: function () {
         this.storeListener.remove();
     },
     onChange: function () {
-        var saving = UsuariosStore.get('saving');
-        var saveError = UsuariosStore.get('saveError');
+        var saving = UsersStore.get('saving');
+        var saveError = UsersStore.get('saveError');
 
         if (this.state.saving && !saving && !saveError) {
             this.setState({
                 feedbackText: 'El usuario se ha creado exitosamente',
-                nombre: '',
-                apellido: '',
+                name: '',
+                lastName: '',
                 email: '',
-                tipo: 1,
+                type: 1,
                 username: '',
                 password: '',
                 saving: false,
@@ -71,24 +71,23 @@ var UsuarioEdit = React.createClass({
     },
     render: function () {
         return (
-            <div className='usuario-edit'>
+            <div className='user-edit'>
                 <form onSubmit={this.handleSubmit}>
-                    <p className='section-title'>{(this.props.usuario ? 'Editar ' : 'Crear ') + 'Usuario'}</p>
                     <div className='input-wrapper'>
                         <label>Nombre</label>
                         <input
                             type='text'
-                            value={this.state.nombre}
-                            className={classNames({invalid: this.state.invalidFields.nombre})}
-                            onChange={this.handleChange.bind(this, 'nombre')} />
+                            value={this.state.name}
+                            className={classNames({invalid: this.state.invalidFields.name})}
+                            onChange={this.handleChange.bind(this, 'name')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Apellidos</label>
                         <input
                             type='text'
-                            value={this.state.apellido}
-                            className={classNames({invalid: this.state.invalidFields.apellido})}
-                            onChange={this.handleChange.bind(this, 'apellido')} />
+                            value={this.state.lastName}
+                            className={classNames({invalid: this.state.invalidFields.lastName})}
+                            onChange={this.handleChange.bind(this, 'lastName')} />
                     </div>
                     <div className='input-wrapper'>
                         <label>Correo Electrónico</label>
@@ -100,7 +99,7 @@ var UsuarioEdit = React.createClass({
                     </div>
                     <div className='input-wrapper'>
                         <label>Tipo de Usuario</label>
-                        <select value={this.state.tipo} onChange={this.handleChange.bind(this, 'tipo')}>
+                        <select value={this.state.type} onChange={this.handleChange.bind(this, 'type')}>
                             <option value={1}>Abogado</option>
                             <option value={2}>Gestor</option>
                             <option value={3}>Administrador</option>
@@ -115,14 +114,14 @@ var UsuarioEdit = React.createClass({
                             onChange={this.handleChange.bind(this, 'username')} />
                     </div>
                     {this.renderPassword()}
-                    <button type='submit' className='submit'>{(this.props.usuario ? 'Editar ' : 'Crear ') + 'Usuario'}</button>
+                    <button type='submit' className='submit'>{(this.props.user ? 'Editar ' : 'Crear ') + 'Usuario'}</button>
                     {this.renderFeedbackText()}
                 </form>
             </div>
         );
     },
     renderPassword: function () {
-        if (this.props.usuario) {
+        if (this.props.user) {
             return;
         }
 
@@ -169,13 +168,13 @@ var UsuarioEdit = React.createClass({
         var state = this.state;
         var invalidFields = false;
 
-        if (!state.nombre || !state.nombre.trim()) {
-            state.invalidFields.nombre = true;
+        if (!state.name || !state.name.trim()) {
+            state.invalidFields.name = true;
             invalidFields = true;
         }
 
-        if (!state.apellido || !state.apellido.trim()) {
-            state.invalidFields.apellido = true;
+        if (!state.lastName || !state.lastName.trim()) {
+            state.invalidFields.lastName = true;
             invalidFields = true;
         }
 
@@ -189,7 +188,7 @@ var UsuarioEdit = React.createClass({
             invalidFields = true;
         }
 
-        if (!this.props.usuario && (!state.password || !state.password.trim())) {
+        if (!this.props.user && (!state.password || !state.password.trim())) {
             state.invalidFields.password = true;
             invalidFields = true;
         }
@@ -200,22 +199,22 @@ var UsuarioEdit = React.createClass({
         }
 
         var user = {
-            nombre: this.state.nombre,
-            apellido: this.state.apellido,
+            nombre: this.state.name,
+            apellido: this.state.lastName,
             email: this.state.email,
-            tipo: parseInt(this.state.tipo, 10),
+            tipo: parseInt(this.state.type, 10),
             username: this.state.username,
-            usuarioNuevo: this.state.usuarioNuevo
+            usuarioNuevo: this.state.newUser
         };
 
-        if (this.props.usuario) {
-            user.id = this.props.usuario.id;
+        if (this.props.user) {
+            user.id = this.props.user.id;
         } else {
             user.password = this.state.password;
         }
 
-        UsuariosActions.saveUsuario(user);
+        UsersActions.saveUser(user);
     }
 });
 
-module.exports = UsuarioEdit;
+module.exports = UserEdit;

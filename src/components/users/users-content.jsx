@@ -1,6 +1,6 @@
 'use strict';
 
-require('./usuarios-content.scss');
+require('./users-content.scss');
 
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
@@ -8,22 +8,21 @@ require('./usuarios-content.scss');
 
 var React = require('react');
 var Parse = require('parse');
-var UsuariosActions = require('src/actions/usuarios-actions');
+var UsersActions = require('src/actions/users-actions');
 
-var UsuarioEdit = require('./usuario-edit');
+var UserEdit = require('./user-edit');
 
 // -----------------------------------------------------------------------------------------------
-// UsuariosContent
+// UsersContent
 // -----------------------------------------------------------------------------------------------
 
-var UsuariosContent = React.createClass({
+var UsersContent = React.createClass({
     getInitialState: function () {
         return {savingUser: false};
     },
     render: function () {
         return (
-            <div className='usuarios-content'>
-                <h2>Usuarios</h2>
+            <div className='users-content'>
                 {this.renderButton()}
                 {this.renderContent()}
             </div>
@@ -38,58 +37,58 @@ var UsuariosContent = React.createClass({
     },
     renderContent: function () {
         if (this.state.savingUser) {
-            return (<UsuarioEdit usuario={this.state.usuario} />);
+            return (<UserEdit user={this.state.user} />);
         }
 
         return (
-            <ul className='usuarios-list'>
-                {this.getUsuarios()}
+            <ul className='users-list'>
+                {this.getUsers()}
             </ul>
         );
     },
     toggleAddingUser: function () {
         var state = {};
         if (this.state.savingUser) {
-            state.usuario = null;
+            state.user = null;
         }
 
         state.savingUser = !this.state.savingUser;
 
         this.setState(state);
     },
-    getUsuarios: function () {
-        var usuarios = this.props.usuarios;
-        if (usuarios.size === 0) {
+    getUsers: function () {
+        var users = this.props.users;
+        if (users.size === 0) {
             return;
         }
 
-        var usuariosArray = [];
+        var usersArray = [];
         var self = this;
         var currentUserId = Parse.User.current().id;
-        usuarios.forEach(function (usuario) {
-            if (usuario.id === currentUserId) {
+        users.forEach(function (user) {
+            if (user.id === currentUserId) {
                 return;
             }
 
-            usuariosArray.push(
-                <li key={usuario.id}>
-                    <span className='name'>{usuario.nombre + ' ' + usuario.apellido}</span>
+            usersArray.push(
+                <li key={user.id}>
+                    <span className='name'>{user.nombre + ' ' + user.apellido}</span>
                     <div className='buttons-wrapper'>
-                        <button type='button' onClick={self.editUser.bind(self, usuario)}>Editar</button>
-                        <button type='button' onClick={self.deleteUser.bind(self, usuario)}>Eliminar</button>
+                        <button type='button' onClick={self.editUser.bind(self, user)}>Editar</button>
+                        <button type='button' onClick={self.deleteUser.bind(self, user)}>Eliminar</button>
                     </div>
                 </li>
             );
         });
 
-        return usuariosArray;
+        return usersArray;
     },
-    editUser: function (usuario) {
-        this.setState({savingUser: true, usuario: usuario});
+    editUser: function (user) {
+        this.setState({savingUser: true, user: user});
     },
-    deleteUser: function (usuario) {
-        UsuariosActions.deleteUsuario(usuario.id);
+    deleteUser: function (user) {
+        UsersActions.deleteUser(user.id);
     }
 });
 
-module.exports = UsuariosContent;
+module.exports = UsersContent;

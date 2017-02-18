@@ -1,0 +1,77 @@
+@import '~src/styles/pitagoras.scss';
+
+.user-edit {
+    form {
+        padding: 20px 10px;
+        margin: 0 auto;
+        border: 1px solid $frost;
+        border-radius: 3px;
+
+        .input-wrapper {
+            box-sizing: border-box;
+
+            label {
+                width: 100%;
+                font-weight: bold;
+                font-size: 14px;
+            }
+
+            input {
+                width: 100%;
+
+                &.invalid {
+                    border-color: $red;
+                }
+            }
+        }
+
+        button {
+            &:disabled {
+                color: $disabled-text-color;
+            }
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------------------------
+// Desktop
+// -----------------------------------------------------------------------------------------------
+
+@media only screen and (min-width: 801px) {
+    .user-edit {
+        form {
+            width: 800px;
+
+            .input-wrapper {
+                width: 50%;
+                display: inline-block;
+                padding: 10px;
+
+                input {
+                    height: 30px;
+                }
+            }
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------------------------
+// Mobile
+// -----------------------------------------------------------------------------------------------
+
+@media only screen and (max-width: 800px) {
+    .user-edit {
+        form {
+            width: 100%;
+
+            .input-wrapper {
+                width: 100%;
+                padding: 10px 0;
+
+                input {
+                    height: 40px;
+                }
+            }
+        }
+    }
+}

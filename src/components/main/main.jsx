@@ -80,7 +80,7 @@ var Main = React.createClass({
                     <Link activeClassName='active' to={this.state.links.agregarContrato}>Agregar contrato</Link>
                     <Link activeClassName='active' to={links.contratos}>Ver contratos</Link>
                     <Link activeClassName='active' to={links.reportes}>Reportes</Link>
-                    {this.renderUsuariosItem(isAdmin)}
+                    {this.renderUsersItem(isAdmin)}
                     <div className='signout-option' onClick={this.signOut}>Cerrar sesión</div>
                 </div>
                 <div className='signout-menu-wrapper'>
@@ -95,7 +95,7 @@ var Main = React.createClass({
     renderChildren: function () {
         return this.state.children;
     },
-    renderUsuariosItem: function (isAdmin) {
+    renderUsersItem: function (isAdmin) {
         if (!isAdmin) {
             return;
         }

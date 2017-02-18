@@ -7,37 +7,37 @@
 var React = require('react');
 var Flux = require('flux/utils');
 
-var UsuariosActions = require('src/actions/usuarios-actions');
-var UsuariosStore = require('src/stores/usuarios-store');
+var UsersActions = require('src/actions/users-actions');
+var UsersStore = require('src/stores/users-store');
 
-var UsuariosContent = require('./usuarios-content');
+var UsersContent = require('./users-content');
 
 // -----------------------------------------------------------------------------------------------
-// Usuarios
+// Users
 // -----------------------------------------------------------------------------------------------
 
-class Usuarios extends React.Component {
+class Users extends React.Component {
     static getStores () {
-        return [UsuariosStore];
+        return [UsersStore];
     }
 
     static calculateState (prevState, props) {
-        var usuarios = UsuariosStore.get('usuarios');
+        var users = UsersStore.get('users');
 
         return {
-            loading: usuarios.size === 0 && UsuariosStore.get('fetching'),
-            error: usuarios.size === 0 ? UsuariosStore.get('fetchError') : null,
-            usuarios: usuarios
+            loading: users.size === 0 && UsersStore.get('fetching'),
+            error: users.size === 0 ? UsersStore.get('fetchError') : null,
+            users: users
         };
     }
 
     componentWillMount () {
-        UsuariosActions.fetchUsuarios();
+        UsersActions.fetchUsers();
     }
 
     render () {
         return (
-            <main className='usuarios'>
+            <main className='users'>
                 {this.renderContent()}
             </main>
         );
@@ -49,9 +49,9 @@ class Usuarios extends React.Component {
         } else if (this.state.error) {
             return (<div className='error'>Hubo un error. Favor de intentar de nuevo.</div>);
         } else {
-            return (<UsuariosContent usuarios={this.state.usuarios} />);
+            return (<UsersContent users={this.state.users} />);
         }
     }
 }
 
-module.exports = Flux.Container.create(Usuarios, {withProps: true});
+module.exports = Flux.Container.create(Users, {withProps: true});
