@@ -52,6 +52,11 @@ var Main = React.createClass({
             }
         };
 
+        // If route was changed, hide mobile nav & header menu
+        if (this.props.location.pathname !== props.location.pathname) {
+            state.showingMobileHeader = false;
+        }
+
         // NOTE: routes[0] is always main, routes[1] is always top level component
         state.links[props.routes[1].path] = props.location.pathname;
 
