@@ -1,24 +1,8 @@
 @import '~src/styles/pitagoras.scss';
 
 .users-content {
-    button.top-right, button.top-left {
-        height: auto;
-        position: absolute;
-        top: 20px;
-        padding: 2px 10px;
-        font-size: 13px;
-    }
-
-    button.top-right {
-        right: 20px;
-    }
-
-    button.top-left {
-        left: 20px;
-    }
-
     .users-list {
-        width: 700px;
+        padding: 0;
         margin: auto;
         list-style: none;
 
@@ -56,6 +40,32 @@
             &:nth-child(even) {
                 background-color: #F8F8F8;
             }
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------------------------
+// Desktop
+// -----------------------------------------------------------------------------------------------
+
+@media only screen and (min-width: 801px) {
+    .users-content {
+        .users-list {
+            width: 700px;
+            margin-top: 30px;
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------------------------
+// Mobile
+// -----------------------------------------------------------------------------------------------
+
+@media only screen and (max-width: 800px) {
+    .users-content {
+        .users-list {
+            width: 100%;
+            margin-top: 20px;
         }
     }
 }

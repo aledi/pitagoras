@@ -30,10 +30,10 @@ var UsersContent = React.createClass({
     },
     renderButton: function () {
         if (this.state.savingUser) {
-            return (<button type='button' className='top-left' onClick={this.toggleAddingUser}>Regresar</button>);
+            return (<button type='button' className='right-button' onClick={this.toggleAddingUser}>Regresar</button>);
         }
 
-        return (<button type='button' className='top-right' onClick={this.toggleAddingUser}>Agregar usuario</button>);
+        return (<button type='button' className='right-button' onClick={this.toggleAddingUser}>Agregar usuario</button>);
     },
     renderContent: function () {
         if (this.state.savingUser) {

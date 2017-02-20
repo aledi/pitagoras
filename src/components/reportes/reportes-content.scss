@@ -1,22 +1,8 @@
 @import '~src/styles/pitagoras.scss';
 
 .reportes-content {
-    .side-button {
-        float: none !important;
-    }
-
-    button.top-right {
-        height: auto;
-        padding: 2px 10px;
-        position: absolute;
-        top: 30px; right: 20px;
-        font-size: 13px;
-        z-index: 10;
-    }
-
     .reportes-table {
         position: absolute;
-        top: 80px;
         left: 0;
         right: 0;
         bottom: 0;
@@ -106,6 +92,44 @@
                     }
                 }
             }
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------------------------
+// Mobile
+// -----------------------------------------------------------------------------------------------
+
+@media only screen and (min-width: 801px) {
+    .reportes-content {
+        .buttons-wrapper {
+            margin: auto;
+            text-align: center;
+
+            button.right-button {
+                display: inline-block;
+                margin: 0 5px;
+            }
+        }
+
+        .reportes-table {
+            top: 90px;
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------------------------
+// Mobile
+// -----------------------------------------------------------------------------------------------
+
+@media only screen and (max-width: 800px) {
+    .reportes-content {
+        button.export {
+            display: none;
+        }
+
+        .reportes-table {
+            top: 70px;
         }
     }
 }

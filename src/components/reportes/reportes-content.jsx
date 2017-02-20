@@ -22,10 +22,12 @@ var ReportesContent = React.createClass({
     render: function () {
         return (
             <div className='reportes-content'>
-                <span className='side-button right' onClick={this.toggleReportes}>
-                    {'Mostrar Reporte' + (this.state.showingReportesGenerales ? ' Extrajudiciales' : ' Generales')}
-                </span>
-                <button type='button' className='top-right export' onClick={this.exportTable}>Exportar Reportes</button>
+                <div className='buttons-wrapper'>
+                    <button className='right-button' onClick={this.toggleReportes}>
+                        {'Mostrar Reporte' + (this.state.showingReportesGenerales ? ' Extrajudiciales' : ' Generales')}
+                    </button>
+                    <button type='button' className='right-button export' onClick={this.exportTable}>Exportar Reportes</button>
+                </div>
                 {this.renderReportes()}
             </div>
         );

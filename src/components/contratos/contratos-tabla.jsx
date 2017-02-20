@@ -19,9 +19,7 @@ var Search = require('src/components/shared/search');
 var ContratosTabla = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
     getInitialState: function () {
-        return {
-            showingBusqueda: false
-        };
+        return {showingSearch: false};
     },
     componentDidMount: function () {
         document.getElementById('table-wrapper-contratos').focus();
@@ -29,8 +27,8 @@ var ContratosTabla = React.createClass({
     render: function () {
         return (
             <div>
-                <button type='button' className='search-button' onClick={this.toggleBusqueda}>Buscar contrato</button>
-                <div id='table-wrapper-contratos' className='contratos-table table-wrapper' tabIndex='0' onKeyUp={this.handleKeyUp}>
+                <button type='button' className='right-button' onClick={this.toggleSearch}>Buscar contrato</button>
+                <div id='table-wrapper-contratos' className='contracts-table table-wrapper' tabIndex='0' onKeyUp={this.handleKeyUp}>
                     <div className='table-header-wrapper' style={{minWidth: '2050px'}}>
                         <table>
                             <thead>
@@ -79,11 +77,11 @@ var ContratosTabla = React.createClass({
         );
     },
     renderBusqueda: function () {
-        if (!this.state.showingBusqueda) {
+        if (!this.state.showingSearch) {
             return;
         }
 
-        return (<Search onClose={this.toggleBusqueda} />);
+        return (<Search onClose={this.toggleSearch} />);
     },
     renderTableBodyWrapper: function () {
         return (
@@ -132,8 +130,8 @@ var ContratosTabla = React.createClass({
     handleInputChange: function (event) {
         this.setState({busquedaInput: event.target.value});
     },
-    toggleBusqueda: function () {
-        this.setState({showingBusqueda: !this.state.showingBusqueda});
+    toggleSearch: function () {
+        this.setState({showingSearch: !this.state.showingSearch});
     },
     goToContrato: function (id) {
         this.context.router.push('/contratos/' + id);

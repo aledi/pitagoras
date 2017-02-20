@@ -52,7 +52,7 @@ var Main = React.createClass({
             }
         };
 
-        // If route was changed, hide mobile nav & header menu
+        // If route was changed, hide mobile header
         if (this.props.location.pathname !== props.location.pathname) {
             state.showingMobileHeader = false;
         }

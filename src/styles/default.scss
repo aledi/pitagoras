@@ -92,7 +92,7 @@ button {
         background-color: $nightfall;
     }
 
-    &.add, &.remove {
+    &.add, &.remove, &.right-button {
         height: auto;
         width: auto;
         padding: 5px 10px;
@@ -104,7 +104,7 @@ button {
         }
     }
 
-    &.add {
+    &.add, &.right-button {
         font-size: 13px;
     }
 
