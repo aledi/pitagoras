@@ -99,7 +99,12 @@ class Contrato extends ContratoRecord {
             contrato.notificacion = cleanNotification(contrato);
         }
 
-        contrato.fechaContrato = contrato.fechaContrato ? contrato.fechaContrato.toDate() : null;
+        /* eslint-disable no-nested-ternary */
+
+        contrato.fechaContrato = contrato.fechaContrato ? (moment.isMoment(contrato.fechaContrato) ? contrato.fechaContrato.toDate() : contrato.fechaContrato) : null;
+
+        /* eslint-enable no-nested-ternary */
+
         contrato.depuracionFecha = contrato.depuracionFecha ? contrato.depuracionFecha.toDate() : null;
         contrato.lastAccionAt = contrato.lastAccionAt.toDate();
 
