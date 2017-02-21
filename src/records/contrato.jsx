@@ -102,10 +102,10 @@ class Contrato extends ContratoRecord {
         /* eslint-disable no-nested-ternary */
 
         contrato.fechaContrato = contrato.fechaContrato ? (moment.isMoment(contrato.fechaContrato) ? contrato.fechaContrato.toDate() : contrato.fechaContrato) : null;
+        contrato.depuracionFecha = contrato.depuracionFecha ? (moment.isMoment(contrato.depuracionFecha) ? contrato.depuracionFecha.toDate() : contrato.depuracionFecha) : null;
 
         /* eslint-enable no-nested-ternary */
 
-        contrato.depuracionFecha = contrato.depuracionFecha ? contrato.depuracionFecha.toDate() : null;
         contrato.lastAccionAt = contrato.lastAccionAt.toDate();
 
         contrato.reporte.nombre = contrato.cliente.nombre + ' ' + contrato.cliente.apellidoPaterno + (contrato.cliente.apellidoMaterno ? ' ' + contrato.cliente.apellidoMaterno : '');
@@ -116,7 +116,6 @@ class Contrato extends ContratoRecord {
         contrato.reporte.tipoAsignacion = contrato.tipoAsignacion;
         contrato.reporte.certificacionContable = contrato.certificacionContable;
         contrato.reporte = new ReporteObject(ReporteRecord.prepareForParse(contrato.reporte));
-
         contrato.vehiculo = new VehiculoObject(VehiculoRecord.prepareForParse(contrato.vehiculo));
         contrato.cliente = new ClienteObject(ClienteRecord.prepareForParse(contrato.cliente));
 
@@ -156,7 +155,7 @@ class Contrato extends ContratoRecord {
         definition.depuracionFecha = definition.depuracionFecha;
 
         // Depuración Editor
-        definition.depuracionEditor = definition.depuracionEditor;
+        definition.depuracionEditor = definition.depuracionEditor || '';
 
         // Número de Contrato
         definition.numeroContrato = definition.numeroContrato || '';
