@@ -261,8 +261,8 @@ var ContratoDetalle = React.createClass({
 
         return (
             <div className='depuracion-info'>
-                <p>Último cambio a las: {moment(contrato.depuracionFecha.iso).format('D/MMM/YYYY HH:mm')}</p>
-                <p>Último cambio por: {contrato.depuracionEditor}</p>
+                <p><b>Último cambio a las:</b> {moment(contrato.depuracionFecha.iso).format('D/MMM/YYYY HH:mm')}</p>
+                <p><b>Último cambio por:</b> {contrato.depuracionEditor}</p>
             </div>
         );
     },
