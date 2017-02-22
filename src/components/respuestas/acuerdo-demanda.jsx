@@ -22,14 +22,20 @@ var AcuerdoDemanda = React.createClass({
                     <span className='bold'>Resultado del acuerdo: </span>
                     <span>{respuestas.resultadoAcuerdo}</span>
                 </div>
-                <div>
-                    <span className='bold'>Fecha de acuerdo: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fechaAcuerdo)}</span>
-                </div>
-                <div>
-                    <span className='bold'>Fecha de publicación: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fechaPublicacion)}</span>
-                </div>
+                {this.renderDate(respuestas.fechaAcuerdo, 'Fecha de acuerdo')}
+                {this.renderDate(respuestas.fechaPublicacion, 'Fecha de publicación')}
+            </div>
+        );
+    },
+    renderDate: function (date, text) {
+        if (!date) {
+            return;
+        }
+
+        return (
+            <div>
+                <span className='bold'>{text + ': '}</span>
+                <span>{DateUtils.formatFechaRespuesta(date)}</span>
             </div>
         );
     }
