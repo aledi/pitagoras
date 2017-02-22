@@ -33,14 +33,8 @@ var DiligenciaEmbargo = React.createClass({
 
         return (
             <div>
-                <div>
-                    <span className='bold'>Fecha de cita: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.cita.fecha)}</span>
-                </div>
-                <div>
-                    <span className='bold'>Hora de cita: </span>
-                    <span>{respuestas.cita.hora}</span>
-                </div>
+                {this.renderDate()}
+                {this.renderHour()}
                 <div>
                     <span className='bold'>Lugar de cita: </span>
                     <span>{respuestas.cita.lugar}</span>
@@ -53,6 +47,34 @@ var DiligenciaEmbargo = React.createClass({
                     <span className='bold'>Telefono del actuario: </span>
                     <span>{respuestas.cita.telefonoActuario}</span>
                 </div>
+            </div>
+        );
+    },
+    renderDate: function () {
+        var date = this.props.accion.respuestas.cita.fecha;
+
+        if (!date) {
+            return;
+        }
+
+        return (
+            <div>
+                <span className='bold'>Fecha de cita: </span>
+                <span>{DateUtils.formatFechaRespuesta(date)}</span>
+            </div>
+        );
+    },
+    renderHour: function () {
+        var hour = this.props.accion.respuestas.cita.hora;
+
+        if (!hour) {
+            return;
+        }
+
+        return (
+            <div>
+                <span className='bold'>Hora de cita: </span>
+                <span>{hour}</span>
             </div>
         );
     }

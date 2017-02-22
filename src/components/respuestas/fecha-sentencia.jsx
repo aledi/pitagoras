@@ -22,11 +22,22 @@ var FechaSentencia = React.createClass({
                     <span className='bold'>Atendido por: </span>
                     <span>{respuestas.atendido}</span>
                 </div>
-                <div>
-                    <span className='bold'>Fecha: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
-                </div>
+                {this.renderDate()}
                 {this.renderHour()}
+            </div>
+        );
+    },
+    renderDate: function () {
+        var date = this.props.accion.respuestas.fecha;
+
+        if (!date) {
+            return;
+        }
+
+        return (
+            <div>
+                <span className='bold'>Fecha: </span>
+                <span>{DateUtils.formatFechaRespuesta(date)}</span>
             </div>
         );
     },

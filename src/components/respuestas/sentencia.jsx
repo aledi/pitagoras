@@ -25,15 +25,15 @@ var Sentencia = React.createClass({
         );
     },
     renderDate: function () {
-        var respuestas = this.props.accion.respuestas;
-        if (!respuestas.fecha) {
+        var date = this.props.accion.respuestas.fecha;
+        if (!date) {
             return;
         }
 
         return (
             <div>
                 <span className='bold'>Fecha: </span>
-                <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
+                <span>{DateUtils.formatFechaRespuesta(date)}</span>
             </div>
         );
     }

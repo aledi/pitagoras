@@ -22,10 +22,21 @@ var SentenciaApelacion = React.createClass({
                     <span className='bold'>Favorable a: </span>
                     <span>{respuestas.favorable}</span>
                 </div>
-                <div>
-                    <span className='bold'>Fecha: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
-                </div>
+                {this.renderDate()}
+            </div>
+        );
+    },
+    renderDate: function () {
+        var date = this.props.accion.respuestas.fecha;
+
+        if (!date) {
+            return;
+        }
+
+        return (
+            <div>
+                <span className='bold'>Fecha: </span>
+                <span>{DateUtils.formatFechaRespuesta(date)}</span>
             </div>
         );
     }
