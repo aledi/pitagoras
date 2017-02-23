@@ -41,46 +41,24 @@ var ReportesContent = React.createClass({
         this.setState({showingReportesGenerales: !this.state.showingReportesGenerales});
     },
     exportTable: function () {
+        var date = new Date();
         var tipoReportes = this.state.showingReportesGenerales ? 'reportes' : 'extrajudiciales';
-        var uri = 'data:application/vnd.ms-excel;base64,';
-        var template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>';
+        var template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>';
         var table = document.getElementById(tipoReportes);
         var ctx = {
             worksheet: tipoReportes,
             table: table.innerHTML
         };
-
-        while (ctx.table.indexOf('á') !== -1) {
-            ctx.table = ctx.table.replace('á', '&aacute;');
-        }
-
-        while (ctx.table.indexOf('é') !== -1) {
-            ctx.table = ctx.table.replace('é', '&eacute;');
-        }
-
-        while (ctx.table.indexOf('í') !== -1) {
-            ctx.table = ctx.table.replace('í', '&iacute;');
-        }
-
-        while (ctx.table.indexOf('ó') !== -1) {
-            ctx.table = ctx.table.replace('ó', '&oacute;');
-        }
-
-        while (ctx.table.indexOf('ú') !== -1) {
-            ctx.table = ctx.table.replace('ú', '&uacute;');
-        }
-
-        while (ctx.table.indexOf('ü') !== -1) {
-            ctx.table = ctx.table.replace('ü', '&uuml;');
-        }
-
-        while (ctx.table.indexOf('ñ') !== -1) {
-            ctx.table = ctx.table.replace('ñ', '&ntilde;');
-        }
-
-        document.getElementById('dlink').href = uri + this.base64(this.format(template, ctx));
-        document.getElementById('dlink').download = tipoReportes + '.xls';
-        document.getElementById('dlink').click();
+        var myBlob = new Blob([this.format(template, ctx)], {type: 'application/vnd.ms-excel'});
+        var url = window.URL.createObjectURL(myBlob);
+        var a = document.createElement('a');
+        document.body.appendChild(a);
+        a.href = url;
+        a.download = tipoReportes + '-pitagoras-' + date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear() + '.xls';
+        a.click();
+        setTimeout(function () {
+            window.URL.revokeObjectURL(url);
+        }, 0);
     },
     base64: function (s) {
         return window.btoa(unescape(encodeURIComponent(s)));
