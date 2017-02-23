@@ -56,6 +56,7 @@ var ReportesContent = React.createClass({
     //     document.getElementById('dlink').click();
     // },
     exportTable: function () {
+        var date = new Date();
         var tipoReportes = this.state.showingReportesGenerales ? 'reportes' : 'extrajudiciales';
         var template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>';
         var table = document.getElementById(tipoReportes);
@@ -68,7 +69,7 @@ var ReportesContent = React.createClass({
         var a = document.createElement('a');
         document.body.appendChild(a);
         a.href = url;
-        a.download = 'newfile.xls';
+        a.download = tipoReportes + '-pitagoras-' + date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear() + '.xls';
         a.click();
         setTimeout(function () {
             window.URL.revokeObjectURL(url);
