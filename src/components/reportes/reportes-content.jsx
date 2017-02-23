@@ -40,21 +40,6 @@ var ReportesContent = React.createClass({
     toggleReportes: function () {
         this.setState({showingReportesGenerales: !this.state.showingReportesGenerales});
     },
-    // exportTable: function () {
-    //     var date = new Date();
-    //     var tipoReportes = this.state.showingReportesGenerales ? 'reportes' : 'extrajudiciales';
-    //     var uri = 'data:application/vnd.ms-excel;base64,';
-    //     var template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>';
-    //     var table = document.getElementById(tipoReportes);
-    //     var ctx = {
-    //         worksheet: tipoReportes,
-    //         table: table.innerHTML
-    //     };
-    //
-    //     document.getElementById('dlink').href = uri + this.base64(this.format(template, ctx));
-    //     document.getElementById('dlink').download = tipoReportes + '-pitagoras-' + date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear() + '.xls';
-    //     document.getElementById('dlink').click();
-    // },
     exportTable: function () {
         var date = new Date();
         var tipoReportes = this.state.showingReportesGenerales ? 'reportes' : 'extrajudiciales';
