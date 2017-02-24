@@ -25,7 +25,7 @@ var ResolucionAmparoSentencia = React.createClass({
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                fecha: null,
+                fecha: lastAccion ? lastAccion.respuestas.fecha : null,
                 favorable: lastAccion ? lastAccion.respuestas.favorable : 'GMF',
                 tercero: lastAccion ? lastAccion.respuestas.tercero : ''
             },

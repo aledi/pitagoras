@@ -27,8 +27,8 @@ var FechaAudienciaPrueba = React.createClass({
             contrato: this.props.contrato,
             respuestas: {
                 atendido: lastAccion ? lastAccion.respuestas.atendido : '',
-                fecha: null,
-                hora: null
+                fecha: lastAccion ? lastAccion.respuestas.fecha : null,
+                hora: lastAccion ? lastAccion.respuestas.hora : null
             },
             disabled: false
         };

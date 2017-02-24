@@ -26,7 +26,7 @@ var SentenciaApelacion = React.createClass({
             contrato: this.props.contrato,
             respuestas: {
                 favorable: lastAccion ? lastAccion.respuestas.favorable : 'GMF',
-                fecha: null
+                fecha: lastAccion ? lastAccion.respuestas.fecha : null
             },
             disabled: false
         };

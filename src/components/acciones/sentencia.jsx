@@ -29,7 +29,7 @@ var Sentencia = React.createClass({
             respuestas: {
                 favorable: lastAccion ? lastAccion.respuestas.favorable : 'GMF',
                 tercero: lastAccion ? lastAccion.respuestas.tercero : '',
-                fecha: null
+                fecha: lastAccion ? lastAccion.respuestas.fecha : null
             },
             invalidFields: {
                 tercero: false
