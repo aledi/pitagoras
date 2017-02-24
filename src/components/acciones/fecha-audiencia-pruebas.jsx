@@ -28,7 +28,7 @@ var FechaAudienciaPruebas = React.createClass({
             respuestas: {
                 atendido: lastAccion ? lastAccion.respuestas.atendido : '',
                 fecha: lastAccion ? lastAccion.respuestas.fecha : null,
-                hora: lastAccion ? lastAccion.respuestas.hora : null
+                hora: lastAccion ? lastAccion.respuestas.hora : null,
                 citacion: lastAccion ? lastAccion.respuestas.citacion : false
             },
             disabled: false

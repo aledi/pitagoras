@@ -38,7 +38,7 @@ var RecoleccionDocumentos = React.createClass({
         }
 
         if (lastAccion && !lastAccion.respuestas.recogeDocumentos) {
-            state.respuestas.fecha = null;
+            state.respuestas.fecha = lastAccion.respuestas.fecha;
             state.respuestas.horario = {
                 start: lastAccion.respuestas.horario.start,
                 end: lastAccion.respuestas.horario.end

@@ -43,8 +43,8 @@ var DiligenciaEmbargo = React.createClass({
 
         if (lastAccion && lastAccion.respuestas.cita) {
             state.respuestas.cita = {
-                fecha: lastAccion.fecha,
-                hora: lastAccion.hora,
+                fecha: lastAccion.respuestas.cita.fecha,
+                hora: lastAccion.respuestas.cita.hora,
                 lugar: lastAccion.respuestas.cita.lugar,
                 nombreActuario: lastAccion.respuestas.cita.nombreActuario,
                 telefonoActuario: lastAccion.respuestas.cita.telefonoActuario
