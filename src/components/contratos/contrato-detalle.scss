@@ -97,10 +97,32 @@
 
             &.red {
                 color: $invalid;
+
+                li {
+                    &:hover {
+                        background-color: rgba($invalid, 0.8);
+                    }
+
+                    &.selected {
+                        background-color: $invalid;
+                        color: white;
+                    }
+                }
             }
 
             &.orange {
                 color: #FF9F00;
+
+                li {
+                    &:hover {
+                        background-color: rgba(#FF9F00, 0.8);
+                    }
+
+                    &.selected {
+                        background-color: #FF9F00;
+                        color: white;
+                    }
+                }
             }
 
             li {

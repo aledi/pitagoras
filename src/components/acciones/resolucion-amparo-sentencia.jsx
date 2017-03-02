@@ -7,7 +7,6 @@
 var React = require('react');
 var Parse = require('parse');
 var classNames = require('classnames');
-var moment = require('moment');
 
 var AccionesMixin = require('./acciones-mixin');
 var DateSelect = require('src/components/shared/date-select');
@@ -26,7 +25,7 @@ var ResolucionAmparoSentencia = React.createClass({
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                fecha: moment(),
+                fecha: lastAccion ? lastAccion.respuestas.fecha : null,
                 favorable: lastAccion ? lastAccion.respuestas.favorable : 'GMF',
                 tercero: lastAccion ? lastAccion.respuestas.tercero : ''
             },

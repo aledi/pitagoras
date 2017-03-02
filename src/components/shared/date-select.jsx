@@ -21,8 +21,12 @@ var DateSelect = React.createClass({
         this.setState(this.getState(nextProps));
     },
     getState: function (props) {
+        var date = props.date ? moment(props.date.iso ? props.date.iso : props.date).clone() : null;
         return {
-            date: props.date ? moment(props.date).clone() : moment(),
+            date: date,
+            day: date ? date.get('date') : null,
+            month: date ? date.get('month') : null,
+            year: date ? date.get('year') : null,
             disabled: props.disabled
         };
     },
@@ -32,16 +36,16 @@ var DateSelect = React.createClass({
                 <div className='select-wrapper'>
                     <label>Día</label>
                     <select
-                        value={this.state.date.get('date')}
+                        value={this.state.day == null ? '-' : this.state.day}
                         disabled={this.state.disabled}
-                        onChange={this.handleChange.bind(this, 'date')}>
+                        onChange={this.handleChange.bind(this, 'day')}>
                         {this.renderDias()}
                     </select>
                 </div>
                 <div className='select-wrapper'>
                     <label>Mes</label>
                     <select
-                        value={this.state.date.get('month')}
+                        value={this.state.month == null ? '-' : this.state.month}
                         disabled={this.state.disabled}
                         onChange={this.handleChange.bind(this, 'month')}>
                         {this.renderMeses()}
@@ -50,7 +54,7 @@ var DateSelect = React.createClass({
                 <div className='select-wrapper'>
                     <label>Año</label>
                     <select
-                        value={this.state.date.get('year')}
+                        value={this.state.year == null ? '-' : this.state.year}
                         disabled={this.state.disabled}
                         onChange={this.handleChange.bind(this, 'year')}>
                         {this.renderAnios()}
@@ -60,8 +64,8 @@ var DateSelect = React.createClass({
         );
     },
     renderDias: function (event) {
-        var dias = [];
-        var limite = this.getDaysForMonth(this.state.date.get('month'), this.state.date.get('year'));
+        var dias = [<option key={'day-'}>-</option>];
+        var limite = this.state.date ? this.getDaysForMonth(this.state.date.get('month'), this.state.date.get('year')) : 31;
 
         for (var index = 1; index <= limite; index++) {
             dias.push(<option key={index} value={index}>{index}</option>);
@@ -70,7 +74,7 @@ var DateSelect = React.createClass({
         return dias;
     },
     renderMeses: function (event) {
-        var meses = [];
+        var meses = [<option key={'month-'}>-</option>];
 
         for (var index = 0; index < 12; index++) {
             meses.push(<option key={index} value={index}>{this.getMonthByNumber(index)}</option>);
@@ -79,7 +83,7 @@ var DateSelect = React.createClass({
         return meses;
     },
     renderAnios: function (event) {
-        var anios = [];
+        var anios = [<option key={'year-'}>-</option>];
 
         for (var index = 2020; index >= 1995; index--) {
             anios.push(<option key={index} value={index}>{index}</option>);
@@ -127,8 +131,27 @@ var DateSelect = React.createClass({
         return 30;
     },
     handleChange: function (key, event) {
-        var state = {};
-        state.date = this.state.date.clone();
+        if (event.target.value === '-') {
+            this.setState({date: null, day: null, month: null, year: null});
+            this.props.onChange(null);
+            return;
+        }
+
+        var state = this.state;
+        state[key] = event.target.value;
+        this.setState(state);
+
+        if (state.day && state.month && state.year) {
+            state.date = moment({years: state.year, months: state.month, date: state.day});
+        } else {
+            return;
+        }
+
+        if (key === 'day') {
+            key = 'date';
+        }
+
+        state.date = state.date.clone();
         state.date.set(key, event.target.value);
 
         this.props.onChange(state.date);

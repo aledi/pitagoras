@@ -27,26 +27,37 @@ var DemandaDesechada = React.createClass({
                     <span className='bold'>¿Regresan documentos?: </span>
                     <span>{RespuestasUtils.formatBooleanRespuesta(respuestas.regresaDocumentos)}</span>
                 </div>
-                {this.renderFechaHorario()}
+                {this.renderDate()}
+                {this.renderHours()}
             </div>
         );
     },
-    renderFechaHorario: function () {
+    renderDate: function () {
         var respuestas = this.props.accion.respuestas;
         if (!respuestas.regresaDocumentos) {
             return;
         }
 
-        return [
-            <div key='fecha'>
+        return (
+            <div>
                 <span className='bold'>Fecha de regreso de documentos: </span>
                 <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
-            </div>,
-            <div key='horario'>
+            </div>
+        );
+    },
+    renderHours: function () {
+        var respuestas = this.props.accion.respuestas;
+
+        if (!respuestas.regresaDocumentos || !respuestas.horario || (respuestas.horario && (respuestas.horario.start == null || respuestas.horario.end == null))) {
+            return;
+        }
+
+        return (
+            <div>
                 <span className='bold'>Horario: </span>
                 <span>{respuestas.horario.start + ' - ' + respuestas.horario.end}</span>
             </div>
-        ];
+        );
     }
 });
 

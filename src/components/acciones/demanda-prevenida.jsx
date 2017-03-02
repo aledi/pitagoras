@@ -26,7 +26,8 @@ var DemandaPrevenida = React.createClass({
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                desahogar: lastAccion ? lastAccion.respuestas.desahogar : false
+                desahogar: lastAccion ? lastAccion.respuestas.desahogar : false,
+                fecha: lastAccion ? lastAccion.respuestas.fecha : null
             },
             disabled: false
         };
@@ -88,7 +89,7 @@ var DemandaPrevenida = React.createClass({
         respuestas.desahogar = desahogar;
 
         if (desahogar) {
-            respuestas.fecha = moment();
+            respuestas.fecha = null;
         } else if (respuestas.fecha) {
             delete respuestas.fecha;
         }

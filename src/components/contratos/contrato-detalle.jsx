@@ -261,8 +261,8 @@ var ContratoDetalle = React.createClass({
 
         return (
             <div className='depuracion-info'>
-                <p>Último cambio a las: {moment(contrato.depuracionFecha.iso).format('D/MMM/YYYY HH:mm')}</p>
-                <p>Último cambio por: {contrato.depuracionEditor.nombre + ' ' + contrato.depuracionEditor.apellido}</p>
+                <p><b>Último cambio a las:</b> {moment(contrato.depuracionFecha.iso).format('D/MMM/YYYY HH:mm')}</p>
+                <p><b>Último cambio por:</b> {contrato.depuracionEditor}</p>
             </div>
         );
     },
@@ -553,8 +553,9 @@ var ContratoDetalle = React.createClass({
         /* eslint-enable no-alert */
     },
     saveContrato: function (contrato) {
+        var user = Parse.User.current();
         contrato.depuracionFecha = moment();
-        contrato.depuracionEditor = Parse.User.current();
+        contrato.depuracionEditor = user.get('nombre') + ' ' + user.get('apellido');
 
         this.setState({contrato: contrato});
 

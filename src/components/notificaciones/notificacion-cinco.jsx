@@ -27,14 +27,15 @@ var NotificacionCinco = React.createClass({
         );
     },
     renderHora: function () {
-        if (!this.props.notificacion.hora) {
+        var hora = this.props.notificacion.hora;
+        if (!hora) {
             return;
         }
 
         return (
             <span>
                 <span> a las </span>
-                <span className='bold'>{this.props.notificacion.hora}</span>
+                <span className='bold'>{hora}</span>
             </span>
         );
     }

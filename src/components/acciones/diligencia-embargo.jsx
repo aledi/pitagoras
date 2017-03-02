@@ -6,7 +6,6 @@
 
 var React = require('react');
 var Parse = require('parse');
-var moment = require('moment');
 
 var AccionesMixin = require('./acciones-mixin');
 var DateSelect = require('src/components/shared/date-select');
@@ -44,8 +43,8 @@ var DiligenciaEmbargo = React.createClass({
 
         if (lastAccion && lastAccion.respuestas.cita) {
             state.respuestas.cita = {
-                fecha: moment(),
-                hora: '8:00 am',
+                fecha: lastAccion.respuestas.cita.fecha,
+                hora: lastAccion.respuestas.cita.hora,
                 lugar: lastAccion.respuestas.cita.lugar,
                 nombreActuario: lastAccion.respuestas.cita.nombreActuario,
                 telefonoActuario: lastAccion.respuestas.cita.telefonoActuario
@@ -64,7 +63,7 @@ var DiligenciaEmbargo = React.createClass({
         return (
             <div className='diligencia-embargo accion-form'>
                 <div className='element-wrapper'>
-                    <select value={options[this.state.respuestas.resultado]} onChange={this.handleChange} disabled={this.state.disabled}>
+                    <select value={this.state.respuestas.resultado} onChange={this.handleChange} disabled={this.state.disabled}>
                         {this.renderOptions()}
                     </select>
                 </div>
@@ -119,7 +118,7 @@ var DiligenciaEmbargo = React.createClass({
     },
     renderOptions: function () {
         return (options.map(function (option, index) {
-            return (<option key={index} value={index}>{option}</option>);
+            return (<option key={index} value={option}>{option}</option>);
         }));
     },
     handleCitaChange: function (key, event) {
@@ -129,13 +128,13 @@ var DiligenciaEmbargo = React.createClass({
     },
     handleChange: function (event) {
         var respuestas = this.state.respuestas;
-        var resultado = options[event.target.value];
+        var resultado = event.target.value;
         respuestas.resultado = resultado;
 
         if (resultado === 'Se dejó citatorio') {
             respuestas.cita = {
-                fecha: moment(),
-                hora: '8:00 am'
+                fecha: null,
+                hora: null
             };
         } else if (respuestas.cita) {
             delete respuestas.cita;

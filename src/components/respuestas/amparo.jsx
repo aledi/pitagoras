@@ -18,10 +18,7 @@ var Amparo = React.createClass({
 
         return (
             <div className='respuestas-wrapper'>
-                <div>
-                    <span className='bold'>Fecha de presentación: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fechaPresentacion)}</span>
-                </div>
+                {this.renderDate(respuestas.fechaPresentacion, 'Fecha de presentación')}
                 <div>
                     <span className='bold'>Expediente: </span>
                     <span>{respuestas.expediente}</span>
@@ -34,10 +31,19 @@ var Amparo = React.createClass({
                     <span className='bold'>Resolución: </span>
                     <span>{respuestas.resolucion}</span>
                 </div>
-                <div>
-                    <span className='bold'>Fecha de resolución: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fechaResolucion)}</span>
-                </div>
+                {this.renderDate(respuestas.fechaResolucion, 'Fecha de resolución')}
+            </div>
+        );
+    },
+    renderDate: function (date, text) {
+        if (!date) {
+            return;
+        }
+
+        return (
+            <div>
+                <span className='bold'>{text + ': '}</span>
+                <span>{DateUtils.formatFechaRespuesta(date)}</span>
             </div>
         );
     }

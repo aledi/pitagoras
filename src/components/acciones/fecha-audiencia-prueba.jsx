@@ -6,7 +6,6 @@
 
 var React = require('react');
 var Parse = require('parse');
-var moment = require('moment');
 
 var AccionesMixin = require('./acciones-mixin');
 var DateSelect = require('src/components/shared/date-select');
@@ -28,8 +27,8 @@ var FechaAudienciaPrueba = React.createClass({
             contrato: this.props.contrato,
             respuestas: {
                 atendido: lastAccion ? lastAccion.respuestas.atendido : '',
-                fecha: moment(),
-                hora: '8:00 am'
+                fecha: lastAccion ? lastAccion.respuestas.fecha : null,
+                hora: lastAccion ? lastAccion.respuestas.hora : null
             },
             disabled: false
         };

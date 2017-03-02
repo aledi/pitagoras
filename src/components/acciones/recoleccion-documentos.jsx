@@ -38,10 +38,10 @@ var RecoleccionDocumentos = React.createClass({
         }
 
         if (lastAccion && !lastAccion.respuestas.recogeDocumentos) {
-            state.respuestas.fecha = moment();
+            state.respuestas.fecha = lastAccion.respuestas.fecha;
             state.respuestas.horario = {
-                start: '8:00 am',
-                end: '9:00 am'
+                start: lastAccion.respuestas.horario.start,
+                end: lastAccion.respuestas.horario.end
             };
         }
 
@@ -135,10 +135,10 @@ var RecoleccionDocumentos = React.createClass({
         respuestas.recogeDocumentos = recogeDocumentos;
 
         if (!recogeDocumentos) {
-            respuestas.fecha = moment();
+            respuestas.fecha = null;
             respuestas.horario = {
-                start: '8:00 am',
-                end: '9:00 am'
+                start: null,
+                end: null
             };
         } else if (respuestas.fecha) {
             delete respuestas.fecha;
