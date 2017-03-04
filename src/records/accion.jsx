@@ -10,6 +10,7 @@ var moment = require('moment');
 
 var ContratoObject = Parse.Object.extend('Contrato');
 var ContratoRecord = require('./contrato');
+var ContratosActions = require('src/actions/contratos-actions');
 
 // -----------------------------------------------------------------------------------------------
 // AccionRecord
@@ -280,6 +281,11 @@ class Accion extends AccionRecord {
         }
 
         contrato.reporte.etapaActual = accion.tipo;
+
+        // Save contrato if changed tipoJuicio to show changes immediately
+        if (accion.tipo === 3) {
+            ContratosActions.saveContrato(contrato);
+        }
 
         accion.contrato = new ContratoObject(ContratoRecord.prepareForParse(contrato));
 
