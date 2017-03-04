@@ -23,7 +23,7 @@ module.exports = {
         query.include('reporte');
         query.include('creador');
         query.include('ultimoEditor');
-        query.limit(1000);
+        query.limit(5000);
         query.find().then(function (contratos) {
             var contratosByKey = {};
             var notificacionesByContratoId = {};
