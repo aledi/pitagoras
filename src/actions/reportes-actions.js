@@ -16,7 +16,7 @@ module.exports = {
         });
 
         var query = new Parse.Query(ReporteObject);
-        query.limit(1000);
+        query.limit(5000);
         query.find().then(function (reportes) {
             var reportesByKey = {};
 
