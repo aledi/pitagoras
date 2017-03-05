@@ -51,7 +51,7 @@ class Notificacion extends NotificacionRecord {
         definition.hora = definition.hora;
 
         // Horario
-        if (definition.horario) {
+        if (definition.horario && definition.horario.start != null && definition.horario.end != null) {
             definition.horario = definition.horario;
             formattedValues.horario = definition.horario.start + ' - ' + definition.horario.end;
         }
@@ -59,9 +59,9 @@ class Notificacion extends NotificacionRecord {
         // Cita
         if (definition.cita) {
             definition.cita = definition.cita;
-            definition.fecha = moment(definition.cita.fecha.iso);
+            definition.fecha = definition.cita.fecha ? moment(definition.cita.fecha.iso) : null;
             formattedValues.cita = {
-                fecha: moment(definition.cita.fecha.iso).format('D/MMM/YYYY'),
+                fecha: definition.cita.fecha ? moment(definition.cita.fecha.iso).format('D/MMM/YYYY') : null,
                 lugar: definition.lugar,
                 nombreActuario: definition.nombreActuario,
                 telefonoActuario: definition.telefonoActuario

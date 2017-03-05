@@ -27,10 +27,7 @@ var PresentacionDemanda = React.createClass({
                     <span className='bold'>Juzgado: </span>
                     <span>{respuestas.juzgado}</span>
                 </div>
-                <div>
-                    <span className='bold'>Fecha de presentación: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
-                </div>
+                {this.renderDate()}
                 <div>
                     <span className='bold'>Tipo de Juicio: </span>
                     <span>{respuestas.tipoJuicio}</span>
@@ -40,6 +37,20 @@ var PresentacionDemanda = React.createClass({
                     <span>{RespuestasUtils.formatBooleanRespuesta(respuestas.pendiente)}</span>
                 </div>
                 {this.renderComentarioAcuerdoPendiente()}
+            </div>
+        );
+    },
+    renderDate: function () {
+        var date = this.props.accion.respuestas.fecha;
+
+        if (!date) {
+            return;
+        }
+
+        return (
+            <div>
+                <span className='bold'>Fecha de presentación: </span>
+                <span>{DateUtils.formatFechaRespuesta(date)}</span>
             </div>
         );
     },

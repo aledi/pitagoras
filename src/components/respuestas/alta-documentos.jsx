@@ -22,10 +22,21 @@ var AltaDocumentos = React.createClass({
                     <span className='bold'>Número interno: </span>
                     <span>{respuestas.numeroInterno}</span>
                 </div>
-                <div>
-                    <span className='bold'>Fecha de recepción: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
-                </div>
+                {this.renderDate()}
+            </div>
+        );
+    },
+    renderDate: function () {
+        var date = this.props.accion.respuestas.fecha;
+
+        if (!date) {
+            return;
+        }
+
+        return (
+            <div>
+                <span className='bold'>Fecha de recepción: </span>
+                <span>{DateUtils.formatFechaRespuesta(date)}</span>
             </div>
         );
     }

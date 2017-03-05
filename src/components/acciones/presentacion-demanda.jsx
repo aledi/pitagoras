@@ -6,7 +6,6 @@
 
 var React = require('react');
 var Parse = require('parse');
-var moment = require('moment');
 
 var AccionesMixin = require('./acciones-mixin');
 var DateSelect = require('src/components/shared/date-select');
@@ -18,15 +17,21 @@ var DateSelect = require('src/components/shared/date-select');
 var PresentacionDemanda = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
+        var lastAccion = this.props.lastAccion;
+
         return {
             tipo: 3,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                tipoJuicio: 'Oral Mercantil',
-                fecha: moment(),
-                pendiente: false
+                tipoJuicio: lastAccion ? lastAccion.respuestas.tipoJuicio : 'Oral Mercantil',
+                numeroRegistro: lastAccion ? lastAccion.respuestas.numeroRegistro : '',
+                juzgado: lastAccion ? lastAccion.respuestas.juzgado : '',
+                expedienteJudicial: lastAccion ? lastAccion.respuestas.expedienteJudicial : '',
+                fecha: lastAccion ? lastAccion.respuestas.fecha : null,
+                pendiente: lastAccion ? lastAccion.respuestas.pendiente : false,
+                comentarioAcuerdoPendiente: lastAccion ? lastAccion.respuestas.comentarioAcuerdoPendiente : ''
             },
             disabled: false
         };

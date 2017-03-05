@@ -6,27 +6,29 @@
 
 var React = require('react');
 var Parse = require('parse');
-var moment = require('moment');
 
 var AccionesMixin = require('./acciones-mixin');
 var DateSelect = require('src/components/shared/date-select');
 var TimeSelect = require('src/components/shared/time-select');
 
 // -----------------------------------------------------------------------------------------------
-// FechaAudienciaPrueba
+// Fecha Audiencia Prueba (Oral)
 // -----------------------------------------------------------------------------------------------
 
 var FechaAudienciaPrueba = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
+        var lastAccion = this.props.lastAccion;
+
         return {
             tipo: 14,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                fecha: moment(),
-                hora: '8:00 am'
+                atendido: lastAccion ? lastAccion.respuestas.atendido : '',
+                fecha: lastAccion ? lastAccion.respuestas.fecha : null,
+                hora: lastAccion ? lastAccion.respuestas.hora : null
             },
             disabled: false
         };

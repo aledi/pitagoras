@@ -9,8 +9,10 @@ require('./contrato-detalle.scss');
 var React = require('react');
 var Parse = require('parse');
 var classNames = require('classnames');
+var moment = require('moment');
 
 var AccionRecord = require('src/records/accion');
+var ContratosActions = require('src/actions/contratos-actions');
 var ContratoRecord = require('src/records/contrato');
 
 var AccionesHistorial = require('src/components/acciones/acciones-historial');
@@ -165,6 +167,7 @@ var ContratoDetalle = React.createClass({
         }
 
         var state = {
+            contrato: props.contrato ? props.contrato.toEditable() : new ContratoRecord().toEditable(),
             editingContrato: false,
             showingFullDetails: false,
             accionesComponents: accionesComponents,
@@ -199,36 +202,67 @@ var ContratoDetalle = React.createClass({
                 <div className='contrato-detalles'>
                     <button type='button' className='top-right' onClick={this.toggleDetails}>{'Mostrar' + (this.state.showingFullDetails ? ' resumen' : ' todos los detalles')}</button>
                     {this.renderEditarContrato()}
-                    <div className='contrato-detalles-column'>
-                        <h4>Detalles del Contrato</h4>
-                        <div className='detalle-wrapper'>
-                            <span className='title'>Número de Contrato:</span>
-                            <span className='value'>{contrato.numeroContrato}</span>
-                        </div>
-                        {this.renderFullContratoDetails()}
+                    <div className='depuracion-checkboxes'>
+                        <p>Depuración</p>
+                        <input
+                            id='judicial'
+                            type='checkbox'
+                            checked={this.state.contrato.depuracion === ContratoRecord.DEPURACION_TYPES.JUDICIAL || this.state.contrato.depuracion === ContratoRecord.DEPURACION_TYPES.JUDICIAL_EXTRAJUDICIAL}
+                            onChange={this.handleDepuracionChange.bind(this, 'judicial')} />
+                        <label htmlFor='judicial'>Judicial</label>
+                        <input
+                            id='extrajudicial'
+                            type='checkbox'
+                            checked={this.state.contrato.depuracion === ContratoRecord.DEPURACION_TYPES.EXTRAJUDICIAL || this.state.contrato.depuracion === ContratoRecord.DEPURACION_TYPES.JUDICIAL_EXTRAJUDICIAL}
+                            onChange={this.handleDepuracionChange.bind(this, 'extrajudicial')} />
+                        <label htmlFor='extrajudicial'>Extrajudicial</label>
                     </div>
-                    <div className='contrato-detalles-column'>
-                        <h4>Cliente</h4>
-                        <div className='detalle-wrapper'>
-                            <span className='title'>Nombre:</span>
-                            <span className='value'>{contrato.cliente.formattedValues.nombre}</span>
+                    {this.renderDepuracionInfo()}
+                    <div>
+                        <div className='contrato-detalles-column'>
+                            <h4>Detalles del Contrato</h4>
+                            <div className='detalle-wrapper'>
+                                <span className='title'>Número de Contrato:</span>
+                                <span className='value'>{contrato.numeroContrato}</span>
+                            </div>
+                            {this.renderFullContratoDetails()}
                         </div>
-                        {this.renderFullClienteDetails()}
+                        <div className='contrato-detalles-column'>
+                            <h4>Cliente</h4>
+                            <div className='detalle-wrapper'>
+                                <span className='title'>Nombre:</span>
+                                <span className='value'>{contrato.cliente.formattedValues.nombre}</span>
+                            </div>
+                            {this.renderFullClienteDetails()}
+                        </div>
+                        {this.renderVehiculoDetails()}
                     </div>
-                    {this.renderVehiculoDetails()}
                 </div>
 
                 <h2>Acciones</h2>
                 <div className='acciones-wrapper'>
-                    <ul className='acciones-list'>
+                    <ul className={classNames('acciones-list', {orange: this.props.contrato.depuracion === ContratoRecord.DEPURACION_TYPES.JUDICIAL || this.props.contrato.depuracion === ContratoRecord.DEPURACION_TYPES.EXTRAJUDICIAL}, {red: this.props.contrato.depuracion === ContratoRecord.DEPURACION_TYPES.JUDICIAL_EXTRAJUDICIAL})}>
                         {this.getAcciones()}
                     </ul>
                     <div className='accion-forma-historial'>
                         {this.renderAccion()}
                         {this.renderHistorialTitle()}
-                        <AccionesHistorial acciones={this.props.acciones} />
+                        <AccionesHistorial acciones={this.props.accionesForContrato} />
                     </div>
                 </div>
+            </div>
+        );
+    },
+    renderDepuracionInfo: function () {
+        var contrato = this.state.contrato;
+        if (!contrato.depuracionFecha) {
+            return;
+        }
+
+        return (
+            <div className='depuracion-info'>
+                <p><b>Último cambio a las:</b> {moment(contrato.depuracionFecha.iso).format('D/MMM/YYYY HH:mm')}</p>
+                <p><b>Último cambio por:</b> {contrato.depuracionEditor}</p>
             </div>
         );
     },
@@ -278,6 +312,16 @@ var ContratoDetalle = React.createClass({
             return;
         }
 
+        var self = this;
+        var accionesForTipo = [];
+        this.props.accionesForContrato.forEach(function (accion, index) {
+            if (accion.tipo === self.state.selectedAccion) {
+                accionesForTipo.push(accion);
+            }
+        });
+
+        var lastAccion = accionesForTipo[0];
+
         var component;
         for (var i = 0; i < this.state.accionesComponents.length; i++) {
             var accionComponent = this.state.accionesComponents[i];
@@ -287,6 +331,8 @@ var ContratoDetalle = React.createClass({
                 break;
             }
         }
+
+        component = React.cloneElement(component, {lastAccion: lastAccion});
 
         return (
             <div>
@@ -454,6 +500,66 @@ var ContratoDetalle = React.createClass({
     },
     goBack: function () {
         this.context.router.replace('/contratos');
+    },
+    handleDepuracionJudicialChange: function (event) {
+        var contrato = this.state.contrato;
+
+        if (event.target.checked) {
+            if (this.state.contrato.depuracion === ContratoRecord.DEPURACION_TYPES.EXTRAJUDICIAL) {
+                contrato.depuracion = ContratoRecord.DEPURACION_TYPES.JUDICIAL_EXTRAJUDICIAL;
+            } else {
+                contrato.depuracion = ContratoRecord.DEPURACION_TYPES.JUDICIAL;
+            }
+        } else if (this.state.contrato.depuracion === ContratoRecord.DEPURACION_TYPES.JUDICIAL) {
+            contrato.depuracion = null;
+        } else if (this.state.contrato.depuracion === ContratoRecord.DEPURACION_TYPES.JUDICIAL_EXTRAJUDICIAL) {
+            contrato.depuracion = ContratoRecord.DEPURACION_TYPES.EXTRAJUDICIAL;
+        }
+
+        this.saveContrato(contrato);
+    },
+    handleDepuracionExtrajudicialChange: function (event) {
+        var contrato = this.state.contrato;
+
+        if (event.target.checked) {
+            if (this.state.contrato.depuracion === ContratoRecord.DEPURACION_TYPES.JUDICIAL) {
+                contrato.depuracion = ContratoRecord.DEPURACION_TYPES.JUDICIAL_EXTRAJUDICIAL;
+            } else {
+                contrato.depuracion = ContratoRecord.DEPURACION_TYPES.EXTRAJUDICIAL;
+            }
+        } else if (this.state.contrato.depuracion === ContratoRecord.DEPURACION_TYPES.EXTRAJUDICIAL) {
+            contrato.depuracion = null;
+        } else if (this.state.contrato.depuracion === ContratoRecord.DEPURACION_TYPES.JUDICIAL_EXTRAJUDICIAL) {
+            contrato.depuracion = ContratoRecord.DEPURACION_TYPES.JUDICIAL;
+        }
+
+        this.saveContrato(contrato);
+    },
+    handleDepuracionChange: function (tipo, event) {
+        /* eslint-disable no-alert */
+
+        var dialog = confirm('¿Está seguro que desea modificar la depuración del contrato?');
+        if (dialog === true) {
+            if (tipo === 'judicial') {
+                this.handleDepuracionJudicialChange(event);
+                return;
+            } else {
+                this.handleDepuracionExtrajudicialChange(event);
+            }
+        } else {
+            return;
+        }
+
+        /* eslint-enable no-alert */
+    },
+    saveContrato: function (contrato) {
+        var user = Parse.User.current();
+        contrato.depuracionFecha = moment();
+        contrato.depuracionEditor = user.get('nombre') + ' ' + user.get('apellido');
+
+        this.setState({contrato: contrato});
+
+        ContratosActions.saveContrato(contrato);
     }
 });
 

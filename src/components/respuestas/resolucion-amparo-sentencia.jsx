@@ -18,14 +18,25 @@ var ResolucionAmparoSentencia = React.createClass({
 
         return (
             <div className='respuestas-wrapper'>
-                <div>
-                    <span className='bold'>Fecha: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fecha)}</span>
-                </div>
+                {this.renderDate()}
                 <div>
                     <span className='bold'>Favorable a: </span>
                     <span>{respuestas.favorable}</span>
                 </div>
+            </div>
+        );
+    },
+    renderDate: function () {
+        var date = this.props.accion.respuestas.fecha;
+
+        if (!date) {
+            return;
+        }
+
+        return (
+            <div>
+                <span className='bold'>Fecha: </span>
+                <span>{DateUtils.formatFechaRespuesta(date)}</span>
             </div>
         );
     }

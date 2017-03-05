@@ -16,15 +16,17 @@ var AccionesMixin = require('./acciones-mixin');
 var Visita = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
+        var lastAccion = this.props.lastAccion;
+
         return {
             tipo: 1,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                domicilioUbicado: false,
-                clienteUbicado: false,
-                datosDeContacto: null
+                domicilioUbicado: lastAccion ? lastAccion.respuestas.domicilioUbicado : false,
+                clienteUbicado: lastAccion ? lastAccion.respuestas.clienteUbicado : false,
+                datosDeContacto: lastAccion ? lastAccion.respuestas.datosDeContacto : null
             },
             disabled: false
         };

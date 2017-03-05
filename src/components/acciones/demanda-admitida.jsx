@@ -29,19 +29,33 @@ var options = [
 var DemandaAdmitida = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
-        return {
+        var lastAccion = this.props.lastAccion;
+
+        var state = {
             tipo: 10,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                tipoJuicio: 'Oral Mercantil',
-                resultado: 'No vive en el domicilio',
-                fechaAcuerdo: moment(),
-                fechaPublicacion: moment()
+                tipoJuicio: lastAccion ? lastAccion.respuestas.tipoJuicio : 'Oral Mercantil',
+                fechaAcuerdo: lastAccion ? lastAccion.respuestas.fechaAcuerdo : null,
+                fechaPublicacion: lastAccion ? lastAccion.respuestas.fechaPublicacion : null,
+                resultado: lastAccion ? lastAccion.respuestas.resultado : 'No vive en el domicilio'
             },
             disabled: false
         };
+
+        if (lastAccion && lastAccion.respuestas.cita) {
+            state.respuestas.cita = {
+                fecha: lastAccion.respuestas.cita.fecha,
+                hora: lastAccion.respuestas.cita.hora,
+                lugar: lastAccion.respuestas.cita.lugar,
+                nombreActuario: lastAccion.respuestas.cita.nombreActuario,
+                telefonoActuario: lastAccion.respuestas.cita.telefonoActuario
+            };
+        }
+
+        return state;
     },
     componentWillReceiveProps: function (nextProps) {
         this.getState(nextProps);
@@ -85,7 +99,6 @@ var DemandaAdmitida = React.createClass({
                     <h5>Fecha de Publicación</h5>
                     <DateSelect date={this.state.respuestas.fechaPublicacion} onChange={this.handleFechaChange.bind(this, 'fechaPublicacion')} />
                 </div>
-
                 {this.renderResultadoSelect()}
                 {this.renderTextInputs()}
                 {this.renderComentarios()}
@@ -101,7 +114,7 @@ var DemandaAdmitida = React.createClass({
         return (
             <div className='element-wrapper'>
                 <h5>Resultado de Emplazamiento</h5>
-                <select value={options[this.state.respuestas.resultado]} onChange={this.handleSelectChange} disabled={this.state.disabled}>
+                <select value={this.state.respuestas.resultado} onChange={this.handleSelectChange} disabled={this.state.disabled}>
                     {this.renderOptions()}
                 </select>
             </div>
@@ -109,7 +122,7 @@ var DemandaAdmitida = React.createClass({
     },
     renderOptions: function () {
         return (options.map(function (option, index) {
-            return (<option key={index} value={index}>{option}</option>);
+            return (<option key={index} value={option}>{option}</option>);
         }));
     },
     renderTextInputs: function () {
@@ -162,7 +175,10 @@ var DemandaAdmitida = React.createClass({
         respuestas.tipoJuicio = tipoJuicio;
 
         if (tipoJuicio === 'Ejecutiva Mercantil') {
-            respuestas.cita = {fecha: moment()};
+            respuestas.cita = {
+                fecha: null,
+                hora: null
+            };
         } else if (respuestas.cita) {
             delete respuestas.cita;
         }
@@ -199,7 +215,7 @@ var DemandaAdmitida = React.createClass({
     },
     handleSelectChange: function (event) {
         var respuestas = this.state.respuestas;
-        respuestas.resultado = options[event.target.value];
+        respuestas.resultado = event.target.value;
         this.setState({respuestas: respuestas});
     }
 });

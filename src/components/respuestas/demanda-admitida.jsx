@@ -22,14 +22,8 @@ var DemandaAdmitida = React.createClass({
                     <span className='bold'>Tipo de juicio: </span>
                     <span>{respuestas.tipoJuicio}</span>
                 </div>
-                <div>
-                    <span className='bold'>Fecha de acuerdo: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fechaAcuerdo)}</span>
-                </div>
-                <div>
-                    <span className='bold'>Fecha de publicación: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.fechaPublicacion)}</span>
-                </div>
+                {this.renderDate(respuestas.fechaAcuerdo, 'Fecha de acuerdo')}
+                {this.renderDate(respuestas.fechaPublicacion, 'Fecha de publicación')}
                 {this.renderMoreRespuestas()}
             </div>
         );
@@ -48,14 +42,8 @@ var DemandaAdmitida = React.createClass({
 
         return (
             <div>
-                <div>
-                    <span className='bold'>Fecha de cita: </span>
-                    <span>{DateUtils.formatFechaRespuesta(respuestas.cita.fecha)}</span>
-                </div>
-                <div>
-                    <span className='bold'>Hora de cita: </span>
-                    <span>{respuestas.cita.hora}</span>
-                </div>
+                {this.renderDate(respuestas.cita.fecha, 'Fecha de cita')}
+                {this.renderHour()}
                 <div>
                     <span className='bold'>Lugar de cita: </span>
                     <span>{respuestas.cita.lugar}</span>
@@ -68,6 +56,32 @@ var DemandaAdmitida = React.createClass({
                     <span className='bold'>Teléfono del actuario: </span>
                     <span>{respuestas.cita.telefonoActuario}</span>
                 </div>
+            </div>
+        );
+    },
+    renderDate: function (date, text) {
+        if (!date) {
+            return;
+        }
+
+        return (
+            <div>
+                <span className='bold'>{text + ': '}</span>
+                <span>{DateUtils.formatFechaRespuesta(date)}</span>
+            </div>
+        );
+    },
+    renderHour: function () {
+        var hour = this.props.accion.respuestas.cita.hora;
+
+        if (!hour) {
+            return;
+        }
+
+        return (
+            <div>
+                <span className='bold'>Hora de cita: </span>
+                <span>{hour}</span>
             </div>
         );
     }

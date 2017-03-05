@@ -21,11 +21,11 @@ var DemandaPrevenida = React.createClass({
                     <span className='bold'>¿Desahogar?: </span>
                     <span>{RespuestasUtils.formatBooleanRespuesta(this.props.accion.respuestas.desahogar)}</span>
                 </div>
-                {this.renderFecha()}
+                {this.renderDate()}
             </div>
         );
     },
-    renderFecha: function () {
+    renderDate: function () {
         if (!this.props.accion.respuestas.desahogar) {
             return;
         }

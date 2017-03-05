@@ -29,17 +29,32 @@ var options = [
 var DemandaDesechada = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
-        return {
+        var lastAccion = this.props.lastAccion;
+        var state = {
             tipo: 6,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                motivo: 'No coinciden los montos',
-                regresaDocumentos: false
+                motivo: lastAccion ? lastAccion.respuestas.motivo : 'No coinciden los montos',
+                regresaDocumentos: lastAccion ? lastAccion.respuestas.regresaDocumentos : false
             },
             disabled: false
         };
+
+        if (lastAccion && lastAccion.respuestas.otroMotivo) {
+            state.respuestas.otroMotivo = lastAccion.respuestas.otroMotivo;
+        }
+
+        if (lastAccion && lastAccion.respuestas.regresaDocumentos) {
+            state.respuestas.fecha = lastAccion.respuestas.fecha;
+            state.respuestas.horario = {
+                start: lastAccion.respuestas.horario.start,
+                end: lastAccion.respuestas.horario.end
+            };
+        }
+
+        return state;
     },
     componentWillReceiveProps: function (nextProps) {
         this.getState(nextProps);
@@ -52,7 +67,7 @@ var DemandaDesechada = React.createClass({
             <div className='demanda-desechada accion-form'>
                 <div className='element-wrapper'>
                     <h5>Motivo</h5>
-                    <select value={options[this.state.respuestas.motivo]} onChange={this.handleSelectChange} disabled={this.state.disabled}>
+                    <select value={this.state.respuestas.motivo} onChange={this.handleSelectChange} disabled={this.state.disabled}>
                         {this.renderOptions()}
                     </select>
                 </div>
@@ -80,7 +95,6 @@ var DemandaDesechada = React.createClass({
                         <label htmlFor='no' disabled={this.state.disabled}>No</label>
                     </div>
                 </div>
-
                 {this.renderFecha()}
                 {this.renderHorario()}
                 {this.renderComentarios()}
@@ -106,7 +120,7 @@ var DemandaDesechada = React.createClass({
     },
     renderOptions: function () {
         return (options.map(function (option, index) {
-            return (<option key={index} value={index}>{option}</option>);
+            return (<option key={index} value={option}>{option}</option>);
         }));
     },
     renderFecha: function () {
@@ -136,7 +150,7 @@ var DemandaDesechada = React.createClass({
     },
     handleSelectChange: function (event) {
         var respuestas = this.state.respuestas;
-        respuestas.motivo = options[event.target.value];
+        respuestas.motivo = event.target.value;
         this.setState({respuestas: respuestas});
     },
     handleRegresaDocumentosChange: function (event) {
@@ -146,10 +160,10 @@ var DemandaDesechada = React.createClass({
         respuestas.regresaDocumentos = regresaDocumentos;
 
         if (regresaDocumentos) {
-            respuestas.fecha = moment();
+            respuestas.fecha = null;
             respuestas.horario = {
-                start: '8:00 am',
-                end: '9:00 am'
+                start: null,
+                end: null
             };
         } else if (respuestas.fecha) {
             delete respuestas.fecha;

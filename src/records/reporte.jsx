@@ -16,6 +16,7 @@ var ReporteRecord = Immutable.Record({
     fechaAsignacion: null,
     tipoAsignacion: null,
     tipoContrato: null,
+    depuracion: null,
     paqueteLegal: null,
     fechaPaqueteLegal: null,
     certificacionContable: null,
@@ -67,14 +68,17 @@ class Reporte extends ReporteRecord {
         definition.nombre = definition.nombre;
 
         // Fecha de Asignación
-        definition.fechaAsignacion = definition.fechaAsignacion ? definition.fechaAsignacion.iso : moment();
-        formattedValues.fechaAsignacion = moment(definition.fechaAsignacion).format('D MMMM, YYYY');
+        definition.fechaAsignacion = definition.fechaAsignacion;
+        formattedValues.fechaAsignacion = definition.fechaAsignacion ? moment(definition.fechaAsignacion.iso).format('D MMMM, YYYY') : null;
 
         // Tipo Asignación
         definition.tipoAsignacion = definition.tipoAsignacion;
 
         // Tipo Contrato
         definition.tipoContrato = definition.tipoContrato;
+
+        // Depuración
+        definition.depuracion = definition.depuracion;
 
         // Paquete Legal
         definition.paqueteLegal = definition.paqueteLegal;
@@ -164,7 +168,7 @@ class Reporte extends ReporteRecord {
 
         // Horarios de Juzgado
         definition.horariosJuzgado = definition.horariosJuzgado;
-        formattedValues.horariosJuzgado = definition.horariosJuzgado ? moment(definition.horariosJuzgado.fecha.iso).format('D MMMM, YYYY') + ' de ' + definition.horariosJuzgado.horario.start + ' a ' + definition.horariosJuzgado.horario.end : null;
+        formattedValues.horariosJuzgado = definition.horariosJuzgado && definition.horariosJuzgado.fecha ? moment(definition.horariosJuzgado.fecha.iso).format('D MMMM, YYYY') + (definition.horariosJuzgado.horario.start != null && definition.horariosJuzgado.horario.end != null ? (' de ' + definition.horariosJuzgado.horario.start + ' a ' + definition.horariosJuzgado.horario.end) : '') : null;
 
         // Fecha de Admisión
         definition.fechaAdmision = definition.fechaAdmision;
@@ -192,6 +196,7 @@ class Reporte extends ReporteRecord {
             fechaAsignacion: this.fechaAsignacion,
             tipoAsignacion: this.tipoAsignacion,
             tipoContrato: this.tipoContrato,
+            depuracion: this.depuracion,
             paqueteLegal: this.paqueteLegal,
             fechaPaqueteLegal: this.fechaPaqueteLegal,
             fechaVisita: this.fechaVisita,

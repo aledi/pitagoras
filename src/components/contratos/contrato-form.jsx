@@ -75,7 +75,7 @@ var ContratoForm = React.createClass({
     },
     render: function () {
         var contrato = this.state.contrato;
-
+        
         return (
             <main className='contrato-form'>
                 <form onSubmit={this.handleSubmit}>
@@ -154,10 +154,7 @@ var ContratoForm = React.createClass({
                             onChange={this.handleChange.bind(this, 'tasa')}
                             onKeyPress={this.restrictNumericInput.bind(this, true)} />
                     </div>
-                    <DateSelect
-                        date={contrato.fechaContrato}
-                        disabled={this.state.saving}
-                        onChange={this.handleFechaChange} />
+                    <DateSelect date={contrato.fechaContrato} disabled={this.state.saving} onChange={this.handleFechaChange} />
                     <div className='input-wrapper full-width'>
                         <label>¿Recibe Certificación Contable correcta y completa?</label>
                             <div>
@@ -682,6 +679,8 @@ var ContratoForm = React.createClass({
         if (!this.validateInputs()) {
             this.setState({attemptedToSave: true});
 
+            /* eslint-disable no-alert */
+
             var dialog = confirm('Hay algunos campos vacíos. ¿Está seguro que desea guardar el contrato?');
             if (dialog === true) {
                 ContratosActions.saveContrato(contrato);
@@ -689,6 +688,8 @@ var ContratoForm = React.createClass({
             } else {
                 return;
             }
+
+            /* eslint-enable no-alert */
         }
 
         ContratosActions.saveContrato(contrato);

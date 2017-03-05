@@ -7,7 +7,6 @@
 var React = require('react');
 var Parse = require('parse');
 var classNames = require('classnames');
-var moment = require('moment');
 
 var ContratoRecord = require('../../records/contrato');
 
@@ -21,21 +20,29 @@ var DateSelect = require('src/components/shared/date-select');
 var Sentencia = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
-        return {
+        var lastAccion = this.props.lastAccion;
+        var state = {
             tipo: 16,
-            comentarios: '',
+            comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                favorable: 'GMF',
-                tercero: '',
-                fecha: moment()
+                favorable: lastAccion ? lastAccion.respuestas.favorable : 'GMF',
+                tercero: lastAccion ? lastAccion.respuestas.tercero : '',
+                fecha: lastAccion ? lastAccion.respuestas.fecha : null
             },
             invalidFields: {
                 tercero: false
             },
             disabled: false
         };
+
+        if (lastAccion && lastAccion.respuestas.favorable !== 'GMF' && lastAccion.respuestas.favorable !== 'Demandado') {
+            state.respuestas.favorable = 'Tercero';
+            state.respuestas.tercero = lastAccion.respuestas.favorable;
+        }
+
+        return state;
     },
     componentWillReceiveProps: function (nextProps) {
         this.getState(nextProps);

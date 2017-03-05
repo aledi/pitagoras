@@ -10,6 +10,7 @@ var moment = require('moment');
 
 var ContratoObject = Parse.Object.extend('Contrato');
 var ContratoRecord = require('./contrato');
+var ContratosActions = require('src/actions/contratos-actions');
 
 // -----------------------------------------------------------------------------------------------
 // AccionRecord
@@ -105,48 +106,56 @@ class Accion extends AccionRecord {
 
         // Notification for Demanda Desechada & Recolección de documentos
         if ((accion.tipo === 6 && accion.respuestas.regresaDocumentos) || (accion.tipo === 7 && !accion.respuestas.recogeDocumentos)) {
-            contrato.notificacion = {
-                tipo: 1,
-                tipoAccion: accion.tipo,
-                numeroContrato: contrato.numeroContrato,
-                contratoId: contrato.id,
-                fecha: accion.respuestas.fecha,
-                horario: accion.respuestas.horario
-            };
+            if (accion.respuestas.fecha) {
+                contrato.notificacion = {
+                    tipo: 1,
+                    tipoAccion: accion.tipo,
+                    numeroContrato: contrato.numeroContrato,
+                    contratoId: contrato.id,
+                    fecha: accion.respuestas.fecha,
+                    horario: accion.respuestas.horario
+                };
+            }
         }
 
         // Notification for Demanda Prevenida
         if (accion.tipo === 8 && accion.respuestas.desahogar) {
-            contrato.notificacion = {
-                tipo: 2,
-                tipoAccion: accion.tipo,
-                numeroContrato: contrato.numeroContrato,
-                contratoId: contrato.id,
-                fecha: accion.respuestas.fecha
-            };
+            if (accion.respuestas.fecha) {
+                contrato.notificacion = {
+                    tipo: 2,
+                    tipoAccion: accion.tipo,
+                    numeroContrato: contrato.numeroContrato,
+                    contratoId: contrato.id,
+                    fecha: accion.respuestas.fecha
+                };
+            }
         }
 
         // Notification for Demanda Admitida & Diligencia de Embargo
         if ((accion.tipo === 10 && accion.respuestas.tipoJuicio === 'Ejecutiva Mercantil') || (accion.tipo === 11 && accion.respuestas.resultado === 'Se dejó citatorio')) {
-            contrato.notificacion = {
-                tipo: 3,
-                tipoAccion: accion.tipo,
-                numeroContrato: contrato.numeroContrato,
-                contratoId: contrato.id,
-                cita: accion.respuestas.cita
-            };
+            if (accion.respuestas.cita.fecha) {
+                contrato.notificacion = {
+                    tipo: 3,
+                    tipoAccion: accion.tipo,
+                    numeroContrato: contrato.numeroContrato,
+                    contratoId: contrato.id,
+                    cita: accion.respuestas.cita
+                };
+            }
         }
 
         // Notification for 13, 14, 15, 17, 20, 21
         if (accion.tipo === 13 || accion.tipo === 14 || accion.tipo === 15 || (accion.tipo === 17 && contrato.tipoJuicio === ContratoRecord.JUICIO_TYPES.EJECUTIVA) || accion.tipo === 20 || accion.tipo === 21) {
-            contrato.notificacion = {
-                tipo: 5,
-                tipoAccion: accion.tipo,
-                numeroContrato: contrato.numeroContrato,
-                contratoId: contrato.id,
-                fecha: accion.respuestas.fecha,
-                hora: accion.respuestas.hora
-            };
+            if (accion.respuestas.fecha) {
+                contrato.notificacion = {
+                    tipo: 5,
+                    tipoAccion: accion.tipo,
+                    numeroContrato: contrato.numeroContrato,
+                    contratoId: contrato.id,
+                    fecha: accion.respuestas.fecha,
+                    hora: accion.respuestas.hora
+                };
+            }
         }
 
         contrato.lastAccionAt = moment();
@@ -255,6 +264,11 @@ class Accion extends AccionRecord {
         }
 
         if (accion.tipo === 18) {
+            if (accion.respuestas.favorable === 'Tercero') {
+                accion.respuestas.favorable = accion.respuestas.tercero;
+                delete accion.respuestas.tercero;
+            }
+
             contrato.reporte.fechaResolucionAmparoSentencia = accion.respuestas.fecha;
         }
 
@@ -267,6 +281,11 @@ class Accion extends AccionRecord {
         }
 
         contrato.reporte.etapaActual = accion.tipo;
+
+        // Save contrato if changed tipoJuicio to show changes immediately
+        if (accion.tipo === 3) {
+            ContratosActions.saveContrato(contrato);
+        }
 
         accion.contrato = new ContratoObject(ContratoRecord.prepareForParse(contrato));
 
