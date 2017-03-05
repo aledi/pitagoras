@@ -34,7 +34,7 @@
         color: $denim;
     }
 
-    button.top-right {
+    button.right-button {
         height: auto;
         padding: 2px 10px;
         position: absolute;
@@ -123,6 +123,12 @@
                         color: white;
                     }
                 }
+            }
+
+            hr {
+                margin: 10px 0;
+                border: none;
+                border-bottom: 1px solid $denim;
             }
 
             li {

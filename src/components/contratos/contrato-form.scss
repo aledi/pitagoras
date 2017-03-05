@@ -6,14 +6,10 @@
         padding: 20px 10px;
         margin: 0 auto;
         border: 1px solid $frost;
+        border-radius: 3px;
 
-        .section-title {
+        h4 {
             padding: 0 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: bold;
-            font-size: 18px;
-            color: $denim;
         }
 
         .date-select, .input-wrapper {
@@ -36,6 +32,8 @@
 
             label {
                 width: 100%;
+                font-weight: bold;
+                font-size: 14px;
             }
 
             input {
@@ -47,16 +45,13 @@
                 }
             }
 
-            select {
-                display: block;
-            }
-
             input[type='radio'] {
                 height: auto;
                 width: auto;
 
                 + label {
                     width: auto;
+                    font-weight: normal;
                 }
             }
         }
@@ -70,17 +65,12 @@
 
         button {
             &.add {
-                padding: 0;
                 margin: 20px 10px;
             }
 
-            &.remove {
-                line-height: 40px;
-            }
-
             &.remove-input {
-                line-height: normal;
-                padding-bottom: 0;
+                margin-top: 5px;
+                padding: 3px 10px;
             }
 
             &:disabled {

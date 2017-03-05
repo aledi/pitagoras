@@ -72,11 +72,11 @@ var Main = React.createClass({
 
         return (
             <header>
-                <div className='links-wrapper'>
-                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={links.inicio}>Inicio</Link>
-                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={this.state.links.agregarContrato}>Agregar contrato</Link>
-                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={links.contratos}>Ver contratos</Link>
-                    <Link activeClassName='active' className={classNames({admin: isAdmin})} to={links.reportes}>Reportes</Link>
+                <div className={classNames('links-wrapper', {admin: isAdmin})}>
+                    <Link activeClassName='active' to={links.inicio}>Inicio</Link>
+                    <Link activeClassName='active' to={this.state.links.agregarContrato}>Agregar contrato</Link>
+                    <Link activeClassName='active' to={links.contratos}>Ver contratos</Link>
+                    <Link activeClassName='active' to={links.reportes}>Reportes</Link>
                     {this.renderAgregarUsuarioItem(isAdmin)}
                 </div>
                 <div className='signout' onClick={this.signOut} title='Cerrar sesión'>
@@ -93,7 +93,7 @@ var Main = React.createClass({
             return;
         }
 
-        return (<Link activeClassName='active' className='admin' to={this.state.links.usuarios}>Usuarios</Link>);
+        return (<Link activeClassName='active' to={this.state.links.usuarios}>Usuarios</Link>);
     },
     signOut: function () {
         Parse.User.logOut().then(function () {

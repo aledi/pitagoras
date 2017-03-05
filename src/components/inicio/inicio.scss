@@ -16,12 +16,25 @@
             color: $denim;
         }
 
-        .notificaciones-list {
+        .notifications-wrapper {
             width: 600px;
-            padding: 0;
             margin: 0 auto;
+
+            h4 {
+                text-transform: uppercase;
+                text-align: left;
+                letter-spacing: 1.5px;
+                font-weight: bold;
+                color: $denim;
+            }
+        }
+
+        .notificaciones-list {
+            width: 100%;
+            padding: 0;
             list-style: none;
             border: 1px solid $frost;
+            border-radius: 3px;
 
             .notificaciones-list-item {
                 padding: 20px;
@@ -31,18 +44,22 @@
                     border-bottom: none;
                 }
 
-                h3 {
+                a {
                     display: inline-block;
                     margin-bottom: 10px;
                     text-transform: uppercase;
-                    letter-spacing: 1px;
+                    text-decoration: none;
+                    letter-spacing: 0.5px;
                     font-weight: bold;
                     color: $denim;
-                    cursor: pointer;
 
                     &:hover {
                         color: $nightfall;
                     }
+                }
+
+                p {
+                    margin: 0;
                 }
             }
         }

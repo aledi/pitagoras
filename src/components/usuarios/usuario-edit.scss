@@ -5,22 +5,21 @@
         width: 800px;
         padding: 20px 10px;
         margin: 0 auto;
+        margin-top: 30px;
         border: 1px solid $frost;
-
-        .section-title {
-            padding: 0 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: bold;
-            font-size: 18px;
-            color: $denim;
-        }
+        border-radius: 3px;
 
         .input-wrapper {
             width: 50%;
             display: inline-block;
             padding: 10px;
             box-sizing: border-box;
+
+            label {
+                width: 100%;
+                font-weight: bold;
+                font-size: 14px;
+            }
 
             input {
                 height: 30px;
@@ -29,10 +28,6 @@
                 &.invalid {
                     border-color: $red;
                 }
-            }
-
-            select {
-                display: block;
             }
         }
 
