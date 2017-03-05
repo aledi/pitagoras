@@ -96,15 +96,15 @@
             list-style: none;
 
             &.red {
-                color: $invalid;
+                color: $red;
 
                 li {
                     &:hover {
-                        background-color: rgba($invalid, 0.8);
+                        background-color: rgba($red, 0.8);
                     }
 
                     &.selected {
-                        background-color: $invalid;
+                        background-color: $red;
                         color: white;
                     }
                 }
