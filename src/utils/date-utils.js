@@ -9,7 +9,7 @@ function formatFechaRespuesta (date) {
 
     var formattedDate = moment(date.iso);
 
-    return formattedDate.format('D/MMM/YYYY');
+    return formattedDate.format('D MMMM, YYYY');
 }
 
 module.exports = {formatFechaRespuesta: formatFechaRespuesta};
