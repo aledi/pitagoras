@@ -63,39 +63,39 @@ class Accion extends AccionRecord {
         delete accion.invalidFields;
 
         if (accion.respuestas.fecha) {
-            accion.respuestas.fecha = accion.respuestas.fecha.toDate();
+            accion.respuestas.fecha = moment.isMoment(accion.respuestas.fecha) ? accion.respuestas.fecha.toDate() : moment(accion.respuestas.fecha.iso ? accion.respuestas.fecha.iso : accion.respuestas.fecha).toDate();
         }
 
         if (accion.respuestas.fecha1) {
-            accion.respuestas.fecha1 = accion.respuestas.fecha1.toDate();
+            accion.respuestas.fecha1 = moment.isMoment(accion.respuestas.fecha1) ? accion.respuestas.fecha1.toDate() : moment(accion.respuestas.fecha1.iso ? accion.respuestas.fecha1.iso : accion.respuestas.fecha1).toDate();
         }
 
         if (accion.respuestas.fecha2) {
-            accion.respuestas.fecha2 = accion.respuestas.fecha2.toDate();
+            accion.respuestas.fecha2 = moment.isMoment(accion.respuestas.fecha2) ? accion.respuestas.fecha2.toDate() : moment(accion.respuestas.fecha2.iso ? accion.respuestas.fecha2.iso : accion.respuestas.fecha2).toDate();
         }
 
         if (accion.respuestas.fecha3) {
-            accion.respuestas.fecha3 = accion.respuestas.fecha3.toDate();
+            accion.respuestas.fecha3 = moment.isMoment(accion.respuestas.fecha3) ? accion.respuestas.fecha3.toDate() : moment(accion.respuestas.fecha3.iso ? accion.respuestas.fecha3.iso : accion.respuestas.fecha3).toDate();
         }
 
         if (accion.respuestas.cita && accion.respuestas.cita.fecha) {
-            accion.respuestas.cita.fecha = accion.respuestas.cita.fecha.toDate();
+            accion.respuestas.cita.fecha = moment.isMoment(accion.respuestas.cita.fecha) ? accion.respuestas.cita.fecha.toDate() : moment(accion.respuestas.cita.fecha.iso ? accion.respuestas.cita.fecha.iso : accion.respuestas.cita.fecha).toDate();
         }
 
         if (accion.respuestas.fechaAcuerdo) {
-            accion.respuestas.fechaAcuerdo = accion.respuestas.fechaAcuerdo.toDate();
+            accion.respuestas.fechaAcuerdo = moment.isMoment(accion.respuestas.fechaAcuerdo) ? accion.respuestas.fechaAcuerdo.toDate() : moment(accion.respuestas.fechaAcuerdo.iso ? accion.respuestas.fechaAcuerdo.iso : accion.respuestas.fechaAcuerdo).toDate();
         }
 
         if (accion.respuestas.fechaPublicacion) {
-            accion.respuestas.fechaPublicacion = accion.respuestas.fechaPublicacion.toDate();
+            accion.respuestas.fechaPublicacion = moment.isMoment(accion.respuestas.fechaPublicacion) ? accion.respuestas.fechaPublicacion.toDate() : moment(accion.respuestas.fechaPublicacion.iso ? accion.respuestas.fechaPublicacion.iso : accion.respuestas.fechaPublicacion).toDate();
         }
 
         if (accion.respuestas.fechaPresentacion) {
-            accion.respuestas.fechaPresentacion = accion.respuestas.fechaPresentacion.toDate();
+            accion.respuestas.fechaPresentacion = moment.isMoment(accion.respuestas.fechaPresentacion) ? accion.respuestas.fechaPresentacion.toDate() : moment(accion.respuestas.fechaPresentacion.iso ? accion.respuestas.fechaPresentacion.iso : accion.respuestas.fechaPresentacion).toDate();
         }
 
         if (accion.respuestas.fechaResolucion) {
-            accion.respuestas.fechaResolucion = accion.respuestas.fechaResolucion.toDate();
+            accion.respuestas.fechaResolucion = moment.isMoment(accion.respuestas.fechaResolucion) ? accion.respuestas.fechaResolucion.toDate() : moment(accion.respuestas.fechaResolucion.iso ? accion.respuestas.fechaResolucion.iso : accion.respuestas.fechaResolucion).toDate();
         }
 
         var contrato = accion.contrato.toEditable();
