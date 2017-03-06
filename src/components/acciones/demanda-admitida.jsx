@@ -197,13 +197,13 @@ var DemandaAdmitida = React.createClass({
     },
     handleFechaChange: function (key, date) {
         var state = {respuestas: this.state.respuestas};
-        state.respuestas[key] = date.clone();
+        state.respuestas[key] = date ? date.clone() : null;
 
         this.setState(state);
     },
     handleCitaFechaChange: function (date) {
         var state = {respuestas: this.state.respuestas};
-        state.respuestas.cita.fecha = date.clone();
+        state.respuestas.cita.fecha = date ? date.clone() : null;
 
         this.setState(state);
     },
