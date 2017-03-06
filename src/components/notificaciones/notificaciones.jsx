@@ -11,6 +11,11 @@ var Link = ReactRouter.Link;
 var AccionRecord = require('src/records/accion');
 
 var ChangePassword = require('src/components/auth/change-password');
+var NotificacionUno = require('src/components/notificaciones/notificacion-uno');
+var NotificacionDos = require('src/components/notificaciones/notificacion-dos');
+var NotificacionTres = require('src/components/notificaciones/notificacion-tres');
+var NotificacionCuatro = require('src/components/notificaciones/notificacion-cuatro');
+var NotificacionCinco = require('src/components/notificaciones/notificacion-cinco');
 
 // -----------------------------------------------------------------------------------------------
 // Notificaciones
@@ -83,25 +88,18 @@ var Notificaciones = React.createClass({
     renderNotificacionDetails: function (notificacion) {
         switch (notificacion.tipo) {
             case 1:
-                return (<p>{'Require recoger documentos el día '}<b>{notificacion.formattedValues.fecha}</b>{' en un horario de '}<b>{notificacion.formattedValues.horario}</b></p>);
+                return (<NotificacionUno notificacion={notificacion} />);
             case 2:
-                return (<p>{'Requiere desahogo el día '}<b>{notificacion.formattedValues.fecha + '.'}</b></p>);
+                return (<NotificacionDos notificacion={notificacion} />);
             case 3:
-                return (<p>{'Cuenta con una cita el día '}<b>{notificacion.formattedValues.cita.fecha}</b>{' en'}<b>{notificacion.cita.lugar}</b>{' con el actuario '}<b>{notificacion.cita.nombreActuario}</b>{' con teléfono '}<b>{notificacion.cita.telefonoActuario}</b></p>);
+                return (<NotificacionTres notificacion={notificacion} />);
             case 4:
-                return (<p>{'No ha sido atendido desde el '}<b>{notificacion.formattedValues.fecha + '.'}</b></p>);
+                return (<NotificacionCuatro notificacion={notificacion} />);
             case 5:
-                return (<p>{'La fecha de '}<b>{AccionRecord.ACCIONES_TYPES[notificacion.tipoAccion]}</b>{' es el '}<b>{notificacion.formattedValues.fecha + (notificacion.hora ? '' : '.')}</b>{this.renderHoraNotification(notificacion)}</p>);
+                return (<NotificacionCinco notificacion={notificacion} />);
             default:
                 break;
         }
-    },
-    renderHoraNotification: function (notificacion) {
-        if (!notificacion.hora) {
-            return;
-        }
-
-        return (<span>{' a las '}<b>{notificacion.hora + '.'}</b></span>);
     },
     togglePasswordForm: function () {
         this.setState({showingPasswordForm: !this.state.showingPasswordForm});
