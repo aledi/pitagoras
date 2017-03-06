@@ -148,7 +148,7 @@ var FechaAudienciaPruebas = React.createClass({
     },
     handleFechaChange: function (key, date) {
         var state = {respuestas: this.state.respuestas};
-        state.respuestas[key] = date.clone();
+        state.respuestas[key] = date ? date.clone() : null;
 
         this.setState(state);
     },

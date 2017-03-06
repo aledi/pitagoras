@@ -144,7 +144,7 @@ var DiligenciaEmbargo = React.createClass({
     },
     handleCitaFechaChange: function (date) {
         var state = {respuestas: this.state.respuestas};
-        state.respuestas.cita.fecha = date.clone();
+        state.respuestas.cita.fecha = date ? date.clone() : null;
 
         this.setState(state);
     },
