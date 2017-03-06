@@ -5,10 +5,11 @@
     width: 100%;
 
     .logo {
-        width: 300px;
         height: 100px;
+        width: 280px;
         position: absolute;
-        top: 20px; left: 20px;
+        top: 20px;
+        left: 20px;
     }
 
     form {
@@ -21,12 +22,8 @@
         border-radius: 3px;
         text-align: center;
 
-        label {
-            margin-bottom: 5px;
-        }
-
         input {
-            height: 35px;
+            height: 45px;
             width: 100%;
             display: block;
             padding: 0 10px;
@@ -34,16 +31,23 @@
             border: 1px solid $creosote;
             border-radius: 3px;
             outline: none;
-
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-align: center;
+            
             &.required {
-                border-color: $invalid;
+                border-color: $red;
             }
         }
 
         button {
-            padding: 10px 40px;
-            margin-top: 20px;
+            height: 50px;
+            width: 100%;
+            font-weight: bold;
+            font-size: 13px;
+            margin-top: 50px;
             text-transform: uppercase;
+            letter-spacing: 1.5px;
 
             &:disabled {
                 background-color: $disabled-button-background;
@@ -52,9 +56,9 @@
         }
 
         p.error-text {
-            font-size: 13px;
             margin: 0;
-            color: $invalid;
+            font-size: 13px;
+            color: $red;
 
             &.hidden {
                 visibility: hidden;

@@ -73,7 +73,6 @@ var UsuarioEdit = React.createClass({
         return (
             <div className='usuario-edit'>
                 <form onSubmit={this.handleSubmit}>
-                    <p className='section-title'>{(this.props.usuario ? 'Editar ' : 'Crear ') + 'Usuario'}</p>
                     <div className='input-wrapper'>
                         <label>Nombre</label>
                         <input

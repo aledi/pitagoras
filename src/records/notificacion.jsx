@@ -32,7 +32,7 @@ class Notificacion extends NotificacionRecord {
         // Tipo
         definition.tipo = definition.tipo;
 
-        // Tipo
+        // Tipo de Acción
         definition.tipoAccion = definition.tipoAccion;
 
         // Contrato ID

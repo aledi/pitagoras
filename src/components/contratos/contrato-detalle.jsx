@@ -200,7 +200,7 @@ var ContratoDetalle = React.createClass({
                 <span className='side-button' onClick={this.goBack}>Regresar a Contratos</span>
 
                 <div className='contrato-detalles'>
-                    <button type='button' className='top-right' onClick={this.toggleDetails}>{'Mostrar' + (this.state.showingFullDetails ? ' resumen' : ' todos los detalles')}</button>
+                    <button type='button' className='right-button' onClick={this.toggleDetails}>{'Mostrar' + (this.state.showingFullDetails ? ' resumen' : ' todos los detalles')}</button>
                     {this.renderEditarContrato()}
                     <div className='depuracion-checkboxes'>
                         <p>Depuración</p>
@@ -271,7 +271,7 @@ var ContratoDetalle = React.createClass({
             return;
         }
 
-        return (<button type='button' className='top-right editar-button' onClick={this.handleContratoEdit}>Editar Contrato</button>);
+        return (<button type='button' className='right-button editar-button' onClick={this.handleContratoEdit}>Editar Contrato</button>);
     },
     renderHistorialTitle: function () {
         if (this.state.selectedAccion == null) {
@@ -336,7 +336,7 @@ var ContratoDetalle = React.createClass({
 
         return (
             <div>
-                <button type='button' className='top-right' onClick={this.closeAccion}>Cancelar</button>
+                <button type='button' className='right-button' onClick={this.closeAccion}>Cancelar</button>
                 {component}
             </div>
         );

@@ -5,6 +5,10 @@
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
+var ReactRouter = require('react-router');
+var Link = ReactRouter.Link;
+
+var AccionRecord = require('src/records/accion');
 
 var ChangePassword = require('src/components/auth/change-password');
 var NotificacionUno = require('src/components/notificaciones/notificacion-uno');
@@ -36,9 +40,11 @@ var Notificaciones = React.createClass({
 
         return (
             <div>
-                <h2>Notificaciones</h2>
-                <span className='side-button right' onClick={this.togglePasswordForm}>Cambiar contraseña</span>
-                {this.renderNotificaciones()}
+                <button className='side-button right' onClick={this.togglePasswordForm}>Cambiar contraseña</button>
+                <div className='notifications-wrapper'>
+                    <h4>Notificaciones</h4>
+                    {this.renderNotificaciones()}
+                </div>
             </div>
         );
     },
@@ -57,9 +63,6 @@ var Notificaciones = React.createClass({
             </ul>
         );
     },
-    togglePasswordForm: function () {
-        this.setState({showingPasswordForm: !this.state.showingPasswordForm});
-    },
     getNotificaciones: function () {
         var notificaciones = [];
         var inactivity = [];
@@ -68,23 +71,15 @@ var Notificaciones = React.createClass({
         this.props.notificaciones.forEach(function (notificacion, index) {
             var item = (
                 <li className='notificaciones-list-item' key={notificacion.numeroContrato + '-' + index}>
-                    <h3 onClick={self.goToContrato.bind(self, notificacion.contratoId)}>{'Contrato ' + notificacion.numeroContrato}</h3>
+                    <Link to={'/contratos/' + notificacion.contratoId}>{'Contrato ' + notificacion.numeroContrato}</Link>
                     {self.renderNotificacionDetails(notificacion)}
                 </li>
             );
 
-            switch (notificacion.tipo) {
-                case 1:
-                case 2:
-                case 3:
-                case 5:
-                    notificaciones.push(item);
-                    break;
-                case 4:
-                    inactivity.push(item);
-                    break;
-                default:
-                    break;
+            if (notificacion.tipo === 4) {
+                inactivity.push(item);
+            } else {
+                notificaciones.push(item);
             }
         });
 
@@ -105,6 +100,9 @@ var Notificaciones = React.createClass({
             default:
                 break;
         }
+    },
+    togglePasswordForm: function () {
+        this.setState({showingPasswordForm: !this.state.showingPasswordForm});
     },
     goToContrato: function (contratoId) {
         this.context.router.push('/contratos/' + contratoId);

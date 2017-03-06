@@ -34,7 +34,7 @@
         color: $denim;
     }
 
-    button.top-right {
+    button.right-button {
         height: auto;
         padding: 2px 10px;
         position: absolute;
@@ -96,15 +96,15 @@
             list-style: none;
 
             &.red {
-                color: $invalid;
+                color: $red;
 
                 li {
                     &:hover {
-                        background-color: rgba($invalid, 0.8);
+                        background-color: rgba($red, 0.8);
                     }
 
                     &.selected {
-                        background-color: $invalid;
+                        background-color: $red;
                         color: white;
                     }
                 }
@@ -123,6 +123,12 @@
                         color: white;
                     }
                 }
+            }
+
+            hr {
+                margin: 10px 0;
+                border: none;
+                border-bottom: 1px solid $denim;
             }
 
             li {
