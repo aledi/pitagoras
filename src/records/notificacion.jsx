@@ -32,7 +32,7 @@ class Notificacion extends NotificacionRecord {
         // Tipo
         definition.tipo = definition.tipo;
 
-        // Tipo
+        // Tipo de Acción
         definition.tipoAccion = definition.tipoAccion;
 
         // Contrato ID
@@ -44,7 +44,7 @@ class Notificacion extends NotificacionRecord {
         // Fecha
         if (definition.fecha) {
             definition.fecha = moment(definition.fecha.iso || definition.fecha);
-            formattedValues.fecha = definition.fecha.format('D/MMM/YYYY');
+            formattedValues.fecha = definition.fecha.format('D MMMM, YYYY');
         }
 
         // Hora
@@ -61,7 +61,7 @@ class Notificacion extends NotificacionRecord {
             definition.cita = definition.cita;
             definition.fecha = definition.cita.fecha ? moment(definition.cita.fecha.iso) : null;
             formattedValues.cita = {
-                fecha: definition.cita.fecha ? moment(definition.cita.fecha.iso).format('D/MMM/YYYY') : null,
+                fecha: definition.cita.fecha ? moment(definition.cita.fecha.iso).format('D MMMM, YYYY') : null,
                 lugar: definition.lugar,
                 nombreActuario: definition.nombreActuario,
                 telefonoActuario: definition.telefonoActuario

@@ -19,9 +19,7 @@ var Search = require('src/components/shared/search');
 var ContratosTabla = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
     getInitialState: function () {
-        return {
-            showingBusqueda: false
-        };
+        return {showingBusqueda: false};
     },
     componentDidMount: function () {
         document.getElementById('table-wrapper-contratos').focus();
@@ -29,7 +27,7 @@ var ContratosTabla = React.createClass({
     render: function () {
         return (
             <div>
-                <button type='button' className='search-button' onClick={this.toggleBusqueda}>Buscar contrato</button>
+                <button type='button' className='right-button' onClick={this.toggleBusqueda}>Buscar contrato</button>
                 <div id='table-wrapper-contratos' className='contratos-table table-wrapper' tabIndex='0' onKeyUp={this.handleKeyUp}>
                     <div className='table-header-wrapper' style={{minWidth: '2050px'}}>
                         <table>

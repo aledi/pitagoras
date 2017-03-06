@@ -30,12 +30,21 @@ h2 {
     color: $denim;
 }
 
+h4 {
+    text-transform: uppercase;
+    text-align: left;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+    color: $denim;
+}
+
 #pitagoras-wrapper, #pitagoras {
     height: 100%;
     overflow: hidden;
 }
 
 input[type='text'], input[type='password'], textarea {
+    -webkit-appearance: none;
     border: 1px solid $frost;
 
     &:disabled {
@@ -49,17 +58,22 @@ input[type='radio'] + label {
     margin-left: 5px;
 }
 
-span.side-button {
+.side-button {
     display: inline-block;
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: 1px;
     font-size: 13px;
+    background-color: transparent;
     color: $taupe;
     cursor: pointer;
 
     &.right {
         float: right;
+    }
+
+    &:hover {
+        background-color: transparent;
     }
 }
 
@@ -78,19 +92,19 @@ button {
         background-color: $nightfall;
     }
 
-    &.add, &.remove {
+    &.add, &.remove, &.right-button {
         height: auto;
         width: auto;
-        background-color: transparent;
-        text-transform: uppercase;
-        color: $blue-gray;
+        padding: 5px 10px;
+        background-color: $blue-gray;
+        color: white;
 
         &:hover {
-            color: $denim;
+            background-color: $denim;
         }
     }
 
-    &.add {
+    &.add, &.right-button, &.submit {
         font-size: 13px;
     }
 
@@ -101,6 +115,9 @@ button {
     &.submit {
         padding: 0 80px;
         margin-top: 50px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
 
         &:disabled {
             background-color: $disabled-button-background;
@@ -123,6 +140,6 @@ button {
     }
 
     &.error {
-        color: $invalid;
+        color: $red;
     }
 }

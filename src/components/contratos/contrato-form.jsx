@@ -75,11 +75,11 @@ var ContratoForm = React.createClass({
     },
     render: function () {
         var contrato = this.state.contrato;
-        
+
         return (
             <main className='contrato-form'>
                 <form onSubmit={this.handleSubmit}>
-                    <h3 className='section-title'>Contrato</h3>
+                    <h4>Contrato</h4>
                     <div className='input-wrapper'>
                         <label>Número de Contrato</label>
                         <input
@@ -179,7 +179,7 @@ var ContratoForm = React.createClass({
                             </div>
                     </div>
                     <hr />
-                    <h3 className='section-title'>Vehículo</h3>
+                    <h4>Vehículo</h4>
                     <div className='input-wrapper'>
                         <label>Modelo</label>
                         <input
@@ -235,7 +235,7 @@ var ContratoForm = React.createClass({
                             onChange={this.handleVehiculoChange.bind(this, 'serie')} />
                     </div>
                     <hr />
-                    <h3 className='section-title'>Cliente</h3>
+                    <h4>Cliente</h4>
                     <div className='input-wrapper'>
                         <label>Nombre</label>
                         <input
@@ -335,7 +335,7 @@ var ContratoForm = React.createClass({
                         disabled={this.state.saving}
                         onClick={this.addTelefono}>Agregar nuevo teléfono</button>
                     <hr />
-                    <h3 className='section-title'>Referencias</h3>
+                    <h4>Referencias</h4>
                     {this.renderReferencias()}
                     <button
                         type='button'
@@ -369,7 +369,7 @@ var ContratoForm = React.createClass({
         if (telefonos.length === 1) {
             return (
                 <div className='input-wrapper'>
-                    <label>Teléfono 1</label>
+                    <label>Teléfono #1</label>
                     <input
                         ref='telefonos0'
                         type='text'
@@ -384,7 +384,7 @@ var ContratoForm = React.createClass({
         return telefonos.map(function (telefono, index) {
             return (
                 <div key={'telefono-' + index} className='input-wrapper'>
-                    <label>{'Teléfono ' + (index + 1)}</label>
+                    <label>{'Teléfono #' + (index + 1)}</label>
                     <input
                         ref={'telefonos' + index}
                         type='text'

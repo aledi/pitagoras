@@ -163,7 +163,7 @@ var PresentacionDemanda = React.createClass({
     },
     handleFechaChange: function (date) {
         var state = {respuestas: this.state.respuestas};
-        state.respuestas.fecha = date.clone();
+        state.respuestas.fecha = date ? date.clone() : null;
 
         this.setState(state);
     }
