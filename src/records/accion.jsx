@@ -28,7 +28,6 @@ var ACCIONES_TYPES = {
     9: 'Desahogo / Cierre',
     10: 'Demanda admitida',
     11: 'Diligencia de embargo',
-    12: 'Extrajudicial',
     13: 'Fecha Audiencia Previa',
     14: 'Fecha Audiencia Pruebas', // Oral
     15: 'Fecha Sentencia',
@@ -212,15 +211,6 @@ class Accion extends AccionRecord {
         if (accion.tipo === 10) {
             contrato.reporte.fechaAdmision = accion.respuestas.fechaAcuerdo;
             contrato.reporte.resultadoEmplazamiento = accion.respuestas.resultado;
-        }
-
-        if (accion.tipo === 12) {
-            var user = Parse.User.current();
-            contrato.reporte.extrajudicial.push({
-                creador: user.get('nombre') + ' ' + user.get('apellido'),
-                comentarios: accion.comentarios,
-                fecha: moment().toDate()
-            });
         }
 
         if (accion.tipo === 13) {
