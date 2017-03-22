@@ -38,6 +38,7 @@ var ResolucionAmparoSentencia = require('src/components/acciones/resolucion-ampa
 var Apelacion = require('src/components/acciones/apelacion'); // 19
 var SentenciaApelacion = require('src/components/acciones/sentencia-apelacion'); // 20
 var FechaAudienciaPruebas = require('src/components/acciones/fecha-audiencia-pruebas'); // 21
+var Liquidacion = require('src/components/acciones/liquidacion'); // 22
 
 // -----------------------------------------------------------------------------------------------
 // Contrato
@@ -159,6 +160,13 @@ var ContratoDetalle = React.createClass({
                     }
                 );
             }
+
+            accionesComponents.push(
+                {
+                    id: 22,
+                    component: <Liquidacion contrato={props.contrato} disabled={props.savingAccion} key='liquidacion' />
+                }
+            );
         }
 
         var state = {
@@ -293,7 +301,7 @@ var ContratoDetalle = React.createClass({
         }));
     },
     renderDivider: function (accionComponent) {
-        if (accionComponent.id !== 13 && accionComponent.id !== 21) {
+        if (accionComponent.id !== 13 && accionComponent.id !== 21 && accionComponent.id !== 22) {
             return;
         }
 

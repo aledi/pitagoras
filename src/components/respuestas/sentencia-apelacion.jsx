@@ -14,13 +14,11 @@ var DateUtils = require('src/utils/date-utils');
 
 var SentenciaApelacion = React.createClass({
     render: function () {
-        var respuestas = this.props.accion.respuestas;
-
         return (
             <div className='respuestas-wrapper'>
                 <div>
                     <span className='bold'>Favorable a: </span>
-                    <span>{respuestas.favorable}</span>
+                    <span>{this.props.accion.respuestas.favorable}</span>
                 </div>
                 {this.renderDate()}
             </div>

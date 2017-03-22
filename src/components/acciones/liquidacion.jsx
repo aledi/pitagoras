@@ -44,8 +44,8 @@ var Liquidacion = React.createClass({
                         <input
                             type='radio'
                             id='parcial'
-                            checked={this.state.respuestas.regresaDocumentos}
-                            value='parcial'
+                            checked={this.state.respuestas.liquidacion === 'Parcial'}
+                            value='Parcial'
                             onChange={this.handleChange}
                             disabled={this.state.disabled} />
                         <label htmlFor='parcial' disabled={this.state.disabled}>Parcial</label>
@@ -54,8 +54,8 @@ var Liquidacion = React.createClass({
                         <input
                             type='radio'
                             id='total'
-                            checked={!this.state.respuestas.regresaDocumentos}
-                            value='total'
+                            checked={this.state.respuestas.liquidacion === 'Total'}
+                            value='Total'
                             onChange={this.handleChange}
                             disabled={this.state.disabled} />
                         <label htmlFor='total' disabled={this.state.disabled}>Total</label>
@@ -68,9 +68,7 @@ var Liquidacion = React.createClass({
     },
     handleChange: function (event) {
         var respuestas = this.state.respuestas;
-        var liquidacion = event.target.value;
-
-        respuestas.liquidacion = liquidacion;
+        respuestas.liquidacion = event.target.value;
 
         this.setState({respuestas: respuestas});
     }
