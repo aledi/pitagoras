@@ -31,7 +31,7 @@ var Apelacion = require('src/components/respuestas/apelacion'); // 19
 var SentenciaApelacion = require('src/components/respuestas/sentencia-apelacion'); // 20
 var FechaAudienciaPruebas = require('src/components/respuestas/fecha-audiencia-pruebas'); // 21
 var Liquidacion = require('src/components/respuestas/liquidacion'); // 22
-var Convenio = require('src/components/respuestas/convenio'); // 22
+var Convenio = require('src/components/respuestas/convenio'); // 23
 
 // -----------------------------------------------------------------------------------------------
 // AccionesHistorial
