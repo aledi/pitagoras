@@ -302,10 +302,6 @@ var ContratoDetalle = React.createClass({
         }));
     },
     renderTitle: function (accionComponentId) {
-        if (accionComponentId !== 1 && accionComponentId !== 13 && accionComponentId !== 21 && accionComponentId !== 22) {
-            return;
-        }
-
         switch (accionComponentId) {
             case 1:
                 return (<h6>Judicial</h6>);
@@ -316,7 +312,7 @@ var ContratoDetalle = React.createClass({
             case 22:
                 return (<h6>Extrajudicial</h6>);
             default:
-                break;
+                return;
         }
     },
     renderDivider: function (accionComponentId) {
