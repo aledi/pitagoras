@@ -291,7 +291,8 @@ var ContratoDetalle = React.createClass({
         var self = this;
         return (this.state.accionesComponents.map(function (accionComponent) {
             return [
-                self.renderDivider(accionComponent),
+                self.renderDivider(accionComponent.id),
+                self.renderTitle(accionComponent.id),
                 <li key={accionComponent.id}
                     className={classNames({selected: self.state.selectedAccion === accionComponent.id})}
                     onClick={self.showAccion.bind(self, accionComponent.id)}>
@@ -300,8 +301,26 @@ var ContratoDetalle = React.createClass({
             ];
         }));
     },
-    renderDivider: function (accionComponent) {
-        if (accionComponent.id !== 13 && accionComponent.id !== 21 && accionComponent.id !== 22) {
+    renderTitle: function (accionComponentId) {
+        if (accionComponentId !== 1 && accionComponentId !== 13 && accionComponentId !== 21 && accionComponentId !== 22) {
+            return;
+        }
+
+        switch (accionComponentId) {
+            case 1:
+                return (<h6>Judicial</h6>);
+            case 13:
+                return (<h6>Oral</h6>);
+            case 21:
+                return (<h6>Ejecutivo</h6>);
+            case 22:
+                return (<h6>Extrajudicial</h6>);
+            default:
+                break;
+        }
+    },
+    renderDivider: function (accionComponentId) {
+        if (accionComponentId !== 13 && accionComponentId !== 21 && accionComponentId !== 22) {
             return;
         }
 
