@@ -39,6 +39,7 @@ var Apelacion = require('src/components/acciones/apelacion'); // 19
 var SentenciaApelacion = require('src/components/acciones/sentencia-apelacion'); // 20
 var FechaAudienciaPruebas = require('src/components/acciones/fecha-audiencia-pruebas'); // 21
 var Liquidacion = require('src/components/acciones/liquidacion'); // 22
+var Convenio = require('src/components/acciones/convenio'); // 23
 
 // -----------------------------------------------------------------------------------------------
 // Contrato
@@ -165,6 +166,10 @@ var ContratoDetalle = React.createClass({
                 {
                     id: 22,
                     component: <Liquidacion contrato={props.contrato} disabled={props.savingAccion} key='liquidacion' />
+                },
+                {
+                    id: 23,
+                    component: <Convenio contrato={props.contrato} disabled={props.savingAccion} key='convenio' />
                 }
             );
         }
