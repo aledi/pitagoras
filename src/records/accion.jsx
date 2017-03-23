@@ -37,7 +37,8 @@ var ACCIONES_TYPES = {
     19: 'Apelación',
     20: 'Sentencia de Apelación',
     21: 'Fecha Audiencia Pruebas', // Ejecutiva
-    22: 'Liquidación'
+    22: 'Liquidación',
+    23: 'Convenio'
 };
 
 var AccionRecord = Immutable.Record({
