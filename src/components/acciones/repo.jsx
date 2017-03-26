@@ -58,7 +58,7 @@ var Repo = React.createClass({
                             id='voluntario'
                             value='Voluntario'
                             checked={respuestas.voluntario === 'Voluntario'}
-                            onChange={this.handleRadioChange}
+                            onChange={this.handleRadioChange.bind(this, 'voluntario')}
                             disabled={this.state.disabled} />
                         <label htmlFor='voluntario' disabled={this.state.disabled}>Voluntario</label>
                     </div>
@@ -68,7 +68,7 @@ var Repo = React.createClass({
                             id='contra'
                             value='Contra Finiquito'
                             checked={respuestas.voluntario === 'Contra Finiquito'}
-                            onChange={this.handleRadioChange}
+                            onChange={this.handleRadioChange.bind(this, 'voluntario')}
                             disabled={this.state.disabled} />
                         <label htmlFor='contra' disabled={this.state.disabled}>Contra Finiquito</label>
                     </div>
@@ -80,6 +80,54 @@ var Repo = React.createClass({
                         value={this.state.respuestas.valorLibros}
                         onChange={this.handleChange.bind(this, 'valorLibros')}
                         disabled={this.state.disabled} />
+                </div>
+                <div className='element-wrapper'>
+                    <h5>Personal</h5>
+                    <div>
+                        <input
+                            type='radio'
+                            id='personal'
+                            value='Personal'
+                            checked={respuestas.personal === 'Personal'}
+                            onChange={this.handleRadioChange.bind(this, 'personal')}
+                            disabled={this.state.disabled} />
+                        <label htmlFor='personal' disabled={this.state.disabled}>Personal</label>
+                    </div>
+                    <div>
+                        <input
+                            type='radio'
+                            id='apoderado'
+                            value='Apoderado'
+                            checked={respuestas.personal === 'Apoderado'}
+                            onChange={this.handleRadioChange.bind(this, 'personal')}
+                            disabled={this.state.disabled} />
+                        <label htmlFor='apoderado' disabled={this.state.disabled}>Apoderado</label>
+                    </div>
+                    {this.renderFechasVoBo()}
+                </div>
+                <div className='element-wrapper'>
+                    <h5>Lugar de Custodia</h5>
+                    <div>
+                        <input
+                            type='radio'
+                            id='oficina'
+                            value='Oficina México'
+                            checked={respuestas.lugarCustodia === 'Oficina México'}
+                            onChange={this.handleRadioChange.bind(this, 'lugarCustodia')}
+                            disabled={this.state.disabled} />
+                        <label htmlFor='oficina' disabled={this.state.disabled}>Oficina México</label>
+                    </div>
+                    <div>
+                        <input
+                            type='radio'
+                            id='dealer'
+                            value='Dealer'
+                            checked={respuestas.lugarCustodia !== 'Oficina México'}
+                            onChange={this.handleRadioChange.bind(this, 'lugarCustodia')}
+                            disabled={this.state.disabled} />
+                        <label htmlFor='dealer' disabled={this.state.disabled}>Dealer</label>
+                    </div>
+                    {this.renderInput()}
                 </div>
                 <div className='element-wrapper'>
                     <h5>Fecha</h5>
@@ -102,20 +150,40 @@ var Repo = React.createClass({
             </div>
         );
     },
-    handleRadioChange: function (event) {
-        var respuestas = this.state.respuestas;
-        var tipoJuicio = event.target.value;
-
-        respuestas.tipoJuicio = tipoJuicio;
-
-        if (tipoJuicio === 'Ejecutiva Mercantil') {
-            respuestas.cita = {
-                fecha: null,
-                hora: null
-            };
-        } else if (respuestas.cita) {
-            delete respuestas.cita;
+    renderFechasVoBo: function () {
+        if (this.state.respuestas.personal === 'Personal') {
+            return;
         }
+
+        return (
+            <div>
+                <div className='element-wrapper'>
+                    <h5>Fecha VoBo RBU</h5>
+                    <DateSelect date={this.state.respuestas.fechaVoBoRbu} onChange={this.handleFechaChange.bind(this, 'fechaVoBoRbu')} />
+                </div>
+                <div className='element-wrapper'>
+                    <h5>Fecha VoBo GMF</h5>
+                    <DateSelect date={this.state.respuestas.fechaVoBoGmf} onChange={this.handleFechaChange.bind(this, 'fechaVoBoGmf')} />
+                </div>
+            </div>
+        );
+    },
+    renderInput: function () {
+        if (this.state.respuestas.personal === 'Oficina México') {
+            return;
+        }
+
+        return (
+            <input
+                type='text'
+                value={this.state.respuestas.lugarCustodia}
+                onChange={this.handleChange.bind(this, 'lugarCustodia')}
+                disabled={this.state.disabled} />
+        );
+    },
+    handleRadioChange: function (key, event) {
+        var respuestas = this.state.respuestas;
+        respuestas[key] = event.target.value;
 
         this.setState({respuestas: respuestas});
     },
