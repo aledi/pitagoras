@@ -106,6 +106,10 @@ var Repo = React.createClass({
                     {this.renderFechasVoBo()}
                 </div>
                 <div className='element-wrapper'>
+                    <h5>Fecha</h5>
+                    <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange.bind(this, 'fecha')} />
+                </div>
+                <div className='element-wrapper'>
                     <h5>Lugar de Custodia</h5>
                     <div>
                         <input
@@ -130,8 +134,13 @@ var Repo = React.createClass({
                     {this.renderInput()}
                 </div>
                 <div className='element-wrapper'>
-                    <h5>Fecha</h5>
-                    <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange.bind(this, 'fecha')} />
+                    <h5 className='text-label'>Fechas de Subasta</h5>
+                    {this.renderFechaSubasta(1)}
+                    {this.renderFechaSubasta(2)}
+                    {this.renderFechaSubasta(3)}
+                    {this.renderFechaSubasta(4)}
+                    {this.renderFechaSubasta(5)}
+                    {this.renderAddDateButton()}
                 </div>
                 <div className='element-wrapper'>
                     <h5 className='text-label'>Monto de Venta</h5>
@@ -168,6 +177,18 @@ var Repo = React.createClass({
             </div>
         );
     },
+    renderFechaSubasta: function (num) {
+        if (!this.state.respuestas['fechaSubasta' + num] && this.state.respuestas['fechaSubasta' + num] !== null) {
+            return;
+        }
+
+        return (
+            <div>
+                <h5>{'Fecha ' + num}</h5>
+                <DateSelect date={this.state.respuestas['fechaSubasta' + num]} onChange={this.handleFechaChange.bind(this, 'fechaSubasta' + num)} />
+            </div>
+        );
+    },
     renderInput: function () {
         if (this.state.respuestas.personal === 'Oficina México') {
             return;
@@ -180,6 +201,37 @@ var Repo = React.createClass({
                 onChange={this.handleChange.bind(this, 'lugarCustodia')}
                 disabled={this.state.disabled} />
         );
+    },
+    renderAddDateButton: function () {
+        if (this.state.respuestas.fechaSubasta1 &&
+            this.state.respuestas.fechaSubasta2 &&
+            this.state.respuestas.fechaSubasta3 &&
+            this.state.respuestas.fechaSubasta4 &&
+            this.state.respuestas.fechaSubasta5) {
+            return;
+        }
+
+        return (<button type='button' className='add' onClick={this.addDate}>Agregar nueva fecha</button>);
+    },
+    addDate: function () {
+        var respuestas = this.state.respuestas;
+
+        if (!respuestas.fechaSubasta1) {
+            respuestas.fechaSubasta1 = null;
+            this.setState({respuestas: respuestas});
+        } else if (!respuestas.fechaSubasta2) {
+            respuestas.fechaSubasta2 = null;
+            this.setState({respuestas: respuestas});
+        } else if (!respuestas.fechaSubasta3) {
+            respuestas.fechaSubasta3 = null;
+            this.setState({respuestas: respuestas});
+        } else if (!respuestas.fechaSubasta4) {
+            respuestas.fechaSubasta4 = null;
+            this.setState({respuestas: respuestas});
+        } else if (!respuestas.fechaSubasta5) {
+            respuestas.fechaSubasta5 = null;
+            this.setState({respuestas: respuestas});
+        }
     },
     handleRadioChange: function (key, event) {
         var respuestas = this.state.respuestas;

@@ -32,6 +32,7 @@ var SentenciaApelacion = require('src/components/respuestas/sentencia-apelacion'
 var FechaAudienciaPruebas = require('src/components/respuestas/fecha-audiencia-pruebas'); // 21
 var Liquidacion = require('src/components/respuestas/liquidacion'); // 22
 var Convenio = require('src/components/respuestas/convenio'); // 23
+var Repo = require('src/components/respuestas/repo'); // 24
 
 // -----------------------------------------------------------------------------------------------
 // AccionesHistorial
@@ -125,6 +126,8 @@ var AccionesHistorial = React.createClass({
                 return (<Liquidacion accion={accion} />);
             case 23:
                 return (<Convenio accion={accion} />);
+            case 24:
+                return (<Repo accion={accion} />);
             default:
                 break;
         }
