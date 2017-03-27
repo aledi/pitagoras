@@ -80,6 +80,38 @@ class Accion extends AccionRecord {
             accion.respuestas.fecha3 = moment.isMoment(accion.respuestas.fecha3) ? accion.respuestas.fecha3.toDate() : moment(accion.respuestas.fecha3.iso ? accion.respuestas.fecha3.iso : accion.respuestas.fecha3).toDate();
         }
 
+        if (accion.respuestas.fechaSubasta1) {
+            accion.respuestas.fechaSubasta1 = moment.isMoment(accion.respuestas.fechaSubasta1) ? accion.respuestas.fechaSubasta1.toDate() : moment(accion.respuestas.fechaSubasta1.iso ? accion.respuestas.fechaSubasta1.iso : accion.respuestas.fechaSubasta1).toDate();
+        }
+
+        if (accion.respuestas.fechaSubasta2) {
+            accion.respuestas.fechaSubasta2 = moment.isMoment(accion.respuestas.fechaSubasta2) ? accion.respuestas.fechaSubasta2.toDate() : moment(accion.respuestas.fechaSubasta2.iso ? accion.respuestas.fechaSubasta2.iso : accion.respuestas.fechaSubasta2).toDate();
+        }
+
+        if (accion.respuestas.fechaSubasta3) {
+            accion.respuestas.fechaSubasta3 = moment.isMoment(accion.respuestas.fechaSubasta3) ? accion.respuestas.fechaSubasta3.toDate() : moment(accion.respuestas.fechaSubasta3.iso ? accion.respuestas.fechaSubasta3.iso : accion.respuestas.fechaSubasta3).toDate();
+        }
+
+        if (accion.respuestas.fechaSubasta4) {
+            accion.respuestas.fechaSubasta4 = moment.isMoment(accion.respuestas.fechaSubasta4) ? accion.respuestas.fechaSubasta4.toDate() : moment(accion.respuestas.fechaSubasta4.iso ? accion.respuestas.fechaSubasta4.iso : accion.respuestas.fechaSubasta4).toDate();
+        }
+
+        if (accion.respuestas.fechaSubasta5) {
+            accion.respuestas.fechaSubasta5 = moment.isMoment(accion.respuestas.fechaSubasta5) ? accion.respuestas.fechaSubasta5.toDate() : moment(accion.respuestas.fechaSubasta5.iso ? accion.respuestas.fechaSubasta5.iso : accion.respuestas.fechaSubasta5).toDate();
+        }
+
+        if (accion.respuestas.fechaVoBoRbu) {
+            accion.respuestas.fechaVoBoRbu = moment.isMoment(accion.respuestas.fechaVoBoRbu) ? accion.respuestas.fechaVoBoRbu.toDate() : moment(accion.respuestas.fechaVoBoRbu.iso ? accion.respuestas.fechaVoBoRbu.iso : accion.respuestas.fechaVoBoRbu).toDate();
+        }
+
+        if (accion.respuestas.fechaVoBoGmf) {
+            accion.respuestas.fechaVoBoGmf = moment.isMoment(accion.respuestas.fechaVoBoGmf) ? accion.respuestas.fechaVoBoGmf.toDate() : moment(accion.respuestas.fechaVoBoGmf.iso ? accion.respuestas.fechaVoBoGmf.iso : accion.respuestas.fechaVoBoGmf).toDate();
+        }
+
+        if (accion.respuestas.fechaVenta) {
+            accion.respuestas.fechaVenta = moment.isMoment(accion.respuestas.fechaVenta) ? accion.respuestas.fechaVenta.toDate() : moment(accion.respuestas.fechaVenta.iso ? accion.respuestas.fechaVenta.iso : accion.respuestas.fechaVenta).toDate();
+        }
+
         if (accion.respuestas.cita && accion.respuestas.cita.fecha) {
             accion.respuestas.cita.fecha = moment.isMoment(accion.respuestas.cita.fecha) ? accion.respuestas.cita.fecha.toDate() : moment(accion.respuestas.cita.fecha.iso ? accion.respuestas.cita.fecha.iso : accion.respuestas.cita.fecha).toDate();
         }
@@ -271,6 +303,13 @@ class Accion extends AccionRecord {
 
         if (accion.tipo === 21) {
             contrato.reporte.fechaAudienciaPruebas = accion.respuestas.fecha;
+        }
+
+        if (accion.tipo === 24) {
+            if (accion.respuestas.lugarCustodia === 'Dealer') {
+                accion.respuestas.lugarCustodia = accion.respuestas.lugarCustodiaText;
+                delete accion.respuestas.lugarCustodiaText;
+            }
         }
 
         contrato.reporte.etapaActual = accion.tipo;

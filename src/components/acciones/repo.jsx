@@ -6,7 +6,6 @@
 
 var React = require('react');
 var Parse = require('parse');
-var moment = require('moment');
 
 var AccionesMixin = require('./acciones-mixin');
 
@@ -31,11 +30,23 @@ var Repo = React.createClass({
                 valorLibros: lastAccion ? lastAccion.respuestas.valorLibros : '',
                 personal: lastAccion ? lastAccion.respuestas.personal : 'Personal',
                 fecha: lastAccion ? lastAccion.respuestas.fecha : null,
+                lugarCustodia: lastAccion ? lastAccion.respuestas.lugarCustodia : 'Oficina México',
+                lugarCustodiaText: '',
                 montoVenta: lastAccion ? lastAccion.respuestas.montoVenta : '',
                 fechaVenta: lastAccion ? lastAccion.respuestas.fechaVenta : null
             },
             disabled: false
         };
+
+        if (lastAccion && lastAccion.respuestas.personal === 'Apoderado') {
+            state.respuestas.fechaVoBoRbu = lastAccion.respuestas.fechaVoBoRbu;
+            state.respuestas.fechaVoBoGmf = lastAccion.respuestas.fechaVoBoGmf;
+        }
+
+        if (lastAccion && lastAccion.respuestas.lugarCustodia !== 'Oficina México') {
+            state.respuestas.lugarCustodia = 'Dealer';
+            state.respuestas.lugarCustodiaText = lastAccion.respuestas.lugarCustodia;
+        }
 
         return state;
     },
@@ -184,21 +195,21 @@ var Repo = React.createClass({
 
         return (
             <div>
-                <h5>{'Fecha ' + num}</h5>
+                <h5>{'Fecha Subasta ' + num}</h5>
                 <DateSelect date={this.state.respuestas['fechaSubasta' + num]} onChange={this.handleFechaChange.bind(this, 'fechaSubasta' + num)} />
             </div>
         );
     },
     renderInput: function () {
-        if (this.state.respuestas.personal === 'Oficina México') {
+        if (this.state.respuestas.lugarCustodia === 'Oficina México') {
             return;
         }
 
         return (
             <input
                 type='text'
-                value={this.state.respuestas.lugarCustodia}
-                onChange={this.handleChange.bind(this, 'lugarCustodia')}
+                value={this.state.respuestas.lugarCustodiaText}
+                onChange={this.handleChange.bind(this, 'lugarCustodiaText')}
                 disabled={this.state.disabled} />
         );
     },
@@ -236,6 +247,15 @@ var Repo = React.createClass({
     handleRadioChange: function (key, event) {
         var respuestas = this.state.respuestas;
         respuestas[key] = event.target.value;
+
+        if (key === 'lugarCustodia') {
+            respuestas.lugarCustodiaText = '';
+        }
+
+        if (key === 'personal') {
+            respuestas.fechaVoBoRbu = null;
+            respuestas.fechaVoBoGmf = null;
+        }
 
         this.setState({respuestas: respuestas});
     },
