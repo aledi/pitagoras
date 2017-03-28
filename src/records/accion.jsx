@@ -108,6 +108,10 @@ class Accion extends AccionRecord {
             accion.respuestas.fechaVoBoGmf = moment.isMoment(accion.respuestas.fechaVoBoGmf) ? accion.respuestas.fechaVoBoGmf.toDate() : moment(accion.respuestas.fechaVoBoGmf.iso ? accion.respuestas.fechaVoBoGmf.iso : accion.respuestas.fechaVoBoGmf).toDate();
         }
 
+        if (accion.respuestas.fechaRepo) {
+            accion.respuestas.fechaRepo = moment.isMoment(accion.respuestas.fechaRepo) ? accion.respuestas.fechaRepo.toDate() : moment(accion.respuestas.fechaRepo.iso ? accion.respuestas.fechaRepo.iso : accion.respuestas.fechaRepo).toDate();
+        }
+
         if (accion.respuestas.fechaVenta) {
             accion.respuestas.fechaVenta = moment.isMoment(accion.respuestas.fechaVenta) ? accion.respuestas.fechaVenta.toDate() : moment(accion.respuestas.fechaVenta.iso ? accion.respuestas.fechaVenta.iso : accion.respuestas.fechaVenta).toDate();
         }
