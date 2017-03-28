@@ -29,11 +29,16 @@ var Repo = React.createClass({
                 voluntario: lastAccion ? lastAccion.respuestas.voluntario : 'Voluntario',
                 valorLibros: lastAccion ? lastAccion.respuestas.valorLibros : '',
                 personal: lastAccion ? lastAccion.respuestas.personal : 'Personal',
-                fecha: lastAccion ? lastAccion.respuestas.fecha : null,
+                fechaREPO: lastAccion ? lastAccion.respuestas.fechaREPO : null,
                 lugarCustodia: lastAccion ? lastAccion.respuestas.lugarCustodia : 'Oficina México',
                 lugarCustodiaText: '',
                 montoVenta: lastAccion ? lastAccion.respuestas.montoVenta : '',
-                fechaVenta: lastAccion ? lastAccion.respuestas.fechaVenta : null
+                fechaVenta: lastAccion ? lastAccion.respuestas.fechaVenta : null,
+                fechaSubasta1: lastAccion ? lastAccion.respuestas.fechaSubasta1 : null,
+                fechaSubasta2: lastAccion ? lastAccion.respuestas.fechaSubasta2 : null,
+                fechaSubasta3: lastAccion ? lastAccion.respuestas.fechaSubasta3 : null,
+                fechaSubasta4: lastAccion ? lastAccion.respuestas.fechaSubasta4 : null,
+                fechaSubasta5: lastAccion ? lastAccion.respuestas.fechaSubasta5 : null
             },
             disabled: false
         };
@@ -117,8 +122,8 @@ var Repo = React.createClass({
                     {this.renderFechasVoBo()}
                 </div>
                 <div className='element-wrapper'>
-                    <h5>Fecha</h5>
-                    <DateSelect date={this.state.respuestas.fecha} onChange={this.handleFechaChange.bind(this, 'fecha')} />
+                    <h5>Fecha REPO</h5>
+                    <DateSelect date={this.state.respuestas.fechaREPO} onChange={this.handleFechaChange.bind(this, 'fechaREPO')} />
                 </div>
                 <div className='element-wrapper'>
                     <h5>Lugar de Custodia</h5>
