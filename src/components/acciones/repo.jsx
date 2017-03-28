@@ -29,7 +29,7 @@ var Repo = React.createClass({
                 voluntario: lastAccion ? lastAccion.respuestas.voluntario : 'Voluntario',
                 valorLibros: lastAccion ? lastAccion.respuestas.valorLibros : '',
                 personal: lastAccion ? lastAccion.respuestas.personal : 'Personal',
-                fechaREPO: lastAccion ? lastAccion.respuestas.fechaREPO : null,
+                fechaRepo: lastAccion ? lastAccion.respuestas.fechaRepo : null,
                 lugarCustodia: lastAccion ? lastAccion.respuestas.lugarCustodia : 'Oficina México',
                 lugarCustodiaText: '',
                 montoVenta: lastAccion ? lastAccion.respuestas.montoVenta : '',
@@ -123,7 +123,7 @@ var Repo = React.createClass({
                 </div>
                 <div className='element-wrapper'>
                     <h5>Fecha REPO</h5>
-                    <DateSelect date={this.state.respuestas.fechaREPO} onChange={this.handleFechaChange.bind(this, 'fechaREPO')} />
+                    <DateSelect date={this.state.respuestas.fechaRepo} onChange={this.handleFechaChange.bind(this, 'fechaRepo')} />
                 </div>
                 <div className='element-wrapper'>
                     <h5>Lugar de Custodia</h5>
