@@ -33,12 +33,7 @@ var Repo = React.createClass({
                 lugarCustodia: lastAccion ? lastAccion.respuestas.lugarCustodia : 'Oficina México',
                 lugarCustodiaText: '',
                 montoVenta: lastAccion ? lastAccion.respuestas.montoVenta : '',
-                fechaVenta: lastAccion ? lastAccion.respuestas.fechaVenta : null,
-                fechaSubasta1: lastAccion ? lastAccion.respuestas.fechaSubasta1 : null,
-                fechaSubasta2: lastAccion ? lastAccion.respuestas.fechaSubasta2 : null,
-                fechaSubasta3: lastAccion ? lastAccion.respuestas.fechaSubasta3 : null,
-                fechaSubasta4: lastAccion ? lastAccion.respuestas.fechaSubasta4 : null,
-                fechaSubasta5: lastAccion ? lastAccion.respuestas.fechaSubasta5 : null
+                fechaVenta: lastAccion ? lastAccion.respuestas.fechaVenta : null
             },
             disabled: false
         };
@@ -51,6 +46,26 @@ var Repo = React.createClass({
         if (lastAccion && lastAccion.respuestas.lugarCustodia !== 'Oficina México') {
             state.respuestas.lugarCustodia = 'Dealer';
             state.respuestas.lugarCustodiaText = lastAccion.respuestas.lugarCustodia;
+        }
+
+        if (lastAccion && lastAccion.respuestas.fechaSubasta1) {
+            state.respuestas.fechaSubasta1 = lastAccion.respuestas.fechaSubasta1;
+        }
+
+        if (lastAccion && lastAccion.respuestas.fechaSubasta2) {
+            state.respuestas.fechaSubasta2 = lastAccion.respuestas.fechaSubasta2;
+        }
+
+        if (lastAccion && lastAccion.respuestas.fechaSubasta3) {
+            state.respuestas.fechaSubasta3 = lastAccion.respuestas.fechaSubasta3;
+        }
+
+        if (lastAccion && lastAccion.respuestas.fechaSubasta4) {
+            state.respuestas.fechaSubasta4 = lastAccion.respuestas.fechaSubasta4;
+        }
+
+        if (lastAccion && lastAccion.respuestas.fechaSubasta5) {
+            state.respuestas.fechaSubasta5 = lastAccion.respuestas.fechaSubasta5;
         }
 
         return state;
