@@ -23,14 +23,11 @@ var AcuerdoDemanda = React.createClass({
                     <span>{respuestas.resultadoAcuerdo}</span>
                 </div>
                 {this.renderNumeroFactura()}
-                <div>
-                    <span className='bold'>Local o Exhorto: </span>
-                    <span>{respuestas.localExhorto}</span>
-                </div>
+                {this.renderLocalExhorto()}
+                {this.renderTipoExhorto()}
+                {this.renderTipoDisposicion()}
                 {this.renderDate(respuestas.fechaAcuerdo, 'Fecha de acuerdo')}
                 {this.renderDate(respuestas.fechaPublicacion, 'Fecha de publicación')}
-                {this.renderDisposicion()}
-                {this.renderDiligenciable()}
             </div>
         );
     },
@@ -46,27 +43,39 @@ var AcuerdoDemanda = React.createClass({
             </div>
         );
     },
-    renderDisposicion: function () {
-        if (this.props.accion.respuestas.localExhorto === 'Local') {
+    renderLocalExhorto: function () {
+        if (this.props.accion.respuestas.resultadoAcuerdo !== 'Admite') {
             return;
         }
 
         return (
             <div>
-                <span className='bold'>Disposición: </span>
-                <span>{this.props.accion.respuestas.disposicion}</span>
+                <span className='bold'>Local o Exhorto: </span>
+                <span>{this.props.accion.respuestas.localExhorto}</span>
             </div>
         );
     },
-    renderDiligenciable: function () {
-        if (this.props.accion.respuestas.disposicion !== 'A disposición') {
+    renderTipoExhorto: function () {
+        if (this.props.accion.respuestas.localExhorto !== 'Exhorto') {
             return;
         }
 
         return (
             <div>
-                <span className='bold'>Diligenciable: </span>
-                <span>{this.props.accion.respuestas.diligenciable}</span>
+                <span className='bold'>Tipo de Exhorto: </span>
+                <span>{this.props.accion.respuestas.tipoExhorto}</span>
+            </div>
+        );
+    },
+    renderTipoDisposicion: function () {
+        if (this.props.accion.respuestas.tipoExhorto !== 'A disposición') {
+            return;
+        }
+
+        return (
+            <div>
+                <span className='bold'>Tipo de Disposición: </span>
+                <span>{this.props.accion.respuestas.tipoDisposicion}</span>
             </div>
         );
     },

@@ -30,8 +30,8 @@ var AcuerdoDemanda = React.createClass({
                 fechaPublicacion: lastAccion ? lastAccion.respuestas.fechaPublicacion : null,
                 numeroFactura: lastAccion ? lastAccion.respuestas.numeroFactura : '',
                 localExhorto: lastAccion ? lastAccion.respuestas.localExhorto : 'Local',
-                disposicion: lastAccion ? lastAccion.respuestas.disposicion : null,
-                diligenciable: lastAccion ? lastAccion.respuestas.diligenciable : null
+                tipoExhorto: lastAccion ? lastAccion.respuestas.tipoExhorto : null,
+                tipoDisposicion: lastAccion ? lastAccion.respuestas.tipoDisposicion : null
             },
             disabled: false
         };
@@ -78,6 +78,7 @@ var AcuerdoDemanda = React.createClass({
                     </div>
                     {this.renderNumeroFactura()}
                 </div>
+                {this.renderLocalExhorto()}
                 <div className='element-wrapper'>
                     <h5>Fecha de acuerdo</h5>
                     <DateSelect date={this.state.respuestas.fechaAcuerdo} onChange={this.handleFechaChange.bind(this, 'fechaAcuerdo')} />
@@ -85,29 +86,6 @@ var AcuerdoDemanda = React.createClass({
                 <div className='element-wrapper'>
                     <h5>Fecha de publicación</h5>
                     <DateSelect date={this.state.respuestas.fechaPublicacion} onChange={this.handleFechaChange.bind(this, 'fechaPublicacion')} />
-                </div>
-                <div className='element-wrapper'>
-                    <h5>Local o Exhorto</h5>
-                    <div>
-                        <input
-                            type='radio'
-                            id='local'
-                            value='Local'
-                            checked={this.state.respuestas.localExhorto === 'Local'}
-                            onChange={this.handleChange.bind(this, 'localExhorto')}
-                            disabled={this.state.disabled} />
-                        <label htmlFor='local'>Local</label>
-                    </div>
-                    <div>
-                        <input
-                            type='radio'
-                            id='exhorto'
-                            value='Exhorto'
-                            checked={this.state.respuestas.localExhorto === 'Exhorto'}
-                            onChange={this.handleChange.bind(this, 'localExhorto')} />
-                        <label htmlFor='exhorto' disabled={this.state.disabled}>Exhorto</label>
-                    </div>
-                    {this.renderRadios()}
                 </div>
                 {this.renderComentarios()}
                 {this.renderButton()}
@@ -130,21 +108,52 @@ var AcuerdoDemanda = React.createClass({
             </div>
         );
     },
-    renderRadios: function () {
+    renderLocalExhorto: function () {
+        if (this.state.respuestas.resultadoAcuerdo !== 'Admite') {
+            return;
+        }
+
+        return (
+            <div className='element-wrapper'>
+                <h5>Local o Exhorto</h5>
+                <div>
+                    <input
+                        type='radio'
+                        id='local'
+                        value='Local'
+                        checked={this.state.respuestas.localExhorto === 'Local'}
+                        onChange={this.handleChange.bind(this, 'localExhorto')}
+                        disabled={this.state.disabled} />
+                    <label htmlFor='local'>Local</label>
+                </div>
+                <div>
+                    <input
+                        type='radio'
+                        id='exhorto'
+                        value='Exhorto'
+                        checked={this.state.respuestas.localExhorto === 'Exhorto'}
+                        onChange={this.handleChange.bind(this, 'localExhorto')} />
+                    <label htmlFor='exhorto' disabled={this.state.disabled}>Exhorto</label>
+                </div>
+                {this.renderTipoExhortoRadios()}
+            </div>
+        );
+    },
+    renderTipoExhortoRadios: function () {
         if (this.state.respuestas.localExhorto !== 'Exhorto') {
             return;
         }
 
         return (
             <div>
-                <h5>Disposición</h5>
+                <h5>Tipo de Exhorto</h5>
                 <div>
                     <input
                         type='radio'
                         id='disposicion'
                         value='A disposición'
-                        checked={this.state.respuestas.disposicion === 'A disposición'}
-                        onChange={this.handleChange.bind(this, 'disposicion')}
+                        checked={this.state.respuestas.tipoExhorto === 'A disposición'}
+                        onChange={this.handleChange.bind(this, 'tipoExhorto')}
                         disabled={this.state.disabled} />
                     <label htmlFor='disposicion'>A disposición</label>
                 </div>
@@ -153,29 +162,29 @@ var AcuerdoDemanda = React.createClass({
                         type='radio'
                         id='juzgado'
                         value='Envía juzgado'
-                        checked={this.state.respuestas.disposicion === 'Envía juzgado'}
-                        onChange={this.handleChange.bind(this, 'disposicion')} />
+                        checked={this.state.respuestas.tipoExhorto === 'Envía juzgado'}
+                        onChange={this.handleChange.bind(this, 'tipoExhorto')} />
                     <label htmlFor='juzgado' disabled={this.state.disabled}>Envía juzgado</label>
                 </div>
-                {this.renderDisposicionRadios()}
+                {this.renderTipoDisposicionRadios()}
             </div>
         );
     },
-    renderDisposicionRadios: function () {
-        if (this.state.respuestas.disposicion !== 'A disposición') {
+    renderTipoDisposicionRadios: function () {
+        if (this.state.respuestas.tipoExhorto !== 'A disposición') {
             return;
         }
 
         return (
             <div>
-                <h5>Diligenciable</h5>
+                <h5>Tipo de Disposición</h5>
                 <div>
                     <input
                         type='radio'
                         id='diligenciable'
                         value='Diligenciable'
-                        checked={this.state.respuestas.diligenciable === 'Diligenciable'}
-                        onChange={this.handleChange.bind(this, 'diligenciable')}
+                        checked={this.state.respuestas.tipoDisposicion === 'Diligenciable'}
+                        onChange={this.handleChange.bind(this, 'tipoDisposicion')}
                         disabled={this.state.disabled} />
                     <label htmlFor='diligenciable'>Diligenciable</label>
                 </div>
@@ -184,8 +193,8 @@ var AcuerdoDemanda = React.createClass({
                         type='radio'
                         id='jurisdiccion'
                         value='Fuera de Jurisdicción'
-                        checked={this.state.respuestas.diligenciable === 'Fuera de Jurisdicción'}
-                        onChange={this.handleChange.bind(this, 'diligenciable')} />
+                        checked={this.state.respuestas.tipoDisposicion === 'Fuera de Jurisdicción'}
+                        onChange={this.handleChange.bind(this, 'tipoDisposicion')} />
                     <label htmlFor='jurisdiccion' disabled={this.state.disabled}>Fuera de Jurisdicción</label>
                 </div>
             </div>
@@ -197,11 +206,14 @@ var AcuerdoDemanda = React.createClass({
 
         if (key === 'resultadoAcuerdo' && value !== 'Admite') {
             respuestas.numeroFactura = '';
+            respuestas.localExhorto = null;
+            respuestas.tipoExhorto = null;
+            respuestas.tipoDisposicion = null;
         } else if (key === 'localExhorto' && value === 'Local') {
-            respuestas.disposicion = null;
-            respuestas.diligenciable = null;
-        } else if (key === 'disposicion' && value === 'Envía juzgado') {
-            respuestas.diligenciable = null;
+            respuestas.tipoExhorto = null;
+            respuestas.tipoDisposicion = null;
+        } else if (key === 'tipoExhorto' && value === 'Envía juzgado') {
+            respuestas.tipoDisposicion = null;
         }
 
         respuestas[key] = value;
