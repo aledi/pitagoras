@@ -300,7 +300,7 @@ class Accion extends AccionRecord {
 
         // Creador
         definition.creador = definition.creador;
-        formattedValues.creador = definition.creador.nombre + ' ' + definition.creador.apellido;
+        formattedValues.creador = definition.creador ? (definition.creador.nombre + ' ' + definition.creador.apellido) : null;
 
         // Fecha
         var createdAt = moment(definition.createdAt ? new Date(definition.createdAt) : new Date());

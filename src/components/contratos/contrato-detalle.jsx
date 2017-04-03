@@ -381,7 +381,7 @@ var ContratoDetalle = React.createClass({
                 </div>
                 <div className='detalle-wrapper'>
                     <span className='title'>Creador:</span>
-                    <span className='value'>{contrato.formattedValues.creador}</span>
+                    <span className='value'>{contrato.formattedValues.creador ? contrato.formattedValues.creador : ''}</span>
                 </div>
                 <div className='detalle-wrapper'>
                     <span className='title'>Última Edición:</span>

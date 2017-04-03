@@ -66,7 +66,7 @@ var AccionesHistorial = React.createClass({
                         <span className='bold'>Comentarios: </span><span>{accion.comentarios}</span>
                     </div>
                     <div>
-                        <span className='bold'>Creada por: </span><span>{accion.creador.nombre + ' ' + accion.creador.apellido}</span>
+                        <span className='bold'>Creada por: </span><span>{accion.creador ? (accion.creador.nombre + ' ' + accion.creador.apellido) : ''}</span>
                     </div>
                     <div>
                         <span className='bold'>Realizada el: </span><span>{accion.fecha}</span>
