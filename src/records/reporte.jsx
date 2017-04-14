@@ -13,6 +13,7 @@ var ReporteRecord = Immutable.Record({
     id: null,
     numeroContrato: null,
     nombre: '',
+    numeroFactura: null,
     fechaAsignacion: null,
     tipoAsignacion: null,
     tipoContrato: null,
@@ -68,6 +69,9 @@ class Reporte extends ReporteRecord {
 
         // Nombre
         definition.nombre = definition.nombre;
+
+        // Número de factura
+        definition.numeroFactura = definition.numeroFactura;
 
         // Fecha de Asignación
         definition.fechaAsignacion = definition.fechaAsignacion;
@@ -201,6 +205,7 @@ class Reporte extends ReporteRecord {
             id: this.id,
             numeroContrato: this.numeroContrato,
             nombre: this.nombre,
+            numeroFactura: this.numeroFactura,
             fechaAsignacion: this.fechaAsignacion,
             tipoAsignacion: this.tipoAsignacion,
             tipoContrato: this.tipoContrato,
