@@ -250,7 +250,7 @@ class Accion extends AccionRecord {
         }
 
         if (accion.tipo === 10) {
-            contrato.reporte.fechaAdmision = accion.respuestas.fechaAcuerdo;
+            contrato.reporte.fechaDiligencia = accion.respuestas.fechaDiligencia;
             contrato.reporte.resultadoEmplazamiento = accion.respuestas.resultado;
         }
 

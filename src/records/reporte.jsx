@@ -26,6 +26,7 @@ var ReporteRecord = Immutable.Record({
     expediente: '',
     juzgado: '',
     tipoJuicio: '',
+    fechaDiligencia: null,
     fechaAcuerdo: null,
     comentarioAcuerdoPendiente: null,
     fechaDesechamiento: null,
@@ -113,6 +114,10 @@ class Reporte extends ReporteRecord {
 
         // Tipo de Juicio
         definition.tipoJuicio = definition.tipoJuicio;
+
+        // Fecha de Diligencia
+        definition.fechaDiligencia = definition.fechaDiligencia;
+        formattedValues.fechaDiligencia = definition.fechaDiligencia ? moment(definition.fechaDiligencia.iso).format('D MMMM, YYYY') : null;
 
         // Fecha de Acuerdo
         definition.fechaAcuerdo = definition.fechaAcuerdo;
@@ -210,6 +215,7 @@ class Reporte extends ReporteRecord {
             tipoJuicio: this.tipoJuicio,
             tipoAdmision: this.tipoAdmision,
             tipoExhorto: this.tipoExhorto,
+            fechaDiligencia: this.fechaDiligencia,
             fechaAcuerdo: this.fechaAcuerdo,
             comentarioAcuerdoPendiente: this.comentarioAcuerdoPendiente,
             fechaDesechamiento: this.fechaDesechamiento,
