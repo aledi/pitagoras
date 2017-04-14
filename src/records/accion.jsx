@@ -26,7 +26,7 @@ var ACCIONES_TYPES = {
     7: 'Recolección de documentos',
     8: 'Demanda prevenida',
     9: 'Desahogo / Cierre',
-    10: 'Demanda admitida',
+    10: 'Emplazamiento',
     11: 'Diligencia de embargo',
     13: 'Fecha Audiencia Previa',
     14: 'Fecha Audiencia Pruebas', // Oral
@@ -169,7 +169,7 @@ class Accion extends AccionRecord {
             }
         }
 
-        // Notification for Demanda Admitida & Diligencia de Embargo
+        // Notification for Emplazamiento & Diligencia de Embargo
         if ((accion.tipo === 10 && accion.respuestas.tipoJuicio === 'Ejecutiva Mercantil') || (accion.tipo === 11 && accion.respuestas.resultado === 'Se dejó citatorio')) {
             if (accion.respuestas.cita.fecha) {
                 contrato.notificacion = {

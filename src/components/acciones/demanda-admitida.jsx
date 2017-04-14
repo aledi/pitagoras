@@ -14,7 +14,7 @@ var DateSelect = require('src/components/shared/date-select');
 var TimeSelect = require('src/components/shared/time-select');
 
 // -----------------------------------------------------------------------------------------------
-// DemandaAdmitida
+// Emplazamiento
 // -----------------------------------------------------------------------------------------------
 
 var options = [
@@ -26,7 +26,7 @@ var options = [
     'Domicilio ilocalizable'
 ];
 
-var DemandaAdmitida = React.createClass({
+var Emplazamiento = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
         var lastAccion = this.props.lastAccion;
@@ -67,7 +67,7 @@ var DemandaAdmitida = React.createClass({
         var respuestas = this.state.respuestas;
 
         return (
-            <div className='demanda-admitida accion-form'>
+            <div className='emplazamiento accion-form'>
                 <div className='element-wrapper'>
                     <h5>Tipo de Juicio</h5>
                     <div>
@@ -220,4 +220,4 @@ var DemandaAdmitida = React.createClass({
     }
 });
 
-module.exports = DemandaAdmitida;
+module.exports = Emplazamiento;

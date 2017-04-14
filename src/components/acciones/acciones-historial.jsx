@@ -19,7 +19,7 @@ var DemandaDesechada = require('src/components/respuestas/demanda-desechada'); /
 var RecoleccionDocumentos = require('src/components/respuestas/recoleccion-documentos'); // 7
 var DemandaPrevenida = require('src/components/respuestas/demanda-prevenida'); // 8
 var Desahogo = require('src/components/respuestas/desahogo'); // 9
-var DemandaAdmitida = require('src/components/respuestas/demanda-admitida'); // 10
+var Emplazamiento = require('src/components/respuestas/emplazamiento'); // 10
 var DiligenciaEmbargo = require('src/components/respuestas/diligencia-embargo'); // 11
 var FechaAudienciaPrevia = require('src/components/respuestas/fecha-audiencia-previa'); // 13
 var FechaAudienciaPrueba = require('src/components/respuestas/fecha-audiencia-prueba'); // 14
@@ -101,7 +101,7 @@ var AccionesHistorial = React.createClass({
             case 9:
                 return (<Desahogo accion={accion} />);
             case 10:
-                return (<DemandaAdmitida accion={accion} />);
+                return (<Emplazamiento accion={accion} />);
             case 11:
                 return (<DiligenciaEmbargo accion={accion} />);
             case 13:

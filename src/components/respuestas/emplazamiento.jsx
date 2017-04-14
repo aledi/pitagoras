@@ -9,10 +9,10 @@ var React = require('react');
 var DateUtils = require('src/utils/date-utils');
 
 // -----------------------------------------------------------------------------------------------
-// Demanda Admitida Respuestas
+// Emplazamiento Respuestas
 // -----------------------------------------------------------------------------------------------
 
-var DemandaAdmitida = React.createClass({
+var Emplazamiento = React.createClass({
     render: function () {
         var respuestas = this.props.accion.respuestas;
 
@@ -87,4 +87,4 @@ var DemandaAdmitida = React.createClass({
     }
 });
 
-module.exports = DemandaAdmitida;
+module.exports = Emplazamiento;
