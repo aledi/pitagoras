@@ -226,6 +226,8 @@ class Accion extends AccionRecord {
         }
 
         if (accion.tipo === 4) {
+            contrato.reporte.tipoAdmision = accion.respuestas.localExhorto;
+            contrato.reporte.tipoExhorto = accion.respuestas.tipoDisposicion || accion.respuestas.tipoExhorto;
             contrato.reporte.fechaAcuerdo = accion.respuestas.fechaAcuerdo;
         }
 

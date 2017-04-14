@@ -32,9 +32,10 @@ var ReporteRecord = Immutable.Record({
     motivoDesechamiento: '',
     fechaPresentacionAmparo: null,
     resolucionAmparo: null,
+    tipoAdmision: null,
+    tipoExhorto: null,
     fechaResolucionAmparo: null,
     horariosJuzgado: null,
-    fechaAdmision: null,
     fechaAudienciaPrevia: null,
     fechaAudienciaPrueba: null,
     fechaSentencia: null,
@@ -170,9 +171,11 @@ class Reporte extends ReporteRecord {
         definition.horariosJuzgado = definition.horariosJuzgado;
         formattedValues.horariosJuzgado = definition.horariosJuzgado && definition.horariosJuzgado.fecha ? moment(definition.horariosJuzgado.fecha.iso).format('D MMMM, YYYY') + (definition.horariosJuzgado.horario.start != null && definition.horariosJuzgado.horario.end != null ? (' de ' + definition.horariosJuzgado.horario.start + ' a ' + definition.horariosJuzgado.horario.end) : '') : null;
 
-        // Fecha de Admisión
-        definition.fechaAdmision = definition.fechaAdmision;
-        formattedValues.fechaAdmision = definition.fechaAdmision ? moment(definition.fechaAdmision.iso).format('D MMMM, YYYY') : null;
+        // Tipo de admisión
+        definition.tipoAdmision = definition.tipoAdmision;
+
+        // Tipo de admisión
+        definition.tipoExhorto = definition.tipoExhorto;
 
         // Resultado de emplazamiento
         definition.resultadoEmplazamiento = definition.resultadoEmplazamiento;
@@ -205,12 +208,13 @@ class Reporte extends ReporteRecord {
             expediente: this.expediente,
             juzgado: this.juzgado,
             tipoJuicio: this.tipoJuicio,
+            tipoAdmision: this.tipoAdmision,
+            tipoExhorto: this.tipoExhorto,
             fechaAcuerdo: this.fechaAcuerdo,
             comentarioAcuerdoPendiente: this.comentarioAcuerdoPendiente,
             fechaDesechamiento: this.fechaDesechamiento,
             motivoDesechamiento: this.motivoDesechamiento,
             horariosJuzgado: this.horariosJuzgado,
-            fechaAdmision: this.fechaAdmision,
             resultadoEmplazamiento: this.resultadoEmplazamiento,
             etapaActual: this.etapaActual,
             extrajudicial: this.extrajudicial || []

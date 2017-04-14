@@ -13,7 +13,7 @@ var ContratoRecord = require('src/records/contrato');
 // ReportesTabla
 // -----------------------------------------------------------------------------------------------
 
-var tableMinWidth = '7600px';
+var tableMinWidth = '7800px';
 
 var ReportesTabla = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
@@ -100,6 +100,12 @@ var ReportesTabla = React.createClass({
                         <span>Tipo de Juicio</span>
                     </th>
                     <th style={{width: '200px'}}>
+                        <span>Tipo de Admisión</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Tipo de Exhorto</span>
+                    </th>
+                    <th style={{width: '200px'}}>
                         <span>Fecha de Acuerdo</span>
                     </th>
                     <th style={{width: '350px'}}>
@@ -122,9 +128,6 @@ var ReportesTabla = React.createClass({
                     </th>
                     <th style={{width: '350px'}}>
                         <span>Horarios Juzgados</span>
-                    </th>
-                    <th style={{width: '200px'}}>
-                        <span>Fecha de Admisión</span>
                     </th>
                     <th style={{width: '250px'}}>
                         <span>Fecha de Audiencia Previa</span>
@@ -182,6 +185,8 @@ var ReportesTabla = React.createClass({
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.expediente}</span></td>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.juzgado}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.tipoJuicio}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.tipoAdmision}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.tipoExhorto}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAcuerdo}</span></td>
                     <td style={{width: '350px', textAlign: 'left'}}><span>{reporte.comentarioAcuerdoPendiente}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaDesechamiento}</span></td>
@@ -190,7 +195,6 @@ var ReportesTabla = React.createClass({
                     <td style={{width: '150px', textAlign: 'center'}}><span>{reporte.resolucionAmparo}</span></td>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaResolucionAmparo}</span></td>
                     <td style={{width: '350px', textAlign: 'left'}}><span>{reporte.formattedValues.horariosJuzgado}</span></td>
-                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAdmision}</span></td>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAudienciaPrevia}</span></td>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAudienciaPrueba}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaSentencia}</span></td>
