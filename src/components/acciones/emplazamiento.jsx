@@ -6,7 +6,6 @@
 
 var React = require('react');
 var Parse = require('parse');
-var moment = require('moment');
 
 var AccionesMixin = require('./acciones-mixin');
 
@@ -18,11 +17,11 @@ var TimeSelect = require('src/components/shared/time-select');
 // -----------------------------------------------------------------------------------------------
 
 var options = [
+    '',
     'No vive en el domicilio',
     'Se niega a recibir demanda',
     'Se realizó exitosamente',
     'Oficios de búsqueda',
-    'Exhorto',
     'Domicilio ilocalizable'
 ];
 
@@ -38,8 +37,7 @@ var Emplazamiento = React.createClass({
             contrato: this.props.contrato,
             respuestas: {
                 tipoJuicio: lastAccion ? lastAccion.respuestas.tipoJuicio : 'Oral Mercantil',
-                fechaAcuerdo: lastAccion ? lastAccion.respuestas.fechaAcuerdo : null,
-                fechaPublicacion: lastAccion ? lastAccion.respuestas.fechaPublicacion : null,
+                fechaDiligencia: lastAccion ? lastAccion.respuestas.fechaDiligencia : null,
                 resultado: lastAccion ? lastAccion.respuestas.resultado : 'No vive en el domicilio'
             },
             disabled: false
@@ -92,12 +90,8 @@ var Emplazamiento = React.createClass({
                     </div>
                 </div>
                 <div className='element-wrapper'>
-                    <h5>Fecha de Acuerdo</h5>
-                    <DateSelect date={this.state.respuestas.fechaAcuerdo} onChange={this.handleFechaChange.bind(this, 'fechaAcuerdo')} />
-                </div>
-                <div className='element-wrapper'>
-                    <h5>Fecha de Publicación</h5>
-                    <DateSelect date={this.state.respuestas.fechaPublicacion} onChange={this.handleFechaChange.bind(this, 'fechaPublicacion')} />
+                    <h5>Fecha de Diligencia</h5>
+                    <DateSelect date={this.state.respuestas.fechaDiligencia} onChange={this.handleFechaChange.bind(this, 'fechaDiligencia')} />
                 </div>
                 {this.renderResultadoSelect()}
                 {this.renderTextInputs()}

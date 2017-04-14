@@ -22,8 +22,7 @@ var Emplazamiento = React.createClass({
                     <span className='bold'>Tipo de juicio: </span>
                     <span>{respuestas.tipoJuicio}</span>
                 </div>
-                {this.renderDate(respuestas.fechaAcuerdo, 'Fecha de acuerdo')}
-                {this.renderDate(respuestas.fechaPublicacion, 'Fecha de publicación')}
+                {this.renderDate(respuestas.fechaDiligencia, 'Fecha de Diligencia')}
                 {this.renderMoreRespuestas()}
             </div>
         );
