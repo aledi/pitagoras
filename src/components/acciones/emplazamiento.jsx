@@ -91,7 +91,7 @@ var Emplazamiento = React.createClass({
                 </div>
                 <div className='element-wrapper'>
                     <h5>Fecha de Diligencia</h5>
-                    <DateSelect date={this.state.respuestas.fechaDiligencia} onChange={this.handleFechaChange.bind(this, 'fechaDiligencia')} />
+                    <DateSelect date={this.state.respuestas.fechaDiligencia} onChange={this.handleFechaChange} />
                 </div>
                 {this.renderResultadoSelect()}
                 {this.renderTextInputs()}
@@ -189,9 +189,9 @@ var Emplazamiento = React.createClass({
         respuestas[key] = event.target.value;
         this.setState({respuestas: respuestas});
     },
-    handleFechaChange: function (key, date) {
+    handleFechaChange: function (date) {
         var state = {respuestas: this.state.respuestas};
-        state.respuestas[key] = date ? date.clone() : null;
+        state.respuestas.fechaDiligencia = date ? date.clone() : null;
 
         this.setState(state);
     },
