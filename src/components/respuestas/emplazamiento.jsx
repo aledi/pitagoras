@@ -31,12 +31,7 @@ var Emplazamiento = React.createClass({
         var respuestas = this.props.accion.respuestas;
 
         if (respuestas.tipoJuicio === 'Oral Mercantil') {
-            return (
-                <div>
-                    <span className='bold'>Resultado: </span>
-                    <span>{respuestas.resultado}</span>
-                </div>
-            );
+            this.renderResultado();
         }
 
         return (
@@ -55,6 +50,18 @@ var Emplazamiento = React.createClass({
                     <span className='bold'>Teléfono del actuario: </span>
                     <span>{respuestas.cita.telefonoActuario}</span>
                 </div>
+            </div>
+        );
+    },
+    renderResultado: function () {
+        if (!this.props.accion.respuestas.resultado) {
+            return;
+        }
+
+        return (
+            <div>
+                <span className='bold'>Resultado: </span>
+                <span>{this.props.accion.respuestas.resultado}</span>
             </div>
         );
     },
