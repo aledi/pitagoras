@@ -31,7 +31,7 @@ var Emplazamiento = React.createClass({
         var respuestas = this.props.accion.respuestas;
 
         if (respuestas.tipoJuicio === 'Oral Mercantil') {
-            this.renderResultado();
+            return this.renderResultado();
         }
 
         return (
