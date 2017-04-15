@@ -9,10 +9,10 @@ var React = require('react');
 var DateUtils = require('src/utils/date-utils');
 
 // -----------------------------------------------------------------------------------------------
-// Demanda Admitida Respuestas
+// Emplazamiento Respuestas
 // -----------------------------------------------------------------------------------------------
 
-var DemandaAdmitida = React.createClass({
+var Emplazamiento = React.createClass({
     render: function () {
         var respuestas = this.props.accion.respuestas;
 
@@ -22,8 +22,7 @@ var DemandaAdmitida = React.createClass({
                     <span className='bold'>Tipo de juicio: </span>
                     <span>{respuestas.tipoJuicio}</span>
                 </div>
-                {this.renderDate(respuestas.fechaAcuerdo, 'Fecha de acuerdo')}
-                {this.renderDate(respuestas.fechaPublicacion, 'Fecha de publicación')}
+                {this.renderDate(respuestas.fechaDiligencia, 'Fecha de Diligencia')}
                 {this.renderMoreRespuestas()}
             </div>
         );
@@ -32,12 +31,7 @@ var DemandaAdmitida = React.createClass({
         var respuestas = this.props.accion.respuestas;
 
         if (respuestas.tipoJuicio === 'Oral Mercantil') {
-            return (
-                <div>
-                    <span className='bold'>Resultado: </span>
-                    <span>{respuestas.resultado}</span>
-                </div>
-            );
+            return this.renderResultado();
         }
 
         return (
@@ -56,6 +50,18 @@ var DemandaAdmitida = React.createClass({
                     <span className='bold'>Teléfono del actuario: </span>
                     <span>{respuestas.cita.telefonoActuario}</span>
                 </div>
+            </div>
+        );
+    },
+    renderResultado: function () {
+        if (!this.props.accion.respuestas.resultado) {
+            return;
+        }
+
+        return (
+            <div>
+                <span className='bold'>Resultado: </span>
+                <span>{this.props.accion.respuestas.resultado}</span>
             </div>
         );
     },
@@ -87,4 +93,4 @@ var DemandaAdmitida = React.createClass({
     }
 });
 
-module.exports = DemandaAdmitida;
+module.exports = Emplazamiento;

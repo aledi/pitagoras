@@ -13,7 +13,11 @@ var ContratoRecord = require('src/records/contrato');
 // ReportesTabla
 // -----------------------------------------------------------------------------------------------
 
+<<<<<<< HEAD
 var tableMinWidth = '8250px';
+=======
+var tableMinWidth = '7400px';
+>>>>>>> development
 
 var ReportesTabla = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},

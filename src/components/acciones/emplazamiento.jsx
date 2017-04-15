@@ -6,7 +6,6 @@
 
 var React = require('react');
 var Parse = require('parse');
-var moment = require('moment');
 
 var AccionesMixin = require('./acciones-mixin');
 
@@ -14,19 +13,19 @@ var DateSelect = require('src/components/shared/date-select');
 var TimeSelect = require('src/components/shared/time-select');
 
 // -----------------------------------------------------------------------------------------------
-// DemandaAdmitida
+// Emplazamiento
 // -----------------------------------------------------------------------------------------------
 
 var options = [
+    '',
     'No vive en el domicilio',
     'Se niega a recibir demanda',
     'Se realizó exitosamente',
     'Oficios de búsqueda',
-    'Exhorto',
     'Domicilio ilocalizable'
 ];
 
-var DemandaAdmitida = React.createClass({
+var Emplazamiento = React.createClass({
     mixins: [AccionesMixin],
     getInitialState: function () {
         var lastAccion = this.props.lastAccion;
@@ -38,8 +37,7 @@ var DemandaAdmitida = React.createClass({
             contrato: this.props.contrato,
             respuestas: {
                 tipoJuicio: lastAccion ? lastAccion.respuestas.tipoJuicio : 'Oral Mercantil',
-                fechaAcuerdo: lastAccion ? lastAccion.respuestas.fechaAcuerdo : null,
-                fechaPublicacion: lastAccion ? lastAccion.respuestas.fechaPublicacion : null,
+                fechaDiligencia: lastAccion ? lastAccion.respuestas.fechaDiligencia : null,
                 resultado: lastAccion ? lastAccion.respuestas.resultado : 'No vive en el domicilio'
             },
             disabled: false
@@ -67,7 +65,7 @@ var DemandaAdmitida = React.createClass({
         var respuestas = this.state.respuestas;
 
         return (
-            <div className='demanda-admitida accion-form'>
+            <div className='emplazamiento accion-form'>
                 <div className='element-wrapper'>
                     <h5>Tipo de Juicio</h5>
                     <div>
@@ -92,12 +90,8 @@ var DemandaAdmitida = React.createClass({
                     </div>
                 </div>
                 <div className='element-wrapper'>
-                    <h5>Fecha de Acuerdo</h5>
-                    <DateSelect date={this.state.respuestas.fechaAcuerdo} onChange={this.handleFechaChange.bind(this, 'fechaAcuerdo')} />
-                </div>
-                <div className='element-wrapper'>
-                    <h5>Fecha de Publicación</h5>
-                    <DateSelect date={this.state.respuestas.fechaPublicacion} onChange={this.handleFechaChange.bind(this, 'fechaPublicacion')} />
+                    <h5>Fecha de Diligencia</h5>
+                    <DateSelect date={this.state.respuestas.fechaDiligencia} onChange={this.handleFechaChange} />
                 </div>
                 {this.renderResultadoSelect()}
                 {this.renderTextInputs()}
@@ -195,9 +189,9 @@ var DemandaAdmitida = React.createClass({
         respuestas[key] = event.target.value;
         this.setState({respuestas: respuestas});
     },
-    handleFechaChange: function (key, date) {
+    handleFechaChange: function (date) {
         var state = {respuestas: this.state.respuestas};
-        state.respuestas[key] = date ? date.clone() : null;
+        state.respuestas.fechaDiligencia = date ? date.clone() : null;
 
         this.setState(state);
     },
@@ -220,4 +214,4 @@ var DemandaAdmitida = React.createClass({
     }
 });
 
-module.exports = DemandaAdmitida;
+module.exports = Emplazamiento;

@@ -27,7 +27,7 @@ var DemandaDesechada = require('src/components/acciones/demanda-desechada'); // 
 var RecoleccionDocumentos = require('src/components/acciones/recoleccion-documentos'); // 7
 var DemandaPrevenida = require('src/components/acciones/demanda-prevenida'); // 8
 var Desahogo = require('src/components/acciones/desahogo'); // 9
-var DemandaAdmitida = require('src/components/acciones/demanda-admitida'); // 10
+var Emplazamiento = require('src/components/acciones/emplazamiento'); // 10
 var DiligenciaEmbargo = require('src/components/acciones/diligencia-embargo'); // 11
 var FechaAudienciaPrevia = require('src/components/acciones/fecha-audiencia-previa'); // 13
 var FechaAudienciaPrueba = require('src/components/acciones/fecha-audiencia-prueba'); // 14
@@ -101,7 +101,7 @@ var ContratoDetalle = React.createClass({
                 },
                 {
                     id: 10,
-                    component: <DemandaAdmitida contrato={props.contrato} disabled={props.savingAccion} key='demandaAdmitida' />
+                    component: <Emplazamiento contrato={props.contrato} disabled={props.savingAccion} key='emplazamiento' />
                 },
                 {
                     id: 11,

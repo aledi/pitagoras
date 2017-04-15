@@ -183,7 +183,7 @@ class Reporte extends ReporteRecord {
         // Tipo de admisión
         definition.tipoAdmision = definition.tipoAdmision;
 
-        // Tipo de admisión
+        // Tipo de exhorto
         definition.tipoExhorto = definition.tipoExhorto;
 
         // Resultado de emplazamiento
