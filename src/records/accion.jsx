@@ -26,7 +26,7 @@ var ACCIONES_TYPES = {
     7: 'Recolección de documentos',
     8: 'Demanda prevenida',
     9: 'Desahogo / Cierre',
-    10: 'Demanda admitida',
+    10: 'Emplazamiento',
     11: 'Diligencia de embargo',
     13: 'Fecha Audiencia Previa',
     14: 'Fecha Audiencia Pruebas', // Oral
@@ -120,6 +120,10 @@ class Accion extends AccionRecord {
             accion.respuestas.cita.fecha = moment.isMoment(accion.respuestas.cita.fecha) ? accion.respuestas.cita.fecha.toDate() : moment(accion.respuestas.cita.fecha.iso ? accion.respuestas.cita.fecha.iso : accion.respuestas.cita.fecha).toDate();
         }
 
+        if (accion.respuestas.fechaDiligencia) {
+            accion.respuestas.fechaDiligencia = moment.isMoment(accion.respuestas.fechaDiligencia) ? accion.respuestas.fechaDiligencia.toDate() : moment(accion.respuestas.fechaDiligencia.iso ? accion.respuestas.fechaDiligencia.iso : accion.respuestas.fechaDiligencia).toDate();
+        }
+
         if (accion.respuestas.fechaAcuerdo) {
             accion.respuestas.fechaAcuerdo = moment.isMoment(accion.respuestas.fechaAcuerdo) ? accion.respuestas.fechaAcuerdo.toDate() : moment(accion.respuestas.fechaAcuerdo.iso ? accion.respuestas.fechaAcuerdo.iso : accion.respuestas.fechaAcuerdo).toDate();
         }
@@ -169,7 +173,7 @@ class Accion extends AccionRecord {
             }
         }
 
-        // Notification for Demanda Admitida & Diligencia de Embargo
+        // Notification for Emplazamiento & Diligencia de Embargo
         if ((accion.tipo === 10 && accion.respuestas.tipoJuicio === 'Ejecutiva Mercantil') || (accion.tipo === 11 && accion.respuestas.resultado === 'Se dejó citatorio')) {
             if (accion.respuestas.cita.fecha) {
                 contrato.notificacion = {
@@ -248,7 +252,6 @@ class Accion extends AccionRecord {
         }
 
         if (accion.tipo === 10) {
-            contrato.reporte.fechaAdmision = accion.respuestas.fechaAcuerdo;
             contrato.reporte.resultadoEmplazamiento = accion.respuestas.resultado;
         }
 

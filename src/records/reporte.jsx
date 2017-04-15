@@ -34,7 +34,6 @@ var ReporteRecord = Immutable.Record({
     resolucionAmparo: null,
     fechaResolucionAmparo: null,
     horariosJuzgado: null,
-    fechaAdmision: null,
     fechaAudienciaPrevia: null,
     fechaAudienciaPrueba: null,
     fechaSentencia: null,
@@ -170,10 +169,6 @@ class Reporte extends ReporteRecord {
         definition.horariosJuzgado = definition.horariosJuzgado;
         formattedValues.horariosJuzgado = definition.horariosJuzgado && definition.horariosJuzgado.fecha ? moment(definition.horariosJuzgado.fecha.iso).format('D MMMM, YYYY') + (definition.horariosJuzgado.horario.start != null && definition.horariosJuzgado.horario.end != null ? (' de ' + definition.horariosJuzgado.horario.start + ' a ' + definition.horariosJuzgado.horario.end) : '') : null;
 
-        // Fecha de Admisión
-        definition.fechaAdmision = definition.fechaAdmision;
-        formattedValues.fechaAdmision = definition.fechaAdmision ? moment(definition.fechaAdmision.iso).format('D MMMM, YYYY') : null;
-
         // Resultado de emplazamiento
         definition.resultadoEmplazamiento = definition.resultadoEmplazamiento;
 
@@ -210,7 +205,6 @@ class Reporte extends ReporteRecord {
             fechaDesechamiento: this.fechaDesechamiento,
             motivoDesechamiento: this.motivoDesechamiento,
             horariosJuzgado: this.horariosJuzgado,
-            fechaAdmision: this.fechaAdmision,
             resultadoEmplazamiento: this.resultadoEmplazamiento,
             etapaActual: this.etapaActual,
             extrajudicial: this.extrajudicial || []
