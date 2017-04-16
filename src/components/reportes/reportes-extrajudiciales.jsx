@@ -10,7 +10,7 @@ var React = require('react');
 // ReportesTabla
 // -----------------------------------------------------------------------------------------------
 
-var tableMinWidth = '8250px';
+var tableMinWidth = '1800px';
 
 var ReportesExtrajudiciales = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
@@ -57,13 +57,13 @@ var ReportesExtrajudiciales = React.createClass({
                     <th style={{width: '350px'}}>
                         <span>Nombre</span>
                     </th>
-                    <th style={{width: '250px'}}>
+                    <th style={{width: '200px'}}>
                         <span>Liquidación</span>
                     </th>
-                    <th style={{width: '350px'}}>
+                    <th style={{width: '200px'}}>
                         <span>Convenio</span>
                     </th>
-                    <th style={{width: '250px'}}>
+                    <th style={{width: '200px'}}>
                         <span>Valor en Libros</span>
                     </th>
                     <th style={{width: '200px'}}>
@@ -91,9 +91,9 @@ var ReportesExtrajudiciales = React.createClass({
                 <tr className='content-row' key={reporte.id}>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.numeroContrato}</span></td>
                     <td style={{width: '350px', textAlign: 'left'}}><span>{reporte.nombre}</span></td>
-                    <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.liquidacion}</span></td>
-                    <td style={{width: '350px', textAlign: 'left'}}><span>{reporte.convenio}</span></td>
-                    <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.valorLibros}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.liquidacion}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.convenio}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.valorLibros}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaRepo}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.montoVenta}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaVenta}</span></td>
