@@ -13,6 +13,7 @@ var ReporteRecord = Immutable.Record({
     id: null,
     numeroContrato: null,
     nombre: '',
+    numeroFactura: null,
     fechaAsignacion: null,
     tipoAsignacion: null,
     tipoContrato: null,
@@ -26,12 +27,15 @@ var ReporteRecord = Immutable.Record({
     expediente: '',
     juzgado: '',
     tipoJuicio: '',
+    fechaDiligencia: null,
     fechaAcuerdo: null,
     comentarioAcuerdoPendiente: null,
     fechaDesechamiento: null,
     motivoDesechamiento: '',
     fechaPresentacionAmparo: null,
     resolucionAmparo: null,
+    tipoAdmision: null,
+    tipoExhorto: null,
     fechaResolucionAmparo: null,
     horariosJuzgado: null,
     fechaAudienciaPrevia: null,
@@ -65,6 +69,9 @@ class Reporte extends ReporteRecord {
 
         // Nombre
         definition.nombre = definition.nombre;
+
+        // Número de factura
+        definition.numeroFactura = definition.numeroFactura;
 
         // Fecha de Asignación
         definition.fechaAsignacion = definition.fechaAsignacion;
@@ -111,6 +118,10 @@ class Reporte extends ReporteRecord {
 
         // Tipo de Juicio
         definition.tipoJuicio = definition.tipoJuicio;
+
+        // Fecha de Diligencia
+        definition.fechaDiligencia = definition.fechaDiligencia;
+        formattedValues.fechaDiligencia = definition.fechaDiligencia ? moment(definition.fechaDiligencia.iso).format('D MMMM, YYYY') : null;
 
         // Fecha de Acuerdo
         definition.fechaAcuerdo = definition.fechaAcuerdo;
@@ -169,6 +180,12 @@ class Reporte extends ReporteRecord {
         definition.horariosJuzgado = definition.horariosJuzgado;
         formattedValues.horariosJuzgado = definition.horariosJuzgado && definition.horariosJuzgado.fecha ? moment(definition.horariosJuzgado.fecha.iso).format('D MMMM, YYYY') + (definition.horariosJuzgado.horario.start != null && definition.horariosJuzgado.horario.end != null ? (' de ' + definition.horariosJuzgado.horario.start + ' a ' + definition.horariosJuzgado.horario.end) : '') : null;
 
+        // Tipo de admisión
+        definition.tipoAdmision = definition.tipoAdmision;
+
+        // Tipo de exhorto
+        definition.tipoExhorto = definition.tipoExhorto;
+
         // Resultado de emplazamiento
         definition.resultadoEmplazamiento = definition.resultadoEmplazamiento;
 
@@ -188,6 +205,7 @@ class Reporte extends ReporteRecord {
             id: this.id,
             numeroContrato: this.numeroContrato,
             nombre: this.nombre,
+            numeroFactura: this.numeroFactura,
             fechaAsignacion: this.fechaAsignacion,
             tipoAsignacion: this.tipoAsignacion,
             tipoContrato: this.tipoContrato,
@@ -200,6 +218,9 @@ class Reporte extends ReporteRecord {
             expediente: this.expediente,
             juzgado: this.juzgado,
             tipoJuicio: this.tipoJuicio,
+            tipoAdmision: this.tipoAdmision,
+            tipoExhorto: this.tipoExhorto,
+            fechaDiligencia: this.fechaDiligencia,
             fechaAcuerdo: this.fechaAcuerdo,
             comentarioAcuerdoPendiente: this.comentarioAcuerdoPendiente,
             fechaDesechamiento: this.fechaDesechamiento,

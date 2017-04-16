@@ -230,6 +230,9 @@ class Accion extends AccionRecord {
         }
 
         if (accion.tipo === 4) {
+            contrato.reporte.numeroFactura = accion.respuestas.numeroFactura;
+            contrato.reporte.tipoAdmision = accion.respuestas.localExhorto;
+            contrato.reporte.tipoExhorto = accion.respuestas.tipoDisposicion || accion.respuestas.tipoExhorto;
             contrato.reporte.fechaAcuerdo = accion.respuestas.fechaAcuerdo;
         }
 
@@ -252,6 +255,7 @@ class Accion extends AccionRecord {
         }
 
         if (accion.tipo === 10) {
+            contrato.reporte.fechaDiligencia = accion.respuestas.fechaDiligencia;
             contrato.reporte.resultadoEmplazamiento = accion.respuestas.resultado;
         }
 
