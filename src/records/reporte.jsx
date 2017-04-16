@@ -47,7 +47,12 @@ var ReporteRecord = Immutable.Record({
     fechaAudienciaPruebas: null,
     resultadoEmplazamiento: null,
     etapaActual: null,
-    extrajudicial: null,
+    liquidacion: null,
+    convenio: null,
+    valorLibros: null,
+    fechaRepo: null,
+    montoVenta: null,
+    fechaVenta: null,
 
     formattedValues: {}
 });
@@ -192,8 +197,25 @@ class Reporte extends ReporteRecord {
         // Etapa Actual
         definition.etapaActual = definition.etapaActual;
 
-        // Extrajudicial
-        definition.extrajudicial = definition.extrajudicial;
+        // Liquidacion
+        definition.liquidacion = definition.liquidacion;
+
+        // Convenio
+        definition.convenio = definition.convenio;
+
+        // Valor en Libros
+        definition.valorLibros = definition.valorLibros;
+
+        // Fecha REPO
+        definition.fechaRepo = definition.fechaRepo;
+        formattedValues.fechaRepo = definition.fechaRepo ? moment(definition.fechaRepo.iso).format('D MMMM, YYYY') : null;
+
+        // Monto de venta
+        definition.montoVenta = definition.montoVenta;
+
+        // Fecha de venta
+        definition.fechaVenta = definition.fechaVenta;
+        formattedValues.fechaVenta = definition.fechaVenta ? moment(definition.fechaVenta.iso).format('D MMMM, YYYY') : null;
 
         definition.formattedValues = formattedValues;
 
@@ -228,7 +250,12 @@ class Reporte extends ReporteRecord {
             horariosJuzgado: this.horariosJuzgado,
             resultadoEmplazamiento: this.resultadoEmplazamiento,
             etapaActual: this.etapaActual,
-            extrajudicial: this.extrajudicial || []
+            liquidacion: this.liquidacion,
+            convenio: this.convenio,
+            valorLibros: this.valorLibros,
+            fechaRepo: this.fechaRepo,
+            montoVenta: this.montoVenta,
+            fechaVenta: this.fechaVenta
         };
     }
 }
