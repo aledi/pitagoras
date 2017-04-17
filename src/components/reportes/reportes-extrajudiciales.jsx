@@ -39,7 +39,7 @@ var ReportesExtrajudiciales = React.createClass({
     },
     renderTableBody: function () {
         return (
-            <table className='table-body' id='reportes'>
+            <table className='table-body' id='extrajudiciales'>
                 {this.renderHeader('fake-header')}
                 <tbody>
                     {this.renderReportes()}
