@@ -320,6 +320,10 @@ class Accion extends AccionRecord {
             contrato.reporte.liquidacion = accion.respuestas.liquidacion;
         }
 
+        if (accion.tipo === 23) {
+            contrato.reporte.convenio = accion.respuestas.convenio;
+        }
+
         if (accion.tipo === 24) {
             if (accion.respuestas.lugarCustodia === 'Dealer') {
                 accion.respuestas.lugarCustodia = accion.respuestas.lugarCustodiaText;
