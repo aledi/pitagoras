@@ -11,9 +11,19 @@
         }
     }
 
+    .title-wrapper {
+        margin-bottom: 10px;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: bold;
+        color: #4C586F;
+        font-size: 20px;
+    }
+
     .reportes-table {
         position: absolute;
-        top: 90px;
+        top: 120px;
         left: 0;
         right: 0;
         bottom: 0;
