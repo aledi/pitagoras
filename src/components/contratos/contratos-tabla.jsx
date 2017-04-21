@@ -88,7 +88,7 @@ var ContratosTabla = React.createClass({
     },
     renderTableBodyWrapper: function () {
         return (
-            <div id='table-body-wrapper-contratos' className='table-body-wrapper' style={{minWidth: '2050px'}} tabIndex='1'>
+            <div id='table-body-wrapper-contratos' className='table-body-wrapper' style={{minWidth: '2250px'}} tabIndex='1'>
                 {this.renderTableBody()}
             </div>
         );

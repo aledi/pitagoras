@@ -169,6 +169,7 @@ class Contrato extends ContratoRecord {
         // Fecha de Seguimiento
         definition.fechaSeguimiento = definition.fechaSeguimiento;
         formattedValues.fechaSeguimiento = definition.fechaSeguimiento ? moment(definition.fechaSeguimiento.iso).format('D MMMM, YYYY') : null;
+        sortValues.fechaSeguimiento = definition.fechaSeguimiento ? moment(definition.fechaSeguimiento.iso) : null;
 
         // Last Accion At
         definition.lastAccionAt = definition.lastAccionAt ? moment(definition.lastAccionAt.iso) : moment();
