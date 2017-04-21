@@ -28,6 +28,7 @@ var ACCIONES_TYPES = {
     9: 'Desahogo / Cierre',
     10: 'Emplazamiento',
     11: 'Diligencia de embargo',
+    12: 'Extrajudicial',
     13: 'Fecha Audiencia Previa',
     14: 'Fecha Audiencia Pruebas', // Oral
     15: 'Fecha Sentencia',
@@ -257,6 +258,11 @@ class Accion extends AccionRecord {
         if (accion.tipo === 10) {
             contrato.reporte.fechaDiligencia = accion.respuestas.fechaDiligencia;
             contrato.reporte.resultadoEmplazamiento = accion.respuestas.resultado;
+        }
+
+        if (accion.tipo === 12) {
+            contrato.fechaSeguimiento = accion.respuestas.fechaSeguimiento;
+            contrato.reporte.fechaSeguimiento = accion.respuestas.fechaSeguimiento;
         }
 
         if (accion.tipo === 13) {
