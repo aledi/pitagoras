@@ -53,6 +53,7 @@ var ReporteRecord = Immutable.Record({
     fechaRepo: null,
     montoVenta: null,
     fechaVenta: null,
+    fechaSeguimiento: null,
 
     formattedValues: {}
 });
@@ -217,6 +218,10 @@ class Reporte extends ReporteRecord {
         definition.fechaVenta = definition.fechaVenta;
         formattedValues.fechaVenta = definition.fechaVenta ? moment(definition.fechaVenta.iso).format('D MMMM, YYYY') : null;
 
+        // Fecha de Seguimiento
+        definition.fechaSeguimiento = definition.fechaSeguimiento;
+        formattedValues.fechaSeguimiento = definition.fechaSeguimiento ? moment(definition.fechaSeguimiento.iso).format('D MMMM, YYYY') : null;
+
         definition.formattedValues = formattedValues;
 
         super(definition);
@@ -255,7 +260,8 @@ class Reporte extends ReporteRecord {
             valorLibros: this.valorLibros,
             fechaRepo: this.fechaRepo,
             montoVenta: this.montoVenta,
-            fechaVenta: this.fechaVenta
+            fechaVenta: this.fechaVenta,
+            fechaSeguimiento: this.fechaSeguimiento
         };
     }
 }

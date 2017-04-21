@@ -21,6 +21,7 @@ var DemandaPrevenida = require('src/components/respuestas/demanda-prevenida'); /
 var Desahogo = require('src/components/respuestas/desahogo'); // 9
 var Emplazamiento = require('src/components/respuestas/emplazamiento'); // 10
 var DiligenciaEmbargo = require('src/components/respuestas/diligencia-embargo'); // 11
+var Extrajudicial = require('src/components/respuestas/extrajudicial'); // 12
 var FechaAudienciaPrevia = require('src/components/respuestas/fecha-audiencia-previa'); // 13
 var FechaAudienciaPrueba = require('src/components/respuestas/fecha-audiencia-prueba'); // 14
 var FechaSentencia = require('src/components/respuestas/fecha-sentencia'); // 15
@@ -104,6 +105,8 @@ var AccionesHistorial = React.createClass({
                 return (<Emplazamiento accion={accion} />);
             case 11:
                 return (<DiligenciaEmbargo accion={accion} />);
+            case 12:
+                return (<Extrajudicial accion={accion} />);
             case 13:
                 return (<FechaAudienciaPrevia accion={accion} />);
             case 14:

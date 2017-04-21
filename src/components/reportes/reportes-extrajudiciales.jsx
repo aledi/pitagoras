@@ -10,7 +10,7 @@ var React = require('react');
 // ReportesTabla
 // -----------------------------------------------------------------------------------------------
 
-var tableMinWidth = '1800px';
+var tableMinWidth = '2000px';
 
 var ReportesExtrajudiciales = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
@@ -58,6 +58,9 @@ var ReportesExtrajudiciales = React.createClass({
                         <span>Nombre</span>
                     </th>
                     <th style={{width: '200px'}}>
+                        <span>Fecha de Seguimiento</span>
+                    </th>
+                    <th style={{width: '200px'}}>
                         <span>Liquidación</span>
                     </th>
                     <th style={{width: '200px'}}>
@@ -91,6 +94,7 @@ var ReportesExtrajudiciales = React.createClass({
                 <tr className='content-row' key={reporte.id}>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.numeroContrato}</span></td>
                     <td style={{width: '350px', textAlign: 'left'}}><span>{reporte.nombre}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaSeguimiento}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.liquidacion}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.convenio}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.valorLibros}</span></td>
