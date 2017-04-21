@@ -221,23 +221,13 @@ var ReportesTabla = React.createClass({
     handleKeyUp: function (event) {
         event.persist();
 
-        // Left arrow
-        if (event.keyCode === 37) {
+        // Left & right arrow
+        if (event.keyCode === 37 || event.keyCode === 39) {
             document.getElementById('table-wrapper-reportes').focus();
         }
 
-        // Up arrow
-        if (event.keyCode === 38) {
-            document.getElementById('table-body-wrapper-reportes').focus();
-        }
-
-        // Right arrow
-        if (event.keyCode === 39) {
-            document.getElementById('table-wrapper-reportes').focus();
-        }
-
-        // Down arrow
-        if (event.keyCode === 40) {
+        // Up & down arrow
+        if (event.keyCode === 38 || event.keyCode === 40) {
             document.getElementById('table-body-wrapper-reportes').focus();
         }
     }

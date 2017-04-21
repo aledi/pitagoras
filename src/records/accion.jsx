@@ -316,11 +316,24 @@ class Accion extends AccionRecord {
             contrato.reporte.fechaAudienciaPruebas = accion.respuestas.fecha;
         }
 
+        if (accion.tipo === 22) {
+            contrato.reporte.liquidacion = accion.respuestas.liquidacion;
+        }
+
+        if (accion.tipo === 23) {
+            contrato.reporte.convenio = accion.respuestas.convenio;
+        }
+
         if (accion.tipo === 24) {
             if (accion.respuestas.lugarCustodia === 'Dealer') {
                 accion.respuestas.lugarCustodia = accion.respuestas.lugarCustodiaText;
                 delete accion.respuestas.lugarCustodiaText;
             }
+
+            contrato.reporte.valorLibros = accion.respuestas.valorLibros;
+            contrato.reporte.fechaRepo = accion.respuestas.fechaRepo;
+            contrato.reporte.montoVenta = accion.respuestas.montoVenta;
+            contrato.reporte.fechaVenta = accion.respuestas.fechaVenta;
         }
 
         contrato.reporte.etapaActual = accion.tipo;
