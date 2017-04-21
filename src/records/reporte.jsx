@@ -47,6 +47,7 @@ var ReporteRecord = Immutable.Record({
     fechaAudienciaPruebas: null,
     resultadoEmplazamiento: null,
     etapaActual: null,
+    etapaActualExtrajudicial: null,
     liquidacion: null,
     convenio: null,
     valorLibros: null,
@@ -194,8 +195,11 @@ class Reporte extends ReporteRecord {
         // Resultado de emplazamiento
         definition.resultadoEmplazamiento = definition.resultadoEmplazamiento;
 
-        // Etapa Actual
+        // Etapa Actual Judicial
         definition.etapaActual = definition.etapaActual;
+
+        // Etapa Actual Extrajudicial
+        definition.etapaActualExtrajudicial = definition.etapaActualExtrajudicial;
 
         // Liquidacion
         definition.liquidacion = definition.liquidacion;
@@ -250,6 +254,7 @@ class Reporte extends ReporteRecord {
             horariosJuzgado: this.horariosJuzgado,
             resultadoEmplazamiento: this.resultadoEmplazamiento,
             etapaActual: this.etapaActual,
+            etapaActualExtrajudicial: this.etapaActualExtrajudicial,
             liquidacion: this.liquidacion,
             convenio: this.convenio,
             valorLibros: this.valorLibros,

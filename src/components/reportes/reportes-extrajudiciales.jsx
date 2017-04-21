@@ -6,11 +6,13 @@
 
 var React = require('react');
 
+var AccionRecord = require('src/records/accion');
+
 // -----------------------------------------------------------------------------------------------
 // ReportesTabla
 // -----------------------------------------------------------------------------------------------
 
-var tableMinWidth = '1800px';
+var tableMinWidth = '2050px';
 
 var ReportesExtrajudiciales = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
@@ -75,6 +77,9 @@ var ReportesExtrajudiciales = React.createClass({
                     <th style={{width: '200px'}}>
                         <span>Fecha de Venta</span>
                     </th>
+                    <th style={{width: '250px'}}>
+                        <span>Etapa Actual</span>
+                    </th>
                 </tr>
             </thead>
         );
@@ -97,6 +102,7 @@ var ReportesExtrajudiciales = React.createClass({
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaRepo}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.montoVenta}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaVenta}</span></td>
+                    <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.etapaActualExtrajudicial ? AccionRecord.ACCIONES_TYPES[reporte.etapaActualExtrajudicial] : ''}</span></td>
                 </tr>
             );
         });

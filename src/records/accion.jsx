@@ -336,7 +336,14 @@ class Accion extends AccionRecord {
             contrato.reporte.fechaVenta = accion.respuestas.fechaVenta;
         }
 
-        contrato.reporte.etapaActual = accion.tipo;
+        // Avoid "Extrajudicial" action
+        if (accion.tipo !== 12) {
+            if (accion.tipo <= 21) {
+                contrato.reporte.etapaActual = accion.tipo;
+            } else if (accion.tipo) {
+                contrato.reporte.etapaActualExtrajudicial = accion.tipo;
+            }
+        }
 
         // Save contrato if changed tipoJuicio to show changes immediately
         if (accion.tipo === 3) {
