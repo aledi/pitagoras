@@ -141,7 +141,7 @@ var ContratosTabla = React.createClass({
         var fechaSeguimiento = moment(contrato.fechaSeguimiento.iso).startOf('day');
         var notAttended = contrato.lastAccionAt.clone().startOf('day').isBefore(fechaSeguimiento, 'day');
 
-        if (moment().startOf('day').isSame(fechaSeguimiento, 'day') && !notAttended) {
+        if (moment().startOf('day').isSame(fechaSeguimiento, 'day') && notAttended) {
             return 'yellow';
         }
 
