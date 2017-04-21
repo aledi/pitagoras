@@ -29,6 +29,7 @@ var DemandaPrevenida = require('src/components/acciones/demanda-prevenida'); // 
 var Desahogo = require('src/components/acciones/desahogo'); // 9
 var Emplazamiento = require('src/components/acciones/emplazamiento'); // 10
 var DiligenciaEmbargo = require('src/components/acciones/diligencia-embargo'); // 11
+var Extrajudicial = require('src/components/acciones/extrajudicial'); // 12
 var FechaAudienciaPrevia = require('src/components/acciones/fecha-audiencia-previa'); // 13
 var FechaAudienciaPrueba = require('src/components/acciones/fecha-audiencia-prueba'); // 14
 var FechaSentencia = require('src/components/acciones/fecha-sentencia'); // 15
@@ -175,6 +176,10 @@ var ContratoDetalle = React.createClass({
                 {
                     id: 24,
                     component: <Repo contrato={props.contrato} disabled={props.savingAccion} key='repo' />
+                },
+                {
+                    id: 12,
+                    component: <Extrajudicial contrato={props.contrato} disabled={props.savingAccion} key='extrajudicial' />
                 }
             );
         }

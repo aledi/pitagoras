@@ -63,6 +63,7 @@ var ContratoRecord = Immutable.Record({
     tasa: '',
     certificacionContable: null,
     vehiculo: null,
+    fechaSeguimiento: null,
     notificacion: null,
     lastAccionAt: null,
     reporte: null,
@@ -164,6 +165,11 @@ class Contrato extends ContratoRecord {
         // Fecha Contrato
         definition.fechaContrato = definition.fechaContrato;
         formattedValues.fechaContrato = definition.fechaContrato ? moment(definition.fechaContrato.iso).format('D MMMM, YYYY') : null;
+
+        // Fecha de Seguimiento
+        definition.fechaSeguimiento = definition.fechaSeguimiento;
+        formattedValues.fechaSeguimiento = definition.fechaSeguimiento ? moment(definition.fechaSeguimiento.iso).format('D MMMM, YYYY') : null;
+        sortValues.fechaSeguimiento = definition.fechaSeguimiento ? moment(definition.fechaSeguimiento.iso) : null;
 
         // Last Accion At
         definition.lastAccionAt = definition.lastAccionAt ? moment(definition.lastAccionAt.iso) : moment();
