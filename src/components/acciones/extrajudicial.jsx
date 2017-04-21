@@ -26,7 +26,7 @@ var Extrajudicial = React.createClass({
             creador: Parse.User.current(),
             contrato: this.props.contrato,
             respuestas: {
-                fechaSeguimiento: lastAccion ? lastAccion.respuestas.fechaSeguimiento : null
+                fechaSeguimiento: null
             },
             disabled: false
         };
