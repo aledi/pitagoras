@@ -7,6 +7,8 @@ require('./contratos-tabla.scss');
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
+var classNames = require('classnames');
+var moment = require('moment');
 
 var ContratosActions = require('src/actions/contratos-actions');
 
@@ -112,7 +114,7 @@ var ContratosTabla = React.createClass({
 
         this.props.contratos.forEach(function (contrato) {
             contratos.push(
-                <tr className='content-row' onClick={self.goToContrato.bind(self, contrato.id)} key={contrato.id}>
+                <tr className={classNames('content-row', self.getRowClass(contrato))} onClick={self.goToContrato.bind(self, contrato.id)} key={contrato.id}>
                     <td style={{width: '250px'}}><span className='ellipsis-text'>{contrato.numeroContrato}</span></td>
                     <td style={{width: '350px'}}><span className='ellipsis-text'>{contrato.cliente.formattedValues.nombre}</span></td>
                     <td style={{width: '200px'}}><span className='ellipsis-text'>{contrato.vehiculo.modelo}</span></td>
@@ -130,6 +132,22 @@ var ContratosTabla = React.createClass({
         });
 
         return contratos;
+    },
+    getRowClass: function (contrato) {
+        if (!contrato.fechaSeguimiento) {
+            return;
+        }
+
+        var fechaSeguimiento = moment(contrato.fechaSeguimiento.iso).startOf('day');
+        var notAttended = contrato.lastAccionAt.clone().startOf('day').isBefore(fechaSeguimiento, 'day');
+
+        if (moment().startOf('day').isSame(fechaSeguimiento, 'day') && !notAttended) {
+            return 'yellow';
+        }
+
+        if (moment().startOf('day').isAfter(fechaSeguimiento, 'day') && notAttended) {
+            return 'red';
+        }
     },
     handleInputChange: function (event) {
         this.setState({busquedaInput: event.target.value});
