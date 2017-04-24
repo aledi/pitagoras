@@ -13,7 +13,7 @@ var ContratoRecord = require('src/records/contrato');
 // ReportesTabla
 // -----------------------------------------------------------------------------------------------
 
-var tableMinWidth = '7600px';
+var tableMinWidth = '8250px';
 
 var ReportesTabla = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
@@ -60,6 +60,9 @@ var ReportesTabla = React.createClass({
                     <th style={{width: '350px'}}>
                         <span>Nombre</span>
                     </th>
+                    <th style={{width: '250px'}}>
+                        <span>Número de Factura</span>
+                    </th>
                     <th style={{width: '200px'}}>
                         <span>Fecha de Asignación</span>
                     </th>
@@ -100,6 +103,15 @@ var ReportesTabla = React.createClass({
                         <span>Tipo de Juicio</span>
                     </th>
                     <th style={{width: '200px'}}>
+                        <span>Tipo de Admisión</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Tipo de Exhorto</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Fecha de Diligencia</span>
+                    </th>
+                    <th style={{width: '200px'}}>
                         <span>Fecha de Acuerdo</span>
                     </th>
                     <th style={{width: '350px'}}>
@@ -122,9 +134,6 @@ var ReportesTabla = React.createClass({
                     </th>
                     <th style={{width: '350px'}}>
                         <span>Horarios Juzgados</span>
-                    </th>
-                    <th style={{width: '200px'}}>
-                        <span>Fecha de Admisión</span>
                     </th>
                     <th style={{width: '250px'}}>
                         <span>Fecha de Audiencia Previa</span>
@@ -169,6 +178,7 @@ var ReportesTabla = React.createClass({
                 <tr className='content-row' key={reporte.id}>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.numeroContrato}</span></td>
                     <td style={{width: '350px', textAlign: 'left'}}><span>{reporte.nombre}</span></td>
+                    <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.numeroFactura}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAsignacion}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.tipoAsignacion}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.tipoContrato}</span></td>
@@ -182,6 +192,9 @@ var ReportesTabla = React.createClass({
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.expediente}</span></td>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.juzgado}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.tipoJuicio}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.tipoAdmision}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.tipoExhorto}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaDiligencia}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAcuerdo}</span></td>
                     <td style={{width: '350px', textAlign: 'left'}}><span>{reporte.comentarioAcuerdoPendiente}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaDesechamiento}</span></td>
@@ -190,7 +203,6 @@ var ReportesTabla = React.createClass({
                     <td style={{width: '150px', textAlign: 'center'}}><span>{reporte.resolucionAmparo}</span></td>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaResolucionAmparo}</span></td>
                     <td style={{width: '350px', textAlign: 'left'}}><span>{reporte.formattedValues.horariosJuzgado}</span></td>
-                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAdmision}</span></td>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAudienciaPrevia}</span></td>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaAudienciaPrueba}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaSentencia}</span></td>
@@ -209,23 +221,13 @@ var ReportesTabla = React.createClass({
     handleKeyUp: function (event) {
         event.persist();
 
-        // Left arrow
-        if (event.keyCode === 37) {
+        // Left & right arrow
+        if (event.keyCode === 37 || event.keyCode === 39) {
             document.getElementById('table-wrapper-reportes').focus();
         }
 
-        // Up arrow
-        if (event.keyCode === 38) {
-            document.getElementById('table-body-wrapper-reportes').focus();
-        }
-
-        // Right arrow
-        if (event.keyCode === 39) {
-            document.getElementById('table-wrapper-reportes').focus();
-        }
-
-        // Down arrow
-        if (event.keyCode === 40) {
+        // Up & down arrow
+        if (event.keyCode === 38 || event.keyCode === 40) {
             document.getElementById('table-body-wrapper-reportes').focus();
         }
     }

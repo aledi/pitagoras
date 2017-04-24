@@ -22,11 +22,14 @@ var ReportesContent = React.createClass({
     render: function () {
         return (
             <div className='reportes-content'>
+                <div className='title-wrapper'>
+                    <p> {'Reporte' + (this.state.showingReportesGenerales ? ' Judicial' : ' Extrajudicial')} </p>
+                </div>
                 <div className='buttons-wrapper'>
                    <button className='right-button' onClick={this.toggleReportes}>
-                       {'Mostrar Reporte' + (this.state.showingReportesGenerales ? ' Extrajudiciales' : ' Generales')}
+                       {'Mostrar Reporte' + (this.state.showingReportesGenerales ? ' Extrajudicial' : ' Judicial')}
                    </button>
-                   <button type='button' className='right-button export' onClick={this.exportTable}>Exportar Reportes</button>
+                   <button type='button' className='right-button export' onClick={this.exportTable}>Exportar</button>
                 </div>
                 {this.renderReportes()}
             </div>
@@ -56,7 +59,7 @@ var ReportesContent = React.createClass({
         var a = document.createElement('a');
         document.body.appendChild(a);
         a.href = url;
-        a.download = tipoReportes + '-pitagoras-' + date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear() + '.xls';
+        a.download = 'reporte-' + (tipoReportes === 'reportes' ? 'judicial' : 'extrajudicial') + '-pitagoras-' + date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear() + '.xls';
         a.click();
         setTimeout(function () {
             window.URL.revokeObjectURL(url);

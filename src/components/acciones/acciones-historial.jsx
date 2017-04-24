@@ -19,8 +19,9 @@ var DemandaDesechada = require('src/components/respuestas/demanda-desechada'); /
 var RecoleccionDocumentos = require('src/components/respuestas/recoleccion-documentos'); // 7
 var DemandaPrevenida = require('src/components/respuestas/demanda-prevenida'); // 8
 var Desahogo = require('src/components/respuestas/desahogo'); // 9
-var DemandaAdmitida = require('src/components/respuestas/demanda-admitida'); // 10
+var Emplazamiento = require('src/components/respuestas/emplazamiento'); // 10
 var DiligenciaEmbargo = require('src/components/respuestas/diligencia-embargo'); // 11
+var Extrajudicial = require('src/components/respuestas/extrajudicial'); // 12
 var FechaAudienciaPrevia = require('src/components/respuestas/fecha-audiencia-previa'); // 13
 var FechaAudienciaPrueba = require('src/components/respuestas/fecha-audiencia-prueba'); // 14
 var FechaSentencia = require('src/components/respuestas/fecha-sentencia'); // 15
@@ -30,6 +31,9 @@ var ResolucionAmparoSentencia = require('src/components/respuestas/resolucion-am
 var Apelacion = require('src/components/respuestas/apelacion'); // 19
 var SentenciaApelacion = require('src/components/respuestas/sentencia-apelacion'); // 20
 var FechaAudienciaPruebas = require('src/components/respuestas/fecha-audiencia-pruebas'); // 21
+var Liquidacion = require('src/components/respuestas/liquidacion'); // 22
+var Convenio = require('src/components/respuestas/convenio'); // 23
+var Repo = require('src/components/respuestas/repo'); // 24
 
 // -----------------------------------------------------------------------------------------------
 // AccionesHistorial
@@ -98,9 +102,11 @@ var AccionesHistorial = React.createClass({
             case 9:
                 return (<Desahogo accion={accion} />);
             case 10:
-                return (<DemandaAdmitida accion={accion} />);
+                return (<Emplazamiento accion={accion} />);
             case 11:
                 return (<DiligenciaEmbargo accion={accion} />);
+            case 12:
+                return (<Extrajudicial accion={accion} />);
             case 13:
                 return (<FechaAudienciaPrevia accion={accion} />);
             case 14:
@@ -119,6 +125,12 @@ var AccionesHistorial = React.createClass({
                 return (<SentenciaApelacion accion={accion} />);
             case 21:
                 return (<FechaAudienciaPruebas accion={accion} />);
+            case 22:
+                return (<Liquidacion accion={accion} />);
+            case 23:
+                return (<Convenio accion={accion} />);
+            case 24:
+                return (<Repo accion={accion} />);
             default:
                 break;
         }

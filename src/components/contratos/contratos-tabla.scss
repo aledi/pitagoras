@@ -90,6 +90,22 @@
             }
 
             &.content-row {
+                &.yellow {
+                    background-color: #FFFF99;
+
+                    &:hover {
+                        background-color: #FFFFCC;
+                    }
+                }
+
+                &.red {
+                    background-color: #F08080;
+
+                    &:hover {
+                        background-color: #EEB4B4;
+                    }
+                }
+
                 &:hover {
                     background-color: rgba($jacaranda, 0.4);
                     cursor: pointer;

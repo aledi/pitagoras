@@ -27,7 +27,7 @@ var DemandaDesechada = require('src/components/acciones/demanda-desechada'); // 
 var RecoleccionDocumentos = require('src/components/acciones/recoleccion-documentos'); // 7
 var DemandaPrevenida = require('src/components/acciones/demanda-prevenida'); // 8
 var Desahogo = require('src/components/acciones/desahogo'); // 9
-var DemandaAdmitida = require('src/components/acciones/demanda-admitida'); // 10
+var Emplazamiento = require('src/components/acciones/emplazamiento'); // 10
 var DiligenciaEmbargo = require('src/components/acciones/diligencia-embargo'); // 11
 var Extrajudicial = require('src/components/acciones/extrajudicial'); // 12
 var FechaAudienciaPrevia = require('src/components/acciones/fecha-audiencia-previa'); // 13
@@ -39,6 +39,9 @@ var ResolucionAmparoSentencia = require('src/components/acciones/resolucion-ampa
 var Apelacion = require('src/components/acciones/apelacion'); // 19
 var SentenciaApelacion = require('src/components/acciones/sentencia-apelacion'); // 20
 var FechaAudienciaPruebas = require('src/components/acciones/fecha-audiencia-pruebas'); // 21
+var Liquidacion = require('src/components/acciones/liquidacion'); // 22
+var Convenio = require('src/components/acciones/convenio'); // 23
+var Repo = require('src/components/acciones/repo'); // 24
 
 // -----------------------------------------------------------------------------------------------
 // Contrato
@@ -99,15 +102,11 @@ var ContratoDetalle = React.createClass({
                 },
                 {
                     id: 10,
-                    component: <DemandaAdmitida contrato={props.contrato} disabled={props.savingAccion} key='demandaAdmitida' />
+                    component: <Emplazamiento contrato={props.contrato} disabled={props.savingAccion} key='emplazamiento' />
                 },
                 {
                     id: 11,
                     component: <DiligenciaEmbargo contrato={props.contrato} disabled={props.savingAccion} key='diligenciaEmbargo' />
-                },
-                {
-                    id: 12,
-                    component: <Extrajudicial contrato={props.contrato} disabled={props.savingAccion} key='extrajudicial' />
                 }
             ];
 
@@ -164,6 +163,25 @@ var ContratoDetalle = React.createClass({
                     }
                 );
             }
+
+            accionesComponents.push(
+                {
+                    id: 22,
+                    component: <Liquidacion contrato={props.contrato} disabled={props.savingAccion} key='liquidacion' />
+                },
+                {
+                    id: 23,
+                    component: <Convenio contrato={props.contrato} disabled={props.savingAccion} key='convenio' />
+                },
+                {
+                    id: 24,
+                    component: <Repo contrato={props.contrato} disabled={props.savingAccion} key='repo' />
+                },
+                {
+                    id: 12,
+                    component: <Extrajudicial contrato={props.contrato} disabled={props.savingAccion} key='extrajudicial' />
+                }
+            );
         }
 
         var state = {
@@ -288,7 +306,8 @@ var ContratoDetalle = React.createClass({
         var self = this;
         return (this.state.accionesComponents.map(function (accionComponent) {
             return [
-                self.renderDivider(accionComponent),
+                self.renderDivider(accionComponent.id),
+                self.renderTitle(accionComponent.id),
                 <li key={accionComponent.id}
                     className={classNames({selected: self.state.selectedAccion === accionComponent.id})}
                     onClick={self.showAccion.bind(self, accionComponent.id)}>
@@ -297,8 +316,22 @@ var ContratoDetalle = React.createClass({
             ];
         }));
     },
-    renderDivider: function (accionComponent) {
-        if (accionComponent.id !== 13 && accionComponent.id !== 21) {
+    renderTitle: function (accionComponentId) {
+        switch (accionComponentId) {
+            case 1:
+                return (<h6>Judicial</h6>);
+            case 13:
+                return (<h6>Oral</h6>);
+            case 21:
+                return (<h6>Ejecutivo</h6>);
+            case 22:
+                return (<h6>Extrajudicial</h6>);
+            default:
+                return;
+        }
+    },
+    renderDivider: function (accionComponentId) {
+        if (accionComponentId !== 13 && accionComponentId !== 21 && accionComponentId !== 22) {
             return;
         }
 

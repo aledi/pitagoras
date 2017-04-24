@@ -7,6 +7,8 @@ require('./contratos-tabla.scss');
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
+var classNames = require('classnames');
+var moment = require('moment');
 
 var ContratosActions = require('src/actions/contratos-actions');
 
@@ -29,7 +31,7 @@ var ContratosTabla = React.createClass({
             <div>
                 <button type='button' className='right-button' onClick={this.toggleBusqueda}>Buscar contrato</button>
                 <div id='table-wrapper-contratos' className='contratos-table table-wrapper' tabIndex='0' onKeyUp={this.handleKeyUp}>
-                    <div className='table-header-wrapper' style={{minWidth: '2050px'}}>
+                    <div className='table-header-wrapper' style={{minWidth: '2250px'}}>
                         <table>
                             <thead>
                                 <tr className='header'>
@@ -66,6 +68,9 @@ var ContratosTabla = React.createClass({
                                     <th style={{width: '250px'}} onClick={ContratosActions.sortContratos.bind(this, 'juzgado')}>
                                         <span className='ellipsis-text'>Juzgado</span>
                                     </th>
+                                    <th style={{width: '200px'}} onClick={ContratosActions.sortContratos.bind(this, 'fechaSeguimiento')}>
+                                        <span className='ellipsis-text'>Fecha de Seguimiento</span>
+                                    </th>
                                 </tr>
                             </thead>
                         </table>
@@ -85,7 +90,7 @@ var ContratosTabla = React.createClass({
     },
     renderTableBodyWrapper: function () {
         return (
-            <div id='table-body-wrapper-contratos' className='table-body-wrapper' style={{minWidth: '2050px'}} tabIndex='1'>
+            <div id='table-body-wrapper-contratos' className='table-body-wrapper' style={{minWidth: '2250px'}} tabIndex='1'>
                 {this.renderTableBody()}
             </div>
         );
@@ -109,7 +114,7 @@ var ContratosTabla = React.createClass({
 
         this.props.contratos.forEach(function (contrato) {
             contratos.push(
-                <tr className='content-row' onClick={self.goToContrato.bind(self, contrato.id)} key={contrato.id}>
+                <tr className={classNames('content-row', self.getRowClass(contrato))} onClick={self.goToContrato.bind(self, contrato.id)} key={contrato.id}>
                     <td style={{width: '250px'}}><span className='ellipsis-text'>{contrato.numeroContrato}</span></td>
                     <td style={{width: '350px'}}><span className='ellipsis-text'>{contrato.cliente.formattedValues.nombre}</span></td>
                     <td style={{width: '200px'}}><span className='ellipsis-text'>{contrato.vehiculo.modelo}</span></td>
@@ -121,11 +126,28 @@ var ContratosTabla = React.createClass({
                     <td style={{width: '100px'}} className='centered'><span className='ellipsis-text'>{contrato.formattedValues.tasa}</span></td>
                     <td style={{width: '100px'}} className='centered'><span className='ellipsis-text'>{contrato.formattedValues.especial}</span></td>
                     <td style={{width: '250px'}}><span className='ellipsis-text'>{contrato.juzgado}</span></td>
+                    <td style={{width: '200px'}}><span className='ellipsis-text'>{contrato.formattedValues.fechaSeguimiento}</span></td>
                 </tr>
             );
         });
 
         return contratos;
+    },
+    getRowClass: function (contrato) {
+        if (!contrato.fechaSeguimiento) {
+            return;
+        }
+
+        var fechaSeguimiento = moment(contrato.fechaSeguimiento.iso).startOf('day');
+        var notAttended = contrato.lastAccionAt.clone().startOf('day').isBefore(fechaSeguimiento, 'day');
+
+        if (moment().startOf('day').isSame(fechaSeguimiento, 'day') && notAttended) {
+            return 'yellow';
+        }
+
+        if (moment().startOf('day').isAfter(fechaSeguimiento, 'day') && notAttended) {
+            return 'red';
+        }
     },
     handleInputChange: function (event) {
         this.setState({busquedaInput: event.target.value});
@@ -139,23 +161,13 @@ var ContratosTabla = React.createClass({
     handleKeyUp: function (event) {
         event.persist();
 
-        // Left arrow
-        if (event.keyCode === 37) {
+        // Left & Right arrow
+        if (event.keyCode === 37 || event.keyCode === 39) {
             document.getElementById('table-wrapper-contratos').focus();
         }
 
-        // Up arrow
-        if (event.keyCode === 38) {
-            document.getElementById('table-body-wrapper-contratos').focus();
-        }
-
-        // Right arrow
-        if (event.keyCode === 39) {
-            document.getElementById('table-wrapper-contratos').focus();
-        }
-
-        // Down arrow
-        if (event.keyCode === 40) {
+        // Up & Down arrow
+        if (event.keyCode === 38 || event.keyCode === 40) {
             document.getElementById('table-body-wrapper-contratos').focus();
         }
     }

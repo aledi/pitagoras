@@ -9,35 +9,29 @@ var React = require('react');
 var DateUtils = require('src/utils/date-utils');
 
 // -----------------------------------------------------------------------------------------------
-// SentenciaApelacion
+// Extrajudicial Respuestas
 // -----------------------------------------------------------------------------------------------
 
-var SentenciaApelacion = React.createClass({
+var Extrajudicial = React.createClass({
     render: function () {
         return (
             <div className='respuestas-wrapper'>
-                <div>
-                    <span className='bold'>Favorable a: </span>
-                    <span>{this.props.accion.respuestas.favorable}</span>
-                </div>
-                {this.renderDate()}
+                {this.renderDate(this.props.accion.respuestas.fechaSeguimiento)}
             </div>
         );
     },
-    renderDate: function () {
-        var date = this.props.accion.respuestas.fecha;
-
+    renderDate: function (date, text) {
         if (!date) {
             return;
         }
 
         return (
             <div>
-                <span className='bold'>Fecha: </span>
+                <span className='bold'>Fecha de Seguimiento: </span>
                 <span>{DateUtils.formatFechaRespuesta(date)}</span>
             </div>
         );
     }
 });
 
-module.exports = SentenciaApelacion;
+module.exports = Extrajudicial;

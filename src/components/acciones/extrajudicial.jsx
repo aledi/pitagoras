@@ -9,6 +9,8 @@ var Parse = require('parse');
 
 var AccionesMixin = require('./acciones-mixin');
 
+var DateSelect = require('src/components/shared/date-select');
+
 // -----------------------------------------------------------------------------------------------
 // Extrajudicial
 // -----------------------------------------------------------------------------------------------
@@ -18,14 +20,18 @@ var Extrajudicial = React.createClass({
     getInitialState: function () {
         var lastAccion = this.props.lastAccion;
 
-        return {
+        var state = {
             tipo: 12,
             comentarios: lastAccion ? lastAccion.comentarios : '',
             creador: Parse.User.current(),
             contrato: this.props.contrato,
-            respuestas: {},
+            respuestas: {
+                fechaSeguimiento: null
+            },
             disabled: false
         };
+
+        return state;
     },
     componentWillReceiveProps: function (nextProps) {
         this.getState(nextProps);
@@ -35,11 +41,21 @@ var Extrajudicial = React.createClass({
     },
     render: function () {
         return (
-            <div className='extrajudicial accion-form'>
+            <div className='emplazamiento accion-form'>
+                <div className='element-wrapper'>
+                    <h5>Fecha de Seguimiento</h5>
+                    <DateSelect date={this.state.respuestas.fechaSeguimiento} onChange={this.handleFechaChange} />
+                </div>
                 {this.renderComentarios()}
                 {this.renderButton()}
             </div>
         );
+    },
+    handleFechaChange: function (date) {
+        var state = {respuestas: this.state.respuestas};
+        state.respuestas.fechaSeguimiento = date ? date.clone() : null;
+
+        this.setState(state);
     }
 });
 

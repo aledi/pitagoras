@@ -26,7 +26,7 @@ var ACCIONES_TYPES = {
     7: 'Recolección de documentos',
     8: 'Demanda prevenida',
     9: 'Desahogo / Cierre',
-    10: 'Demanda admitida',
+    10: 'Emplazamiento',
     11: 'Diligencia de embargo',
     12: 'Extrajudicial',
     13: 'Fecha Audiencia Previa',
@@ -37,7 +37,10 @@ var ACCIONES_TYPES = {
     18: 'Resolución Amparo vs Sentencia',
     19: 'Apelación',
     20: 'Sentencia de Apelación',
-    21: 'Fecha Audiencia Pruebas' // Ejecutiva
+    21: 'Fecha Audiencia Pruebas', // Ejecutiva
+    22: 'Liquidación',
+    23: 'Convenio',
+    24: 'REPO'
 };
 
 var AccionRecord = Immutable.Record({
@@ -78,8 +81,52 @@ class Accion extends AccionRecord {
             accion.respuestas.fecha3 = moment.isMoment(accion.respuestas.fecha3) ? accion.respuestas.fecha3.toDate() : moment(accion.respuestas.fecha3.iso ? accion.respuestas.fecha3.iso : accion.respuestas.fecha3).toDate();
         }
 
+        if (accion.respuestas.fechaSubasta1) {
+            accion.respuestas.fechaSubasta1 = moment.isMoment(accion.respuestas.fechaSubasta1) ? accion.respuestas.fechaSubasta1.toDate() : moment(accion.respuestas.fechaSubasta1.iso ? accion.respuestas.fechaSubasta1.iso : accion.respuestas.fechaSubasta1).toDate();
+        }
+
+        if (accion.respuestas.fechaSubasta2) {
+            accion.respuestas.fechaSubasta2 = moment.isMoment(accion.respuestas.fechaSubasta2) ? accion.respuestas.fechaSubasta2.toDate() : moment(accion.respuestas.fechaSubasta2.iso ? accion.respuestas.fechaSubasta2.iso : accion.respuestas.fechaSubasta2).toDate();
+        }
+
+        if (accion.respuestas.fechaSubasta3) {
+            accion.respuestas.fechaSubasta3 = moment.isMoment(accion.respuestas.fechaSubasta3) ? accion.respuestas.fechaSubasta3.toDate() : moment(accion.respuestas.fechaSubasta3.iso ? accion.respuestas.fechaSubasta3.iso : accion.respuestas.fechaSubasta3).toDate();
+        }
+
+        if (accion.respuestas.fechaSubasta4) {
+            accion.respuestas.fechaSubasta4 = moment.isMoment(accion.respuestas.fechaSubasta4) ? accion.respuestas.fechaSubasta4.toDate() : moment(accion.respuestas.fechaSubasta4.iso ? accion.respuestas.fechaSubasta4.iso : accion.respuestas.fechaSubasta4).toDate();
+        }
+
+        if (accion.respuestas.fechaSubasta5) {
+            accion.respuestas.fechaSubasta5 = moment.isMoment(accion.respuestas.fechaSubasta5) ? accion.respuestas.fechaSubasta5.toDate() : moment(accion.respuestas.fechaSubasta5.iso ? accion.respuestas.fechaSubasta5.iso : accion.respuestas.fechaSubasta5).toDate();
+        }
+
+        if (accion.respuestas.fechaVoBoRbu) {
+            accion.respuestas.fechaVoBoRbu = moment.isMoment(accion.respuestas.fechaVoBoRbu) ? accion.respuestas.fechaVoBoRbu.toDate() : moment(accion.respuestas.fechaVoBoRbu.iso ? accion.respuestas.fechaVoBoRbu.iso : accion.respuestas.fechaVoBoRbu).toDate();
+        }
+
+        if (accion.respuestas.fechaVoBoGmf) {
+            accion.respuestas.fechaVoBoGmf = moment.isMoment(accion.respuestas.fechaVoBoGmf) ? accion.respuestas.fechaVoBoGmf.toDate() : moment(accion.respuestas.fechaVoBoGmf.iso ? accion.respuestas.fechaVoBoGmf.iso : accion.respuestas.fechaVoBoGmf).toDate();
+        }
+
+        if (accion.respuestas.fechaRepo) {
+            accion.respuestas.fechaRepo = moment.isMoment(accion.respuestas.fechaRepo) ? accion.respuestas.fechaRepo.toDate() : moment(accion.respuestas.fechaRepo.iso ? accion.respuestas.fechaRepo.iso : accion.respuestas.fechaRepo).toDate();
+        }
+
+        if (accion.respuestas.fechaVenta) {
+            accion.respuestas.fechaVenta = moment.isMoment(accion.respuestas.fechaVenta) ? accion.respuestas.fechaVenta.toDate() : moment(accion.respuestas.fechaVenta.iso ? accion.respuestas.fechaVenta.iso : accion.respuestas.fechaVenta).toDate();
+        }
+
+        if (accion.respuestas.fechaSeguimiento) {
+            accion.respuestas.fechaSeguimiento = moment.isMoment(accion.respuestas.fechaSeguimiento) ? accion.respuestas.fechaSeguimiento.toDate() : moment(accion.respuestas.fechaSeguimiento.iso ? accion.respuestas.fechaSeguimiento.iso : accion.respuestas.fechaSeguimiento).toDate();
+        }
+
         if (accion.respuestas.cita && accion.respuestas.cita.fecha) {
             accion.respuestas.cita.fecha = moment.isMoment(accion.respuestas.cita.fecha) ? accion.respuestas.cita.fecha.toDate() : moment(accion.respuestas.cita.fecha.iso ? accion.respuestas.cita.fecha.iso : accion.respuestas.cita.fecha).toDate();
+        }
+
+        if (accion.respuestas.fechaDiligencia) {
+            accion.respuestas.fechaDiligencia = moment.isMoment(accion.respuestas.fechaDiligencia) ? accion.respuestas.fechaDiligencia.toDate() : moment(accion.respuestas.fechaDiligencia.iso ? accion.respuestas.fechaDiligencia.iso : accion.respuestas.fechaDiligencia).toDate();
         }
 
         if (accion.respuestas.fechaAcuerdo) {
@@ -131,7 +178,7 @@ class Accion extends AccionRecord {
             }
         }
 
-        // Notification for Demanda Admitida & Diligencia de Embargo
+        // Notification for Emplazamiento & Diligencia de Embargo
         if ((accion.tipo === 10 && accion.respuestas.tipoJuicio === 'Ejecutiva Mercantil') || (accion.tipo === 11 && accion.respuestas.resultado === 'Se dejó citatorio')) {
             if (accion.respuestas.cita.fecha) {
                 contrato.notificacion = {
@@ -188,6 +235,9 @@ class Accion extends AccionRecord {
         }
 
         if (accion.tipo === 4) {
+            contrato.reporte.numeroFactura = accion.respuestas.numeroFactura;
+            contrato.reporte.tipoAdmision = accion.respuestas.localExhorto;
+            contrato.reporte.tipoExhorto = accion.respuestas.tipoDisposicion || accion.respuestas.tipoExhorto;
             contrato.reporte.fechaAcuerdo = accion.respuestas.fechaAcuerdo;
         }
 
@@ -210,17 +260,13 @@ class Accion extends AccionRecord {
         }
 
         if (accion.tipo === 10) {
-            contrato.reporte.fechaAdmision = accion.respuestas.fechaAcuerdo;
+            contrato.reporte.fechaDiligencia = accion.respuestas.fechaDiligencia;
             contrato.reporte.resultadoEmplazamiento = accion.respuestas.resultado;
         }
 
         if (accion.tipo === 12) {
-            var user = Parse.User.current();
-            contrato.reporte.extrajudicial.push({
-                creador: user.get('nombre') + ' ' + user.get('apellido'),
-                comentarios: accion.comentarios,
-                fecha: moment().toDate()
-            });
+            contrato.fechaSeguimiento = accion.respuestas.fechaSeguimiento;
+            contrato.reporte.fechaSeguimiento = accion.respuestas.fechaSeguimiento;
         }
 
         if (accion.tipo === 13) {
@@ -280,7 +326,34 @@ class Accion extends AccionRecord {
             contrato.reporte.fechaAudienciaPruebas = accion.respuestas.fecha;
         }
 
-        contrato.reporte.etapaActual = accion.tipo;
+        if (accion.tipo === 22) {
+            contrato.reporte.liquidacion = accion.respuestas.liquidacion;
+        }
+
+        if (accion.tipo === 23) {
+            contrato.reporte.convenio = accion.respuestas.convenio;
+        }
+
+        if (accion.tipo === 24) {
+            if (accion.respuestas.lugarCustodia === 'Dealer') {
+                accion.respuestas.lugarCustodia = accion.respuestas.lugarCustodiaText;
+                delete accion.respuestas.lugarCustodiaText;
+            }
+
+            contrato.reporte.valorLibros = accion.respuestas.valorLibros;
+            contrato.reporte.fechaRepo = accion.respuestas.fechaRepo;
+            contrato.reporte.montoVenta = accion.respuestas.montoVenta;
+            contrato.reporte.fechaVenta = accion.respuestas.fechaVenta;
+        }
+
+        // Avoid "Extrajudicial" action
+        if (accion.tipo !== 12) {
+            if (accion.tipo <= 21) {
+                contrato.reporte.etapaActual = accion.tipo;
+            } else {
+                contrato.reporte.etapaActualExtrajudicial = accion.tipo;
+            }
+        }
 
         // Save contrato if changed tipoJuicio to show changes immediately
         if (accion.tipo === 3) {
