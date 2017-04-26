@@ -1,13 +1,12 @@
 'use strict';
 
-require('./search.scss');
+require('./actualizacion-factura.scss');
 
 // -----------------------------------------------------------------------------------------------
 // React + Other Modules
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
-var fuzzy = require('fuzzy');
 
 // -----------------------------------------------------------------------------------------------
 // ActualizacionFactura
@@ -43,7 +42,7 @@ var ActualizacionFactura = React.createClass({
         );
     },
     handleChange: function (event) {
-        
+
     }
 });
 
