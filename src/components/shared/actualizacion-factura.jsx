@@ -36,16 +36,31 @@ var ActualizacionFactura = React.createClass({
                     <div className='modal'>
                         <button type='button' onClick={this.props.onClose}>Cerrar</button>
                         <p>Introduzca el número de factura a aplicar</p>
-                        <input type='text' value={this.state.numeroFactura} onChange={this.handleChange} placeholder='000000' />
+                        <input type='text' value={this.state.numeroFactura} onChange={this.handleChange.bind(this, 'numeroFactura')} placeholder='000000' />
                         <p>Introduzca los números de contratos, separados por coma</p>
-                        <textarea type='text' value={this.state.contratos} onChange={this.handleChange} placeholder='123456, 654321, 019283' />
+                        <textarea type='text' value={this.state.contratos} onChange={this.handleChange.bind(this, 'contratos')} placeholder='123456, 654321, 019283' />
+                        <button type='button' onClick={this.handleClick}>Actualizar</button>
                     </div>
                 </div>
             </div>
         );
     },
-    handleChange: function (event) {
+    handleChange: function (key, event) {
+        var state = {};
+        state[key] = event.target.value;
 
+        this.setState(state);
+    },
+    handleClick: function () {
+        var contratos = [];
+        var contratosToUpdate = this.state.contratos.split(/[\s,;]+/);
+        console.log(this.props.contratos.get('5'))
+
+        for (var i = 0; i < contratosToUpdate.length; i++) {
+            contratos.push(this.props.contratos.get(contratosToUpdate[i]));
+        }
+
+        console.log(contratos)
     }
 });
 

@@ -12,6 +12,7 @@ var moment = require('moment');
 
 var ContratosActions = require('src/actions/contratos-actions');
 
+var ActualizacionFactura = require('src/components/shared/actualizacion-factura');
 var Search = require('src/components/shared/search');
 
 // -----------------------------------------------------------------------------------------------
@@ -98,7 +99,7 @@ var ContratosTabla = React.createClass({
             return;
         }
 
-        return (<ActualizacionFactura onClose={this.toggleActualizacion} />);
+        return (<ActualizacionFactura contratos={this.props.contratos} onClose={this.toggleActualizacion} />);
     },
     renderTableBodyWrapper: function () {
         return (
