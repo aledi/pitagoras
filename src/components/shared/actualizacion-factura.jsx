@@ -7,6 +7,7 @@ require('./actualizacion-factura.scss');
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
+var classNames = require('classnames');
 
 var ContratosActions = require('src/actions/contratos-actions');
 var ContratosStore = require('src/stores/contratos-store');
@@ -64,32 +65,38 @@ var ActualizacionFactura = React.createClass({
         this.setState({savingMultiple: savingMultiple});
     },
     render: function () {
+        var invalidInputs = this.invalidInputs();
+
         return (
             <div className='backdrop' id='backdrop'>
                 <div className='modal-wrapper'>
-                    <div className='modal'>
-                        <button type='button' onClick={this.props.onClose}>Cerrar</button>
-                        <p>Introduzca el número de factura a aplicar</p>
+                    <div className='actualizacion-modal'>
+                        <button type='button' className='close' onClick={this.props.onClose}>Cerrar</button>
+                        <label>Introduzca el número de factura a aplicar.</label>
                         <input type='text' value={this.state.numeroFactura} onChange={this.handleChange.bind(this, 'numeroFactura')} placeholder='000000' />
-                        <p>Introduzca los números de contratos, separados por coma</p>
+                        <label>Introduzca los números de contratos, separados por coma, espacio o punto y coma.</label>
                         <textarea type='text' value={this.state.contratos} onChange={this.handleChange.bind(this, 'contratos')} placeholder='123456, 654321, 019283' />
-                        <button type='button' onClick={this.handleClick}>Actualizar</button>
+                        <button type='button' onClick={this.handleClick} disabled={invalidInputs}>Actualizar</button>
                         {this.renderFeedbackText()}
                     </div>
                 </div>
             </div>
         );
     },
+    invalidInputs: function () {
+        return (!this.state.numeroFactura || !this.state.numeroFactura.trim() || !this.state.contratos || !this.state.contratos.trim());
+    },
     renderFeedbackText: function () {
         if (!this.state.feedbackText) {
             return;
         }
 
-        return (<p>{this.state.feedbackText}</p>);
+        return (<p className={classNames('feedback-text', {success: !this.state.saveErrorMultiple}, {error: this.state.saveErrorMultiple})}>{this.state.feedbackText}</p>);
     },
     handleChange: function (key, event) {
         var state = {};
         state[key] = event.target.value;
+        state.feedbackText = '';
 
         this.setState(state);
     },
@@ -105,6 +112,11 @@ var ActualizacionFactura = React.createClass({
 
             contratos.push(contrato.toEditable());
         });
+
+        if (!contratos.length) {
+            this.setState({feedbackText: 'No se encontraron los contratos especificados.'});
+            return;
+        }
 
         for (var i = 0; i < contratos.length; i++) {
             contratos[i].reporte.numeroFactura = this.state.numeroFactura;

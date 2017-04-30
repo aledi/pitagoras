@@ -16,24 +16,63 @@
         overflow: hidden;
         background: white;
         position: absolute;
-        top: 0; right: 0; bottom: 0; left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
         border-radius: 5px;
 
-        .modal {
+        .actualizacion-modal {
             position: absolute;
-            top: 0; right: 0; bottom: 0; left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
             background-color: white;
             border-radius: 5px;
             padding: 30px;
             overflow-y: auto;
 
-            input {
+            label {
+                display: block;
+                color: $nightfall;
+            }
+
+            button {
+                padding: 0 20px;
+
+                &:disabled {
+                    background-color: $disabled-button-background;
+                }
+            }
+
+            button.close {
+                padding: 0;
+                margin: 0;
+                margin-bottom: 20px;
+                background-color: transparent;
+                color: $blue-gray;
+                text-transform: uppercase;
+
+                &:hover {
+                    color: $denim;
+                }
+            }
+
+            input[type='text'] {
+                height: 40px;
                 width: 50%;
+                padding: 0 10px;
+                border-radius: 2px;
+                margin-bottom: 30px;
             }
 
             textarea {
                 height: 100px;
                 width: 100%;
+                padding: 0 10px;
+                border-radius: 2px;
+                margin-bottom: 30px;
             }
         }
     }

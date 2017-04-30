@@ -33,8 +33,10 @@ var ContratosTabla = React.createClass({
     render: function () {
         return (
             <div>
-                <button type='button' className='right-button' onClick={this.toggleActualizacion}>Actualizar Facturas</button>
-                <button type='button' className='right-button' onClick={this.toggleBusqueda}>Buscar contrato</button>
+                <div className='buttons-wrapper'>
+                    <button type='button' className='right-button' onClick={this.toggleActualizacion}>Actualizar Facturas</button>
+                    <button type='button' className='right-button' onClick={this.toggleBusqueda}>Buscar contrato</button>
+                </div>
                 <div id='table-wrapper-contratos' className='contratos-table table-wrapper' tabIndex='0' onKeyUp={this.handleKeyUp}>
                     <div className='table-header-wrapper' style={{minWidth: '2250px'}}>
                         <table>
