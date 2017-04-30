@@ -27,51 +27,13 @@
             padding: 30px;
             overflow-y: auto;
 
-            p {
-                color: $nightfall;
-
-                &.no-results {
-                    text-align: center;
-                    margin-top: 20px;
-                }
+            input {
+                width: 50%;
             }
 
-            button {
-                padding: 0;
-                margin: 0;
-                margin-bottom: 20px;
-                background-color: transparent;
-                color: $blue-gray;
-                text-transform: uppercase;
-
-                &:hover {
-                    color: $denim;
-                }
-            }
-
-            input[type='text'] {
-                height: 40px;
+            textarea {
+                height: 100px;
                 width: 100%;
-                padding: 0 10px;
-                border-radius: 2px;
-            }
-
-            .results-items {
-                padding-top: 30px;
-
-                .result-wrapper {
-                    margin-bottom: 10px;
-
-                    .result-details {
-                        display: inline-block;
-                        color: $french-blue;
-                        cursor: pointer;
-
-                        &:hover {
-                            color: $denim;
-                        }
-                    }
-                }
             }
         }
     }

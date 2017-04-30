@@ -8,6 +8,8 @@ require('./actualizacion-factura.scss');
 
 var React = require('react');
 
+var ContratosActions = require('src/actions/contratos-actions');
+
 // -----------------------------------------------------------------------------------------------
 // ActualizacionFactura
 // -----------------------------------------------------------------------------------------------
@@ -52,15 +54,22 @@ var ActualizacionFactura = React.createClass({
         this.setState(state);
     },
     handleClick: function () {
-        var contratos = [];
         var contratosToUpdate = this.state.contratos.split(/[\s,;]+/);
-        console.log(this.props.contratos.get('5'))
+        var contratosById = this.props.contratos;
+        var contratos = [];
 
-        for (var i = 0; i < contratosToUpdate.length; i++) {
-            contratos.push(this.props.contratos.get(contratosToUpdate[i]));
+        contratosById.forEach(function (contrato) {
+            if (contratosToUpdate.indexOf(contrato.numeroContrato) === -1) {
+                return;
+            }
+
+            contratos.push(contrato.toEditable());
+        });
+
+        for (var i = 0; i < contratos.length; i++) {
+            contratos[i].reporte.numeroFactura = this.state.numeroFactura;
+            ContratosActions.saveContrato(contratos[i]);
         }
-
-        console.log(contratos)
     }
 });
 
