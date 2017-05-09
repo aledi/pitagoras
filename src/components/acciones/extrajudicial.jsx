@@ -111,25 +111,25 @@ var Extrajudicial = React.createClass({
             <div className='emplazamiento accion-form'>
                 <div className='element-wrapper'>
                     <h5>Resultado de Gestión</h5>
-                    <select value={this.state.respuestas.resultadoGestion} onChange={this.handleSelectChange} disabled={this.state.disabled}>
+                    <select value={this.state.respuestas.resultadoGestion} onChange={this.handleChange.bind(this, 'resultadoGestion')} disabled={this.state.disabled}>
                         {this.renderOptions(resultadoGestionOptions)}
                     </select>
                 </div>
                 <div className='element-wrapper'>
                     <h5>Modo de Contacto</h5>
-                    <select value={this.state.respuestas.modoContacto} onChange={this.handleSelectChange} disabled={this.state.disabled}>
+                    <select value={this.state.respuestas.modoContacto} onChange={this.handleChange.bind(this, 'modoContacto')} disabled={this.state.disabled}>
                         {this.renderOptions(modoContactoOptions)}
                     </select>
                 </div>
                 <div className='element-wrapper'>
                     <h5>Persona Contactada</h5>
-                    <select value={this.state.respuestas.personaContactada} onChange={this.handleSelectChange} disabled={this.state.disabled}>
+                    <select value={this.state.respuestas.personaContactada} onChange={this.handleChange.bind(this, 'personaContactada')} disabled={this.state.disabled}>
                         {this.renderOptions(personaContactadaOptions)}
                     </select>
                 </div>
                 <div className='element-wrapper'>
                     <h5>Lugar de Contacto</h5>
-                    <select value={this.state.respuestas.lugarContactoOptions} onChange={this.handleSelectChange} disabled={this.state.disabled}>
+                    <select value={this.state.respuestas.lugarContactoOptions} onChange={this.handleChange.bind(this, 'lugarContacto')} disabled={this.state.disabled}>
                         {this.renderOptions(lugarContactoOptions)}
                     </select>
                 </div>
@@ -138,7 +138,7 @@ var Extrajudicial = React.createClass({
                     <input
                         type='text'
                         value={this.state.respuestas.montoPromesado}
-                        onChange={this.handleSelectChange}
+                        onChange={this.handleChange.bind(this, 'montoPromesado')}
                         disabled={this.state.disabled} />
                 </div>
                 <div className='element-wrapper'>
@@ -147,11 +147,11 @@ var Extrajudicial = React.createClass({
                 </div>
                 <div className='element-wrapper'>
                     <h5>Hora de Seguimiento</h5>
-                    <TimeSelect date={this.state.respuestas.horaSeguimiento} onChange={this.handleFechaChange} />
+                    <TimeSelect date={this.state.respuestas.horaSeguimiento} onChange={this.handleHorarioChange} />
                 </div>
                 <div className='element-wrapper'>
                     <h5>Recordatorio</h5>
-                    <select value={this.state.respuestas.recordatorio} onChange={this.handleSelectChange} disabled={this.state.disabled}>
+                    <select value={this.state.respuestas.recordatorio} onChange={this.handleChange.bind(this, 'recordatorio')} disabled={this.state.disabled}>
                         {this.renderOptions(recordatorioOptions)}
                     </select>
                 </div>
@@ -165,10 +165,19 @@ var Extrajudicial = React.createClass({
             return (<option key={index} value={option}>{option}</option>);
         }));
     },
+    handleChange: function (key, event) {
+        var respuestas = this.state.respuestas;
+        respuestas[key] = event.target.value;
+        this.setState({respuestas: respuestas});
+    },
     handleFechaChange: function (date) {
         var state = {respuestas: this.state.respuestas};
         state.respuestas.fechaSeguimiento = date ? date.clone() : null;
-
+        this.setState(state);
+    },
+    handleHorarioChange: function (time) {
+        var state = {respuestas: this.state.respuestas};
+        state.respuestas.horaSeguimiento = time;
         this.setState(state);
     }
 });
