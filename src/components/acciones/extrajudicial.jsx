@@ -32,7 +32,7 @@ var resultadoGestionOptions = [
     'VISITA',
     'CLIENTE COLGÓ',
     'NÚMERO NO EXISTE',
-    'NEGATIVA DE PAGO',
+    'NEGATIVA DE PAGO'
 ];
 
 var modoContactoOptions = [
@@ -91,7 +91,7 @@ var Extrajudicial = React.createClass({
                 montoPromesado: lastAccion ? lastAccion.respuestas.montoPromesado : '',
                 fechaSeguimiento: null,
                 horaSeguimiento: null,
-                recordatorio: lastAccion ? lastAccion.respuestas.recordatorio : '',
+                recordatorio: lastAccion ? lastAccion.respuestas.recordatorio : ''
             },
             disabled: false
         };
@@ -111,25 +111,25 @@ var Extrajudicial = React.createClass({
             <div className='emplazamiento accion-form'>
                 <div className='element-wrapper'>
                     <h5>Resultado de Gestión</h5>
-                    <select value={this.state.respuestas.resultadoGestion} onChange={this.handleChange.bind(this, 'resultadoGestion')} disabled={this.state.disabled}>
+                    <select value={respuestas.resultadoGestion} onChange={this.handleChange.bind(this, 'resultadoGestion')} disabled={this.state.disabled}>
                         {this.renderOptions(resultadoGestionOptions)}
                     </select>
                 </div>
                 <div className='element-wrapper'>
                     <h5>Modo de Contacto</h5>
-                    <select value={this.state.respuestas.modoContacto} onChange={this.handleChange.bind(this, 'modoContacto')} disabled={this.state.disabled}>
+                    <select value={respuestas.modoContacto} onChange={this.handleChange.bind(this, 'modoContacto')} disabled={this.state.disabled}>
                         {this.renderOptions(modoContactoOptions)}
                     </select>
                 </div>
                 <div className='element-wrapper'>
                     <h5>Persona Contactada</h5>
-                    <select value={this.state.respuestas.personaContactada} onChange={this.handleChange.bind(this, 'personaContactada')} disabled={this.state.disabled}>
+                    <select value={respuestas.personaContactada} onChange={this.handleChange.bind(this, 'personaContactada')} disabled={this.state.disabled}>
                         {this.renderOptions(personaContactadaOptions)}
                     </select>
                 </div>
                 <div className='element-wrapper'>
                     <h5>Lugar de Contacto</h5>
-                    <select value={this.state.respuestas.lugarContacto} onChange={this.handleChange.bind(this, 'lugarContacto')} disabled={this.state.disabled}>
+                    <select value={respuestas.lugarContacto} onChange={this.handleChange.bind(this, 'lugarContacto')} disabled={this.state.disabled}>
                         {this.renderOptions(lugarContactoOptions)}
                     </select>
                 </div>
@@ -137,21 +137,21 @@ var Extrajudicial = React.createClass({
                     <h5 className='text-label'>Monto Promesado</h5>
                     <input
                         type='text'
-                        value={this.state.respuestas.montoPromesado}
+                        value={respuestas.montoPromesado}
                         onChange={this.handleChange.bind(this, 'montoPromesado')}
                         disabled={this.state.disabled} />
                 </div>
                 <div className='element-wrapper'>
                     <h5>Fecha de Seguimiento</h5>
-                    <DateSelect date={this.state.respuestas.fechaSeguimiento} onChange={this.handleFechaChange} />
+                    <DateSelect date={respuestas.fechaSeguimiento} onChange={this.handleFechaChange} />
                 </div>
                 <div className='element-wrapper'>
                     <h5>Hora de Seguimiento</h5>
-                    <TimeSelect date={this.state.respuestas.horaSeguimiento} onChange={this.handleHorarioChange} />
+                    <TimeSelect time={respuestas.horaSeguimiento} onChange={this.handleHorarioChange} />
                 </div>
                 <div className='element-wrapper'>
                     <h5>Recordatorio</h5>
-                    <select value={this.state.respuestas.recordatorio} onChange={this.handleChange.bind(this, 'recordatorio')} disabled={this.state.disabled}>
+                    <select value={respuestas.recordatorio} onChange={this.handleChange.bind(this, 'recordatorio')} disabled={this.state.disabled}>
                         {this.renderOptions(recordatorioOptions)}
                     </select>
                 </div>
