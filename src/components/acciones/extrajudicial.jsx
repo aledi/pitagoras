@@ -129,7 +129,7 @@ var Extrajudicial = React.createClass({
                 </div>
                 <div className='element-wrapper'>
                     <h5>Lugar de Contacto</h5>
-                    <select value={this.state.respuestas.lugarContactoOptions} onChange={this.handleChange.bind(this, 'lugarContacto')} disabled={this.state.disabled}>
+                    <select value={this.state.respuestas.lugarContacto} onChange={this.handleChange.bind(this, 'lugarContacto')} disabled={this.state.disabled}>
                         {this.renderOptions(lugarContactoOptions)}
                     </select>
                 </div>
