@@ -1,5 +1,15 @@
 @import '~src/styles/pitagoras.scss';
 
+.buttons-wrapper {
+    margin: auto;
+    text-align: center;
+
+    button.right-button {
+        display: inline-block;
+        margin: 0 5px;
+    }
+}
+
 .contratos-table {
     position: absolute;
     top: 90px;

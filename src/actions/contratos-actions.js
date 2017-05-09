@@ -80,6 +80,31 @@ module.exports = {
             });
         });
     },
+    saveContratos: function (contratos) {
+        Dispatcher.dispatch({
+            type: 'MULTIPLE_CONTRATOS_SAVE'
+        });
+
+        var contratosToUpdate = [];
+
+        for (var i = 0; i < contratos.length; i++) {
+            var contratoForParse = Object.assign({}, contratos[i]);
+            contratoForParse = ContratoRecord.prepareForParse(contratoForParse);
+
+            contratosToUpdate.push(new ContratoObject(contratoForParse));
+        }
+
+        Parse.Object.saveAll(contratosToUpdate).then(function (payload) {
+            Dispatcher.dispatch({
+                type: 'MULTIPLE_CONTRATOS_SAVE_SUCCESS'
+            });
+        }).catch(function (error) {
+            Dispatcher.dispatch({
+                type: 'MULTIPLE_CONTRATOS_SAVE_ERROR',
+                error: error
+            });
+        });
+    },
     sortContratos: function (sortColumn) {
         Dispatcher.dispatch({
             type: 'CONTRATOS_SORT',
