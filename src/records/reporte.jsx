@@ -54,7 +54,15 @@ var ReporteRecord = Immutable.Record({
     fechaRepo: null,
     montoVenta: null,
     fechaVenta: null,
+    resultadoGestion: null,
+    modoContacto: null,
+    personaContactada: null,
+    lugarContacto: null,
+    montoPromesado: null,
     fechaSeguimiento: null,
+    horaSeguimiento: null,
+    recordatorio: null,
+    comentariosExtrajudicial: null,
 
     formattedValues: {}
 });
