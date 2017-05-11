@@ -266,7 +266,15 @@ class Accion extends AccionRecord {
 
         if (accion.tipo === 12) {
             contrato.fechaSeguimiento = accion.respuestas.fechaSeguimiento;
+            contrato.reporte.resultadoGestion = accion.respuestas.resultadoGestion;
+            contrato.reporte.modoContacto = accion.respuestas.modoContacto;
+            contrato.reporte.personaContactada = accion.respuestas.personaContactada;
+            contrato.reporte.lugarContacto = accion.respuestas.lugarContacto;
+            contrato.reporte.montoPromesado = accion.respuestas.montoPromesado;
             contrato.reporte.fechaSeguimiento = accion.respuestas.fechaSeguimiento;
+            contrato.reporte.horaSeguimiento = accion.respuestas.horaSeguimiento;
+            contrato.reporte.recordatorio = accion.respuestas.recordatorio;
+            contrato.reporte.comentariosExtrajudicial = accion.comentarios;
         }
 
         if (accion.tipo === 13) {

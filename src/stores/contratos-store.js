@@ -17,6 +17,8 @@ class ContratosStore extends Flux.MapStore {
 
             saving: false,
             saveError: null,
+            savingMultiple: false,
+            saveErrorMultiple: null,
 
             sortColumn: 'nombreCliente',
             ascending: false
@@ -72,6 +74,17 @@ class ContratosStore extends Flux.MapStore {
                 return state.merge(newState);
             case 'CONTRATOS_SAVE_ERROR':
                 return state.merge({saving: false, saveError: action.error});
+
+            // -----------------------------------------------------------------------------------------------
+            // Save Multiple
+            // -----------------------------------------------------------------------------------------------
+
+            case 'MULTIPLE_CONTRATOS_SAVE':
+                return state.merge({savingMultiple: true, saveErrorMultiple: null});
+            case 'MULTIPLE_CONTRATOS_SAVE_SUCCESS':
+                return state.merge({savingMultiple: false});
+            case 'MULTIPLE_CONTRATOS_SAVE_ERROR':
+                return state.merge({savingMultiple: false, saveErrorMultiple: action.error});
 
             // -----------------------------------------------------------------------------------------------
             // Sort

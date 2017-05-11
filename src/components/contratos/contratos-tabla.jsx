@@ -12,6 +12,7 @@ var moment = require('moment');
 
 var ContratosActions = require('src/actions/contratos-actions');
 
+var ActualizacionFactura = require('src/components/shared/actualizacion-factura');
 var Search = require('src/components/shared/search');
 
 // -----------------------------------------------------------------------------------------------
@@ -21,7 +22,10 @@ var Search = require('src/components/shared/search');
 var ContratosTabla = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
     getInitialState: function () {
-        return {showingBusqueda: false};
+        return {
+            showingBusqueda: false,
+            showingActualizacion: false
+        };
     },
     componentDidMount: function () {
         document.getElementById('table-wrapper-contratos').focus();
@@ -29,7 +33,10 @@ var ContratosTabla = React.createClass({
     render: function () {
         return (
             <div>
-                <button type='button' className='right-button' onClick={this.toggleBusqueda}>Buscar contrato</button>
+                <div className='buttons-wrapper'>
+                    <button type='button' className='right-button' onClick={this.toggleActualizacion}>Actualizar Facturas</button>
+                    <button type='button' className='right-button' onClick={this.toggleBusqueda}>Buscar contrato</button>
+                </div>
                 <div id='table-wrapper-contratos' className='contratos-table table-wrapper' tabIndex='0' onKeyUp={this.handleKeyUp}>
                     <div className='table-header-wrapper' style={{minWidth: '2250px'}}>
                         <table>
@@ -78,6 +85,7 @@ var ContratosTabla = React.createClass({
                     {this.renderTableBodyWrapper()}
                 </div>
                 {this.renderBusqueda()}
+                {this.renderActualizacionFactura()}
             </div>
         );
     },
@@ -87,6 +95,13 @@ var ContratosTabla = React.createClass({
         }
 
         return (<Search onClose={this.toggleBusqueda} />);
+    },
+    renderActualizacionFactura: function () {
+        if (!this.state.showingActualizacion) {
+            return;
+        }
+
+        return (<ActualizacionFactura contratos={this.props.contratos} onClose={this.toggleActualizacion} />);
     },
     renderTableBodyWrapper: function () {
         return (
@@ -154,6 +169,9 @@ var ContratosTabla = React.createClass({
     },
     toggleBusqueda: function () {
         this.setState({showingBusqueda: !this.state.showingBusqueda});
+    },
+    toggleActualizacion: function () {
+        this.setState({showingActualizacion: !this.state.showingActualizacion});
     },
     goToContrato: function (id) {
         this.context.router.push('/contratos/' + id);

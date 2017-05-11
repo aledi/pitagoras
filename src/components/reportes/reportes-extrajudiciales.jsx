@@ -12,7 +12,7 @@ var AccionRecord = require('src/records/accion');
 // ReportesTabla
 // -----------------------------------------------------------------------------------------------
 
-var tableMinWidth = '2250px';
+var tableMinWidth = '4050px';
 
 var ReportesExtrajudiciales = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},
@@ -60,7 +60,28 @@ var ReportesExtrajudiciales = React.createClass({
                         <span>Nombre</span>
                     </th>
                     <th style={{width: '200px'}}>
+                        <span>Resultado de Gestión</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Modo de Contacto</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Persona Contactada</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Lugar de Contacto</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Monto Promesado</span>
+                    </th>
+                    <th style={{width: '200px'}}>
                         <span>Fecha de Seguimiento</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Hora de Seguimiento</span>
+                    </th>
+                    <th style={{width: '200px'}}>
+                        <span>Recordatorio</span>
                     </th>
                     <th style={{width: '200px'}}>
                         <span>Liquidación</span>
@@ -83,6 +104,9 @@ var ReportesExtrajudiciales = React.createClass({
                     <th style={{width: '250px'}}>
                         <span>Etapa Actual</span>
                     </th>
+                    <th style={{width: '400px'}}>
+                        <span>Comentarios</span>
+                    </th>
                 </tr>
             </thead>
         );
@@ -99,7 +123,14 @@ var ReportesExtrajudiciales = React.createClass({
                 <tr className='content-row' key={reporte.id}>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.numeroContrato}</span></td>
                     <td style={{width: '350px', textAlign: 'left'}}><span>{reporte.nombre}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.resultadoGestion}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.modoContacto}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.personaContactada}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.lugarContacto}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.montoPromesado}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaSeguimiento}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.horaSeguimiento}</span></td>
+                    <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.recordatorio}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.liquidacion}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.convenio}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.valorLibros}</span></td>
@@ -107,6 +138,7 @@ var ReportesExtrajudiciales = React.createClass({
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.montoVenta}</span></td>
                     <td style={{width: '200px', textAlign: 'left'}}><span>{reporte.formattedValues.fechaVenta}</span></td>
                     <td style={{width: '250px', textAlign: 'left'}}><span>{reporte.etapaActualExtrajudicial ? AccionRecord.ACCIONES_TYPES[reporte.etapaActualExtrajudicial] : ''}</span></td>
+                    <td style={{width: '400px', textAlign: 'left'}}><span>{reporte.comentariosExtrajudicial}</span></td>
                 </tr>
             );
         });
