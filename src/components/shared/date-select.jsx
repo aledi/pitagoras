@@ -137,11 +137,12 @@ var DateSelect = React.createClass({
             return;
         }
 
+        var value = parseInt(event.target.value, 10);
         var state = this.state;
-        state[key] = event.target.value;
+        state[key] = value;
         this.setState(state);
 
-        if (state.day && state.month && state.year) {
+        if (state.day && state.month != null && state.year) {
             state.date = moment({years: state.year, months: state.month, date: state.day});
         } else {
             return;
@@ -152,7 +153,7 @@ var DateSelect = React.createClass({
         }
 
         state.date = state.date.clone();
-        state.date.set(key, event.target.value);
+        state.date.set(key, value);
 
         this.props.onChange(state.date);
 
