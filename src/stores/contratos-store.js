@@ -43,22 +43,12 @@ class ContratosStore extends Flux.MapStore {
 
     reduce (state, action) {
         switch (action.type) {
-
-            // -----------------------------------------------------------------------------------------------
-            // Fetch
-            // -----------------------------------------------------------------------------------------------
-
             case 'CONTRATOS_FETCH':
                 return state.merge({fetching: true, fetchError: null});
             case 'CONTRATOS_FETCH_SUCCESS':
                 return state.merge({fetching: false, contratos: action.contratos, notificaciones: sortNotificaciones(action.notificaciones)});
             case 'CONTRATOS_FETCH_ERROR':
                 return state.merge({fetching: false, fetchError: action.error});
-
-            // -----------------------------------------------------------------------------------------------
-            // Save
-            // -----------------------------------------------------------------------------------------------
-
             case 'CONTRATOS_SAVE':
                 return state.merge({saving: true, saveError: null});
             case 'CONTRATOS_SAVE_SUCCESS':
@@ -74,29 +64,14 @@ class ContratosStore extends Flux.MapStore {
                 return state.merge(newState);
             case 'CONTRATOS_SAVE_ERROR':
                 return state.merge({saving: false, saveError: action.error});
-
-            // -----------------------------------------------------------------------------------------------
-            // Save Multiple
-            // -----------------------------------------------------------------------------------------------
-
             case 'MULTIPLE_CONTRATOS_SAVE':
                 return state.merge({savingMultiple: true, saveErrorMultiple: null});
             case 'MULTIPLE_CONTRATOS_SAVE_SUCCESS':
                 return state.merge({savingMultiple: false});
             case 'MULTIPLE_CONTRATOS_SAVE_ERROR':
                 return state.merge({savingMultiple: false, saveErrorMultiple: action.error});
-
-            // -----------------------------------------------------------------------------------------------
-            // Sort
-            // -----------------------------------------------------------------------------------------------
-
             case 'NOTIFICACIONES_UPDATE':
                 return state.merge({notificaciones: sortNotificaciones(state.get('notificaciones').set(action.contratoId, action.notificacion))});
-
-            // -----------------------------------------------------------------------------------------------
-            // Sort
-            // -----------------------------------------------------------------------------------------------
-
             case 'CONTRATOS_SORT':
                 return updateSortColumn(state, action.sortColumn);
             default:

@@ -2,10 +2,6 @@
 
 require('./contratos-tabla.scss');
 
-// -----------------------------------------------------------------------------------------------
-// React + Other Modules
-// -----------------------------------------------------------------------------------------------
-
 var React = require('react');
 var classNames = require('classnames');
 var moment = require('moment');
@@ -14,10 +10,6 @@ var ContratosActions = require('src/actions/contratos-actions');
 
 var ActualizacionFactura = require('src/components/shared/actualizacion-factura');
 var Search = require('src/components/shared/search');
-
-// -----------------------------------------------------------------------------------------------
-// ContratosTabla
-// -----------------------------------------------------------------------------------------------
 
 var ContratosTabla = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},

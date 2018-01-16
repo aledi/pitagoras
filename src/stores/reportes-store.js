@@ -16,11 +16,6 @@ class ReportesStore extends Flux.MapStore {
 
     reduce (state, action) {
         switch (action.type) {
-
-            // -----------------------------------------------------------------------------------------------
-            // Fetch
-            // -----------------------------------------------------------------------------------------------
-
             case 'REPORTES_FETCH':
                 return state.merge({fetching: true, fetchError: null});
             case 'REPORTES_FETCH_SUCCESS':

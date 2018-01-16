@@ -1,9 +1,5 @@
 'use strict';
 
-// -----------------------------------------------------------------------------------------------
-// React + Other Modules
-// -----------------------------------------------------------------------------------------------
-
 var React = require('react');
 var Flux = require('flux/utils');
 
@@ -11,10 +7,6 @@ var UsuariosActions = require('src/actions/usuarios-actions');
 var UsuariosStore = require('src/stores/usuarios-store');
 
 var UsuariosContent = require('./usuarios-content');
-
-// -----------------------------------------------------------------------------------------------
-// Usuarios
-// -----------------------------------------------------------------------------------------------
 
 class Usuarios extends React.Component {
     static getStores () {

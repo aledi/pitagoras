@@ -2,10 +2,6 @@
 
 require('./main.scss');
 
-// -----------------------------------------------------------------------------------------------
-// React + Other Modules
-// -----------------------------------------------------------------------------------------------
-
 var React = require('react');
 var Parse = require('parse');
 var ReactRouter = require('react-router');
@@ -13,10 +9,6 @@ var Link = ReactRouter.Link;
 var classNames = require('classnames');
 
 var Pitagoras = require('src/pitagoras');
-
-// -----------------------------------------------------------------------------------------------
-// Main
-// -----------------------------------------------------------------------------------------------
 
 var Main = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},

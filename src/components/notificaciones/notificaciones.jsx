@@ -1,9 +1,5 @@
 'use strict';
 
-// -----------------------------------------------------------------------------------------------
-// React + Other Modules
-// -----------------------------------------------------------------------------------------------
-
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
@@ -16,10 +12,6 @@ var NotificacionDos = require('src/components/notificaciones/notificacion-dos');
 var NotificacionTres = require('src/components/notificaciones/notificacion-tres');
 var NotificacionCuatro = require('src/components/notificaciones/notificacion-cuatro');
 var NotificacionCinco = require('src/components/notificaciones/notificacion-cinco');
-
-// -----------------------------------------------------------------------------------------------
-// Notificaciones
-// -----------------------------------------------------------------------------------------------
 
 var Notificaciones = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},

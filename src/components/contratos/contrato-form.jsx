@@ -2,10 +2,6 @@
 
 require('./contrato-form.scss');
 
-// -----------------------------------------------------------------------------------------------
-// React + Other Modules
-// -----------------------------------------------------------------------------------------------
-
 var React = require('react');
 var classNames = require('classnames');
 
@@ -13,10 +9,6 @@ var ContratosActions = require('src/actions/contratos-actions');
 var ContratoRecord = require('src/records/contrato');
 var ContratosStore = require('src/stores/contratos-store.js');
 var DateSelect = require('src/components/shared/date-select');
-
-// -----------------------------------------------------------------------------------------------
-// Contrato Form
-// -----------------------------------------------------------------------------------------------
 
 var ContratoForm = React.createClass({
     getInitialState: function () {

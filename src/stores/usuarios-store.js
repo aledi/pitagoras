@@ -22,22 +22,12 @@ class UsuariosStore extends Flux.MapStore {
 
     reduce (state, action) {
         switch (action.type) {
-
-            // -----------------------------------------------------------------------------------------------
-            // Fetch
-            // -----------------------------------------------------------------------------------------------
-
             case 'USUARIOS_FETCH':
                 return state.merge({fetching: true, fetchError: null});
             case 'USUARIOS_FETCH_SUCCESS':
                 return state.merge({fetching: false, usuarios: action.usuarios});
             case 'USUARIOS_FETCH_ERROR':
                 return state.merge({fetching: false, fetchError: action.error});
-
-            // -----------------------------------------------------------------------------------------------
-            // Save
-            // -----------------------------------------------------------------------------------------------
-
             case 'USUARIOS_SAVE':
                 return state.merge({saving: true, saveError: null});
             case 'USUARIOS_SAVE_SUCCESS':
@@ -45,11 +35,6 @@ class UsuariosStore extends Flux.MapStore {
                 return state.merge({saving: false, usuarios: usuarios});
             case 'USUARIOS_SAVE_ERROR':
                 return state.merge({saving: false, saveError: action.error});
-
-            // -----------------------------------------------------------------------------------------------
-            // Delete
-            // -----------------------------------------------------------------------------------------------
-
             case 'USUARIOS_DELETE':
                 return state.merge({deleting: true, deleteError: null});
             case 'USUARIOS_DELETE_SUCCESS':

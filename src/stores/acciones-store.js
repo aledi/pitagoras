@@ -20,11 +20,6 @@ class AccionesStore extends Flux.MapStore {
 
     reduce (state, action) {
         switch (action.type) {
-
-            // -----------------------------------------------------------------------------------------------
-            // Fetch
-            // -----------------------------------------------------------------------------------------------
-
             case 'ACCIONES_FETCH':
                 return state.merge({fetching: true, fetchError: null});
             case 'ACCIONES_FETCH_SUCCESS':
@@ -34,11 +29,6 @@ class AccionesStore extends Flux.MapStore {
                 return state.merge(newState);
             case 'ACCIONES_FETCH_ERROR':
                 return state.merge({fetching: false, fetchError: action.error});
-
-            // -----------------------------------------------------------------------------------------------
-            // Save
-            // -----------------------------------------------------------------------------------------------
-
             case 'ACCIONES_SAVE':
                 return state.merge({saving: true, saveError: null});
             case 'ACCIONES_SAVE_SUCCESS':

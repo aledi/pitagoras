@@ -2,10 +2,6 @@
 
 require('./contratos.scss');
 
-// -----------------------------------------------------------------------------------------------
-// React + Other Modules
-// -----------------------------------------------------------------------------------------------
-
 var React = require('react');
 var Flux = require('flux/utils');
 
@@ -13,10 +9,6 @@ var ContratosStore = require('src/stores/contratos-store');
 
 var Contrato = require('./contrato');
 var ContratosTabla = require('./contratos-tabla');
-
-// -----------------------------------------------------------------------------------------------
-// Contratos
-// -----------------------------------------------------------------------------------------------
 
 class Contratos extends React.Component {
     static getStores () {

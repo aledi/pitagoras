@@ -1,9 +1,5 @@
 'use strict';
 
-// -----------------------------------------------------------------------------------------------
-// Immutable + Other Modules
-// -----------------------------------------------------------------------------------------------
-
 var Immutable = require('immutable');
 var Parse = require('parse');
 var moment = require('moment');
@@ -11,10 +7,6 @@ var moment = require('moment');
 var ContratoObject = Parse.Object.extend('Contrato');
 var ContratoRecord = require('./contrato');
 var ContratosActions = require('src/actions/contratos-actions');
-
-// -----------------------------------------------------------------------------------------------
-// AccionRecord
-// -----------------------------------------------------------------------------------------------
 
 var ACCIONES_TYPES = {
     1: 'Visita',

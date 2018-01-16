@@ -1,17 +1,9 @@
 'use strict';
 
-// -----------------------------------------------------------------------------------------------
-// React + Other Modules
-// -----------------------------------------------------------------------------------------------
-
 var React = require('react');
 
 var RespuestasUtils = require('src/components/respuestas/respuestas-utils');
 var DateUtils = require('src/utils/date-utils');
-
-// -----------------------------------------------------------------------------------------------
-// Demanda Prevenida Respuestas
-// -----------------------------------------------------------------------------------------------
 
 var DemandaPrevenida = React.createClass({
     render: function () {

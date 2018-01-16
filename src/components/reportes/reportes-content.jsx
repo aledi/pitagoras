@@ -2,18 +2,10 @@
 
 require('./reportes-content.scss');
 
-// -----------------------------------------------------------------------------------------------
-// React + Other Modules
-// -----------------------------------------------------------------------------------------------
-
 var React = require('react');
 
 var ReportesExtrajudiciales = require('./reportes-extrajudiciales');
 var ReportesTabla = require('./reportes-tabla');
-
-// -----------------------------------------------------------------------------------------------
-// ReportesContent
-// -----------------------------------------------------------------------------------------------
 
 var ReportesContent = React.createClass({
     getInitialState: function () {

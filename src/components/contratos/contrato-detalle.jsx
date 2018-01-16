@@ -2,10 +2,6 @@
 
 require('./contrato-detalle.scss');
 
-// -----------------------------------------------------------------------------------------------
-// React + Other Modules
-// -----------------------------------------------------------------------------------------------
-
 var React = require('react');
 var Parse = require('parse');
 var classNames = require('classnames');
@@ -17,7 +13,6 @@ var ContratoRecord = require('src/records/contrato');
 
 var AccionesHistorial = require('src/components/acciones/acciones-historial');
 var ContratoForm = require('src/components/contratos/contrato-form');
-
 var Visita = require('src/components/acciones/visita'); // 1
 var AltaDocumentos = require('src/components/acciones/alta-documentos'); // 2
 var PresentacionDemanda = require('src/components/acciones/presentacion-demanda'); // 3
@@ -42,10 +37,6 @@ var FechaAudienciaPruebas = require('src/components/acciones/fecha-audiencia-pru
 var Liquidacion = require('src/components/acciones/liquidacion'); // 22
 var Convenio = require('src/components/acciones/convenio'); // 23
 var Repo = require('src/components/acciones/repo'); // 24
-
-// -----------------------------------------------------------------------------------------------
-// Contrato
-// -----------------------------------------------------------------------------------------------
 
 var ContratoDetalle = React.createClass({
     contextTypes: {router: React.PropTypes.object.isRequired},

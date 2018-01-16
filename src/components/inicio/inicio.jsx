@@ -2,19 +2,12 @@
 
 require('./inicio.scss');
 
-// -----------------------------------------------------------------------------------------------
-// React + Other Modules
-// -----------------------------------------------------------------------------------------------
-
 var React = require('react');
 var Flux = require('flux/utils');
 
 var ContratosStore = require('src/stores/contratos-store');
-var Notificaciones = require('src/components/notificaciones/notificaciones');
 
-// -----------------------------------------------------------------------------------------------
-// Inicio
-// -----------------------------------------------------------------------------------------------
+var Notificaciones = require('src/components/notificaciones/notificaciones');
 
 class Inicio extends React.Component {
     static getStores () {

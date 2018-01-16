@@ -2,19 +2,11 @@
 
 require('./usuario-edit.scss');
 
-// -----------------------------------------------------------------------------------------------
-// React + Other Modules
-// -----------------------------------------------------------------------------------------------
-
 var React = require('react');
 var classNames = require('classnames');
 
 var UsuariosActions = require('src/actions/usuarios-actions');
 var UsuariosStore = require('src/stores/usuarios-store');
-
-// -----------------------------------------------------------------------------------------------
-// UsuarioEdit
-// -----------------------------------------------------------------------------------------------
 
 var UsuarioEdit = React.createClass({
     getInitialState: function () {

@@ -1,9 +1,5 @@
 'use strict';
 
-// -----------------------------------------------------------------------------------------------
-// Immutable + Other Modules
-// -----------------------------------------------------------------------------------------------
-
 var Immutable = require('immutable');
 var Parse = require('parse');
 var formatNumber = require('format-number');
@@ -15,10 +11,6 @@ var ReporteObject = Parse.Object.extend('Reporte');
 var ReporteRecord = require('./reporte');
 var VehiculoObject = Parse.Object.extend('Vehiculo');
 var VehiculoRecord = require('./vehiculo');
-
-// -----------------------------------------------------------------------------------------------
-// ContratoRecord
-// -----------------------------------------------------------------------------------------------
 
 var CONTRATO_TYPES = {
     PERDIDA: 'Pérdida',

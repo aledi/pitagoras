@@ -1,9 +1,5 @@
 'use strict';
 
-// -----------------------------------------------------------------------------------------------
-// React + Other Modules
-// -----------------------------------------------------------------------------------------------
-
 var React = require('react');
 var Flux = require('flux/utils');
 
@@ -11,10 +7,6 @@ var ReportesActions = require('src/actions/reportes-actions');
 var ReportesStore = require('src/stores/reportes-store');
 
 var ReportesContent = require('./reportes-content');
-
-// -----------------------------------------------------------------------------------------------
-// Reportes
-// -----------------------------------------------------------------------------------------------
 
 class Reportes extends React.Component {
     static getStores () {

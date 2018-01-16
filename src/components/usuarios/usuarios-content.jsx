@@ -2,19 +2,11 @@
 
 require('./usuarios-content.scss');
 
-// -----------------------------------------------------------------------------------------------
-// React + Other Modules
-// -----------------------------------------------------------------------------------------------
-
 var React = require('react');
 var Parse = require('parse');
 var UsuariosActions = require('src/actions/usuarios-actions');
 
 var UsuarioEdit = require('./usuario-edit');
-
-// -----------------------------------------------------------------------------------------------
-// UsuariosContent
-// -----------------------------------------------------------------------------------------------
 
 var UsuariosContent = React.createClass({
     getInitialState: function () {

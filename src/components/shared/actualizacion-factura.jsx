@@ -2,19 +2,11 @@
 
 require('./actualizacion-factura.scss');
 
-// -----------------------------------------------------------------------------------------------
-// React + Other Modules
-// -----------------------------------------------------------------------------------------------
-
 var React = require('react');
 var classNames = require('classnames');
 
 var ContratosActions = require('src/actions/contratos-actions');
 var ContratosStore = require('src/stores/contratos-store');
-
-// -----------------------------------------------------------------------------------------------
-// ActualizacionFactura
-// -----------------------------------------------------------------------------------------------
 
 var ActualizacionFactura = React.createClass({
     contextTypes: {

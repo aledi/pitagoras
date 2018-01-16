@@ -5,10 +5,6 @@ var moment = require('moment');
 
 var RespuestasUtils = require('src/components/respuestas/respuestas-utils');
 
-// -----------------------------------------------------------------------------------------------
-// ReporteRecord
-// -----------------------------------------------------------------------------------------------
-
 var ReporteRecord = Immutable.Record({
     id: null,
     numeroContrato: null,
