@@ -1,18 +1,10 @@
 'use strict';
 
-// -----------------------------------------------------------------------------------------------
-// Parse + React + React-Router
-// -----------------------------------------------------------------------------------------------
-
 var Parse = require('parse');
 var React = require('react');
 var ReactRouter = require('react-router');
 var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
-
-// -----------------------------------------------------------------------------------------------
-// Routes + Components
-// -----------------------------------------------------------------------------------------------
 
 var Main = require('src/components/main/main');
 var Inicio = require('src/components/inicio/inicio');
@@ -37,10 +29,6 @@ var Routes = (
         <Route path='*' component={NotFound} />
     </Route>
 );
-
-// -----------------------------------------------------------------------------------------------
-// Utils
-// -----------------------------------------------------------------------------------------------
 
 function redirectToInicio (nextState, replace) {
     replace({
