@@ -53,6 +53,7 @@ module.exports = {
             {test: /\.json$/, loader: 'json', include: include},
             {test: /\.scss$/, loader: 'style!css!postcss!sass', include: include},
             {test: /\.(ico|gif|png|jpe?g)$/, loader: 'file?' + options, include: include},
+            {include: /\.json$/, loaders: ['json-loader']},
             {test: /\.html$/, loaders: [
                 'file?' + options,
                 'extract',
@@ -66,7 +67,7 @@ module.exports = {
     },
 
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.js', '.jsx', '.json']
     },
 
     plugins: plugins

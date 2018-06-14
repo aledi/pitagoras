@@ -14,6 +14,9 @@ var classNames = require('classnames');
 
 var Pitagoras = require('src/pitagoras');
 
+var moment = require('moment-timezone');
+moment.tz.setDefault('America/Monterrey');
+
 // -----------------------------------------------------------------------------------------------
 // Main
 // -----------------------------------------------------------------------------------------------
