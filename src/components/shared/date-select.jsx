@@ -85,7 +85,7 @@ var DateSelect = React.createClass({
     renderAnios: function (event) {
         var anios = [<option key={'year-'}>-</option>];
 
-        for (var index = 2020; index >= 1995; index--) {
+        for (var index = 2025; index >= 1995; index--) {
             anios.push(<option key={index} value={index}>{index}</option>);
         }
 
