@@ -1,14 +1,14 @@
 'use strict';
 
-require('src/stores/contratos-store');
+require('../stores/contratos-store');
 
 var Parse = require('parse');
 var Immutable = require('immutable');
-var Dispatcher = require('src/dispatcher');
+var Dispatcher = require('../dispatcher');
 var moment = require('moment');
 
-var ContratoRecord = require('src/records/contrato');
-var NotificacionRecord = require('src/records/notificacion');
+var ContratoRecord = require('../records/contrato');
+var NotificacionRecord = require('../records/notificacion');
 var ContratoObject = Parse.Object.extend('Contrato');
 
 module.exports = {

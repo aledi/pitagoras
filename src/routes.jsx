@@ -14,14 +14,14 @@ var IndexRoute = ReactRouter.IndexRoute;
 // Routes + Components
 // -----------------------------------------------------------------------------------------------
 
-var Main = require('src/components/main/main');
-var Inicio = require('src/components/inicio/inicio');
-var Signin = require('src/components/auth/signin');
-var ContratoForm = require('src/components/contratos/contrato-form');
-var Usuarios = require('src/components/usuarios/usuarios');
-var Contratos = require('src/components/contratos/contratos');
-var Reportes = require('src/components/reportes/reportes');
-var NotFound = require('src/components/not-found/not-found');
+var Main = require('./components/main/main');
+var Inicio = require('./components/inicio/inicio');
+var Signin = require('./components/auth/signin');
+var ContratoForm = require('./components/contratos/contrato-form');
+var Usuarios = require('./components/usuarios/usuarios');
+var Contratos = require('./components/contratos/contratos');
+var Reportes = require('./components/reportes/reportes');
+var NotFound = require('./components/not-found/not-found');
 
 var Routes = (
     <Route path='/' component={Main}>
