@@ -13,7 +13,7 @@ var hostConfig = config['*'];
 Parse.initialize('pitagoras');
 Parse.serverURL = config.serverURL;
 
-var ContratosActions = require('src/actions/contratos-actions');
+var ContratosActions = require('./actions/contratos-actions');
 
 function fetchContratos () {
     if (!Parse.User.current()) {
@@ -38,7 +38,7 @@ var ReactDOM = require('react-dom');
 var ReactRouter = require('react-router');
 
 var Router = ReactRouter.Router;
-var routes = require('src/routes');
+var routes = require('./routes');
 
 // Render Pitagoras
 ReactDOM.render(
