@@ -11,37 +11,37 @@ var Parse = require('parse');
 var classNames = require('classnames');
 var moment = require('moment');
 
-var AccionRecord = require('src/records/accion');
-var ContratosActions = require('src/actions/contratos-actions');
-var ContratoRecord = require('src/records/contrato');
+var AccionRecord = require('../../records/accion');
+var ContratosActions = require('../../actions/contratos-actions');
+var ContratoRecord = require('../../records/contrato');
 
-var AccionesHistorial = require('src/components/acciones/acciones-historial');
-var ContratoForm = require('src/components/contratos/contrato-form');
+var AccionesHistorial = require('../acciones/acciones-historial');
+var ContratoForm = require('./contrato-form');
 
-var Visita = require('src/components/acciones/visita'); // 1
-var AltaDocumentos = require('src/components/acciones/alta-documentos'); // 2
-var PresentacionDemanda = require('src/components/acciones/presentacion-demanda'); // 3
-var AcuerdoDemanda = require('src/components/acciones/acuerdo-demanda'); // 4
-var Amparo = require('src/components/acciones/amparo'); // 5
-var DemandaDesechada = require('src/components/acciones/demanda-desechada'); // 6
-var RecoleccionDocumentos = require('src/components/acciones/recoleccion-documentos'); // 7
-var DemandaPrevenida = require('src/components/acciones/demanda-prevenida'); // 8
-var Desahogo = require('src/components/acciones/desahogo'); // 9
-var Emplazamiento = require('src/components/acciones/emplazamiento'); // 10
-var DiligenciaEmbargo = require('src/components/acciones/diligencia-embargo'); // 11
-var Extrajudicial = require('src/components/acciones/extrajudicial'); // 12
-var FechaAudienciaPrevia = require('src/components/acciones/fecha-audiencia-previa'); // 13
-var FechaAudienciaPrueba = require('src/components/acciones/fecha-audiencia-prueba'); // 14
-var FechaSentencia = require('src/components/acciones/fecha-sentencia'); // 15
-var Sentencia = require('src/components/acciones/sentencia'); // 16
-var AmparoSentencia = require('src/components/acciones/amparo-sentencia'); // 17
-var ResolucionAmparoSentencia = require('src/components/acciones/resolucion-amparo-sentencia'); // 18
-var Apelacion = require('src/components/acciones/apelacion'); // 19
-var SentenciaApelacion = require('src/components/acciones/sentencia-apelacion'); // 20
-var FechaAudienciaPruebas = require('src/components/acciones/fecha-audiencia-pruebas'); // 21
-var Liquidacion = require('src/components/acciones/liquidacion'); // 22
-var Convenio = require('src/components/acciones/convenio'); // 23
-var Repo = require('src/components/acciones/repo'); // 24
+var Visita = require('../acciones/visita'); // 1
+var AltaDocumentos = require('../acciones/alta-documentos'); // 2
+var PresentacionDemanda = require('../acciones/presentacion-demanda'); // 3
+var AcuerdoDemanda = require('../acciones/acuerdo-demanda'); // 4
+var Amparo = require('../acciones/amparo'); // 5
+var DemandaDesechada = require('../acciones/demanda-desechada'); // 6
+var RecoleccionDocumentos = require('../acciones/recoleccion-documentos'); // 7
+var DemandaPrevenida = require('../acciones/demanda-prevenida'); // 8
+var Desahogo = require('../acciones/desahogo'); // 9
+var Emplazamiento = require('../acciones/emplazamiento'); // 10
+var DiligenciaEmbargo = require('../acciones/diligencia-embargo'); // 11
+var Extrajudicial = require('../acciones/extrajudicial'); // 12
+var FechaAudienciaPrevia = require('../acciones/fecha-audiencia-previa'); // 13
+var FechaAudienciaPrueba = require('../acciones/fecha-audiencia-prueba'); // 14
+var FechaSentencia = require('../acciones/fecha-sentencia'); // 15
+var Sentencia = require('../acciones/sentencia'); // 16
+var AmparoSentencia = require('../acciones/amparo-sentencia'); // 17
+var ResolucionAmparoSentencia = require('../acciones/resolucion-amparo-sentencia'); // 18
+var Apelacion = require('../acciones/apelacion'); // 19
+var SentenciaApelacion = require('../acciones/sentencia-apelacion'); // 20
+var FechaAudienciaPruebas = require('../acciones/fecha-audiencia-pruebas'); // 21
+var Liquidacion = require('../acciones/liquidacion'); // 22
+var Convenio = require('../acciones/convenio'); // 23
+var Repo = require('../acciones/repo'); // 24
 
 // -----------------------------------------------------------------------------------------------
 // Contrato

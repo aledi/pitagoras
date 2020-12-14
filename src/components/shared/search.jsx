@@ -9,7 +9,7 @@ require('./search.scss');
 var React = require('react');
 var fuzzy = require('fuzzy');
 
-var ContratosStore = require('src/stores/contratos-store');
+var ContratosStore = require('../../stores/contratos-store');
 
 // -----------------------------------------------------------------------------------------------
 // Search

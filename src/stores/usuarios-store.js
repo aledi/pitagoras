@@ -2,7 +2,7 @@
 
 var Flux = require('flux/utils');
 var Immutable = require('immutable');
-var Dispatcher = require('src/dispatcher');
+var Dispatcher = require('../dispatcher');
 
 class UsuariosStore extends Flux.MapStore {
     getInitialState () {

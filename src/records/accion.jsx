@@ -10,7 +10,7 @@ var moment = require('moment');
 
 var ContratoObject = Parse.Object.extend('Contrato');
 var ContratoRecord = require('./contrato');
-var ContratosActions = require('src/actions/contratos-actions');
+var ContratosActions = require('../actions/contratos-actions');
 
 // -----------------------------------------------------------------------------------------------
 // AccionRecord

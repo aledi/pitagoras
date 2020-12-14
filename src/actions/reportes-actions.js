@@ -1,12 +1,12 @@
 'use strict';
 
-require('src/stores/reportes-store');
+require('../stores/reportes-store');
 
 var Parse = require('parse');
 var Immutable = require('immutable');
-var Dispatcher = require('src/dispatcher');
+var Dispatcher = require('../dispatcher');
 
-var ReporteRecord = require('src/records/reporte');
+var ReporteRecord = require('../records/reporte');
 var ReporteObject = Parse.Object.extend('Reporte');
 
 module.exports = {

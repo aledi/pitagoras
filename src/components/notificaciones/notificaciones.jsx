@@ -8,12 +8,12 @@ var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 
-var ChangePassword = require('src/components/auth/change-password');
-var NotificacionUno = require('src/components/notificaciones/notificacion-uno');
-var NotificacionDos = require('src/components/notificaciones/notificacion-dos');
-var NotificacionTres = require('src/components/notificaciones/notificacion-tres');
-var NotificacionCuatro = require('src/components/notificaciones/notificacion-cuatro');
-var NotificacionCinco = require('src/components/notificaciones/notificacion-cinco');
+var ChangePassword = require('../components/auth/change-password');
+var NotificacionUno = require('./notificacion-uno');
+var NotificacionDos = require('./notificacion-dos');
+var NotificacionTres = require('./notificacion-tres');
+var NotificacionCuatro = require('./notificacion-cuatro');
+var NotificacionCinco = require('./notificacion-cinco');
 
 // -----------------------------------------------------------------------------------------------
 // Notificaciones

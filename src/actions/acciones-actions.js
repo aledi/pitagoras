@@ -2,12 +2,12 @@
 
 var Parse = require('parse');
 var Immutable = require('immutable');
-var Dispatcher = require('src/dispatcher');
+var Dispatcher = require('../dispatcher');
 
-var AccionRecord = require('src/records/accion');
+var AccionRecord = require('../records/accion');
 var AccionObject = Parse.Object.extend('Accion');
 
-var NotificacionRecord = require('src/records/notificacion');
+var NotificacionRecord = require('../records/notificacion');
 
 module.exports = {
     fetchAcciones: function (contratoId) {

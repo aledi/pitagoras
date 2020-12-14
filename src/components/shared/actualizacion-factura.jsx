@@ -9,8 +9,8 @@ require('./actualizacion-factura.scss');
 var React = require('react');
 var classNames = require('classnames');
 
-var ContratosActions = require('src/actions/contratos-actions');
-var ContratosStore = require('src/stores/contratos-store');
+var ContratosActions = require('../../actions/contratos-actions');
+var ContratosStore = require('../../stores/contratos-store');
 
 // -----------------------------------------------------------------------------------------------
 // ActualizacionFactura
