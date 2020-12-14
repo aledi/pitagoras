@@ -8,7 +8,7 @@ require('./acciones-historial.scss');
 
 var React = require('react');
 
-var AccionRecord = require('src/records/accion');
+var AccionRecord = require('../../records/accion');
 
 var Visita = require('../respuestas/visita'); // 1
 var AltaDocumentos = require('../respuestas/alta-documentos'); // 2

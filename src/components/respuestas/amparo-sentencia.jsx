@@ -5,7 +5,7 @@
 // -----------------------------------------------------------------------------------------------
 
 var React = require('react');
-var DateUtils = require('src/utils/date-utils');
+var DateUtils = require('../../utils/date-utils');
 
 // -----------------------------------------------------------------------------------------------
 // Amparo vs Sentencia

@@ -6,7 +6,7 @@
 
 var React = require('react');
 
-var RespuestasUtils = require('src/components/respuestas/respuestas-utils');
+var RespuestasUtils = require('./respuestas-utils');
 
 // -----------------------------------------------------------------------------------------------
 // Desahogo Respuestas
