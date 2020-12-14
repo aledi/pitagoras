@@ -7,9 +7,9 @@
 var React = require('react');
 var Flux = require('flux/utils');
 
-var AccionesActions = require('src/actions/acciones-actions');
-var AccionesStore = require('src/stores/acciones-store');
-var ContratoDetalle = require('src/components/contratos/contrato-detalle');
+var AccionesActions = require('../../actions/acciones-actions');
+var AccionesStore = require('../../stores/acciones-store');
+var ContratoDetalle = require('./contrato-detalle');
 
 // -----------------------------------------------------------------------------------------------
 // Contrato

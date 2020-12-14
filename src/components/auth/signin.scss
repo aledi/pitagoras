@@ -1,4 +1,4 @@
-@import '~src/styles/pitagoras.scss';
+@import '../../styles/pitagoras.scss';
 
 .signin-wrapper {
     height: 100%;
@@ -34,7 +34,7 @@
             font-size: 16px;
             letter-spacing: 1px;
             text-align: center;
-            
+
             &.required {
                 border-color: $red;
             }

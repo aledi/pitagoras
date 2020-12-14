@@ -3,7 +3,7 @@
 var Immutable = require('immutable');
 var moment = require('moment');
 
-var RespuestasUtils = require('src/components/respuestas/respuestas-utils');
+var RespuestasUtils = require('../components/respuestas/respuestas-utils');
 
 // -----------------------------------------------------------------------------------------------
 // ReporteRecord

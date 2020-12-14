@@ -8,7 +8,7 @@ require('./usuarios-content.scss');
 
 var React = require('react');
 var Parse = require('parse');
-var UsuariosActions = require('src/actions/usuarios-actions');
+var UsuariosActions = require('../../actions/usuarios-actions');
 
 var UsuarioEdit = require('./usuario-edit');
 

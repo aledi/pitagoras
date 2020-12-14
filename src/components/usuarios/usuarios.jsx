@@ -7,8 +7,8 @@
 var React = require('react');
 var Flux = require('flux/utils');
 
-var UsuariosActions = require('src/actions/usuarios-actions');
-var UsuariosStore = require('src/stores/usuarios-store');
+var UsuariosActions = require('../../actions/usuarios-actions');
+var UsuariosStore = require('../../stores/usuarios-store');
 
 var UsuariosContent = require('./usuarios-content');
 

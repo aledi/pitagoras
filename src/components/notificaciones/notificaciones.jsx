@@ -8,8 +8,6 @@ var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 
-var AccionRecord = require('src/records/accion');
-
 var ChangePassword = require('src/components/auth/change-password');
 var NotificacionUno = require('src/components/notificaciones/notificacion-uno');
 var NotificacionDos = require('src/components/notificaciones/notificacion-dos');

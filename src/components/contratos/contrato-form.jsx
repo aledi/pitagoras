@@ -9,10 +9,10 @@ require('./contrato-form.scss');
 var React = require('react');
 var classNames = require('classnames');
 
-var ContratosActions = require('src/actions/contratos-actions');
-var ContratoRecord = require('src/records/contrato');
-var ContratosStore = require('src/stores/contratos-store.js');
-var DateSelect = require('src/components/shared/date-select');
+var ContratosActions = require('../../actions/contratos-actions');
+var ContratoRecord = require('../../records/contrato');
+var ContratosStore = require('../../stores/contratos-store.js');
+var DateSelect = require('../shared/date-select');
 
 // -----------------------------------------------------------------------------------------------
 // Contrato Form

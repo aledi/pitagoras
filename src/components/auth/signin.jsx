@@ -6,7 +6,7 @@ require('./signin.scss');
 // React + Other Modules
 // -----------------------------------------------------------------------------------------------
 
-var Pitagoras = require('src/pitagoras');
+var Pitagoras = require('../../pitagoras');
 var React = require('react');
 var Parse = require('parse');
 var classNames = require('classnames');
@@ -31,7 +31,7 @@ var Signin = React.createClass({
     render: function () {
         return (
             <div className='signin-wrapper'>
-                <img className='logo' src={require('src/assets/logo.png')} />
+                <img className='logo' src={require('../../assets/logo.png')} />
                 <form onSubmit={this.handleSignIn}>
                     <input
                         type='text'

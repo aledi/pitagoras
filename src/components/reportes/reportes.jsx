@@ -7,8 +7,8 @@
 var React = require('react');
 var Flux = require('flux/utils');
 
-var ReportesActions = require('src/actions/reportes-actions');
-var ReportesStore = require('src/stores/reportes-store');
+var ReportesActions = require('../../actions/reportes-actions');
+var ReportesStore = require('../../stores/reportes-store');
 
 var ReportesContent = require('./reportes-content');
 

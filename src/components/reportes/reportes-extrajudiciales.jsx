@@ -6,7 +6,7 @@
 
 var React = require('react');
 
-var AccionRecord = require('src/records/accion');
+var AccionRecord = require('../../records/accion');
 
 // -----------------------------------------------------------------------------------------------
 // ReportesTabla

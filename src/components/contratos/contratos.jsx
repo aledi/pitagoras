@@ -9,7 +9,7 @@ require('./contratos.scss');
 var React = require('react');
 var Flux = require('flux/utils');
 
-var ContratosStore = require('src/stores/contratos-store');
+var ContratosStore = require('../../stores/contratos-store');
 
 var Contrato = require('./contrato');
 var ContratosTabla = require('./contratos-tabla');

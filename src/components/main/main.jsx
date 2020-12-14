@@ -12,7 +12,7 @@ var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 var classNames = require('classnames');
 
-var Pitagoras = require('src/pitagoras');
+var Pitagoras = require('../../pitagoras');
 
 var moment = require('moment-timezone');
 moment.tz.setDefault('America/Monterrey');
@@ -83,7 +83,7 @@ var Main = React.createClass({
                     {this.renderAgregarUsuarioItem(isAdmin)}
                 </div>
                 <div className='signout' onClick={this.signOut} title='Cerrar sesión'>
-                    <img src={require('src/assets/signOut.png')} />
+                    <img src={require('../../assets/signOut.png')} />
                 </div>
             </header>
         );
