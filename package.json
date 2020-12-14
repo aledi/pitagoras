@@ -43,7 +43,7 @@
     "json-loader": "0.5.4",
     "moment": "2.18.1",
     "moment-timezone": "0.5.17",
-    "node-sass": "3.13.0",
+    "node-sass": "4.13.0",
     "parse": "1.9.2",
     "postcss-loader": "1.1.1",
     "react": "15.4.1",
