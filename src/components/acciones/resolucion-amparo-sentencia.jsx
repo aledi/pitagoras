@@ -9,7 +9,7 @@ var Parse = require('parse');
 var classNames = require('classnames');
 
 var AccionesMixin = require('./acciones-mixin');
-var DateSelect = require('src/components/shared/date-select');
+var DateSelect = require('../shared/date-select');
 
 // -----------------------------------------------------------------------------------------------
 // Resolución Amparo vs Sentencia

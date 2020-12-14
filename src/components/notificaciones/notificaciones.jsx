@@ -8,7 +8,7 @@ var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 
-var ChangePassword = require('../components/auth/change-password');
+var ChangePassword = require('../auth/change-password');
 var NotificacionUno = require('./notificacion-uno');
 var NotificacionDos = require('./notificacion-dos');
 var NotificacionTres = require('./notificacion-tres');

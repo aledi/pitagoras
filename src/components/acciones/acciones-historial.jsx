@@ -10,30 +10,30 @@ var React = require('react');
 
 var AccionRecord = require('src/records/accion');
 
-var Visita = require('src/components/respuestas/visita'); // 1
-var AltaDocumentos = require('src/components/respuestas/alta-documentos'); // 2
-var PresentacionDemanda = require('src/components/respuestas/presentacion-demanda'); // 3
-var AcuerdoDemanda = require('src/components/respuestas/acuerdo-demanda'); // 4
-var Amparo = require('src/components/respuestas/amparo'); // 5
-var DemandaDesechada = require('src/components/respuestas/demanda-desechada'); // 6
-var RecoleccionDocumentos = require('src/components/respuestas/recoleccion-documentos'); // 7
-var DemandaPrevenida = require('src/components/respuestas/demanda-prevenida'); // 8
-var Desahogo = require('src/components/respuestas/desahogo'); // 9
-var Emplazamiento = require('src/components/respuestas/emplazamiento'); // 10
-var DiligenciaEmbargo = require('src/components/respuestas/diligencia-embargo'); // 11
-var Extrajudicial = require('src/components/respuestas/extrajudicial'); // 12
-var FechaAudienciaPrevia = require('src/components/respuestas/fecha-audiencia-previa'); // 13
-var FechaAudienciaPrueba = require('src/components/respuestas/fecha-audiencia-prueba'); // 14
-var FechaSentencia = require('src/components/respuestas/fecha-sentencia'); // 15
-var Sentencia = require('src/components/respuestas/sentencia'); // 16
-var AmparoSentencia = require('src/components/respuestas/amparo-sentencia'); // 17
-var ResolucionAmparoSentencia = require('src/components/respuestas/resolucion-amparo-sentencia'); // 18
-var Apelacion = require('src/components/respuestas/apelacion'); // 19
-var SentenciaApelacion = require('src/components/respuestas/sentencia-apelacion'); // 20
-var FechaAudienciaPruebas = require('src/components/respuestas/fecha-audiencia-pruebas'); // 21
-var Liquidacion = require('src/components/respuestas/liquidacion'); // 22
-var Convenio = require('src/components/respuestas/convenio'); // 23
-var Repo = require('src/components/respuestas/repo'); // 24
+var Visita = require('../respuestas/visita'); // 1
+var AltaDocumentos = require('../respuestas/alta-documentos'); // 2
+var PresentacionDemanda = require('../respuestas/presentacion-demanda'); // 3
+var AcuerdoDemanda = require('../respuestas/acuerdo-demanda'); // 4
+var Amparo = require('../respuestas/amparo'); // 5
+var DemandaDesechada = require('../respuestas/demanda-desechada'); // 6
+var RecoleccionDocumentos = require('../respuestas/recoleccion-documentos'); // 7
+var DemandaPrevenida = require('../respuestas/demanda-prevenida'); // 8
+var Desahogo = require('../respuestas/desahogo'); // 9
+var Emplazamiento = require('../respuestas/emplazamiento'); // 10
+var DiligenciaEmbargo = require('../respuestas/diligencia-embargo'); // 11
+var Extrajudicial = require('../respuestas/extrajudicial'); // 12
+var FechaAudienciaPrevia = require('../respuestas/fecha-audiencia-previa'); // 13
+var FechaAudienciaPrueba = require('../respuestas/fecha-audiencia-prueba'); // 14
+var FechaSentencia = require('../respuestas/fecha-sentencia'); // 15
+var Sentencia = require('../respuestas/sentencia'); // 16
+var AmparoSentencia = require('../respuestas/amparo-sentencia'); // 17
+var ResolucionAmparoSentencia = require('../respuestas/resolucion-amparo-sentencia'); // 18
+var Apelacion = require('../respuestas/apelacion'); // 19
+var SentenciaApelacion = require('../respuestas/sentencia-apelacion'); // 20
+var FechaAudienciaPruebas = require('../respuestas/fecha-audiencia-pruebas'); // 21
+var Liquidacion = require('../respuestas/liquidacion'); // 22
+var Convenio = require('../respuestas/convenio'); // 23
+var Repo = require('../respuestas/repo'); // 24
 
 // -----------------------------------------------------------------------------------------------
 // AccionesHistorial

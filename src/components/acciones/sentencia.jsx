@@ -11,7 +11,7 @@ var classNames = require('classnames');
 var ContratoRecord = require('../../records/contrato');
 
 var AccionesMixin = require('./acciones-mixin');
-var DateSelect = require('src/components/shared/date-select');
+var DateSelect = require('../shared/date-select');
 
 // -----------------------------------------------------------------------------------------------
 // Sentencia

@@ -7,8 +7,8 @@
 var React = require('react');
 var Parse = require('parse');
 
-var AccionesActions = require('src/actions/acciones-actions');
-var AccionRecord = require('src/records/accion');
+var AccionesActions = require('../../actions/acciones-actions');
+var AccionRecord = require('../../records/accion');
 var AccionesMixin = require('./acciones-mixin');
 
 // -----------------------------------------------------------------------------------------------

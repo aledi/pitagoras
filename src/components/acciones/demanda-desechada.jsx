@@ -8,8 +8,8 @@ var React = require('react');
 var Parse = require('parse');
 
 var AccionesMixin = require('./acciones-mixin');
-var DateSelect = require('src/components/shared/date-select');
-var TimeSelect = require('src/components/shared/time-select');
+var DateSelect = require('../shared/date-select');
+var TimeSelect = require('../shared/time-select');
 
 // -----------------------------------------------------------------------------------------------
 // DemandaDesechada
